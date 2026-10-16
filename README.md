@@ -54,14 +54,22 @@ python3 update_prices.py --from-raw raw_prices.json   # hors ligne
 - Rayons à thème (apéro, rentrée, Noël) pour la version payante.
 - Mode « prix d'hier » : comparer avec le prix d'il y a 5 ans (indices INSEE).
 
-## Mesurer l'intérêt (sans compte, sans cookie)
+## Mesurer l'audience (sans compte, sans cookie)
 
-Le jeu envoie des événements à **Plausible** s'il est installé sur le site (script Plausible dans la page), sinon rien :
+Tableau de bord : **https://horssol.goatcounter.com** (visites, provenance, appareils + événements ci-dessous).
 
-| Événement | Quand | Détail |
-|---|---|---|
-| `partage` | un joueur partage | `type` = `defi` (score seul) ou `ticket` (ticket complet) |
-| `idee` | un joueur envoie son avis en fin de partie | `idee` = `groupe`, `themes`, `retro`, `plus`, `marques` |
+| Événement | Quand |
+|---|---|
+| `fin-partie` | un joueur termine les 5 produits |
+| `fin-jour-1`, `fin-jour-2`, `fin-jour-3-6`, `fin-jour-7plus` | combien de jours ce joueur a déjà joué (compteur anonyme stocké dans son navigateur) |
+| `serie-3-6`, `serie-7plus` | série de jours consécutifs en cours |
+| `score-0-149` … `score-600plus` | tranche de score du jour |
+| `partage` | un joueur partage son ticket |
+| `idee-groupe`, `idee-themes`, `idee-retro`, `idee-plus`, `idee-marques` | idées cochées en fin de partie |
 
-Le nombre de clics sur chaque idée dit quoi construire ensuite, sans jamais parler d'argent.
-Pour activer Plausible : décommenter les deux lignes dans `build.py`.
+Taux de retour = (fin-jour-2 + fin-jour-3-6 + fin-jour-7plus) / fin-partie.
+
+## Barème
+
+Fourchette : Sûr de moi ±10 % = 100 pts, À peu près ±25 % = 50 pts, Au pif ±50 % = 20 pts, hors fourchette = 0.
+Bonus de précision, quelle que soit la fourchette : à 2 % près +50 (Pile-poil), à 5 % près +20 (Tout proche). Maximum 750 pts.

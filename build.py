@@ -31,10 +31,8 @@ HEAD = f"""<!doctype html>
 <meta property="og:image:height" content="630">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:image" content="{SITE}/assets/og.png">
-<!-- Mesure d'audience sans cookie : décommenter une fois le compte Plausible créé
-<script defer data-domain="es-tu-hors-sol.fr" src="https://plausible.io/js/script.js"></script>
-<script>window.plausible=window.plausible||function(){{(window.plausible.q=window.plausible.q||[]).push(arguments)}}</script>
--->
+<!-- Mesure d'audience sans cookie : GoatCounter (tableau de bord : https://horssol.goatcounter.com) -->
+<script data-goatcounter="https://horssol.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script>
 <style>:root{{color-scheme:light;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}}
 body{{margin:0;font:14px/1.4 system-ui,-apple-system,sans-serif}}img{{max-width:100%}}[hidden]{{display:none!important}}</style>
 """

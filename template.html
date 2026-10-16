@@ -42,7 +42,7 @@ header{display:flex;align-items:flex-end;justify-content:space-between;gap:12px}
 .steps{display:grid;grid-template-columns:repeat(5,1fr);gap:6px}
 .steps i{height:6px;border-radius:3px;background:var(--line)}
 .steps i.now{background:var(--ink)}
-.steps i.hit{background:var(--hit)} .steps i.near{background:var(--near)} .steps i.miss{background:var(--miss)}
+.steps i.hit,.steps i.near{background:var(--hit)} .steps i.pile{background:var(--tag);box-shadow:inset 0 0 0 1.5px var(--ink)} .steps i.miss{background:var(--miss)}
 
 .card{background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:20px 18px;display:flex;flex-direction:column;gap:16px}
 .rayon{font-size:12px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:var(--muted)}
@@ -76,7 +76,23 @@ input[type=range]{flex:1;min-width:0;accent-color:var(--ink);height:44px}
 
 .verdict{display:flex;flex-direction:column;gap:6px}
 .verdict .v{font-family:var(--f-display);font-weight:900;font-size:30px;line-height:1;text-transform:uppercase}
-.verdict .v.hit{color:var(--hit)} .verdict .v.near{color:var(--near)} .verdict .v.miss{color:var(--miss)}
+.verdict .v.hit,.verdict .v.near{color:var(--hit)} .verdict .v.miss{color:var(--miss)}
+.verdict .v.pile{color:var(--tag-ink);background:var(--tag);align-self:flex-start;padding:4px 8px 2px;transform:rotate(-1deg)}
+.verdict .calc{font-family:var(--f-mono);font-size:13px;color:var(--ink)}
+.gain{margin:8px 0 0;font-size:13px;color:var(--muted);line-height:1.4}
+.gain b{color:var(--ink)}
+.promise{margin:0;font-size:14px;color:var(--muted);font-style:italic}
+.rules{border:1px solid var(--line);border-radius:12px;background:var(--surface)}
+.rules summary{cursor:pointer;padding:12px 14px;font-weight:600;font-size:14px;list-style:none;display:flex;justify-content:space-between;align-items:center}
+.rules summary::-webkit-details-marker{display:none}
+.rules summary::after{content:"+";font-size:20px;line-height:1;color:var(--muted)}
+.rules[open] summary::after{content:"−"}
+.rules .body{padding:0 14px 14px;display:flex;flex-direction:column;gap:10px;font-size:14px}
+.rules table{width:100%;border-collapse:collapse;font-size:13px}
+.rules td{padding:6px 0;border-top:1px solid var(--line)}
+.rules td:last-child{text-align:right;font-family:var(--f-mono);font-weight:600;white-space:nowrap}
+.rules p{margin:0;color:var(--muted)}
+.rules h4{margin:4px 0 0;font-size:13px;text-transform:uppercase;letter-spacing:.06em;color:var(--muted)}
 .verdict p{margin:0;color:var(--muted);font-size:14px}
 .verdict p b{color:var(--ink)}
 
@@ -124,7 +140,28 @@ footer a{color:inherit}
   <div class="hook">
     <p class="q">Connaissez-vous mieux le prix des courses que nos ministres&nbsp;?</p>
     <p class="pitch"><strong>5 produits du quotidien</strong>, de vrais prix relevés en magasin. Donnez une fourchette : plus elle est serrée, plus ça rapporte.</p>
+    <p class="promise">Pas de produit obscur : que des articles que vous pourriez avoir croisés dans votre caddie.</p>
   </div>
+  <details class="rules" id="rules">
+    <summary>Comment marquer des points ?</summary>
+    <div class="body">
+      <p>Choisissez un prix, puis la largeur de votre fourchette. Si le vrai prix tombe dedans, vous marquez les points de la fourchette. Plus elle est serrée, plus c'est risqué… et plus ça rapporte.</p>
+      <h4>Votre fourchette</h4>
+      <table>
+        <tr><td>Sûr de moi · ± 10 %</td><td>100 pts</td></tr>
+        <tr><td>À peu près · ± 25 %</td><td>50 pts</td></tr>
+        <tr><td>Au pif · ± 50 %</td><td>20 pts</td></tr>
+        <tr><td>Prix hors fourchette</td><td>0 pt</td></tr>
+      </table>
+      <h4>Bonus de précision, quelle que soit la fourchette</h4>
+      <table>
+        <tr><td>🎯 Pile-poil · à 2 % près</td><td>+50 pts</td></tr>
+        <tr><td>👌 Tout proche · à 5 % près</td><td>+20 pts</td></tr>
+      </table>
+      <p>Exemple : vrai prix 3,73 €. Vous dites 3,70 € « Sûr de moi » : 100 + 50 = <b>150 pts</b>. Vous dites 3,70 € « Au pif » : 20 + 50 = <b>70 pts</b>. Maximum : 750 pts par jour.</p>
+      <p>🎯 pile-poil · 🟩 dans la fourchette · ⬛ raté</p>
+    </div>
+  </details>
   <div class="steps" id="steps" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i></div>
   <main id="app"></main>
   <footer>Prix de référence : médiane des relevés en France sur 12 mois, base <a href="https://prices.openfoodfacts.org" target="_blank" rel="noopener">Open Prices</a> (Open Food Facts, licence ODbL). Les prix varient selon les magasins. <span id="upd"></span> <a href="apropos.html">À propos</a></footer>
@@ -142,12 +179,17 @@ const CONF = [
   {id:"mid",  label:"À peu près", pct:.25, pts:50},
   {id:"wild", label:"Au pif",     pct:.50, pts:20},
 ];
+const BONUS = [
+  {max:.02, pts:50, id:"pile",   label:"Pile-poil"},
+  {max:.05, pts:20, id:"proche", label:"Tout proche"},
+];
+const MAXPTS = 750;
 const TITLES = [
   [0,  "Ministre hors-sol", "Vous n'avez pas poussé un caddie depuis le dernier remaniement."],
-  [100,"Ministre en campagne", "Vous découvrez les prix le temps d'une photo au marché."],
-  [200,"Conseiller de cabinet", "Le ticket de caisse vous surprend encore un peu."],
-  [300,"Plus connecté qu'un ministre", "Vous avez l'œil, à quelques centimes près."],
-  [400,"Ministre des Courses", "On ne vous la fait pas, au rayon frais. Le poste est à vous."],
+  [150,"Ministre en campagne", "Vous découvrez les prix le temps d'une photo au marché."],
+  [300,"Conseiller de cabinet", "Le ticket de caisse vous surprend encore un peu."],
+  [450,"Plus connecté qu'un ministre", "Vous avez l'œil, à quelques centimes près."],
+  [600,"Ministre des Courses", "On ne vous la fait pas, au rayon frais. Le poste est à vous."],
 ];
 
 const SITE = "https://es-tu-hors-sol.fr";
@@ -158,8 +200,25 @@ const IDEAS = [
   {id:"plus",    label:"Plus de produits par jour"},
   {id:"marques", label:"Marque nationale contre marque distributeur"},
 ];
-// Mesure d'audience sans cookie : Plausible si présent sur le site, sinon rien.
-function track(name, props){ try{ if (window.plausible) window.plausible(name, {props}); }catch(e){} }
+// Mesure d'audience sans cookie (GoatCounter) : uniquement des compteurs anonymes.
+function track(path, tries){
+  tries = tries || 0;
+  try{
+    if (window.goatcounter && window.goatcounter.count){ window.goatcounter.count({path: path, title: path, event: true}); return; }
+  }catch(e){ return; }
+  if (tries < 10) setTimeout(()=>track(path, tries+1), 800);
+}
+function loadStats(){ try{ return JSON.parse(localStorage.getItem("horssol:stats")) || {days:0}; }catch(e){ return {days:0}; } }
+function saveStats(v){ try{ localStorage.setItem("horssol:stats", JSON.stringify(v)); }catch(e){} }
+function trackFinish(total, streak){
+  const st = loadStats();
+  if (st.lastDay !== today){ st.days = (st.days||0) + 1; st.lastDay = today; saveStats(st); }
+  const d = st.days;
+  track("fin-partie");
+  track("fin-jour-" + (d===1 ? "1" : d===2 ? "2" : d<=6 ? "3-6" : "7plus"));
+  if (streak >= 7) track("serie-7plus"); else if (streak >= 3) track("serie-3-6");
+  track("score-" + (total<150 ? "0-149" : total<300 ? "150-299" : total<450 ? "300-449" : total<600 ? "450-599" : "600plus"));
+}
 function loadFb(){ try{ return JSON.parse(localStorage.getItem("horssol:feedback")); }catch(e){ return null; } }
 function saveFb(v){ try{ localStorage.setItem("horssol:feedback", JSON.stringify(v)); }catch(e){} }
 
@@ -191,7 +250,12 @@ function scoreGuess(guess, confId, truth){
   const c = CONF.find(x=>x.id===confId);
   const lo = guess*(1-c.pct), hi = guess*(1+c.pct);
   const hit = truth >= lo - 1e-9 && truth <= hi + 1e-9;
-  return {lo, hi, hit, pts: hit ? c.pts : 0, cls: hit ? (c.id==="sure"?"hit":"near") : "miss"};
+  const err = Math.abs(guess - truth) / truth;
+  const b = BONUS.find(x => err <= x.max + 1e-9) || null;
+  const base = hit ? c.pts : 0;
+  const bonus = b ? b.pts : 0;
+  return {lo, hi, hit, base, bonus, bonusLabel: b ? b.label : "", pts: base + bonus,
+          cls: b && b.id==="pile" ? "pile" : (hit ? "hit" : "miss")};
 }
 window.__horsSolScore = scoreGuess; // exposé pour test
 
@@ -278,18 +342,29 @@ function controlsHTML(){
       <div class="conf" role="group" aria-label="Largeur de la fourchette">
         ${CONF.map(c=>`<button data-c="${c.id}" aria-pressed="${state.conf===c.id}"><b>${c.label}</b><small>±${Math.round(c.pct*100)} % · ${c.pts} pts</small></button>`).join("")}
       </div>
+      <p class="gain" id="gain">${gainText()}</p>
     </div>
     <button class="cta" id="go">Valider ma fourchette</button>`;
 }
 
+function gainText(){
+  const c = CONF.find(x=>x.id===state.conf);
+  return `Si le prix est entre <b>${euro(state.guess*(1-c.pct))}</b> et <b>${euro(state.guess*(1+c.pct))}</b> : <b>+${c.pts} pts</b>. Bonus si vous êtes à 2 % près (+50) ou 5 % près (+20).`;
+}
+
 function verdictHTML(p,a){
-  const words = {hit:"Dans le mille", near:"Dans la fourchette", miss:"Raté"};
+  const words = {pile:"🎯 Pile-poil", hit:"Dans la fourchette", near:"Dans la fourchette", miss:"Raté"};
+  const parts = [];
+  if (a.base) parts.push(`fourchette +${a.base}`); else if (a.base===0) parts.push("hors fourchette 0");
+  if (a.bonus) parts.push(`${a.bonusLabel.toLowerCase()} +${a.bonus}`);
+  const calc = parts.join(" · ") + ` = ${a.pts} pts`;
   const diff = a.guess - p.median;
   const dir = Math.abs(diff) < 0.005 ? "pile le bon prix" : (diff>0 ? "trop cher de "+euro(Math.abs(diff)) : "trop bas de "+euro(Math.abs(diff)));
   const last = day.answers.length >= PER_DAY;
   return `
     <div class="verdict">
       <div class="v ${a.cls}">${words[a.cls]} · +${a.pts}</div>
+      <p class="calc">${calc}</p>
       <p>Votre fourchette : <b>${euro(a.lo)} – ${euro(a.hi)}</b>, centrée ${dir}.</p>
       <p>Prix médian sur ${p.n} relevés ; la moitié des magasins entre ${euro(p.p25)} et ${euro(p.p75)}.</p>
     </div>
@@ -302,6 +377,7 @@ function wire(){
     const c = CONF.find(x=>x.id===state.conf);
     $("#big").innerHTML = bigPrice(state.guess);
     $("#range").innerHTML = "entre "+euro(state.guess*(1-c.pct))+"<br>et "+euro(state.guess*(1+c.pct));
+    $("#gain").innerHTML = gainText();
   };
   s.addEventListener("input", ()=>{ state.guess = toPrice(+s.value); upd(); });
   const nudge = dir => { const st = stepOf(state.guess); state.guess = Math.min(MAX, Math.max(MIN, roundP(state.guess + dir*st))); s.value = toT(state.guess); upd(); };
@@ -315,10 +391,11 @@ function wire(){
   $("#go").addEventListener("click", ()=>{
     const p = items[day.answers.length];
     const r = scoreGuess(state.guess, state.conf, p.median);
-    day.answers.push({code:p.code, guess:state.guess, conf:state.conf, lo:r.lo, hi:r.hi, pts:r.pts, cls:r.cls});
+    day.answers.push({code:p.code, guess:state.guess, conf:state.conf, lo:r.lo, hi:r.hi, base:r.base, bonus:r.bonus, bonusLabel:r.bonusLabel, pts:r.pts, cls:r.cls});
     if (day.answers.length >= PER_DAY){
       day.streak = streakAfterFinish(); day.last = today; day.finished = true;
       store = day;
+      trackFinish(day.answers.reduce((s,x)=>s+x.pts,0), day.streak);
     }
     save(day);
     state.revealed = true;
@@ -329,18 +406,16 @@ function wire(){
 function renderEnd(){
   const total = day.answers.reduce((s,a)=>s+a.pts,0);
   const t = TITLES.filter(x=>total>=x[0]).pop();
-  const sq = a => ({hit:"🟩",near:"🟨",miss:"⬛"})[a.cls];
-  const grid = day.answers.map(sq).join("");
+  const sq = a => ({pile:"🎯",hit:"🟩",near:"🟩",miss:"⬛"})[a.cls] || "⬛";
   const n = $("#num").textContent;
   const prods = day.answers.map((a,i)=> items[i] || DATA.products.find(x=>x.code===a.code) || {name:"?",median:0});
-  const shareShort = `Hors-Sol n°${n} — ${total}/500\n${grid}\n${t[1]}\nEt toi, tu connais mieux les prix que nos ministres ?\n${SITE}`;
-  const shareFull = `🧾 Mon ticket Hors-Sol n°${n}\n(attention, les prix du jour sont dedans)\n\n` +
-    day.answers.map((a,i)=>`${sq(a)} ${prods[i].name} : ${euro(prods[i].median)}\n    ma fourchette ${euro(a.lo)} – ${euro(a.hi)} · ${a.pts ? "+"+a.pts : "0"} pts`).join("\n") +
-    `\n\nTOTAL ${total}/500 · ${t[1]}\n${SITE}`;
+  const share = `🧾 Hors-Sol n°${n} — ${total}/${MAXPTS}\n${t[1]}\n\n` +
+    day.answers.map((a,i)=>`${sq(a)} ${prods[i].name} · ${a.pts ? "+"+a.pts : "0"}`).join("\n") +
+    `\n\nEt toi, tu connais mieux les prix que nos ministres ?\n${SITE}`;
   const rows = day.answers.map((a,i)=>{
     const p = prods[i];
     return `<div class="row"><span class="n">${p.name}</span><span class="pts">${a.pts ? "+"+a.pts : "0"}</span>
-      <span class="d">vrai ${euro(p.median)} · vous ${euro(a.lo)}–${euro(a.hi)}</span></div>`;
+      <span class="d">vrai ${euro(p.median)} · vous ${euro(a.lo)}–${euro(a.hi)}${a.bonus ? " · "+a.bonusLabel.toLowerCase()+" +"+a.bonus : ""}</span></div>`;
   }).join("");
   const fb = loadFb();
   app.innerHTML = `
@@ -350,13 +425,11 @@ function renderEnd(){
       <h2>Hors-Sol</h2>
       <p class="sub">Ticket n°${$("#num").textContent} · ${today.split("-").reverse().join("/")}</p>
       ${rows}
-      <div class="tot"><span>TOTAL</span><span>${total} / 500 pts</span></div>
+      <div class="tot"><span>TOTAL</span><span>${total} / ${MAXPTS} pts</span></div>
     </div>
     <div class="share">
-      <button class="cta" id="shareShort">Défier un ami</button>
-      <p class="hint">Votre score et vos carrés, sans dévoiler les prix.</p>
-      <button class="ghost" id="shareFull">Envoyer mon ticket complet</button>
-      <p class="hint">Avec les vrais prix et vos fourchettes. Idéal pour débriefer avec ceux qui ont déjà joué.</p>
+      <button class="cta" id="share">Partager mon ticket</button>
+      <p class="hint">Vos produits et vos points, sans dévoiler les prix.</p>
     </div>
     <p class="toast" id="toast" role="status"></p>
     <textarea id="sharetxt" readonly hidden rows="8" aria-label="Texte à partager"></textarea>
@@ -371,20 +444,19 @@ function renderEnd(){
       <p class="thanks" id="fbthanks" ${fb?"":"hidden"}>Merci, c'est noté. Revenez demain pour le prochain défi.</p>
     </section>
   </div>`;
-  async function doShare(text, label){
-    if (navigator.share){ try{ await navigator.share({text}); track("partage",{type:label}); return; }catch(e){ if(e && e.name==="AbortError") return; } }
-    try { await navigator.clipboard.writeText(text); $("#toast").textContent = "Copié. Collez-le dans WhatsApp, SMS…"; track("partage",{type:label}); }
+  async function doShare(text){
+    if (navigator.share){ try{ await navigator.share({text}); track("partage"); return; }catch(e){ if(e && e.name==="AbortError") return; } }
+    try { await navigator.clipboard.writeText(text); $("#toast").textContent = "Copié. Collez-le dans WhatsApp, SMS…"; track("partage"); }
     catch(e){ const ta=$("#sharetxt"); ta.value=text; ta.hidden=false; ta.focus(); ta.select(); $("#toast").textContent = "Sélectionnez le texte ci-dessous pour le copier."; }
   }
-  $("#shareShort").addEventListener("click", ()=>doShare(shareShort,"defi"));
-  $("#shareFull").addEventListener("click", ()=>doShare(shareFull,"ticket"));
+  $("#share").addEventListener("click", ()=>doShare(share));
   const picked = new Set();
   document.querySelectorAll(".chip").forEach(c=>c.addEventListener("click", ()=>{
     const id=c.dataset.id; picked.has(id)?picked.delete(id):picked.add(id);
     c.setAttribute("aria-pressed", picked.has(id)); $("#fbsend").disabled = picked.size===0;
   }));
   $("#fbsend").addEventListener("click", ()=>{
-    const ids=[...picked]; ids.forEach(id=>track("idee",{idee:id}));
+    const ids=[...picked]; ids.forEach(id=>track("idee-"+id));
     saveFb(ids);
     document.querySelectorAll(".chip").forEach(c=>c.disabled=true);
     $("#fbsend").hidden=true; $("#fbthanks").hidden=false;
