@@ -1,0 +1,443 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="description" content="Connaissez-vous mieux le prix des courses que nos ministres ? 5 produits par jour, de vrais prix, une fourchette à trouver.">
+<meta name="theme-color" content="#FFD21F">
+<link rel="canonical" href="https://es-tu-hors-sol.fr/">
+<link rel="manifest" href="manifest.webmanifest">
+<link rel="icon" type="image/png" sizes="32x32" href="assets/icon-32.png">
+<link rel="apple-touch-icon" href="assets/icon-180.png">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-title" content="Hors-Sol">
+<meta property="og:type" content="website">
+<meta property="og:locale" content="fr_FR">
+<meta property="og:url" content="https://es-tu-hors-sol.fr/">
+<meta property="og:title" content="Hors-Sol · le jeu des prix du quotidien">
+<meta property="og:description" content="Connaissez-vous mieux le prix des courses que nos ministres ? 5 produits par jour, de vrais prix, une fourchette à trouver.">
+<meta property="og:image" content="https://es-tu-hors-sol.fr/assets/og.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://es-tu-hors-sol.fr/assets/og.png">
+<!-- Mesure d'audience sans cookie : décommenter une fois le compte Plausible créé
+<script defer data-domain="es-tu-hors-sol.fr" src="https://plausible.io/js/script.js"></script>
+<script>window.plausible=window.plausible||function(){(window.plausible.q=window.plausible.q||[]).push(arguments)}</script>
+-->
+<style>:root{color-scheme:light;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+body{margin:0;font:14px/1.4 system-ui,-apple-system,sans-serif}img{max-width:100%}[hidden]{display:none!important}</style>
+<title>Hors-Sol · le jeu des prix du quotidien</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Big+Shoulders+Display:wght@700;900&family=Instrument+Sans:wght@400;500;600;700&family=JetBrains+Mono:wght@400;600&display=swap">
+<style>
+/* Layout : une colonne étroite, une étiquette de rayon par produit, un ticket de caisse en fin de partie */
+:root{
+  --bg:#EEF0EC; --surface:#FFFFFF; --ink:#15171A; --muted:#5D6460; --line:#D5D9D3;
+  --tag:#FFD21F; --tag-ink:#15171A; --hit:#17824A; --near:#B86E00; --miss:#D6262D;
+  --paper:#FFFFFF; --focus:#2852D6;
+  --f-display:"Big Shoulders Display","Arial Narrow",Impact,sans-serif;
+  --f-body:"Instrument Sans",system-ui,-apple-system,"Segoe UI",sans-serif;
+  --f-mono:"JetBrains Mono",ui-monospace,Menlo,Consolas,monospace;
+}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){
+  --bg:#111312; --surface:#1B1E1C; --ink:#ECEFEA; --muted:#9BA39E; --line:#2E3330;
+  --tag:#FFD21F; --tag-ink:#15171A; --hit:#3FBF78; --near:#F0A63A; --miss:#FF5A5F;
+  --paper:#202321; --focus:#8FA8FF; color-scheme:dark}}
+:root[data-theme="dark"]{
+  --bg:#111312; --surface:#1B1E1C; --ink:#ECEFEA; --muted:#9BA39E; --line:#2E3330;
+  --tag:#FFD21F; --tag-ink:#15171A; --hit:#3FBF78; --near:#F0A63A; --miss:#FF5A5F;
+  --paper:#202321; --focus:#8FA8FF; color-scheme:dark}
+
+*{box-sizing:border-box}
+body{background:var(--bg);color:var(--ink);font-family:var(--f-body);font-size:16px;line-height:1.45;
+  padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px));padding-block:20px 40px}
+.wrap{max-width:460px;margin:0 auto;display:flex;flex-direction:column;gap:18px}
+button{font:inherit;color:inherit}
+:focus-visible{outline:3px solid var(--focus);outline-offset:2px}
+
+header{display:flex;align-items:flex-end;justify-content:space-between;gap:12px}
+.brand{font-family:var(--f-display);font-weight:900;font-size:44px;line-height:.85;letter-spacing:.01em;text-transform:uppercase;margin:0}
+.brand span{display:inline-block;background:var(--tag);color:var(--tag-ink);padding:2px 6px 0;transform:rotate(-2deg)}
+.meta{text-align:right;font-size:13px;color:var(--muted);line-height:1.3}
+.meta b{color:var(--ink);font-weight:600}
+.hook{display:flex;flex-direction:column;gap:6px}
+.hook .q{margin:0;font-family:var(--f-display);font-weight:700;font-size:28px;line-height:1.05;text-wrap:balance}
+.pitch{margin:0;color:var(--muted);font-size:15px;max-width:42ch}
+.pitch strong{color:var(--ink)}
+
+.steps{display:grid;grid-template-columns:repeat(5,1fr);gap:6px}
+.steps i{height:6px;border-radius:3px;background:var(--line)}
+.steps i.now{background:var(--ink)}
+.steps i.hit{background:var(--hit)} .steps i.near{background:var(--near)} .steps i.miss{background:var(--miss)}
+
+.card{background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:20px 18px;display:flex;flex-direction:column;gap:16px}
+.rayon{font-size:12px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:var(--muted)}
+.pname{font-family:var(--f-display);font-weight:700;font-size:34px;line-height:1;margin:4px 0 2px;text-wrap:balance}
+.pdetail{color:var(--muted);margin:0}
+
+/* étiquette de rayon */
+.tag{background:var(--tag);color:var(--tag-ink);border-radius:6px;padding:10px 14px 8px;display:grid;grid-template-columns:1fr auto;align-items:end;gap:4px 12px;position:relative}
+.tag::before{content:"";position:absolute;left:10px;top:10px;width:8px;height:8px;border-radius:50%;background:var(--bg)}
+.tag .lbl{grid-column:1/-1;font-size:11px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;padding-left:16px}
+.tag .big{font-family:var(--f-display);font-weight:900;font-size:64px;line-height:.9;font-variant-numeric:tabular-nums}
+.tag .big sup{font-size:.45em;vertical-align:.95em;margin-left:2px}
+.tag .range{font-family:var(--f-mono);font-size:13px;text-align:right;line-height:1.3;padding-bottom:6px}
+
+.slider-row{display:flex;align-items:center;gap:10px}
+.step{flex:none;width:44px;height:44px;border-radius:10px;border:1px solid var(--line);background:var(--bg);font-size:22px;font-weight:600;cursor:pointer}
+input[type=range]{flex:1;min-width:0;accent-color:var(--ink);height:44px}
+.scale{display:flex;justify-content:space-between;font-family:var(--f-mono);font-size:11px;color:var(--muted);margin-top:-8px;padding:0 54px}
+
+.conf-title{font-size:13px;font-weight:600;margin:0 0 8px}
+.conf{display:grid;grid-template-columns:repeat(3,1fr);gap:8px}
+.conf button{border:1px solid var(--line);background:var(--bg);border-radius:10px;padding:10px 6px;cursor:pointer;text-align:center;line-height:1.2}
+.conf button b{display:block;font-size:14px}
+.conf button small{font-size:12px;color:var(--muted)}
+.conf button[aria-pressed="true"]{background:var(--ink);color:var(--bg);border-color:var(--ink)}
+.conf button[aria-pressed="true"] small{color:inherit;opacity:.8}
+
+.cta{border:0;border-radius:12px;background:var(--ink);color:var(--bg);font-weight:700;font-size:17px;padding:15px;cursor:pointer;width:100%}
+.cta:disabled{opacity:.4;cursor:not-allowed}
+.ghost{border:1px solid var(--line);background:transparent;border-radius:12px;font-weight:600;padding:13px;cursor:pointer;width:100%}
+
+.verdict{display:flex;flex-direction:column;gap:6px}
+.verdict .v{font-family:var(--f-display);font-weight:900;font-size:30px;line-height:1;text-transform:uppercase}
+.verdict .v.hit{color:var(--hit)} .verdict .v.near{color:var(--near)} .verdict .v.miss{color:var(--miss)}
+.verdict p{margin:0;color:var(--muted);font-size:14px}
+.verdict p b{color:var(--ink)}
+
+/* ticket de caisse */
+.ticket{background:var(--paper);border:1px solid var(--line);font-family:var(--f-mono);font-size:13px;padding:20px 16px 26px;position:relative;
+  -webkit-mask:radial-gradient(circle 6px at 6px 100%,#0000 98%,#000) -6px 0/12px 100% repeat-x;mask:radial-gradient(circle 6px at 6px 100%,#0000 98%,#000) -6px 0/12px 100% repeat-x}
+.ticket h2{font-family:var(--f-display);font-size:28px;font-weight:900;text-align:center;margin:0 0 2px;text-transform:uppercase;letter-spacing:.03em}
+.ticket .sub{text-align:center;color:var(--muted);margin:0 0 14px}
+.ticket .row{display:grid;grid-template-columns:1fr auto;gap:2px 10px;padding:8px 0;border-top:1px dashed var(--line)}
+.ticket .row .n{min-width:0;overflow-wrap:anywhere}
+.ticket .row .pts{font-weight:600;font-variant-numeric:tabular-nums;text-align:right}
+.ticket .row .d{grid-column:1/-1;color:var(--muted);font-size:12px}
+.ticket .tot{display:flex;justify-content:space-between;border-top:2px solid var(--ink);margin-top:6px;padding-top:10px;font-size:16px;font-weight:600}
+.title-card{text-align:center;display:flex;flex-direction:column;gap:4px}
+.title-card .t{font-family:var(--f-display);font-weight:900;font-size:34px;line-height:1;text-transform:uppercase;text-wrap:balance}
+.title-card p{margin:0;color:var(--muted)}
+.next{font-size:14px;color:var(--muted);text-align:center;margin:0}
+.next b{font-family:var(--f-mono);color:var(--ink)}
+.premium{border:1px dashed var(--line);border-radius:14px;padding:16px;display:flex;flex-direction:column;gap:8px}
+.premium h3{margin:0;font-size:16px}
+.premium p{margin:0;color:var(--muted);font-size:14px}
+.share{display:flex;flex-direction:column;gap:6px}
+.hint{margin:0 0 8px;font-size:13px;color:var(--muted);text-align:center}
+#sharetxt{width:100%;font-family:var(--f-mono);font-size:13px;border:1px solid var(--line);border-radius:8px;padding:8px;background:var(--surface);color:var(--ink)}
+.chips{display:flex;flex-wrap:wrap;gap:8px}
+.chip{border:1px solid var(--line);background:var(--surface);border-radius:999px;padding:8px 12px;font-size:14px;cursor:pointer;text-align:left}
+.chip[aria-pressed="true"]{background:var(--tag);color:var(--tag-ink);border-color:var(--tag);font-weight:600}
+.chip:disabled{cursor:default}
+.thanks{margin:0;color:var(--hit);font-weight:600;font-size:14px}
+.toast{min-height:20px;font-size:13px;color:var(--hit);text-align:center;margin:0}
+footer{font-size:12px;color:var(--muted);line-height:1.5}
+footer a{color:inherit}
+@media (prefers-reduced-motion:no-preference){
+  .tag .big{transition:transform .25s}
+  .pop{animation:pop .35s ease-out}
+  @keyframes pop{0%{transform:scale(.9)}60%{transform:scale(1.04)}100%{transform:scale(1)}}
+}
+</style>
+
+</head>
+<body>
+<div class="wrap">
+  <header>
+    <h1 class="brand"><span>Hors</span><br>-Sol</h1>
+    <div class="meta"><div>Défi n°<b id="num">1</b></div><div id="date">aujourd'hui</div><div>Série : <b id="streak">0</b> j</div></div>
+  </header>
+  <div class="hook">
+    <p class="q">Connaissez-vous mieux le prix des courses que nos ministres&nbsp;?</p>
+    <p class="pitch"><strong>5 produits du quotidien</strong>, de vrais prix relevés en magasin. Donnez une fourchette : plus elle est serrée, plus ça rapporte.</p>
+  </div>
+  <div class="steps" id="steps" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i></div>
+  <main id="app"></main>
+  <footer>Prix de référence : médiane des relevés en France sur 12 mois, base <a href="https://prices.openfoodfacts.org" target="_blank" rel="noopener">Open Prices</a> (Open Food Facts, licence ODbL). Les prix varient selon les magasins. <span id="upd"></span> <a href="apropos.html">À propos</a></footer>
+</div>
+
+<script id="data" type="application/json">{"updated":"2026-10-16","source":"Open Prices (Open Food Facts) — ODbL","window_days":365,"products":[{"code":"3017620422003","name":"Nutella","detail":"Pot de 400 g","rayon":"Petit-déj","qty":0.4,"unit":"kg","median":3.73,"p25":3.58,"p75":4.3,"n":24,"per_unit":9.32},{"code":"3033491147067","name":"Activia nature","detail":"4 pots de 125 g","rayon":"Crèmerie","qty":0.5,"unit":"kg","median":1.44,"p25":1.42,"p75":1.79,"n":5,"per_unit":2.88},{"code":"3068110702235","name":"Farine de blé T45 Francine","detail":"Paquet de 1 kg","rayon":"Épicerie","qty":1,"unit":"kg","median":1.23,"p25":1.22,"p75":1.5,"n":3,"per_unit":1.23},{"code":"3176582033327","name":"Camembert Le Rustique","detail":"Boîte de 250 g","rayon":"Crèmerie","qty":0.25,"unit":"kg","median":2.52,"p25":2.39,"p75":2.79,"n":4,"per_unit":10.08},{"code":"3178530410105","name":"Petites madeleines St Michel","detail":"Sachet de 500 g","rayon":"Biscuits","qty":0.5,"unit":"kg","median":2.71,"p25":2.02,"p75":3.07,"n":21,"per_unit":5.42},{"code":"3228857001118","name":"Pain de mie Harrys 100% mie","detail":"Paquet de 500 g","rayon":"Boulangerie","qty":0.5,"unit":"kg","median":2.59,"p25":2.54,"p75":2.65,"n":10,"per_unit":5.18},{"code":"3240931547213","name":"Gnocchi Lustucru","detail":"Barquette de 390 g","rayon":"Frais","qty":0.39,"unit":"kg","median":1.96,"p25":1.72,"p75":2.14,"n":10,"per_unit":5.03},{"code":"3256540000346","name":"Croissants Pasquier","detail":"Sachet de 640 g","rayon":"Petit-déj","qty":0.64,"unit":"kg","median":3.77,"p25":3.73,"p75":3.79,"n":25,"per_unit":5.89},{"code":"3289664113609","name":"Baguette de supermarché","detail":"250 g, rayon boulangerie Leclerc","rayon":"Boulangerie","qty":0.25,"unit":"kg","median":0.35,"p25":0.35,"p75":0.35,"n":25,"per_unit":1.4},{"code":"3497917000136","name":"Chips Brets Paysanne","detail":"Sachet de 250 g","rayon":"Apéro","qty":0.25,"unit":"kg","median":2.55,"p25":2.5,"p75":2.55,"n":23,"per_unit":10.2},{"code":"3608580065340","name":"Pâte à tartiner Bonne Maman","detail":"Pot de 360 g","rayon":"Petit-déj","qty":0.36,"unit":"kg","median":4.41,"p25":3.7,"p75":4.99,"n":25,"per_unit":12.25},{"code":"5000159560498","name":"Snickers","detail":"5 barres de 50 g","rayon":"Confiserie","qty":0.25,"unit":"kg","median":2.65,"p25":2.55,"p75":2.94,"n":12,"per_unit":10.6},{"code":"7613035040823","name":"Nestlé Dessert noir","detail":"Tablette de 205 g","rayon":"Épicerie","qty":0.205,"unit":"kg","median":3.49,"p25":3.19,"p75":3.7,"n":3,"per_unit":17.02},{"code":"8000300312102","name":"Chocolat Crunch au lait","detail":"2 tablettes de 100 g","rayon":"Confiserie","qty":0.2,"unit":"kg","median":2.81,"p25":2.66,"p75":2.9,"n":18,"per_unit":14.05},{"code":"8076809513753","name":"Pesto alla genovese Barilla","detail":"Pot de 190 g","rayon":"Épicerie","qty":0.19,"unit":"kg","median":2.49,"p25":2.11,"p75":2.71,"n":18,"per_unit":13.11}]}</script>
+<script>
+(function(){
+"use strict";
+const LAUNCH = "2026-10-16";            // défi n°1
+const PER_DAY = 5;
+const MIN = 0.10, MAX = 20;             // curseur logarithmique : ne trahit pas l'ordre de grandeur
+const CONF = [
+  {id:"sure", label:"Sûr de moi", pct:.10, pts:100},
+  {id:"mid",  label:"À peu près", pct:.25, pts:50},
+  {id:"wild", label:"Au pif",     pct:.50, pts:20},
+];
+const TITLES = [
+  [0,  "Ministre hors-sol", "Vous n'avez pas poussé un caddie depuis le dernier remaniement."],
+  [100,"Ministre en campagne", "Vous découvrez les prix le temps d'une photo au marché."],
+  [200,"Conseiller de cabinet", "Le ticket de caisse vous surprend encore un peu."],
+  [300,"Plus connecté qu'un ministre", "Vous avez l'œil, à quelques centimes près."],
+  [400,"Ministre des Courses", "On ne vous la fait pas, au rayon frais. Le poste est à vous."],
+];
+
+const SITE = "https://es-tu-hors-sol.fr";
+const IDEAS = [
+  {id:"groupe",  label:"Un classement avec mes amis"},
+  {id:"themes",  label:"Des défis à thème (apéro, Noël, rentrée)"},
+  {id:"retro",   label:"Deviner le prix d'avant : la baguette en 2005, le Nutella en 2015…"},
+  {id:"plus",    label:"Plus de produits par jour"},
+  {id:"marques", label:"Marque nationale contre marque distributeur"},
+];
+// Mesure d'audience sans cookie : Plausible si présent sur le site, sinon rien.
+function track(name, props){ try{ if (window.plausible) window.plausible(name, {props}); }catch(e){} }
+function loadFb(){ try{ return JSON.parse(localStorage.getItem("horssol:feedback")); }catch(e){ return null; } }
+function saveFb(v){ try{ localStorage.setItem("horssol:feedback", JSON.stringify(v)); }catch(e){} }
+
+const $ = s => document.querySelector(s);
+const app = $("#app");
+const fmt = v => v.toFixed(2).replace(".", ",");
+const euro = v => fmt(v) + " €";
+
+// ---- date du jour (heure de Paris)
+function parisISO(d=new Date()){
+  return new Intl.DateTimeFormat("en-CA",{timeZone:"Europe/Paris",year:"numeric",month:"2-digit",day:"2-digit"}).format(d);
+}
+const today = parisISO();
+const dayIndex = Math.round((Date.parse(today) - Date.parse(LAUNCH)) / 864e5);
+$("#num").textContent = Math.max(1, dayIndex + 1);
+$("#date").textContent = new Intl.DateTimeFormat("fr-FR",{timeZone:"Europe/Paris",weekday:"long",day:"numeric",month:"long"}).format(new Date());
+
+// ---- tirage déterministe : tout le monde a les mêmes produits le même jour
+function rng(seed){return function(){seed|=0;seed=seed+0x6D2B79F5|0;let t=Math.imul(seed^seed>>>15,1|seed);t=t+Math.imul(t^t>>>7,61|t)^t;return((t^t>>>14)>>>0)/4294967296}}
+function pickDaily(products){
+  const r = rng(20261016 + dayIndex * 7919);
+  const a = products.slice().sort((x,y)=>x.code.localeCompare(y.code));
+  for(let i=a.length-1;i>0;i--){const j=Math.floor(r()*(i+1));[a[i],a[j]]=[a[j],a[i]]}
+  return a.slice(0, PER_DAY);
+}
+
+// ---- score
+function scoreGuess(guess, confId, truth){
+  const c = CONF.find(x=>x.id===confId);
+  const lo = guess*(1-c.pct), hi = guess*(1+c.pct);
+  const hit = truth >= lo - 1e-9 && truth <= hi + 1e-9;
+  return {lo, hi, hit, pts: hit ? c.pts : 0, cls: hit ? (c.id==="sure"?"hit":"near") : "miss"};
+}
+window.__horsSolScore = scoreGuess; // exposé pour test
+
+// ---- curseur log
+const toPrice = t => { const p = MIN*Math.pow(MAX/MIN, t/1000); return roundP(p); };
+const toT = p => Math.round(1000*Math.log(p/MIN)/Math.log(MAX/MIN));
+function roundP(p){ return p < 1 ? Math.round(p*100)/100 : Math.round(p*20)/20; }
+const stepOf = p => p < 1 ? 0.01 : 0.05;
+
+// ---- stockage local (facultatif)
+const KEY = "horssol:v1";
+function load(){ try{ return JSON.parse(localStorage.getItem(KEY)) || {}; }catch(e){ return {}; } }
+function save(s){ try{ localStorage.setItem(KEY, JSON.stringify(s)); }catch(e){} }
+let store = load();
+let day = store.day === today ? store : {day: today, answers: [], streak: store.streak||0, last: store.last||null};
+
+function streakAfterFinish(){
+  const y = parisISO(new Date(Date.parse(today+"T12:00:00Z") - 864e5));
+  return (day.last === y ? (day.streak||0) : 0) + 1;
+}
+
+// ---- données
+let DATA;
+try { DATA = JSON.parse($("#data").textContent); } catch(e){ DATA = {products:[]}; }
+if (DATA.updated) $("#upd").textContent = "Mise à jour : " + new Date(DATA.updated+"T12:00:00").toLocaleDateString("fr-FR") + ".";
+const items = pickDaily(DATA.products);
+
+let state = {guess: 2.00, conf: "mid", revealed: false};
+
+function paintSteps(){
+  const el = $("#steps").children;
+  for(let i=0;i<PER_DAY;i++){
+    const a = day.answers[i];
+    el[i].className = a ? a.cls : (i===day.answers.length ? "now" : "");
+  }
+  $("#streak").textContent = day.finished ? day.streak : (store.last && streakAlive() ? store.streak : 0);
+}
+function streakAlive(){
+  const y = parisISO(new Date(Date.parse(today+"T12:00:00Z") - 864e5));
+  return store.last === y || store.last === today;
+}
+
+function render(){
+  paintSteps();
+  if (!items.length){ app.innerHTML = '<div class="card"><p>Les prix du jour n\'ont pas pu être chargés. Réessayez dans quelques minutes.</p></div>'; return; }
+  if (day.answers.length >= PER_DAY && !state.revealed) return renderEnd();
+  const i = state.revealed ? day.answers.length-1 : day.answers.length;
+  const p = items[i];
+  const c = CONF.find(x=>x.id===state.conf);
+  const a = state.revealed ? day.answers[i] : null;
+  const lo = state.guess*(1-c.pct), hi = state.guess*(1+c.pct);
+
+  app.innerHTML = `
+  <section class="card" aria-live="polite">
+    <div>
+      <div class="rayon">Produit ${i+1}/${PER_DAY} · ${p.rayon}</div>
+      <h2 class="pname">${p.name}</h2>
+      <p class="pdetail">${p.detail}</p>
+    </div>
+    <div class="tag ${a?"pop":""}">
+      <div class="lbl">${a ? "Prix constaté" : "Votre estimation"}</div>
+      <div class="big" id="big">${bigPrice(a ? p.median : state.guess)}</div>
+      <div class="range" id="range">${a ? (p.per_unit ? euro(p.per_unit)+" / "+p.unit : "") : "entre "+euro(lo)+"<br>et "+euro(hi)}</div>
+    </div>
+    ${a ? verdictHTML(p,a) : controlsHTML()}
+  </section>`;
+  if (!a) wire(); else $("#next").addEventListener("click", ()=>{ state = {guess: 2.00, conf: state.conf, revealed:false}; render(); $("#app").scrollIntoView({block:"start",behavior:"smooth"}); });
+}
+
+function bigPrice(v){ const [e,c] = v.toFixed(2).split("."); return `${e}<sup>,${c} €</sup>`; }
+
+function controlsHTML(){
+  return `
+    <div>
+      <div class="slider-row">
+        <button class="step" id="minus" aria-label="Baisser de quelques centimes">−</button>
+        <input type="range" id="slider" min="0" max="1000" step="1" value="${toT(state.guess)}" aria-label="Votre estimation du prix">
+        <button class="step" id="plus" aria-label="Monter de quelques centimes">+</button>
+      </div>
+      <div class="scale" aria-hidden="true"><span>0,10 €</span><span>1,40 €</span><span>20 €</span></div>
+    </div>
+    <div>
+      <p class="conf-title">Votre fourchette</p>
+      <div class="conf" role="group" aria-label="Largeur de la fourchette">
+        ${CONF.map(c=>`<button data-c="${c.id}" aria-pressed="${state.conf===c.id}"><b>${c.label}</b><small>±${Math.round(c.pct*100)} % · ${c.pts} pts</small></button>`).join("")}
+      </div>
+    </div>
+    <button class="cta" id="go">Valider ma fourchette</button>`;
+}
+
+function verdictHTML(p,a){
+  const words = {hit:"Dans le mille", near:"Dans la fourchette", miss:"Raté"};
+  const diff = a.guess - p.median;
+  const dir = Math.abs(diff) < 0.005 ? "pile le bon prix" : (diff>0 ? "trop cher de "+euro(Math.abs(diff)) : "trop bas de "+euro(Math.abs(diff)));
+  const last = day.answers.length >= PER_DAY;
+  return `
+    <div class="verdict">
+      <div class="v ${a.cls}">${words[a.cls]} · +${a.pts}</div>
+      <p>Votre fourchette : <b>${euro(a.lo)} – ${euro(a.hi)}</b>, centrée ${dir}.</p>
+      <p>Prix médian sur ${p.n} relevés ; la moitié des magasins entre ${euro(p.p25)} et ${euro(p.p75)}.</p>
+    </div>
+    <button class="cta" id="next">${last ? "Voir mon ticket" : "Produit suivant"}</button>`;
+}
+
+function wire(){
+  const s = $("#slider");
+  const upd = () => {
+    const c = CONF.find(x=>x.id===state.conf);
+    $("#big").innerHTML = bigPrice(state.guess);
+    $("#range").innerHTML = "entre "+euro(state.guess*(1-c.pct))+"<br>et "+euro(state.guess*(1+c.pct));
+  };
+  s.addEventListener("input", ()=>{ state.guess = toPrice(+s.value); upd(); });
+  const nudge = dir => { const st = stepOf(state.guess); state.guess = Math.min(MAX, Math.max(MIN, roundP(state.guess + dir*st))); s.value = toT(state.guess); upd(); };
+  $("#minus").addEventListener("click", ()=>nudge(-1));
+  $("#plus").addEventListener("click", ()=>nudge(1));
+  document.querySelectorAll(".conf button").forEach(b=>b.addEventListener("click", ()=>{
+    state.conf = b.dataset.c;
+    document.querySelectorAll(".conf button").forEach(x=>x.setAttribute("aria-pressed", x===b));
+    upd();
+  }));
+  $("#go").addEventListener("click", ()=>{
+    const p = items[day.answers.length];
+    const r = scoreGuess(state.guess, state.conf, p.median);
+    day.answers.push({code:p.code, guess:state.guess, conf:state.conf, lo:r.lo, hi:r.hi, pts:r.pts, cls:r.cls});
+    if (day.answers.length >= PER_DAY){
+      day.streak = streakAfterFinish(); day.last = today; day.finished = true;
+      store = day;
+    }
+    save(day);
+    state.revealed = true;
+    render();
+  });
+}
+
+function renderEnd(){
+  const total = day.answers.reduce((s,a)=>s+a.pts,0);
+  const t = TITLES.filter(x=>total>=x[0]).pop();
+  const sq = a => ({hit:"🟩",near:"🟨",miss:"⬛"})[a.cls];
+  const grid = day.answers.map(sq).join("");
+  const n = $("#num").textContent;
+  const prods = day.answers.map((a,i)=> items[i] || DATA.products.find(x=>x.code===a.code) || {name:"?",median:0});
+  const shareShort = `Hors-Sol n°${n} — ${total}/500\n${grid}\n${t[1]}\nEt toi, tu connais mieux les prix que nos ministres ?\n${SITE}`;
+  const shareFull = `🧾 Mon ticket Hors-Sol n°${n}\n(attention, les prix du jour sont dedans)\n\n` +
+    day.answers.map((a,i)=>`${sq(a)} ${prods[i].name} : ${euro(prods[i].median)}\n    ma fourchette ${euro(a.lo)} – ${euro(a.hi)} · ${a.pts ? "+"+a.pts : "0"} pts`).join("\n") +
+    `\n\nTOTAL ${total}/500 · ${t[1]}\n${SITE}`;
+  const rows = day.answers.map((a,i)=>{
+    const p = prods[i];
+    return `<div class="row"><span class="n">${p.name}</span><span class="pts">${a.pts ? "+"+a.pts : "0"}</span>
+      <span class="d">vrai ${euro(p.median)} · vous ${euro(a.lo)}–${euro(a.hi)}</span></div>`;
+  }).join("");
+  const fb = loadFb();
+  app.innerHTML = `
+  <div style="display:flex;flex-direction:column;gap:18px">
+    <div class="title-card"><div class="rayon">Votre verdict</div><div class="t">${t[1]}</div><p>${t[2]}</p></div>
+    <div class="ticket">
+      <h2>Hors-Sol</h2>
+      <p class="sub">Ticket n°${$("#num").textContent} · ${today.split("-").reverse().join("/")}</p>
+      ${rows}
+      <div class="tot"><span>TOTAL</span><span>${total} / 500 pts</span></div>
+    </div>
+    <div class="share">
+      <button class="cta" id="shareShort">Défier un ami</button>
+      <p class="hint">Votre score et vos carrés, sans dévoiler les prix.</p>
+      <button class="ghost" id="shareFull">Envoyer mon ticket complet</button>
+      <p class="hint">Avec les vrais prix et vos fourchettes. Idéal pour débriefer avec ceux qui ont déjà joué.</p>
+    </div>
+    <p class="toast" id="toast" role="status"></p>
+    <textarea id="sharetxt" readonly hidden rows="8" aria-label="Texte à partager"></textarea>
+    <p class="next">Prochain défi dans <b id="cd">--:--:--</b></p>
+    <section class="premium" id="fb" aria-labelledby="fbt">
+      <h3 id="fbt">Qu'est-ce qui vous ferait revenir encore plus ?</h3>
+      <p>Choisissez ce qui vous tente, on construit la suite avec vos réponses.</p>
+      <div class="chips" role="group" aria-label="Idées">
+        ${IDEAS.map(x=>`<button class="chip" data-id="${x.id}" aria-pressed="${fb?fb.includes(x.id):false}" ${fb?"disabled":""}>${x.label}</button>`).join("")}
+      </div>
+      <button class="ghost" id="fbsend" ${fb?"hidden":""} disabled>Envoyer mon avis</button>
+      <p class="thanks" id="fbthanks" ${fb?"":"hidden"}>Merci, c'est noté. Revenez demain pour le prochain défi.</p>
+    </section>
+  </div>`;
+  async function doShare(text, label){
+    if (navigator.share){ try{ await navigator.share({text}); track("partage",{type:label}); return; }catch(e){ if(e && e.name==="AbortError") return; } }
+    try { await navigator.clipboard.writeText(text); $("#toast").textContent = "Copié. Collez-le dans WhatsApp, SMS…"; track("partage",{type:label}); }
+    catch(e){ const ta=$("#sharetxt"); ta.value=text; ta.hidden=false; ta.focus(); ta.select(); $("#toast").textContent = "Sélectionnez le texte ci-dessous pour le copier."; }
+  }
+  $("#shareShort").addEventListener("click", ()=>doShare(shareShort,"defi"));
+  $("#shareFull").addEventListener("click", ()=>doShare(shareFull,"ticket"));
+  const picked = new Set();
+  document.querySelectorAll(".chip").forEach(c=>c.addEventListener("click", ()=>{
+    const id=c.dataset.id; picked.has(id)?picked.delete(id):picked.add(id);
+    c.setAttribute("aria-pressed", picked.has(id)); $("#fbsend").disabled = picked.size===0;
+  }));
+  $("#fbsend").addEventListener("click", ()=>{
+    const ids=[...picked]; ids.forEach(id=>track("idee",{idee:id}));
+    saveFb(ids);
+    document.querySelectorAll(".chip").forEach(c=>c.disabled=true);
+    $("#fbsend").hidden=true; $("#fbthanks").hidden=false;
+  });
+  tick(); setInterval(tick, 1000);
+  paintSteps();
+}
+
+function tick(){
+  const el = $("#cd"); if(!el) return;
+  const now = new Date();
+  const parts = new Intl.DateTimeFormat("en-GB",{timeZone:"Europe/Paris",hour:"2-digit",minute:"2-digit",second:"2-digit",hour12:false}).format(now).split(":").map(Number);
+  let left = 86400 - (parts[0]*3600+parts[1]*60+parts[2]);
+  const h=Math.floor(left/3600), m=Math.floor(left%3600/60), s=left%60;
+  el.textContent = [h,m,s].map(x=>String(x).padStart(2,"0")).join(":");
+}
+
+// reprise d'une partie entamée
+if (day.answers.length && day.answers.length < PER_DAY) state.revealed = false;
+render();
+})();
+</script>
+
+</body>
+</html>
