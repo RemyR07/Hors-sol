@@ -1,0 +1,47 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>À propos · Hors-Sol</title>
+<meta name="description" content="Comment fonctionne Hors-Sol, d'où viennent les prix, et ce que le site ne collecte pas.">
+<link rel="icon" type="image/png" sizes="32x32" href="assets/icon-32.png">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Big+Shoulders+Display:wght@700;900&family=Instrument+Sans:wght@400;600&display=swap">
+<style>
+:root{--bg:#EEF0EC;--surface:#FFFFFF;--ink:#15171A;--muted:#5D6460;--line:#D5D9D3;--tag:#FFD21F;--tag-ink:#15171A;
+  --f-display:"Big Shoulders Display","Arial Narrow",Impact,sans-serif;--f-body:"Instrument Sans",system-ui,-apple-system,sans-serif;
+  color-scheme:light;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+@media (prefers-color-scheme:dark){:root{--bg:#111312;--surface:#1B1E1C;--ink:#ECEFEA;--muted:#9BA39E;--line:#2E3330;color-scheme:dark}}
+body{margin:0;background:var(--bg);color:var(--ink);font:16px/1.55 var(--f-body);
+  padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px));padding-block:24px 48px}
+main{max-width:600px;margin:0 auto}
+a{color:inherit}
+.back{font-size:14px;color:var(--muted)}
+h1{font-family:var(--f-display);font-weight:900;font-size:44px;line-height:.9;text-transform:uppercase;margin:20px 0 8px}
+h1 span{background:var(--tag);color:var(--tag-ink);padding:2px 6px 0;display:inline-block;transform:rotate(-2deg)}
+h2{font-family:var(--f-display);font-weight:700;font-size:26px;margin:32px 0 6px}
+p,li{max-width:62ch;color:var(--ink)}
+.muted{color:var(--muted);font-size:14px}
+</style>
+</head>
+<body>
+<main>
+  <a class="back" href="./">← Retour au défi du jour</a>
+  <h1><span>Hors</span>-Sol</h1>
+  <p>Un petit jeu quotidien pour vérifier si l'on connaît vraiment le prix de ses courses. Chaque jour, cinq produits du quotidien, les mêmes pour tout le monde. On donne une fourchette : plus elle est serrée et juste, plus on marque de points.</p>
+
+  <h2>D'où viennent les prix ?</h2>
+  <p>Les prix proviennent d'<a href="https://prices.openfoodfacts.org" target="_blank" rel="noopener">Open Prices</a>, un projet d'Open Food Facts où des bénévoles photographient leurs tickets de caisse et les étiquettes en rayon. Les données sont publiées sous licence ouverte <a href="https://opendatacommons.org/licenses/odbl/1-0/" target="_blank" rel="noopener">ODbL</a>.</p>
+  <p>Le prix affiché est la <strong>médiane</strong> des relevés faits en France au cours des 12 derniers mois : la moitié des magasins vendent moins cher, l'autre moitié plus cher. Il est mis à jour automatiquement chaque nuit. Les prix varient selon les enseignes et les régions ; le jeu ne prétend pas donner le prix exact de votre magasin.</p>
+  <p>Envie d'aider ? Vous pouvez vous aussi ajouter des prix sur Open Prices, depuis l'application Open Food Facts.</p>
+
+  <h2>Vos données</h2>
+  <p>Aucun compte, aucune adresse email, aucun cookie publicitaire. Votre partie en cours et votre série de jours sont enregistrées uniquement dans votre navigateur, sur votre appareil.</p>
+
+  <h2>Les marques</h2>
+  <p>Les noms de produits sont cités pour désigner des articles courants. Hors-Sol n'est lié à aucune marque, enseigne ni personnalité politique.</p>
+
+  <p class="muted">Hors-Sol · es-tu-hors-sol.fr</p>
+</main>
+</body>
+</html>
