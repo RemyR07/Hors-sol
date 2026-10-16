@@ -136,6 +136,12 @@ input[type=range]{flex:1;min-width:0;accent-color:var(--ink);height:44px}
 .title-card{text-align:center;display:flex;flex-direction:column;gap:4px}
 .title-card .t{font-family:var(--f-display);font-weight:900;font-size:34px;line-height:1;text-transform:uppercase;text-wrap:balance}
 .title-card p{margin:0;color:var(--muted)}
+.title-card .score{font-family:var(--f-display);font-weight:900;line-height:.9;display:flex;justify-content:center;align-items:baseline;gap:6px;font-variant-numeric:tabular-nums}
+.title-card .score b{font-size:72px}
+.title-card .score span{font-size:28px;color:var(--muted)}
+.title-card .bonus{align-self:center;background:var(--tag);color:var(--tag-ink);font-weight:700;font-size:14px;padding:4px 10px;border-radius:999px}
+.title-card .boss{align-self:center;font-family:var(--f-display);font-weight:900;font-size:22px;text-transform:uppercase;letter-spacing:.03em;border:2px solid var(--ink);padding:4px 12px 2px;transform:rotate(-2deg)}
+.ticket .tot.sub2{border-top:0;margin-top:0;padding-top:4px;font-size:14px;color:var(--muted)}
 .next{font-size:14px;color:var(--muted);text-align:center;margin:0}
 .next b{font-family:var(--f-mono);color:var(--ink)}
 .premium{border:1px dashed var(--line);border-radius:14px;padding:16px;display:flex;flex-direction:column;gap:8px}
@@ -187,7 +193,8 @@ footer a{color:inherit}
         <tr><td>🎯 Pile-poil · à 2 % près</td><td>+50 pts</td></tr>
         <tr><td>👌 Tout proche · à 5 % près</td><td>+20 pts</td></tr>
       </table>
-      <p>Exemple : vrai prix 3,73 €. Vous dites 3,70 € « Sûr de moi » : 100 + 50 = <b>150 pts</b>. Vous dites 3,70 € « Au pif » : 20 + 50 = <b>70 pts</b>. Maximum : 750 pts par jour.</p>
+      <p>Exemple : vrai prix 3,73 €. Vous dites 3,70 € « Sûr de moi » : 100 + 50 = <b>150 pts</b>. Vous dites 3,70 € « Au pif » : 20 + 50 = <b>70 pts</b>. </p>
+      <p>Votre score du jour est sur <b>500</b> (les points de fourchette). Les bonus de précision s'ajoutent à part, comme une médaille. Au moins 2 Pile-poil dans la partie : badge <b>🏆 Boss du rayon</b>.</p>
       <p>🎯 pile-poil · 🟩 dans la fourchette · ⬛ raté</p>
     </div>
   </details>
@@ -212,14 +219,21 @@ const BONUS = [
   {max:.02, pts:50, id:"pile",   label:"Pile-poil"},
   {max:.05, pts:20, id:"proche", label:"Tout proche"},
 ];
-const MAXPTS = 750;
+const BASEMAX = 500;                     // score principal : points de fourchette seulement
+const BOSS_PILES = 2;                    // nombre de Pile-poil pour le badge « Boss du rayon »
 const TITLES = [
-  [0,  "Ministre hors-sol", "Vous n'avez pas poussé un caddie depuis le dernier remaniement."],
-  [150,"Ministre en campagne", "Vous découvrez les prix le temps d'une photo au marché."],
-  [300,"Conseiller de cabinet", "Le ticket de caisse vous surprend encore un peu."],
-  [450,"Plus connecté qu'un ministre", "Vous avez l'œil, à quelques centimes près."],
-  [600,"Ministre des Courses", "On ne vous la fait pas, au rayon frais. Le poste est à vous."],
+  [0,  "Ministre hors-sol", "Pas de panique, même les ministres apprennent. Revanche demain !"],
+  [100,"Ministre en campagne", "Vous commencez à sentir les prix. Ça progresse !"],
+  [200,"Conseiller de cabinet", "Bons réflexes au rayon, vous n'êtes pas loin du sans-faute."],
+  [300,"Plus connecté qu'un ministre", "Bravo, vous savez ce que coûtent vraiment les courses."],
+  [400,"Ministre des Courses", "Presque tout trouvé, et avec des fourchettes serrées. Chapeau !"],
 ];
+function summary(answers){
+  const base = answers.reduce((s,a)=>s+(a.base!=null ? a.base : a.pts),0);
+  const bonus = answers.reduce((s,a)=>s+(a.bonus||0),0);
+  const piles = answers.filter(a=>a.cls==="pile").length;
+  return {base, bonus, piles, boss: piles >= BOSS_PILES};
+}
 
 const SITE = "https://es-tu-hors-sol.fr";
 const IDEAS = [
@@ -239,14 +253,17 @@ function track(path, tries){
 }
 function loadStats(){ try{ return JSON.parse(localStorage.getItem("horssol:stats")) || {days:0}; }catch(e){ return {days:0}; } }
 function saveStats(v){ try{ localStorage.setItem("horssol:stats", JSON.stringify(v)); }catch(e){} }
-function trackFinish(total, streak){
+function trackFinish(sum, streak){
+  const total = sum.base;
   const st = loadStats();
   if (st.lastDay !== today){ st.days = (st.days||0) + 1; st.lastDay = today; saveStats(st); }
   const d = st.days;
   track("fin-partie");
   track("fin-jour-" + (d===1 ? "1" : d===2 ? "2" : d<=6 ? "3-6" : "7plus"));
   if (streak >= 7) track("serie-7plus"); else if (streak >= 3) track("serie-3-6");
-  track("score-" + (total<150 ? "0-149" : total<300 ? "150-299" : total<450 ? "300-449" : total<600 ? "450-599" : "600plus"));
+  track("score-" + (total<100 ? "0-99" : total<200 ? "100-199" : total<300 ? "200-299" : total<400 ? "300-399" : "400-500"));
+  if (sum.bonus > 0) track("bonus-precision");
+  if (sum.boss) track("boss-du-rayon");
 }
 function loadFb(){ try{ return JSON.parse(localStorage.getItem("horssol:feedback")); }catch(e){ return null; } }
 function saveFb(v){ try{ localStorage.setItem("horssol:feedback", JSON.stringify(v)); }catch(e){} }
@@ -424,7 +441,7 @@ function wire(){
     if (day.answers.length >= PER_DAY){
       day.streak = streakAfterFinish(); day.last = today; day.finished = true;
       store = day;
-      trackFinish(day.answers.reduce((s,x)=>s+x.pts,0), day.streak);
+      trackFinish(summary(day.answers), day.streak);
     }
     save(day);
     state.revealed = true;
@@ -433,28 +450,35 @@ function wire(){
 }
 
 function renderEnd(){
-  const total = day.answers.reduce((s,a)=>s+a.pts,0);
-  const t = TITLES.filter(x=>total>=x[0]).pop();
+  const sum = summary(day.answers);
+  const t = TITLES.filter(x=>sum.base>=x[0]).pop();
+  const bonusTxt = sum.bonus ? ` + ${sum.bonus} bonus ${sum.piles ? "🎯" : "👌"}` : "";
   const sq = a => ({pile:"🎯",hit:"🟩",near:"🟩",miss:"⬛"})[a.cls] || "⬛";
   const n = $("#num").textContent;
   const prods = day.answers.map((a,i)=> items[i] || DATA.products.find(x=>x.code===a.code) || {name:"?",median:0});
-  const share = `🧾 Hors-Sol n°${n} — ${total}/${MAXPTS}\n${t[1]}\n\n` +
-    day.answers.map((a,i)=>`${sq(a)} ${prods[i].name} · ${a.pts ? "+"+a.pts : "0"}`).join("\n") +
+  const share = `🧾 Hors-Sol n°${n} — ${sum.base}/${BASEMAX}${bonusTxt}\n${sum.boss ? "🏆 Boss du rayon · " : ""}${t[1]}\n\n` +
+    day.answers.map((a,i)=>`${sq(a)} ${prods[i].name} · ${(a.base!=null?a.base:a.pts) ? "+"+(a.base!=null?a.base:a.pts) : "0"}${a.bonus ? " (+"+a.bonus+" bonus)" : ""}`).join("\n") +
     `\n\nEt toi, tu connais mieux les prix que nos ministres ?\n${SITE}`;
   const rows = day.answers.map((a,i)=>{
     const p = prods[i];
-    return `<div class="row"><span class="n">${p.name}</span><span class="pts">${a.pts ? "+"+a.pts : "0"}</span>
+    return `<div class="row"><span class="n">${p.name}</span><span class="pts">${(a.base!=null?a.base:a.pts) ? "+"+(a.base!=null?a.base:a.pts) : "0"}</span>
       <span class="d">vrai ${euro(p.median)} · vous ${euro(a.lo)}–${euro(a.hi)}${a.bonus ? " · "+a.bonusLabel.toLowerCase()+" +"+a.bonus : ""}</span></div>`;
   }).join("");
   const fb = loadFb();
   app.innerHTML = `
   <div style="display:flex;flex-direction:column;gap:18px">
-    <div class="title-card"><div class="rayon">Votre verdict</div><div class="t">${t[1]}</div><p>${t[2]}</p></div>
+    <div class="title-card">
+      ${sum.boss ? '<div class="boss">🏆 Boss du rayon</div>' : ""}
+      <div class="score"><b>${sum.base}</b><span>/ ${BASEMAX}</span></div>
+      ${sum.bonus ? `<div class="bonus">+ ${sum.bonus} bonus précision ${sum.piles ? "🎯" : "👌"}</div>` : ""}
+      <div class="t">${t[1]}</div><p>${t[2]}</p>
+    </div>
     <div class="ticket">
       <h2>Hors-Sol</h2>
       <p class="sub">Ticket n°${$("#num").textContent} · ${today.split("-").reverse().join("/")}</p>
       ${rows}
-      <div class="tot"><span>TOTAL</span><span>${total} / ${MAXPTS} pts</span></div>
+      <div class="tot"><span>SCORE</span><span>${sum.base} / ${BASEMAX} pts</span></div>
+      ${sum.bonus ? `<div class="tot sub2"><span>BONUS PRÉCISION</span><span>+ ${sum.bonus} pts</span></div>` : ""}
     </div>
     <div class="share">
       <button class="cta" id="share">Partager mon ticket</button>

@@ -63,7 +63,8 @@ Tableau de bord : **https://horssol.goatcounter.com** (visites, provenance, appa
 | `fin-partie` | un joueur termine les 5 produits |
 | `fin-jour-1`, `fin-jour-2`, `fin-jour-3-6`, `fin-jour-7plus` | combien de jours ce joueur a déjà joué (compteur anonyme stocké dans son navigateur) |
 | `serie-3-6`, `serie-7plus` | série de jours consécutifs en cours |
-| `score-0-149` … `score-600plus` | tranche de score du jour |
+| `score-0-99` … `score-400-500` | tranche du score du jour (sur 500, hors bonus) |
+| `bonus-precision`, `boss-du-rayon` | au moins un bonus de précision / au moins 2 Pile-poil |
 | `partage` | un joueur partage son ticket |
 | `idee-groupe`, `idee-themes`, `idee-retro`, `idee-plus`, `idee-marques` | idées cochées en fin de partie |
 
@@ -72,4 +73,4 @@ Taux de retour = (fin-jour-2 + fin-jour-3-6 + fin-jour-7plus) / fin-partie.
 ## Barème
 
 Fourchette : Sûr de moi ±10 % = 100 pts, À peu près ±25 % = 50 pts, Au pif ±50 % = 20 pts, hors fourchette = 0.
-Bonus de précision, quelle que soit la fourchette : à 2 % près +50 (Pile-poil), à 5 % près +20 (Tout proche). Maximum 750 pts.
+Score du jour sur 500 (points de fourchette). Bonus de précision affichés à part : à 2 % près +50 (Pile-poil), à 5 % près +20 (Tout proche). 2 Pile-poil ou plus : badge « Boss du rayon ». Le titre de fin dépend du score sur 500.
