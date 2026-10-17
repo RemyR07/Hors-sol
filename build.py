@@ -6,7 +6,7 @@ from pathlib import Path
 here = Path(__file__).parent
 SITE = "https://es-tu-hors-sol.fr"
 TITRE = "Hors-Sol · le jeu des prix du quotidien"
-DESC = "Connaissez-vous mieux le prix des courses que nos ministres ? 5 produits par jour, de vrais prix, une fourchette à trouver."
+DESC = "Connaissez-vous mieux le prix des courses que nos ministres ? Un mini-jeu par jour sur les prix des courses, avec de vrais prix relevés en magasin."
 
 HEAD = f"""<!doctype html>
 <html lang="fr">
@@ -37,8 +37,19 @@ HEAD = f"""<!doctype html>
 body{{margin:0;font:14px/1.4 system-ui,-apple-system,sans-serif}}img{{max-width:100%}}[hidden]{{display:none!important}}</style>
 """
 
+# Ligues : le noyau commun est injecté dans le jeu (maquette) et dans le serveur à coller sur Cloudflare.
+core = (here / "ligues-core.js").read_text()
+(here / "serveur-ligues-a-coller.js").write_text(
+    "// Fichier à coller tel quel dans le Worker Cloudflare (généré par build.py, ne pas modifier à la main).\n"
+    + core + "\n" + (here / "ligues-serveur.js").read_text())
+cfg_path = here / "config.json"
+cfg = json.loads(cfg_path.read_text()) if cfg_path.exists() else {}
+api = (cfg.get("api_ligues") or "").rstrip("/")
+
 data = json.dumps(json.loads((here / "products.json").read_text()), ensure_ascii=False, separators=(",", ":"))
 tpl = (here / "template.html").read_text().replace("__DATA__", data.replace("</", "<\\/"))
+tpl = tpl.replace("/*__LIGUES_CORE__*/", core).replace("__API_LIGUES__", api)
+tpl = tpl.replace("__CONTACT_KEY__", (cfg.get("contact_key") or "").strip())
 cut = tpl.index('<div class="wrap">')
 head_part = tpl[:cut].replace("<title>Hors-Sol</title>", f"<title>{TITRE}</title>")
 page = HEAD + head_part + "</head>\n<body>\n" + tpl[cut:] + "\n</body>\n</html>\n"

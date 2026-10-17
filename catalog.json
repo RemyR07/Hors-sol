@@ -1,18 +1,458 @@
 {
-  "_info": "Libellés d'affichage. Le script ajoute automatiquement les produits populaires absents d'ici, avec le nom fourni par Open Prices.",
-  "3017620422003": {"name": "Nutella", "detail": "Pot de 400 g", "rayon": "Petit-déj", "qty": 0.4, "unit": "kg"},
-  "3176582033327": {"name": "Camembert Le Rustique", "detail": "Boîte de 250 g", "rayon": "Crèmerie", "qty": 0.25, "unit": "kg"},
-  "3033491147067": {"name": "Activia nature", "detail": "4 pots de 125 g", "rayon": "Crèmerie", "qty": 0.5, "unit": "kg"},
-  "3178530410105": {"name": "Petites madeleines St Michel", "detail": "Sachet de 500 g", "rayon": "Biscuits", "qty": 0.5, "unit": "kg"},
-  "3068110702235": {"name": "Farine de blé T45 Francine", "detail": "Paquet de 1 kg", "rayon": "Épicerie", "qty": 1, "unit": "kg"},
-  "7613035040823": {"name": "Nestlé Dessert noir", "detail": "Tablette de 205 g", "rayon": "Épicerie", "qty": 0.205, "unit": "kg"},
-  "5000159560498": {"name": "Snickers", "detail": "5 barres de 50 g", "rayon": "Confiserie", "qty": 0.25, "unit": "kg"},
-  "3256540000346": {"name": "Croissants Pasquier", "detail": "Sachet de 640 g", "rayon": "Petit-déj", "qty": 0.64, "unit": "kg"},
-  "3240931547213": {"name": "Gnocchi Lustucru", "detail": "Barquette de 390 g", "rayon": "Frais", "qty": 0.39, "unit": "kg"},
-  "8076809513753": {"name": "Pesto alla genovese Barilla", "detail": "Pot de 190 g", "rayon": "Épicerie", "qty": 0.19, "unit": "kg"},
-  "3497917000136": {"name": "Chips Brets Paysanne", "detail": "Sachet de 250 g", "rayon": "Apéro", "qty": 0.25, "unit": "kg"},
-  "3228857001118": {"name": "Pain de mie Harrys 100% mie", "detail": "Paquet de 500 g", "rayon": "Boulangerie", "qty": 0.5, "unit": "kg"},
-  "8000300312102": {"name": "Chocolat Crunch au lait", "detail": "2 tablettes de 100 g", "rayon": "Confiserie", "qty": 0.2, "unit": "kg"},
-  "3608580065340": {"name": "Pâte à tartiner Bonne Maman", "detail": "Pot de 360 g", "rayon": "Petit-déj", "qty": 0.36, "unit": "kg"},
-  "3289664113609": {"name": "Baguette de supermarché", "detail": "250 g, rayon boulangerie Leclerc", "rayon": "Boulangerie", "qty": 0.25, "unit": "kg"}
+ "_info": "Libellés d'affichage. Le script ajoute automatiquement les produits populaires absents d'ici, avec le nom fourni par Open Prices.",
+ "3017620422003": {
+  "name": "Nutella",
+  "detail": "Pot de 400 g",
+  "rayon": "Petit-déj",
+  "qty": 0.4,
+  "unit": "kg"
+ },
+ "3176582033327": {
+  "name": "Camembert Le Rustique",
+  "detail": "Boîte de 250 g",
+  "rayon": "Crèmerie",
+  "qty": 0.25,
+  "unit": "kg"
+ },
+ "3033491147067": {
+  "name": "Activia nature",
+  "detail": "4 pots de 125 g",
+  "rayon": "Crèmerie",
+  "qty": 0.5,
+  "unit": "kg"
+ },
+ "3178530410105": {
+  "name": "Petites madeleines St Michel",
+  "detail": "Sachet de 500 g",
+  "rayon": "Biscuits",
+  "qty": 0.5,
+  "unit": "kg"
+ },
+ "3068110702235": {
+  "name": "Farine de blé T45 Francine",
+  "detail": "Paquet de 1 kg",
+  "rayon": "Épicerie",
+  "qty": 1,
+  "unit": "kg"
+ },
+ "7613035040823": {
+  "name": "Nestlé Dessert noir",
+  "detail": "Tablette de 205 g",
+  "rayon": "Épicerie",
+  "qty": 0.205,
+  "unit": "kg"
+ },
+ "5000159560498": {
+  "name": "Snickers",
+  "detail": "5 barres de 50 g",
+  "rayon": "Confiserie",
+  "qty": 0.25,
+  "unit": "kg"
+ },
+ "3256540000346": {
+  "name": "Croissants Pasquier",
+  "detail": "Sachet de 640 g",
+  "rayon": "Petit-déj",
+  "qty": 0.64,
+  "unit": "kg"
+ },
+ "3240931547213": {
+  "name": "Gnocchi Lustucru",
+  "detail": "Barquette de 390 g",
+  "rayon": "Frais",
+  "qty": 0.39,
+  "unit": "kg"
+ },
+ "8076809513753": {
+  "name": "Pesto alla genovese Barilla",
+  "detail": "Pot de 190 g",
+  "rayon": "Épicerie",
+  "qty": 0.19,
+  "unit": "kg"
+ },
+ "3497917000136": {
+  "name": "Chips Brets Paysanne",
+  "detail": "Sachet de 250 g",
+  "rayon": "Apéro",
+  "qty": 0.25,
+  "unit": "kg"
+ },
+ "3228857001118": {
+  "name": "Pain de mie Harrys 100% mie",
+  "detail": "Paquet de 500 g",
+  "rayon": "Boulangerie",
+  "qty": 0.5,
+  "unit": "kg"
+ },
+ "8000300312102": {
+  "name": "Chocolat Crunch au lait",
+  "detail": "2 tablettes de 100 g",
+  "rayon": "Confiserie",
+  "qty": 0.2,
+  "unit": "kg"
+ },
+ "3608580065340": {
+  "name": "Pâte à tartiner Bonne Maman",
+  "detail": "Pot de 360 g",
+  "rayon": "Petit-déj",
+  "qty": 0.36,
+  "unit": "kg"
+ },
+ "3289664113609": {
+  "name": "Baguette de supermarché",
+  "detail": "250 g, rayon boulangerie Leclerc",
+  "rayon": "Boulangerie",
+  "qty": 0.25,
+  "unit": "kg"
+ },
+ "3450970006767": {
+  "name": "Riz long Eco+",
+  "detail": "Paquet de 1 kg",
+  "rayon": "Épicerie",
+  "qty": 1,
+  "unit": "kg"
+ },
+ "3450970024686": {
+  "name": "Emmental râpé Eco+",
+  "detail": "Sachet de 200 g",
+  "rayon": "Crèmerie",
+  "qty": 0.2,
+  "unit": "kg"
+ },
+ "3450970002325": {
+  "name": "Crème fraîche épaisse Eco+",
+  "detail": "Pot de 50 cl",
+  "rayon": "Crèmerie",
+  "qty": 0.5,
+  "unit": "L"
+ },
+ "3451790563379": {
+  "name": "Beurre demi-sel allégé Montfleuri",
+  "detail": "Plaquette de 250 g",
+  "rayon": "Crèmerie",
+  "qty": 0.25,
+  "unit": "kg"
+ },
+ "3083680482042": {
+  "name": "Petits pois carottes Cassegrain",
+  "detail": "Petite boîte, 130 g égouttés",
+  "rayon": "Conserves",
+  "qty": 0.13,
+  "unit": "kg"
+ },
+ "3450970001137": {
+  "name": "Tomates pelées Eco+",
+  "detail": "Boîte de 800 g",
+  "rayon": "Conserves",
+  "qty": 0.8,
+  "unit": "kg"
+ },
+ "3187670002347": {
+  "name": "Pancakes Pasquier",
+  "detail": "Sachet de 350 g",
+  "rayon": "Petit-déj",
+  "qty": 0.35,
+  "unit": "kg"
+ },
+ "3178530410143": {
+  "name": "Madeleines pépites chocolat St Michel",
+  "detail": "Sachet de 400 g",
+  "rayon": "Biscuits",
+  "qty": 0.4,
+  "unit": "kg"
+ },
+ "3564700001226": {
+  "name": "Lentilles vertes Marque Repère",
+  "detail": "Paquet de 500 g",
+  "rayon": "Épicerie",
+  "qty": 0.5,
+  "unit": "kg"
+ },
+ "3327272107259": {
+  "name": "Beurre de cacahuète Menguy's",
+  "detail": "Pot de 454 g",
+  "rayon": "Petit-déj",
+  "qty": 0.454,
+  "unit": "kg"
+ },
+ "5010477348678": {
+  "name": "Muesli Jordans",
+  "detail": "Boîte de 750 g",
+  "rayon": "Petit-déj",
+  "qty": 0.75,
+  "unit": "kg"
+ },
+ "3596710414765": {
+  "name": "Yaourt à la grecque Auchan",
+  "detail": "4 pots de 125 g",
+  "rayon": "Crèmerie",
+  "qty": 0.5,
+  "unit": "kg"
+ },
+ "3033491325250": {
+  "name": "Activia fraise",
+  "detail": "4 pots de 125 g",
+  "rayon": "Crèmerie",
+  "qty": 0.5,
+  "unit": "kg"
+ },
+ "3450970069069": {
+  "name": "Sucre en poudre Eco+",
+  "detail": "Paquet de 1 kg",
+  "rayon": "Épicerie",
+  "qty": 1,
+  "unit": "kg"
+ },
+ "8076809523547": {
+  "name": "Pesto rosso Barilla",
+  "detail": "Pot de 200 g",
+  "rayon": "Épicerie",
+  "qty": 0.2,
+  "unit": "kg"
+ },
+ "3095753234014": {
+  "name": "Blanc de poulet fumé Fleury Michon",
+  "detail": "Barquette de 180 g",
+  "rayon": "Frais",
+  "qty": 0.18,
+  "unit": "kg"
+ },
+ "8710438081275": {
+  "name": "Rösti McCain",
+  "detail": "Sachet surgelé de 800 g",
+  "rayon": "Surgelés",
+  "qty": 0.8,
+  "unit": "kg"
+ },
+ "8711327373105": {
+  "name": "Ben & Jerry's Cookie Dough",
+  "detail": "Pot de 465 ml",
+  "rayon": "Surgelés",
+  "qty": 0.465,
+  "unit": "L"
+ },
+ "3450970006903": {
+  "name": "Spaghetti Eco+",
+  "detail": "Paquet de 1 kg",
+  "rayon": "Épicerie",
+  "qty": 1,
+  "unit": "kg"
+ },
+ "3017620425035": {
+  "name": "Nutella",
+  "detail": "Pot de 1 kg",
+  "rayon": "Petit-déj",
+  "qty": 1,
+  "unit": "kg"
+ },
+ "3229820019604": {
+  "name": "Lait de soja Bjorg",
+  "detail": "Brique de 1 L",
+  "rayon": "Petit-déj",
+  "qty": 1,
+  "unit": "L"
+ },
+ "3523230030755": {
+  "name": "Beurre au sel de mer Grand Fermage",
+  "detail": "Plaquette de 500 g",
+  "rayon": "Crèmerie",
+  "qty": 0.5,
+  "unit": "kg"
+ },
+ "3450970151580": {
+  "name": "Bûche mi-chèvre Eco+",
+  "detail": "Bûchette de 180 g",
+  "rayon": "Crèmerie",
+  "qty": 0.18,
+  "unit": "kg"
+ },
+ "3450970119931": {
+  "name": "Torsades Eco+",
+  "detail": "Paquet de 1 kg",
+  "rayon": "Épicerie",
+  "qty": 1,
+  "unit": "kg"
+ },
+ "3760109520133": {
+  "name": "Viande hachée pur bœuf Eco+",
+  "detail": "Barquette de 800 g",
+  "rayon": "Boucherie",
+  "qty": 0.8,
+  "unit": "kg"
+ },
+ "5410126832051": {
+  "name": "Gaufres de Liège Lotus",
+  "detail": "Sachet de 315 g",
+  "rayon": "Biscuits",
+  "qty": 0.315,
+  "unit": "kg"
+ },
+ "3046920029780": {
+  "name": "Chocolat noir 70 % Lindt Excellence",
+  "detail": "Tablette de 100 g",
+  "rayon": "Confiserie",
+  "qty": 0.1,
+  "unit": "kg"
+ },
+ "3564706596788": {
+  "name": "Comté Marque Repère",
+  "detail": "Morceau de 200 g",
+  "rayon": "Crèmerie",
+  "qty": 0.2,
+  "unit": "kg"
+ },
+ "3450970028295": {
+  "name": "Cacahuètes grillées salées Eco+",
+  "detail": "Sachet de 250 g",
+  "rayon": "Apéro",
+  "qty": 0.25,
+  "unit": "kg"
+ },
+ "8000500269169": {
+  "name": "Kinder Cards",
+  "detail": "10 biscuits, 128 g",
+  "rayon": "Biscuits",
+  "qty": 0.128,
+  "unit": "kg"
+ },
+ "3450971453713": {
+  "name": "Fromage à raclette Eco+",
+  "detail": "Tranches, 400 g",
+  "rayon": "Crèmerie",
+  "qty": 0.4,
+  "unit": "kg"
+ },
+ "3450970169103": {
+  "name": "Œufs frais Eco+",
+  "detail": "Boîte de 10",
+  "rayon": "Crèmerie",
+  "qty": 10,
+  "unit": "œuf"
+ },
+ "7622210601988": {
+  "name": "Granola LU L'Original",
+  "detail": "Paquet de 200 g",
+  "rayon": "Biscuits",
+  "qty": 0.2,
+  "unit": "kg"
+ },
+ "3248340054063": {
+  "name": "Lait demi-écrémé C'est qui le patron ?!",
+  "detail": "Brique de 1 L",
+  "rayon": "Crèmerie",
+  "qty": 1,
+  "unit": "L"
+ },
+ "7622210449283": {
+  "name": "Prince LU chocolat",
+  "detail": "Paquet de 300 g",
+  "rayon": "Biscuits",
+  "qty": 0.3,
+  "unit": "kg"
+ },
+ "3178530402728": {
+  "name": "Madeleines pur beurre Bonne Maman",
+  "detail": "Sachet de 300 g",
+  "rayon": "Biscuits",
+  "qty": 0.3,
+  "unit": "kg"
+ },
+ "3564700412039": {
+  "name": "Chorizo doux Marque Repère",
+  "detail": "30 tranches, 150 g",
+  "rayon": "Frais",
+  "qty": 0.15,
+  "unit": "kg"
+ },
+ "3228470062046": {
+  "name": "Café moulu L'Or intense",
+  "detail": "Paquet de 250 g",
+  "rayon": "Petit-déj",
+  "qty": 0.25,
+  "unit": "kg"
+ },
+ "3038352357005": {
+  "name": "Semoule fine Panzani",
+  "detail": "Paquet de 500 g",
+  "rayon": "Épicerie",
+  "qty": 0.5,
+  "unit": "kg"
+ },
+ "4001724039112": {
+  "name": "Pizza Ristorante Dr. Oetker",
+  "detail": "Pizza surgelée de 355 g",
+  "rayon": "Surgelés",
+  "qty": 0.355,
+  "unit": "kg"
+ },
+ "3029330022411": {
+  "name": "Pain de mie Jacquet Maxi Tranches",
+  "detail": "Paquet de 550 g",
+  "rayon": "Boulangerie",
+  "qty": 0.55,
+  "unit": "kg"
+ },
+ "3450970024747": {
+  "name": "Huile de colza Eco+",
+  "detail": "Bouteille de 1 L",
+  "rayon": "Épicerie",
+  "qty": 1,
+  "unit": "L"
+ },
+ "3329770077003": {
+  "name": "Skyr nature Yoplait",
+  "detail": "Pot de 800 g",
+  "rayon": "Crèmerie",
+  "qty": 0.8,
+  "unit": "kg"
+ },
+ "3155251205500": {
+  "name": "Beurre doux Président",
+  "detail": "Plaquette de 250 g",
+  "rayon": "Crèmerie",
+  "qty": 0.25,
+  "unit": "kg"
+ },
+ "7622202028199": {
+  "name": "Mikado chocolat noir",
+  "detail": "Boîte de 100 g",
+  "rayon": "Confiserie",
+  "qty": 0.1,
+  "unit": "kg"
+ },
+ "3450970060424": {
+  "name": "Mozzarella Eco+",
+  "detail": "Boule de 125 g",
+  "rayon": "Crèmerie",
+  "qty": 0.125,
+  "unit": "kg"
+ },
+ "3228857001231": {
+  "name": "Brioche tressée Harrys",
+  "detail": "500 g",
+  "rayon": "Boulangerie",
+  "qty": 0.5,
+  "unit": "kg"
+ },
+ "8000500310427": {
+  "name": "Nutella Biscuits",
+  "detail": "22 biscuits, 304 g",
+  "rayon": "Biscuits",
+  "qty": 0.304,
+  "unit": "kg"
+ },
+ "5410041005707": {
+  "name": "Pim's orange LU",
+  "detail": "Boîte de 150 g",
+  "rayon": "Biscuits",
+  "qty": 0.15,
+  "unit": "kg"
+ },
+ "3564700013274": {
+  "name": "Haricots rouges Marque Repère",
+  "detail": "Boîte, 250 g égouttés",
+  "rayon": "Conserves",
+  "qty": 0.25,
+  "unit": "kg"
+ }
 }

@@ -39,10 +39,10 @@ header{display:flex;align-items:flex-end;justify-content:space-between;gap:12px}
 .pitch{margin:0;color:var(--muted);font-size:15px;max-width:42ch}
 .pitch strong{color:var(--ink)}
 
-.steps{display:grid;grid-template-columns:repeat(5,1fr);gap:6px}
+.steps{display:grid;grid-template-columns:repeat(var(--n,5),1fr);gap:6px}
 .steps i{height:6px;border-radius:3px;background:var(--line)}
 .steps i.now{background:var(--ink)}
-.steps i.hit,.steps i.near{background:var(--hit)} .steps i.pile{background:var(--tag);box-shadow:inset 0 0 0 1.5px var(--ink)} .steps i.miss{background:var(--miss)}
+.steps i.hit{background:var(--hit)} .steps i.near{background:var(--near)} .steps i.pile{background:var(--tag);box-shadow:inset 0 0 0 1.5px var(--ink)} .steps i.miss{background:var(--miss)}
 
 .card{background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:20px 18px;display:flex;flex-direction:column;gap:16px}
 .rayon{font-size:12px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:var(--muted)}
@@ -55,12 +55,191 @@ header{display:flex;align-items:flex-end;justify-content:space-between;gap:12px}
 .tag .lbl{grid-column:1/-1;font-size:11px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;padding-left:16px}
 .tag .big{font-family:var(--f-display);font-weight:900;font-size:64px;line-height:.9;font-variant-numeric:tabular-nums}
 .tag .big sup{font-size:.45em;vertical-align:.95em;margin-left:2px}
+.tag .big.edit{display:flex;align-items:baseline;gap:4px;min-width:0;cursor:text}
+.tag .big.edit input{font:inherit;color:inherit;background:rgba(255,255,255,.55);border:2px dashed var(--tag-ink);border-radius:8px;width:5ch;max-width:100%;min-width:0;padding:0 6px;line-height:1;font-variant-numeric:tabular-nums}
+.tag .big.edit input:focus{outline:none;background:#fff;border-style:solid}
+.tag .big.edit span{font-size:.45em}
+.tag .range .perkg{display:inline-block;margin-top:4px;font-weight:700}
+.today{background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:14px 16px;display:flex;flex-direction:column;gap:6px}
+.today-top{display:flex;justify-content:space-between;align-items:center}
+.gico{font-size:22px;line-height:1}
+.gname{font-family:var(--f-display);font-weight:900;font-size:30px;line-height:1;margin:0;text-transform:uppercase}
+.gpitch{margin:0;color:var(--muted);font-size:15px}
+.week{list-style:none;margin:6px 0 0;padding:0;display:grid;grid-template-columns:repeat(7,1fr);gap:4px}
+.week li{min-width:0}
+.week button{width:100%;min-height:48px;text-align:center;font-size:11px;line-height:1.2;padding:6px 2px;border-radius:8px;border:1px solid transparent;background:var(--bg);color:var(--muted);cursor:pointer}
+.week button b{display:block;font-size:15px;line-height:1.1}
+.week li.on button{background:var(--tag);color:var(--tag-ink);font-weight:700}
+.week button[aria-expanded="true"]{border-color:var(--ink);color:var(--ink)}
+.wkinfo{margin:4px 0 0;padding:10px 12px;border-radius:10px;background:var(--bg);font-size:14px;line-height:1.4}
+.wkinfo b{font-weight:700}
+.news{border:2px solid var(--tag-ink);background:var(--tag);color:var(--tag-ink);border-radius:12px}
+.news summary{cursor:pointer;list-style:none;padding:10px 14px;font-weight:700;font-size:14px;display:flex;gap:8px;align-items:center;justify-content:space-between}
+.news summary::-webkit-details-marker{display:none}
+.news summary span:last-child{font-weight:600;text-decoration:underline;white-space:nowrap}
+.news[open] summary span:last-child{text-decoration:none}
+.news .nbody{padding:0 14px 14px;display:flex;flex-direction:column;gap:10px;font-size:14px;line-height:1.45}
+.news h4{margin:4px 0 0;font-size:13px;text-transform:uppercase;letter-spacing:.06em}
+.news ul{margin:0;padding-left:18px;display:flex;flex-direction:column;gap:4px}
+.news button{align-self:flex-start;border:2px solid var(--tag-ink);background:transparent;color:var(--tag-ink);border-radius:10px;padding:8px 14px;font-weight:700;cursor:pointer}
+.q-ask{font-family:var(--f-display);font-weight:700;font-size:26px;line-height:1.05;margin:0;text-wrap:balance}
+.opts{display:flex;flex-direction:column;gap:10px}
+.opt{display:grid;grid-template-columns:1fr auto;gap:2px 10px;align-items:center;text-align:left;border:2px solid var(--line);background:var(--bg);border-radius:12px;padding:14px;cursor:pointer;min-height:64px}
+.opt .on{font-weight:700;font-size:16px;min-width:0}
+.opt .od{grid-column:1/2;font-size:13px;color:var(--muted)}
+.opt .op{grid-row:1/3;grid-column:2;text-align:right;font-family:var(--f-mono);font-size:13px;line-height:1.3}
+.opt .op b{display:block;font-size:16px}
+.opt:disabled{cursor:default}
+.opt.ok{border-color:var(--hit);background:color-mix(in srgb,var(--hit) 12%,var(--bg))}
+.opt.bad{border-color:var(--miss);background:color-mix(in srgb,var(--miss) 10%,var(--bg))}
+.opt.dim{opacity:.55}
+.opt .flag{grid-column:1/-1;font-size:13px;font-weight:700}
+.opt.ok .flag{color:var(--hit)} .opt.bad .flag{color:var(--miss)}
+.edge{font-size:12px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);display:flex;justify-content:space-between}
+.rank{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:8px}
+.rank li{display:grid;grid-template-columns:auto 1fr auto;gap:10px;align-items:center;border:1px solid var(--line);background:var(--bg);border-radius:12px;padding:10px 10px 10px 12px}
+.rank .pos{font-family:var(--f-display);font-weight:900;font-size:26px;width:1.2em;text-align:center}
+.rank .rn{min-width:0;font-weight:700;font-size:15px;line-height:1.25}
+.rank .rn small{display:block;font-weight:400;color:var(--muted);font-size:13px}
+.rank .arr{display:flex;flex-direction:column;gap:8px}
+.rank .arr button{width:54px;height:48px;border-radius:10px;border:1px solid var(--line);background:var(--surface);font-size:20px;cursor:pointer}
+.rank .arr button:disabled{opacity:.3;cursor:default}
+.rank li.ok{border-color:var(--hit)} .rank li.half{border-color:var(--near)} .rank li.bad{border-color:var(--miss)}
+.rank .res{text-align:right;font-family:var(--f-mono);font-size:12px;line-height:1.35;white-space:nowrap}
+.rank .res b{display:block;font-size:15px}
+.shelf{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:8px}
+.shelf li{display:grid;grid-template-columns:1fr auto;gap:10px;align-items:center;border:1px solid var(--line);background:var(--bg);border-radius:12px;padding:10px 10px 10px 12px}
+.shelf .rn{min-width:0;font-weight:700;font-size:15px;line-height:1.25}
+.shelf .rn small{display:block;font-weight:400;color:var(--muted);font-size:13px}
+.slot{min-width:92px;min-height:48px;border-radius:8px;border:2px dashed var(--line);background:var(--surface);font-family:var(--f-mono);font-weight:700;font-size:16px;cursor:pointer;color:var(--muted)}
+.slot.full{border-style:solid;border-color:var(--tag-ink);background:var(--tag);color:var(--tag-ink)}
+.slot.ok{background:var(--hit);border-color:var(--hit);color:#fff}
+.slot.bad{background:var(--miss);border-color:var(--miss);color:#fff;text-decoration:line-through}
+.slot small{display:block;font-size:11px;font-weight:600;text-decoration:none}
+.tray{display:flex;flex-wrap:wrap;gap:8px;justify-content:center;padding:12px;border-radius:12px;background:var(--bg);border:1px dashed var(--line);min-height:68px}
+.tray .lab{min-width:84px;min-height:48px;border-radius:8px;border:2px solid var(--tag-ink);background:var(--tag);color:var(--tag-ink);font-family:var(--f-mono);font-weight:700;font-size:16px;cursor:pointer}
+.tray .lab[aria-pressed="true"]{outline:3px solid var(--focus);outline-offset:2px;transform:translateY(-2px)}
+.tray-empty{margin:auto;color:var(--muted);font-size:13px}
+.howto{margin:0;font-size:13px;color:var(--muted)}
+.duo{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.duo button{min-height:52px}
+.testbar{border:2px dashed var(--focus);border-radius:14px;padding:12px;display:flex;flex-direction:column;gap:8px;background:var(--surface)}
+.testbar p{margin:0;font-size:13px;color:var(--muted)}
+.testbar p b{color:var(--ink)}
+.tdays{display:grid;grid-template-columns:repeat(auto-fill,minmax(96px,1fr));gap:6px}
+.tdays button{border:1px solid var(--line);background:var(--bg);border-radius:10px;padding:8px 6px;font-size:12px;line-height:1.3;cursor:pointer;text-align:left}
+.tdays button b{display:block;font-size:13px}
+.tdays button[aria-pressed="true"]{border-color:var(--focus);box-shadow:inset 0 0 0 1px var(--focus)}
+.treset{border:1px solid var(--line);background:transparent;border-radius:10px;padding:10px;font-weight:600;cursor:pointer}
+/* Fenêtres (mise à jour, contact) */
+.modal{position:fixed;inset:0;z-index:50;background:rgba(10,12,11,.6);display:flex;align-items:center;justify-content:center;padding:16px}
+.modal[hidden]{display:none}
+.modal .box{background:var(--surface);color:var(--ink);border-radius:16px;width:100%;max-width:440px;max-height:calc(100dvh - 32px);overflow:auto;padding:20px 18px;display:flex;flex-direction:column;gap:12px;box-shadow:0 20px 50px rgba(0,0,0,.3)}
+.modal h2{margin:0;font-family:var(--f-display);font-weight:900;font-size:30px;line-height:1;text-transform:uppercase}
+.newsl{margin:0;padding:0;list-style:none;display:flex;flex-direction:column;gap:10px}
+.newsl li{font-size:15px;line-height:1.4;padding:10px 12px;border-radius:10px;background:var(--bg)}
+.modal textarea{font:inherit;font-size:16px;padding:12px;border:2px solid var(--line);border-radius:10px;background:var(--bg);color:var(--ink);width:100%;resize:vertical}
+.modal textarea:focus{outline:none;border-color:var(--ink)}
+.flink{border:0;background:none;padding:0;font:inherit;color:inherit;text-decoration:underline;cursor:pointer}
+body.no-lg .lgonly{display:none}
+/* Ligues */
+.lgbtn{display:flex;justify-content:space-between;align-items:center;gap:10px;width:100%;border:2px solid var(--ink);background:var(--surface);border-radius:12px;padding:12px 14px;font-weight:700;font-size:16px;cursor:pointer;min-height:52px;text-align:left}
+.lgbtn small{font-weight:600;color:var(--muted);font-size:13px}
+body.lg-open .hook,body.lg-open .today,body.lg-open .rules,body.lg-open .steps,body.lg-open #app,body.lg-open .lgbtn,body.lg-open .news{display:none}
+.lg{background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:16px;display:flex;flex-direction:column;gap:14px}
+.lghead{display:flex;align-items:center;gap:8px}
+.lghead h2{flex:1;margin:0;font-family:var(--f-display);font-weight:900;font-size:28px;text-transform:uppercase;line-height:1}
+.lghead .sp{flex:1}
+.lgq{flex:none;width:44px;height:44px;border-radius:50%;border:2px solid var(--tag-ink);background:var(--tag);color:var(--tag-ink);font-weight:900;font-size:20px;cursor:pointer}
+.lnk{border:0;background:none;padding:8px 2px;color:var(--ink);text-decoration:underline;font-weight:600;cursor:pointer;min-height:44px;font-size:15px}
+.lgme{margin:0;font-size:14px;color:var(--muted)}
+.lgme b{color:var(--ink)}
+.lgme .lnk{min-height:0;padding:0;font-size:14px}
+.lgcard{display:flex;flex-direction:column;gap:4px;text-align:left;width:100%;border:2px solid var(--line);background:var(--bg);border-radius:12px;padding:14px;cursor:pointer}
+.lgcard b{font-size:18px}
+.lgcard span{font-size:14px;color:var(--muted)}
+.lgcard .r1{color:var(--ink);font-weight:600}
+.lgempty,.lg p.txt{margin:0;font-size:15px}
+.lgname{margin:0;font-family:var(--f-display);font-weight:900;font-size:30px;line-height:1;text-transform:uppercase;overflow-wrap:anywhere}
+.lgsub{margin:-8px 0 0;color:var(--muted);font-size:14px}
+.lgchamp{background:var(--tag);color:var(--tag-ink);border-radius:10px;padding:10px 12px;font-weight:600;font-size:14px}
+.lgfresh{border:2px dashed var(--hit);border-radius:10px;padding:10px 12px;font-size:14px;font-weight:600;color:var(--hit)}
+.seg{display:grid;grid-template-columns:1fr 1fr;border:1px solid var(--line);border-radius:10px;overflow:hidden}
+.seg button{border:0;background:var(--bg);padding:12px;font-weight:600;cursor:pointer;min-height:48px}
+.seg button[aria-pressed="true"]{background:var(--ink);color:var(--bg)}
+.lgrank{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:6px}
+.lgrow{display:grid;grid-template-columns:2em 1fr auto;gap:10px;align-items:center;width:100%;text-align:left;border:1px solid var(--line);background:var(--bg);border-radius:10px;padding:10px 12px;cursor:pointer;min-height:54px}
+.lgrank li.me .lgrow{border:2px solid var(--ink)}
+.lgrow .pos{font-family:var(--f-display);font-weight:900;font-size:24px;text-align:center}
+.lgrow .nm{font-weight:700;min-width:0;overflow-wrap:anywhere}
+.lgrow .nm small{display:block;font-weight:500;color:var(--muted);font-size:12px}
+.lgrow .tt{text-align:right;font-family:var(--f-mono);font-size:12px;color:var(--muted);line-height:1.3;white-space:nowrap}
+.lgrow .tt b{display:block;font-size:17px;color:var(--ink)}
+.lgdet{padding:8px 2px 4px;display:flex;flex-direction:column;gap:8px}
+.lgdays{display:grid;grid-template-columns:repeat(7,1fr);gap:4px}
+.lgday{border:1px solid var(--line);background:var(--surface);border-radius:8px;padding:6px 1px;text-align:center;font-size:11px;line-height:1.25;min-height:60px;color:var(--muted);min-width:0}
+.lgday b{display:block;font-family:var(--f-mono);font-size:12px;color:var(--ink)}
+button.lgday{cursor:pointer;font:inherit;font-size:11px}
+.lgday.win{border-color:var(--tag-ink);background:color-mix(in srgb,var(--tag) 40%,var(--surface))}
+.lgday[aria-pressed="true"]{outline:3px solid var(--focus);outline-offset:1px}
+.lgtk{font-family:var(--f-mono);font-size:12px;background:var(--paper);border:1px dashed var(--line);border-radius:8px;padding:6px 10px}
+.lgtk div{display:grid;grid-template-columns:1fr auto;gap:2px 8px;padding:6px 0;border-top:1px dashed var(--line)}
+.lgtk div:first-child{border-top:0}
+.lgtk small{grid-column:1/-1;color:var(--muted)}
+.lgpal{font-size:14px;line-height:1.5}
+.lgform{display:flex;flex-direction:column;gap:6px}
+.lgform label{font-weight:600;font-size:14px;margin-top:6px}
+.lgform input{font:inherit;font-size:17px;padding:12px;border:2px solid var(--line);border-radius:10px;background:var(--bg);color:var(--ink);width:100%}
+.lgform input:focus{outline:none;border-color:var(--ink)}
+.lgerr{margin:0;color:var(--miss);font-weight:600;font-size:14px}
+.lgmsg{margin:0;color:var(--hit);font-weight:600;font-size:14px}
+.lghelp{display:flex;flex-direction:column;gap:4px}
+.lghelp h3{margin:10px 0 2px;font-size:15px}
+.lghelp p,.lghelp li{font-size:14px;margin:0 0 4px;line-height:1.45}
+.lghelp ul{margin:0;padding-left:18px}
+.ghost.danger{color:var(--miss)}
+.lgend{border:2px solid var(--ink);border-radius:14px;padding:14px;display:flex;flex-direction:column;gap:8px;background:var(--surface)}
+.lgend h3{margin:0;font-size:17px}
+.lgline{display:flex;justify-content:space-between;align-items:center;gap:10px;width:100%;text-align:left;font-size:14px;border:0;border-top:1px dashed var(--line);background:none;padding:10px 0;cursor:pointer;min-height:44px}
+.lgline span:last-child{color:var(--muted);text-align:right}
+/* Caddie Drop */
+.pot{display:flex;justify-content:space-between;align-items:center;background:var(--tag);color:var(--tag-ink);border-radius:10px;padding:10px 14px;font-weight:700}
+.pot b{font-family:var(--f-display);font-size:30px;line-height:1;font-variant-numeric:tabular-nums}
+.traps{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:10px}
+.trap{display:grid;grid-template-columns:1fr auto auto auto;gap:8px;align-items:center;border:2px solid var(--line);background:var(--bg);border-radius:12px;padding:8px 8px 8px 8px;position:relative;overflow:hidden}
+.trap .tprice{display:flex;flex-direction:column;justify-content:center;padding:8px 6px;min-height:56px;min-width:0}
+.trap .tprice b{font-family:var(--f-mono);font-size:20px}
+.trap .tprice small{font-family:var(--f-mono);font-size:12px;color:var(--muted)}
+.trap .chips2{min-width:52px;text-align:center;font-family:var(--f-display);font-weight:900;font-size:28px;line-height:1;font-variant-numeric:tabular-nums}
+.trap .chips2 small{display:block;font-family:var(--f-body);font-weight:600;font-size:11px;color:var(--muted)}
+.trap .tbtn{width:56px;height:56px;border-radius:12px;border:1px solid var(--line);background:var(--surface);font-size:28px;font-weight:700;cursor:pointer;touch-action:manipulation}
+.trap .tbtn:disabled{opacity:.3;cursor:default}
+.trap.has{border-color:var(--tag-ink);background:color-mix(in srgb,var(--tag) 22%,var(--bg))}
+.trap.win{border-color:var(--hit);background:color-mix(in srgb,var(--hit) 14%,var(--bg))}
+.trap.lose{border-color:var(--miss)}
+.trap.lose .chips2{color:var(--miss)}
+.trap .tflag{grid-column:1/-1;font-size:13px;font-weight:700;padding:0 6px}
+.trap.win .tflag{color:var(--hit)} .trap.lose .tflag{color:var(--miss)}
+.trap .tprice b,.trap .tprice small{white-space:nowrap}
+@media (max-width:370px){.trap{gap:6px;padding:6px}.trap .tprice{padding:6px 2px}.trap .tprice b{font-size:17px}.trap .tprice small{font-size:11px}.trap .tbtn{width:48px;height:52px}.trap .chips2{min-width:38px;font-size:24px}}
+.warn{margin:0;font-size:13px;font-weight:600;color:var(--miss);text-align:center}
+.decree{margin:2px 0 0;padding:10px 12px;border-radius:10px;border:2px solid var(--ink);font-size:14px;line-height:1.4;font-weight:600}
+.decree b{display:block;font-family:var(--f-display);font-size:18px;text-transform:uppercase;letter-spacing:.03em}
+@media (prefers-reduced-motion:no-preference){
+  .trap.open::after{content:"";position:absolute;inset:0;background:var(--miss);opacity:0;animation:trap .7s ease-in both;animation-delay:var(--dl,0s)}
+  @keyframes trap{0%{opacity:0;transform:translateY(-100%)}40%{opacity:.25;transform:translateY(0)}100%{opacity:0;transform:translateY(100%)}}
+  .trap.open .chips2{animation:fall .6s ease-in both;animation-delay:var(--dl,0s)}
+  @keyframes fall{0%{transform:none;opacity:1}100%{transform:translateY(40px);opacity:0}}
+  .late{animation:late .3s ease-out both;animation-delay:var(--dl,0s)}
+  @keyframes late{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:none}}
+}
+.edit-hint{grid-column:1/-1;font-size:11px;font-weight:600;padding-left:16px;opacity:.75}
 .tag .range{font-family:var(--f-mono);font-size:13px;text-align:right;line-height:1.3;padding-bottom:6px}
 
-.slider-row{display:flex;align-items:center;gap:10px}
-.step{flex:none;width:44px;height:44px;border-radius:10px;border:1px solid var(--line);background:var(--bg);font-size:22px;font-weight:600;cursor:pointer}
+.slider-row{display:flex;align-items:center;gap:12px}
+.step{flex:none;width:56px;height:56px;border-radius:12px;border:1px solid var(--line);background:var(--bg);font-size:28px;font-weight:700;cursor:pointer;touch-action:manipulation}
 input[type=range]{flex:1;min-width:0;accent-color:var(--ink);height:44px}
-.scale{display:flex;justify-content:space-between;font-family:var(--f-mono);font-size:11px;color:var(--muted);margin-top:-8px;padding:0 54px}
+.scale{display:flex;justify-content:space-between;font-family:var(--f-mono);font-size:11px;color:var(--muted);margin-top:-8px;padding:0 68px}
 
 .conf-title{font-size:13px;font-weight:600;margin:0 0 8px}
 .conf{display:grid;grid-template-columns:repeat(3,1fr);gap:8px}
@@ -76,7 +255,7 @@ input[type=range]{flex:1;min-width:0;accent-color:var(--ink);height:44px}
 
 .verdict{display:flex;flex-direction:column;gap:6px}
 .verdict .v{font-family:var(--f-display);font-weight:900;font-size:30px;line-height:1;text-transform:uppercase}
-.verdict .v.hit,.verdict .v.near{color:var(--hit)} .verdict .v.miss{color:var(--miss)}
+.verdict .v.hit{color:var(--hit)} .verdict .v.near{color:var(--near)} .verdict .v.miss{color:var(--miss)}
 .verdict .v.pile{color:var(--tag-ink);background:var(--tag);align-self:flex-start;padding:4px 8px 2px;transform:rotate(-1deg)}
 .verdict .calc{font-family:var(--f-mono);font-size:13px;color:var(--ink)}
 .gain{margin:8px 0 0;font-size:13px;color:var(--muted);line-height:1.4}
@@ -109,6 +288,17 @@ input[type=range]{flex:1;min-width:0;accent-color:var(--ink);height:44px}
 .title-card{text-align:center;display:flex;flex-direction:column;gap:4px}
 .title-card .t{font-family:var(--f-display);font-weight:900;font-size:34px;line-height:1;text-transform:uppercase;text-wrap:balance}
 .title-card p{margin:0;color:var(--muted)}
+.title-card .punch{font-size:17px;font-weight:600;color:var(--ink);max-width:34ch;align-self:center;text-wrap:balance}
+.hist{border:1px solid var(--line);border-radius:12px;background:var(--surface);margin-top:12px}
+.hist summary{cursor:pointer;padding:10px 14px;font-size:14px;font-weight:600;color:var(--muted);list-style:none;display:flex;justify-content:space-between}
+.hist summary::-webkit-details-marker{display:none}
+.hist summary::after{content:"+";font-size:18px;line-height:1}
+.hist[open] summary::after{content:"−"}
+.hist ul{list-style:none;margin:0;padding:0 14px 10px;display:flex;flex-direction:column}
+.hist li{display:grid;grid-template-columns:1fr auto;gap:2px 10px;padding:8px 0;border-top:1px dashed var(--line);font-size:14px}
+.hist .h-n{min-width:0;overflow-wrap:anywhere}
+.hist .h-p{font-family:var(--f-mono);font-weight:600;font-variant-numeric:tabular-nums}
+.hist .h-d{grid-column:1/-1;font-size:12px;color:var(--muted);font-family:var(--f-mono)}
 .title-card .score{font-family:var(--f-display);font-weight:900;line-height:.9;display:flex;justify-content:center;align-items:baseline;gap:6px;font-variant-numeric:tabular-nums}
 .title-card .score b{font-size:72px}
 .title-card .score span{font-size:28px;color:var(--muted)}
@@ -139,39 +329,61 @@ footer a{color:inherit}
 </style>
 
 <div class="wrap">
+  <div class="modal" id="news" role="dialog" aria-modal="true" aria-labelledby="newst" hidden>
+    <div class="box">
+      <h2 id="newst">🆕 Hors-Sol a changé !</h2>
+      <ul class="newsl">
+        <li class="lgonly">🏆 <b>Nouveau : les ligues entre proches.</b> Créez une ligue, envoyez le lien à votre famille ou vos amis, et comparez vos scores chaque jour et chaque semaine.</li>
+        <li>🎮 <b>Un jeu différent chaque jour</b> : ⚖️ Trio au kilo (lun), 🎯 Fourchette (mar), 🛒 Rangement (mer), 💰 Caddie Drop (jeu), 🔎 Intrus (ven), 🏷️ Mise en rayon (sam).</li>
+        <li>🏛️ <b>Le dimanche, jeu décidé au 49.3</b> : l'un des 6, imposé sans débat. Surprise !</li>
+        <li>🎯 <b>La Fourchette est plus généreuse</b>, et le prix au kilo s'affiche partout.</li>
+      </ul>
+      <button class="cta" type="button" id="newsok">OK, c'est parti !</button>
+      <button class="lnk lgonly" type="button" id="newslg">Découvrir les ligues</button>
+    </div>
+  </div>
+  <div class="modal" id="contact" role="dialog" aria-modal="true" aria-labelledby="cttl" hidden>
+    <div class="box" id="ctbox">
+      <h2 id="cttl">Nous écrire</h2>
+      <div class="seg" role="group" aria-label="Type de message"><button type="button" data-ct="bug" aria-pressed="true">🐞 Un bug</button><button type="button" data-ct="msg" aria-pressed="false">💬 Commentaire, contact</button></div>
+      <div class="lgform">
+        <label for="ctmsg">Votre message</label>
+        <textarea id="ctmsg" rows="5" maxlength="2000"></textarea>
+        <label for="ctmail">Votre email, si vous souhaitez une réponse (facultatif)</label>
+        <input id="ctmail" type="email" autocomplete="email" inputmode="email">
+        <input type="checkbox" id="ctbot" tabindex="-1" autocomplete="off" hidden>
+      </div>
+      <p class="howto" id="cthint"></p>
+      <p class="lgerr" id="cterr" role="alert"></p>
+      <button class="cta" type="button" id="ctsend">Envoyer</button>
+      <button class="ghost" type="button" id="ctclose">Fermer</button>
+    </div>
+  </div>
   <header>
     <h1 class="brand"><span>Hors</span><br>-Sol</h1>
     <div class="meta"><div>Défi n°<b id="num">1</b></div><div id="date">aujourd'hui</div><div>Série : <b id="streak">0</b> j</div></div>
   </header>
+  <button class="lgbtn" id="lgbtn" type="button" hidden><span>🏆 Mes ligues</span><small id="lgsub"></small></button>
+  <section class="lg" id="lg" hidden aria-live="polite"></section>
   <div class="hook">
     <p class="q">Connaissez-vous mieux le prix des courses que nos ministres&nbsp;?</p>
-    <p class="pitch"><strong>5 produits du quotidien</strong>, de vrais prix relevés en magasin. Donnez une fourchette : plus elle est serrée, plus ça rapporte.</p>
     <p class="promise">Pas de produit obscur : que des articles que vous pourriez avoir croisés dans votre caddie.</p>
   </div>
+  <section class="today" aria-labelledby="gname">
+    <div class="today-top"><span class="rayon">Le jeu du jour</span><span class="gico" id="gico" aria-hidden="true"></span></div>
+    <h2 class="gname" id="gname">La Fourchette</h2>
+    <p class="gpitch" id="gpitch"></p>
+    <p class="decree" id="decree" hidden></p>
+    <ol class="week" id="week" aria-label="Le programme de la semaine (touchez un jour pour voir son jeu)"></ol>
+    <p class="wkinfo" id="wkinfo" hidden aria-live="polite"></p>
+  </section>
   <details class="rules" id="rules">
     <summary>Comment marquer des points ?</summary>
-    <div class="body">
-      <p>Choisissez un prix, puis la largeur de votre fourchette. Si le vrai prix tombe dedans, vous marquez les points de la fourchette. Plus elle est serrée, plus c'est risqué… et plus ça rapporte.</p>
-      <h4>Votre fourchette</h4>
-      <table>
-        <tr><td>Sûr de moi · ± 10 %</td><td>100 pts</td></tr>
-        <tr><td>À peu près · ± 25 %</td><td>50 pts</td></tr>
-        <tr><td>Au pif · ± 50 %</td><td>20 pts</td></tr>
-        <tr><td>Prix hors fourchette</td><td>0 pt</td></tr>
-      </table>
-      <h4>Bonus de précision, quelle que soit la fourchette</h4>
-      <table>
-        <tr><td>🎯 Pile-poil · à 2 % près</td><td>+50 pts</td></tr>
-        <tr><td>👌 Tout proche · à 5 % près</td><td>+20 pts</td></tr>
-      </table>
-      <p>Exemple : vrai prix 3,73 €. Vous dites 3,70 € « Sûr de moi » : 100 + 50 = <b>150 pts</b>. Vous dites 3,70 € « Au pif » : 20 + 50 = <b>70 pts</b>. </p>
-      <p>Votre score du jour est sur <b>500</b> (les points de fourchette). Les bonus de précision s'ajoutent à part, comme une médaille. Au moins 2 Pile-poil dans la partie : badge <b>🏆 Boss du rayon</b>.</p>
-      <p>🎯 pile-poil · 🟩 dans la fourchette · ⬛ raté</p>
-    </div>
+    <div class="body" id="rulesBody"></div>
   </details>
-  <div class="steps" id="steps" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i></div>
+  <div class="steps" id="steps" aria-hidden="true"></div>
   <main id="app"></main>
-  <footer>Prix de référence : médiane des relevés en France sur 12 mois, base <a href="https://prices.openfoodfacts.org" target="_blank" rel="noopener">Open Prices</a> (Open Food Facts, licence ODbL). Les prix varient selon les magasins. <span id="upd"></span> <a href="apropos.html">À propos</a></footer>
+  <footer>Prix de référence : médiane des relevés en France sur 12 mois, base <a href="https://prices.openfoodfacts.org" target="_blank" rel="noopener">Open Prices</a> (Open Food Facts, licence ODbL). Les prix varient selon les magasins. <span id="upd"></span> <a href="apropos.html">À propos</a><span id="ctwrap" hidden> · <button type="button" class="flink" id="contactlink">Contact</button></span></footer>
 </div>
 
 <script id="data" type="application/json">__DATA__</script>
@@ -182,31 +394,159 @@ const LAUNCH = "2026-10-16";            // défi n°1
 const PER_DAY = 5;
 const MIN = 0.10, MAX = 20;             // curseur logarithmique : ne trahit pas l'ordre de grandeur
 const CONF = [
-  {id:"sure", label:"Sûr de moi", pct:.10, pts:100},
-  {id:"mid",  label:"À peu près", pct:.25, pts:50},
-  {id:"wild", label:"Au pif",     pct:.50, pts:20},
+  {id:"sure", label:"Sûr de moi", pct:.15, pts:100},
+  {id:"mid",  label:"À peu près", pct:.35, pts:50},
+  {id:"wild", label:"Au pif",     pct:.60, pts:20},
 ];
 const BONUS = [
-  {max:.02, pts:50, id:"pile",   label:"Pile-poil"},
-  {max:.05, pts:20, id:"proche", label:"Tout proche"},
+  {max:.03, pts:50, id:"pile",   label:"Pile-poil"},
+  {max:.07, pts:20, id:"proche", label:"Tout proche"},
 ];
 const BASEMAX = 500;                     // score principal : points de fourchette seulement
 const BOSS_PILES = 2;                    // nombre de Pile-poil pour le badge « Boss du rayon »
+// Titres de fin : une phrase est tirée au hasard dans la tranche (et gardée pour la journée).
 const TITLES = [
-  [0,  "Ministre hors-sol", "Pas de panique, même les ministres apprennent. Revanche demain !"],
-  [100,"Ministre en campagne", "Vous commencez à sentir les prix. Ça progresse !"],
-  [200,"Conseiller de cabinet", "Bons réflexes au rayon, vous n'êtes pas loin du sans-faute."],
-  [300,"Plus connecté qu'un ministre", "Bravo, vous savez ce que coûtent vraiment les courses."],
-  [400,"Ministre des Courses", "Presque tout trouvé, et avec des fourchettes serrées. Chapeau !"],
+  [0, "Ministre hors-sol", [
+    "C'est le chauffeur qui fait les courses, c'est ça ?",
+    "Votre dernier caddie, c'était sous un autre président.",
+    "Un pain au chocolat ? Dix centimes, non ?",
+    "Vous pensiez que « drive », c'était une série Netflix ?",
+    "Même votre caddie a honte de vous.",
+    "Hors-sol certifié conforme. Le gouvernement vous attend.",
+    "On cherche un ministre. Vous avez le profil parfait.",
+    "Votre dernier achat en magasin, c'était un timbre. En francs.",
+  ]],
+  [50, "Ministre délégué au chauffeur", [
+    "Pas grave, l'important c'est d'avoir un chauffeur.",
+    "Vous avez déjà poussé un caddie, ou c'est l'huissier qui s'en charge ?",
+    "Bienvenue dans la vraie vie : les prix ont bougé depuis 1998.",
+    "Le pain au chocolat vous remercie de ne l'avoir jamais acheté.",
+    "Score digne d'une interview à la matinale. Celle qui finit en bêtisier.",
+    "Vous pensiez que le Nutella se payait en notes de frais ?",
+    "Le supermarché, vous l'avez vu une fois. Pour l'inauguration.",
+    "Même le stagiaire de Bercy fait mieux. Revanche demain !",
+  ]],
+  [100, "Secrétaire d'État aux notes de frais", [
+    "Pour vous, faire une course, c'est un trajet en voiture de fonction.",
+    "Vous connaissez le prix du café… à la buvette de l'Assemblée.",
+    "Vous avez touché une baguette. Une fois. Devant les caméras.",
+    "Vous découvrez les prix comme un mauvais sondage : avec effroi.",
+    "Le ticket de caisse, vous le transmettez à vos services.",
+    "Promesse de campagne : faire mieux demain. On vous croit (presque).",
+    "Vous progressez plus vite qu'une réforme. C'est déjà ça.",
+    "Pas mal pour quelqu'un qui découvre le code-barres.",
+  ]],
+  [150, "Candidat en visite au marché", [
+    "Vous avez déjà vu un marché… en photo de campagne.",
+    "Ça sent la visite terrain organisée par le cabinet.",
+    "Vous serrez des mains au rayon frais, mais les prix vous échappent.",
+    "Comme un premier tour : rien n'est joué, mais c'est mal parti.",
+    "Il vous manque encore quelques bains de foule au rayon frais.",
+    "Le terrain, vous y passez. Le temps d'une photo.",
+    "Bien joué, vous n'êtes pas si hors-sol. Enfin, pas complètement.",
+    "Vous goûtez le fromage pour les caméras. Le prix, vous l'oubliez.",
+  ]],
+  [200, "Conseiller de cabinet", [
+    "Vous connaissez les prix… dans les grandes lignes de la note.",
+    "Dossier bien préparé, il manque juste quelques chiffres.",
+    "Vous pourriez briefer un ministre. Pas encore le remplacer.",
+    "Note de synthèse correcte. Peut mieux faire en annexe.",
+    "Assez bien pour un cabinet. Pas encore pour un caddie.",
+    "Bon dossier. Le ministre peut signer… après relecture.",
+    "Pas mal. Votre ministre, lui, aurait dit 10 centimes.",
+    "Un bon point pour le citoyen.",
+  ]],
+  [250, "Député de terrain", [
+    "Vous savez où sont les rayons. C'est déjà plus que certains ministres.",
+    "Encore un effort et on vous laisse faire les courses sans escorte.",
+    "Le caddie, vous connaissez. Le ticket de caisse, presque.",
+    "Solide. Quelques centimes de mieux et c'était la promotion.",
+    "Vous connaissez le prix du lait. Le ministre vous jalouse.",
+    "Pas mal, vous avez déjà vu un ticket de caisse.",
+    "Bien vu, pas loin du tout.",
+    "Dans le panier ! Au sens propre.",
+    "Vous faites vos courses vous-même. Votre circonscription apprécie.",
+  ]],
+  [300, "Préfet du rayon frais", [
+    "Vous, on vous croise au supermarché le samedi matin.",
+    "Propre. Le rayon vous connaît.",
+    "Validé, le ticket de caisse confirme.",
+    "Ça, c'est quelqu'un qui fait ses courses.",
+    "Solide. Continuez comme ça.",
+    "Ticket de caisse maîtrisé. Votre carte de fidélité est fière de vous.",
+    "On sent les heures passées à comparer les prix au kilo.",
+    "Le rayon frais est sous contrôle. La République vous remercie.",
+  ]],
+  [350, "Plus connecté qu'un ministre", [
+    "Bercy devrait vous embaucher. Tout de suite.",
+    "Le ministre aurait dû vous appeler avant son interview.",
+    "Vous connaissez le prix du pain au chocolat. Ça devient rare.",
+    "Vous pourriez donner des cours au gouvernement. Gratuitement, évidemment.",
+    "Vous, on ne vous piège pas en interview.",
+    "Vous avez un vrai ticket de caisse, pas une note de frais.",
+    "Mieux renseigné que la moitié de l'hémicycle.",
+    "Correct. Le ministre, lui, aurait dit 15 centimes.",
+    "Le prix des choses, ça ne s'apprend pas dans les grandes écoles. Vous, vous savez.",
+  ]],
+  [400, "Ministre des Courses", [
+    "Nommé ministre des Courses par décret. Sans 49.3.",
+    "Vous lisez les étiquettes comme d'autres lisent les sondages.",
+    "Le caddie n'a plus aucun secret pour vous.",
+    "En caisse, on vous salue par votre prénom.",
+    "Interview sur le prix du pain au chocolat ? Même pas peur.",
+    "Vous travaillez en grande surface, avouez.",
+    "Là, c'est du travail de pro.",
+    "Les pains au chocolat tremblent quand vous entrez dans la boulangerie.",
+    "Vous êtes le cauchemar des conseillers en communication.",
+  ]],
+  [450, "Président du Caddie", [
+    "Élu au premier tour, avec 100 % des caddies.",
+    "Remaniement express : vous prenez la place du ministre.",
+    "Si vous étiez candidat, on voterait pour vous. Au moins pour ça.",
+    "Le gouvernement vous cherche. Pour vous piquer vos fiches.",
+    "On vous soupçonne de travailler en caisse.",
+    "Le prix du pain au chocolat ? Vous le connaissez au centime. Et celui de la chocolatine.",
+    "À ce niveau, ce n'est plus vous qui suivez les prix, ce sont eux qui vous suivent.",
+    "Vous avez un scanner à la place des yeux ?",
+    "Au centime près, ou presque. Respect.",
+    "Vous avez triché avec le ticket, avouez.",
+    "Précision chirurgicale.",
+    "Même l'étiquette en rayon est moins précise que vous.",
+    "Le scanner de la caisse vient de démissionner.",
+    "Arrêtez, vous faites peur.",
+    "Quelque part, un ministre vient de faire un malaise.",
+  ]],
 ];
-function summary(answers){
-  const base = answers.reduce((s,a)=>s+(a.base!=null ? a.base : a.pts),0);
-  const bonus = answers.reduce((s,a)=>s+(a.bonus||0),0);
-  const piles = answers.filter(a=>a.cls==="pile").length;
-  return {base, bonus, piles, boss: piles >= BOSS_PILES};
-}
-
+// Phrases en plus pour les petits scores, selon que le joueur a surtout visé trop cher ou trop bas.
+const BIAS = {
+  high: [
+    "À vos prix, c'est du caviar.",
+    "Vous payez avec l'argent du contribuable ?",
+    "Vous faites vos courses en épicerie fine, vous.",
+    "Vos prix ? Même le distributeur de la gare n'ose pas.",
+    "Vous avez confondu avec le prix au kilo, non ?",
+    "Vous confondez le supermarché et le buffet d'un ministère.",
+    "Avec vous, l'inflation n'a même plus besoin de forcer.",
+    "Vous achetez aussi vos pâtes en bijouterie ?",
+    "C'étaient les prix avec chauffeur et livraison ?",
+    "Les actionnaires de la grande distribution vous remercient.",
+  ],
+  low: [
+    "Vous avez répondu en francs ?",
+    "Vos prix n'existent plus depuis longtemps.",
+    "L'inflation, ça vous parle ?",
+    "Vous avez une carte de fidélité magique ?",
+    "Même en promo, on n'y est pas.",
+    "Vous vivez en 2003, c'est ça ?",
+    "Vos prix, c'était avant l'euro. Et avant le déluge.",
+    "Vous avez dû rater quelques hausses de prix.",
+    "Les producteurs viennent de faire un malaise.",
+    "Même au marché noir, c'est plus cher.",
+  ],
+};
+const pick = arr => arr[Math.floor(Math.random()*arr.length)];
 const SITE = "https://es-tu-hors-sol.fr";
+const SHOW_SURVEY = false;
 const IDEAS = [
   {id:"groupe",  label:"Un classement avec mes amis"},
   {id:"themes",  label:"Des défis à thème (apéro, Noël, rentrée)"},
@@ -222,47 +562,417 @@ function track(path, tries){
   }catch(e){ return; }
   if (tries < 10) setTimeout(()=>track(path, tries+1), 800);
 }
-function loadStats(){ try{ return JSON.parse(localStorage.getItem("horssol:stats")) || {days:0}; }catch(e){ return {days:0}; } }
-function saveStats(v){ try{ localStorage.setItem("horssol:stats", JSON.stringify(v)); }catch(e){} }
-function trackFinish(sum, streak){
-  const total = sum.base;
-  const st = loadStats();
-  if (st.lastDay !== today){ st.days = (st.days||0) + 1; st.lastDay = today; saveStats(st); }
-  const d = st.days;
-  track("fin-partie");
-  track("fin-jour-" + (d===1 ? "1" : d===2 ? "2" : d<=6 ? "3-6" : "7plus"));
-  if (streak >= 7) track("serie-7plus"); else if (streak >= 3) track("serie-3-6");
-  track("score-" + (total<100 ? "0-99" : total<200 ? "100-199" : total<300 ? "200-299" : total<400 ? "300-399" : "400-500"));
-  if (sum.bonus > 0) track("bonus-precision");
-  if (sum.boss) track("boss-du-rayon");
-}
-function loadFb(){ try{ return JSON.parse(localStorage.getItem("horssol:feedback")); }catch(e){ return null; } }
-function saveFb(v){ try{ localStorage.setItem("horssol:feedback", JSON.stringify(v)); }catch(e){} }
+function lsGet(k){ try{ return JSON.parse(localStorage.getItem(k)); }catch(e){ return null; } }
+function lsSet(k,v){ try{ localStorage.setItem(k, JSON.stringify(v)); }catch(e){} }
+function loadFb(){ return lsGet("horssol:feedback"); }
+function saveFb(v){ lsSet("horssol:feedback", v); }
 
 const $ = s => document.querySelector(s);
+const $$ = s => Array.from(document.querySelectorAll(s));
 const app = $("#app");
 const fmt = v => v.toFixed(2).replace(".", ",");
 const euro = v => fmt(v) + " €";
+const perUnit = (price, p) => p && p.qty ? `${euro(price/p.qty)} / ${p.unit}` : "";
+const esc = t => String(t).replace(/[&<>"]/g, c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
 
 // ---- date du jour (heure de Paris)
 function parisISO(d=new Date()){
   return new Intl.DateTimeFormat("en-CA",{timeZone:"Europe/Paris",year:"numeric",month:"2-digit",day:"2-digit"}).format(d);
 }
-const today = parisISO();
+// Mode test (maquette uniquement) : #j0 … #j6 = aujourd'hui … dans 6 jours.
+const TESTBAR = document.getElementById("testbar");
+// Ligues entre proches : actives si l'adresse du serveur est renseignée (config.json), ou dans la maquette (faux serveur).
+const API = "__API_LIGUES__";
+const LG_ON = !!(TESTBAR || (API && !API.startsWith("__")));
+const testDay = TESTBAR ? (((location.hash||"").match(/^#j([0-6])$/)||[])[1] ?? null) : null;
+const realToday = parisISO();
+const today = testDay !== null ? parisISO(new Date(Date.now() + (+testDay)*864e5)) : realToday;
 const dayIndex = Math.round((Date.parse(today) - Date.parse(LAUNCH)) / 864e5);
+const weekday = new Date(today+"T12:00:00Z").getUTCDay(); // 0 = dimanche
 $("#num").textContent = Math.max(1, dayIndex + 1);
-$("#date").textContent = new Intl.DateTimeFormat("fr-FR",{timeZone:"Europe/Paris",weekday:"long",day:"numeric",month:"long"}).format(new Date());
+$("#date").textContent = new Intl.DateTimeFormat("fr-FR",{timeZone:"UTC",weekday:"long",day:"numeric",month:"long"}).format(new Date(today+"T12:00:00Z"));
 
 // ---- tirage déterministe : tout le monde a les mêmes produits le même jour
 function rng(seed){return function(){seed|=0;seed=seed+0x6D2B79F5|0;let t=Math.imul(seed^seed>>>15,1|seed);t=t+Math.imul(t^t>>>7,61|t)^t;return((t^t>>>14)>>>0)/4294967296}}
-function pickDaily(products){
-  const r = rng(20261016 + dayIndex * 7919);
-  const a = products.slice().sort((x,y)=>x.code.localeCompare(y.code));
-  for(let i=a.length-1;i>0;i--){const j=Math.floor(r()*(i+1));[a[i],a[j]]=[a[j],a[i]]}
-  return a.slice(0, PER_DAY);
+function shuffled(arr, r){ const a = arr.slice(); for(let i=a.length-1;i>0;i--){const j=Math.floor(r()*(i+1));[a[i],a[j]]=[a[j],a[i]]} return a; }
+
+// ---- données
+let DATA;
+try { DATA = JSON.parse($("#data").textContent); } catch(e){ DATA = {products:[]}; }
+// Les nouveaux prix calculés dans la journée n'entrent en jeu que le lendemain (DATA.next.from) :
+// la série du jour reste la même pour tout le monde, de minuit à minuit.
+const LIST = (DATA.next && DATA.next.from && today >= DATA.next.from) ? DATA.next : DATA;
+if (LIST.updated) $("#upd").textContent = "Mise à jour : " + new Date(LIST.updated+"T12:00:00").toLocaleDateString("fr-FR") + ".";
+const ALL = (LIST.products||[]).slice().sort((x,y)=>x.code.localeCompare(y.code));
+const byCode = c => ALL.find(p=>p.code===c);
+
+// ============================================================
+//  CALENDRIER
+// ============================================================
+// Dimanche = "loi" : l'un des 6 jeux, tiré au sort (le même pour tout le monde), présenté comme « décidé au 49.3 ».
+const WEEK = {1:"trio", 2:"fourchette", 3:"rangement", 4:"drop", 5:"intrus", 6:"rayon", 0:"loi"};
+const WEEK_ORDER = [1,2,3,4,5,6,0];
+const DAYS_FR = {1:"Lun",2:"Mar",3:"Mer",4:"Jeu",5:"Ven",6:"Sam",0:"Dim"};
+const hashGame = (location.hash||"").replace("#","");
+const GAMES_LIST = ["fourchette","trio","rangement","drop","intrus","rayon"];
+function gameForDay(dIdx){
+  const g = WEEK[weekdayOf(dIdx)];
+  if (g !== "loi") return g;
+  const r = rng(4930 + dIdx * 7919); r(); // tirage à chances égales entre les 6 jeux
+  return GAMES_LIST[Math.floor(r() * GAMES_LIST.length)];
+}
+const GAME = GAMES_LIST.includes(hashGame) ? hashGame : gameForDay(dayIndex);
+const IS_LOI = WEEK[weekday] === "loi" && !GAMES_LIST.includes(hashGame);
+
+// ---- stockage : série commune, partie propre à chaque jeu du jour
+const KEY = "horssol:v1";
+const PKEY = "horssol:play:" + today + ":" + GAME;
+const meta = lsGet(KEY) || {};
+let day = lsGet(PKEY) || {answers: []};
+day.streak = meta.streak || 0; day.last = meta.last || null;
+function save(d){ lsSet(PKEY, d); lsSet(KEY, {streak: d.streak, last: d.last}); }
+function yesterday(){ return parisISO(new Date(Date.parse(today+"T12:00:00Z") - 864e5)); }
+function finishDay(){
+  if (meta.last !== today){ day.streak = (meta.last === yesterday() ? (meta.streak||0) : 0) + 1; day.last = today; meta.streak = day.streak; meta.last = today; }
+  day.finished = true;
+  day.game = GAME; day.sum = summary();
+  try{ day.rows = G.rows(day.answers).map(r=>[r.name, r.pts, r.detail]); }catch(e){}
+  save(day);
+  if (LG_ON && ME) lgCall("sync").then(lgEnd).catch(()=>{});
+  trackFinish(summary(), day.streak);
+}
+function trackFinish(sum, streak){
+  const st = lsGet("horssol:stats") || {days:0};
+  if (st.lastDay !== today){ st.days = (st.days||0) + 1; st.lastDay = today; lsSet("horssol:stats", st); }
+  const d = st.days, total = sum.base;
+  track("fin-partie"); track("jeu-" + GAME);
+  track("fin-jour-" + (d===1 ? "1" : d===2 ? "2" : d<=6 ? "3-6" : "7plus"));
+  if (streak >= 7) track("serie-7plus"); else if (streak >= 3) track("serie-3-6");
+  track("score-" + (total<100 ? "0-99" : total<200 ? "100-199" : total<300 ? "200-299" : total<400 ? "300-399" : "400-500"));
+  if (sum.bonus > 0) track("bonus-" + GAME);
+  if (sum.boss) track("boss-du-rayon");
 }
 
-// ---- score
+// ============================================================
+//  DÉFINITION DES JEUX
+// ============================================================
+const sqOf = a => ({pile:"🎯",hit:"🟩",near:"🟨",miss:"⬛"})[a.cls] || "⬛";
+const ptsTxt = n => n ? "+"+n : "0";
+
+const GAMES = {
+  fourchette: {
+    name:"La Fourchette", ico:"🎯", rounds:5,
+    pitch:"5 produits du quotidien. Donnez un prix et une fourchette : plus elle est serrée, plus ça rapporte.",
+    rules:`<p>Choisissez un prix, puis la largeur de votre fourchette. Si le vrai prix tombe dedans, vous marquez les points de la fourchette. Plus elle est serrée, plus c'est risqué… et plus ça rapporte.</p>
+      <h4>Votre fourchette</h4>
+      <table><tr><td>Sûr de moi · ± 15 %</td><td>100 pts</td></tr><tr><td>À peu près · ± 35 %</td><td>50 pts</td></tr><tr><td>Au pif · ± 60 %</td><td>20 pts</td></tr><tr><td>Prix hors fourchette</td><td>0 pt</td></tr></table>
+      <h4>Bonus de précision, quelle que soit la fourchette</h4>
+      <table><tr><td>🎯 Pile-poil · à 3 % près</td><td>+50 pts</td></tr><tr><td>👌 Tout proche · à 7 % près</td><td>+20 pts</td></tr></table>
+      <p>Exemple : vrai prix 3,73 €. Vous dites 3,70 € « Sûr de moi » : 100 + 50 = <b>150 pts</b>.</p>
+      <p>Score du jour sur <b>500</b>, bonus à part. Au moins 2 Pile-poil : badge <b>🏆 Boss du rayon</b>.</p>`,
+    bonusName:"bonus précision",
+    boss: ans => ans.filter(a=>a.cls==="pile").length >= 2,
+    bonusIco: ans => ans.some(a=>a.cls==="pile") ? "🎯" : "👌",
+    rows: ans => ans.map((a,i)=>{ const p = byCode(a.code)||{name:"?",median:0};
+      return {name:p.name, pts:a.base, detail:`vrai ${euro(p.median)} · vous ${euro(a.lo)}–${euro(a.hi)}${a.bonus ? " · "+a.bonusLabel.toLowerCase()+" +"+a.bonus : ""}`}; }),
+    share: ans => ans.map(a=>{ const p = byCode(a.code)||{name:"?"}; return `${sqOf(a)} ${p.name} · ${ptsTxt(a.base)}${a.bonus ? " (+"+a.bonus+" bonus)" : ""}`; }).join("\n"),
+  },
+  trio: {
+    name:"Le Trio au kilo", ico:"⚖️", rounds:5,
+    pitch:"3 produits, 5 manches. Lequel est le plus cher au kilo ? Le format peut être trompeur…",
+    rules:`<p>À chaque manche, 3 produits de formats différents. Touchez celui qui coûte <b>le plus cher au kilo</b>. Les prix (au paquet et au kilo) s'affichent après votre réponse.</p>
+      <table><tr><td>Bonne réponse</td><td>100 pts</td></tr><tr><td>🔥 Sans-faute (5 sur 5)</td><td>+50 pts</td></tr></table>
+      <p>Score du jour sur <b>500</b>. Le sans-faute donne le badge <b>🏆 Boss du rayon</b>.</p>`,
+    bonusName:"bonus sans-faute",
+    extraBonus: ans => ans.length===5 && ans.every(a=>a.base===100) ? 50 : 0,
+    boss: ans => ans.length===5 && ans.every(a=>a.base===100),
+    bonusIco: () => "🔥",
+    rows: ans => ans.map((a,i)=>{ const w = byCode(a.answer)||{name:"?"}, me = byCode(a.pick)||{name:"?"};
+      return {name:`Manche ${i+1} · ${w.name}`, pts:a.base, detail: a.base ? `bien vu : ${perUnit(w.median,w)}` : `vous : ${me.name} (${perUnit(me.median,me)}) · le plus cher : ${perUnit(w.median,w)}`}; }),
+    share: ans => ans.map(sqOf).join(""),
+  },
+  rangement: {
+    name:"Le Rangement", ico:"🛒", rounds:3,
+    pitch:"3 caddies à ranger du moins cher au plus cher. De plus en plus serré !",
+    rules:`<p>Rangez chaque caddie du <b>moins cher</b> (en haut) au <b>plus cher</b> (en bas) avec les flèches ▲▼, puis validez. Le prix du paquet compte, pas le prix au kilo.</p>
+      <table><tr><td>Produit bien placé</td><td>35 à 36 pts</td></tr><tr><td>À une place près</td><td>moitié</td></tr><tr><td>🛒 Caddie parfait</td><td>+30 pts</td></tr></table>
+      <p>Caddie 1 : 4 produits aux prix bien différents. Caddies 2 et 3 : 5 produits, plus proches. Score du jour sur <b>500</b>. Au moins 2 caddies parfaits : badge <b>🏆 Boss du rayon</b>.</p>`,
+    bonusName:"bonus caddie parfait",
+    boss: ans => ans.filter(a=>a.perfect).length >= 2,
+    bonusIco: () => "🛒",
+    rows: ans => ans.map((a,i)=>({name:`Caddie ${i+1} · ${a.good}/${a.order.length} bien placés`, pts:a.base,
+      detail: a.order.map(c=>{ const p=byCode(c)||{name:"?",median:0}; return `${p.name} ${euro(p.median)}`; }).join(" < ") + (a.bonus ? ` · caddie parfait +${a.bonus}` : "")})),
+    share: ans => ans.map((a,i)=>`Caddie ${i+1} : ${a.marks.map(m=>({ok:"✅",half:"🟨",bad:"⬛"})[m]).join("")}`).join("\n"),
+  },
+  drop: {
+    name:"Le Caddie Drop", ico:"💰", rounds:5,
+    pitch:"100 jetons par produit, 4 prix possibles. Misez sur le bon : les autres trappes s'ouvrent !",
+    rules:`<p>Pour chaque produit, vous avez <b>100 jetons</b> et 4 prix possibles. Le bouton + pose 10 jetons sur un prix, le bouton − en retire. Placez les 100 jetons, en laissant <b>au moins une trappe vide</b>, puis validez : les mauvaises trappes s'ouvrent, et seuls les jetons posés sur le bon prix restent.</p>
+      <table><tr><td>Jetons gardés</td><td>1 jeton = 1 pt</td></tr><tr><td>💰 Tout sur la bonne (100 jetons sur le bon prix)</td><td>+20 pts</td></tr></table>
+      <p>Score du jour sur <b>500</b>. Au moins 3 « Tout sur la bonne » : badge <b>🏆 Boss du rayon</b>.</p>`,
+    bonusName:"bonus tout sur la bonne",
+    boss: ans => ans.filter(a=>a.kept===100).length >= 3,
+    bonusIco: () => "💰",
+    rows: ans => ans.map(a=>{ const p = byCode(a.code)||{name:"?",median:0};
+      return {name:p.name, pts:a.base, detail:`vrai prix ${euro(p.median)} · ${a.kept} jetons sauvés sur 100${a.bonus?" · tout sur la bonne +"+a.bonus:""}`}; }),
+    share: ans => ans.map(a=>`${a.kept===100?"🟩":a.kept>0?"🟨":"🟥"} ${a.kept}`).join(" · ") + ` → ${ans.reduce((s,a)=>s+a.kept,0)} jetons sauvés`,
+  },
+  intrus: {
+    name:"L'Intrus", ico:"🔎", rounds:5,
+    pitch:"5 étiquettes, 1 faux prix. Saurez-vous le repérer ?",
+    rules:`<p>À chaque manche, 5 produits avec leur prix en rayon. <b>Un seul prix est faux</b> (gonflé ou sous-évalué). Touchez l'intrus. Vous avez droit à 2 essais.</p>
+      <table><tr><td>Trouvé du 1er coup</td><td>100 pts</td></tr><tr><td>Trouvé au 2e essai</td><td>40 pts</td></tr><tr><td>🔎 Flair : « trop cher » ou « trop bas » juste</td><td>+20 pts</td></tr></table>
+      <p>Trouvé ou pas, on vous montre l'intrus, puis on vous demande si son prix était <b>trop cher ou trop bas</b>. Le vrai prix n'apparaît qu'après votre réponse : tout le monde peut décrocher le bonus flair.</p>
+      <p>Score du jour sur <b>500</b>. 5 intrus trouvés du premier coup : badge <b>🏆 Boss du rayon</b>.</p>`,
+    bonusName:"bonus flair",
+    boss: ans => ans.length===5 && ans.every(a=>a.tries===1),
+    bonusIco: () => "🔎",
+    rows: ans => ans.map((a,i)=>{ const p = byCode(a.code)||{name:"?",median:0};
+      return {name:`Manche ${i+1} · ${p.name}`, pts:a.base, detail:`affiché ${euro(a.fake)}, vrai prix ${euro(p.median)}${a.tries===1?" · trouvé du 1er coup":a.tries===2?" · trouvé au 2e essai":" · raté"}${a.bonus?" · flair +"+a.bonus:""}`}; }),
+    share: ans => ans.map((a,i)=>`Manche ${i+1} : ${a.tries===1?"✅":a.tries===2?"🟨 au 2e essai":"⬛"}${a.bonus?" 🔎":""}`).join("\n"),
+  },
+  rayon: {
+    name:"La Mise en rayon", ico:"🏷️", rounds:2,
+    pitch:"Vous êtes chef de rayon : collez chaque étiquette de prix sur le bon produit.",
+    rules:`<p>2 rayons de 5 produits. Touchez une étiquette en bas, puis le produit sur lequel la poser. Vous pouvez changer d'avis autant que vous voulez avant de valider le rayon.</p>
+      <table><tr><td>Étiquette bien placée</td><td>50 pts</td></tr><tr><td>🏷️ Rayon parfait</td><td>+50 pts</td></tr></table>
+      <p>Score du jour sur <b>500</b>. Les 2 rayons parfaits : badge <b>🏆 Boss du rayon</b>.</p>`,
+    bonusName:"bonus rayon parfait",
+    boss: ans => ans.length===2 && ans.every(a=>a.good===5),
+    bonusIco: () => "🏷️",
+    rows: ans => ans.map((a,i)=>({name:`Rayon ${i+1} · ${a.good}/5 étiquettes justes`, pts:a.base,
+      detail: a.codes.map(c=>{ const p=byCode(c)||{name:"?",median:0}; return `${p.name} ${euro(p.median)}`; }).join(" · ") + (a.bonus?` · rayon parfait +${a.bonus}`:"")})),
+    share: ans => ans.map((a,i)=>`Rayon ${i+1} : ${a.marks.map(m=>m?"🏷️":"⬛").join("")}`).join("\n"),
+  },
+};
+const G = GAMES[GAME];
+const LOI = {name:"Jeu décidé au 49.3", ico:"🏛️", pitch:"L'un des 6 jeux de la semaine, tiré au sort et imposé sans débat. Surprise le jour même !"};
+const slotInfo = wd => WEEK[wd]==="loi" ? LOI : GAMES[WEEK[wd]];
+const DECREES = [
+  "Sans débat ni vote, le gouvernement a imposé le jeu du jour : {g}.",
+  "Le 49.3 a parlé. Aucun amendement possible : aujourd'hui, c'est {g}.",
+  "Après une concertation de 4 secondes, le ministre a tranché : {g}.",
+  "Motion de censure rejetée. Jeu imposé : {g}.",
+  "Le Conseil des ministres a décidé pour vous : {g}. Merci de votre compréhension.",
+  "Votre avis a été pris en compte, puis ignoré. Jeu du jour : {g}.",
+];
+// Fenêtre « Hors-Sol a changé » : une seule fois par mise à jour, et seulement pour les joueurs qui connaissaient l'ancienne version.
+const UPDATE_ID = "2026-10-18";
+if (!LG_ON) document.body.classList.add("no-lg");
+(function(){
+  const seen = lsGet("horssol:news");
+  const returning = !!(meta.last || lsGet("horssol:stats"));
+  if (seen === UPDATE_ID) return;
+  if (!returning){ lsSet("horssol:news", UPDATE_ID); return; }   // nouveau joueur : pas d'annonce de mise à jour
+  const n = $("#news"); n.hidden = false;
+  setTimeout(()=>{ try{ $("#newsok").focus(); }catch(e){} }, 50);
+  const close = () => { lsSet("horssol:news", UPDATE_ID); n.hidden = true; track("maj-lue"); };
+  $("#newsok").addEventListener("click", close);
+  $("#newslg").addEventListener("click", ()=>{ close(); lgOpen("help"); });
+})();
+if (TESTBAR){
+  const days = [0,1,2,3,4,5,6].map(k=>{ const iso = parisISO(new Date(Date.now()+k*864e5)); const wd = new Date(iso+"T12:00:00Z").getUTCDay();
+    const di = Math.round((Date.parse(iso) - Date.parse(LAUNCH)) / 864e5);
+    return {k, iso, label: DAYS_FR[wd]+" "+iso.slice(8), loi: WEEK[wd]==="loi", game: GAMES[gameForDay(di)]}; });
+  const cur = testDay === null ? 0 : +testDay;
+  TESTBAR.querySelector(".tdays").innerHTML = days.map(d=>`<button data-k="${d.k}" aria-pressed="${d.k===cur && !GAMES[hashGame]}"><b>${d.label}</b>${d.loi?"🏛️ 49.3 → ":""}${d.game.ico} ${d.game.name.replace(/^(La |Le |L')/,"")}</button>`).join("");
+  TESTBAR.querySelectorAll(".tdays button").forEach(b=>b.addEventListener("click", ()=>{ location.hash = "j"+b.dataset.k; }));
+  TESTBAR.querySelector(".treset:not(#tinvite)").addEventListener("click", ()=>{
+    try{ Object.keys(localStorage).filter(k=>k.startsWith("horssol:")).forEach(k=>localStorage.removeItem(k)); }catch(e){}
+    location.hash = "j0"; location.reload();
+  });
+}
+
+function summary(){
+  const ans = day.answers;
+  const base = Math.min(500, ans.reduce((s,a)=>s+(a.base||0),0));
+  const bonus = ans.reduce((s,a)=>s+(a.bonus||0),0) + (G.extraBonus ? G.extraBonus(ans) : 0);
+  return {base, bonus, boss: G.boss(ans)};
+}
+
+// ---- en-tête du jour
+$("#gname").textContent = G.name;
+$("#gico").textContent = G.ico;
+$("#gpitch").textContent = G.pitch;
+$("#rulesBody").innerHTML = G.rules;
+if (IS_LOI){
+  const dc = $("#decree");
+  dc.innerHTML = `<b>🏛️ Décidé au 49.3</b>${esc(DECREES[Math.floor(rng(dayIndex*13+7)()*DECREES.length)].replace("{g}", G.name.replace(/^(La |Le |L')/, m=>m.toLowerCase())))}`;
+  dc.hidden = false;
+}
+const DAYS_LONG = {1:"Lundi",2:"Mardi",3:"Mercredi",4:"Jeudi",5:"Vendredi",6:"Samedi",0:"Dimanche"};
+$("#week").innerHTML = WEEK_ORDER.map(d=>`<li class="${d===weekday?"on":""}"${d===weekday?' aria-current="date"':""}><button type="button" data-d="${d}" aria-expanded="false" aria-controls="wkinfo"><b>${slotInfo(d).ico}</b>${DAYS_FR[d]}</button></li>`).join("");
+$$("#week button").forEach(b=>b.addEventListener("click", ()=>{
+  const open = b.getAttribute("aria-expanded")==="true";
+  $$("#week button").forEach(x=>x.setAttribute("aria-expanded","false"));
+  const info = $("#wkinfo");
+  if (open){ info.hidden = true; return; }
+  const d = +b.dataset.d, g = slotInfo(d);
+  b.setAttribute("aria-expanded","true");
+  info.innerHTML = `<b>${DAYS_LONG[d]} · ${g.ico} ${g.name}</b> : ${g===LOI && d===weekday ? `aujourd'hui, le gouvernement a imposé <b>${G.ico} ${G.name}</b>.` : g.pitch}`;
+  info.hidden = false;
+}));
+$("#steps").style.setProperty("--n", G.rounds);
+$("#steps").innerHTML = "<i></i>".repeat(G.rounds);
+
+function paintSteps(){
+  const el = $("#steps").children;
+  for(let i=0;i<G.rounds;i++){
+    const a = day.answers[i];
+    el[i].className = a ? a.cls : (i===day.answers.length && !day.finished ? "now" : "");
+  }
+  const alive = meta.last === today || meta.last === yesterday();
+  $("#streak").textContent = alive ? (meta.streak||0) : 0;
+}
+
+// ============================================================
+//  TIRAGES DU JOUR
+// ============================================================
+// Anti-répétition : les produits vus les 3 jours précédents passent en fin de liste
+// (ils ne reviennent que s'il n'y a vraiment pas assez d'autres produits).
+const RECENT_DAYS = 3;
+function buildPlan(dIdx, game, recent){
+  const R = rng(20261016 + dIdx * 7919 + game.length * 104729);
+  const GAME = game;
+  const used = new Set();
+  const take = p => used.add(p.code);
+  const pool = () => { const free = ALL.filter(p=>!used.has(p.code));
+    return shuffled(free.filter(p=>!recent.has(p.code)), R).concat(shuffled(free.filter(p=>recent.has(p.code)), R)); };
+  if (GAME === "fourchette") return {items: pool().slice(0,5).map(p=>p.code)};
+  if (GAME === "trio"){
+    const rounds = [];
+    for (let k=0; k<5; k++){
+      const c = pool().filter(p=>p.unit==="kg" && p.per_unit).slice(0, 40);
+      let found = null;
+      for (let a=0; a<c.length && !found; a++) for (let b=a+1; b<c.length && !found; b++) for (let d=b+1; d<c.length && !found; d++){
+        const t = [c[a],c[b],c[d]].sort((x,y)=>y.per_unit-x.per_unit);
+        if (t[0].per_unit >= t[1].per_unit*1.15 && t[1].per_unit >= t[2].per_unit*1.05) found = [c[a],c[b],c[d]];
+      }
+      if (!found) break;
+      found.forEach(take);
+      rounds.push(found.map(p=>p.code));
+    }
+    return {rounds};
+  }
+  if (GAME === "rangement"){
+    const specs = [{n:4, gap:1.5},{n:5, gap:1.3},{n:5, gap:1.2}];
+    const carts = [];
+    for (const sp of specs){
+      let best = null;
+      for (let attempt=0; attempt<40 && !best; attempt++){
+        const chosen = [];
+        for (const p of pool()){
+          const ok = chosen.every(q=>{ const hi=Math.max(p.median,q.median), lo=Math.min(p.median,q.median); return hi/lo >= sp.gap && hi-lo >= 0.30; });
+          if (ok) chosen.push(p);
+          if (chosen.length === sp.n) break;
+        }
+        if (chosen.length === sp.n) best = chosen;
+      }
+      if (!best) break;
+      best.forEach(take);
+      carts.push({start: best.map(p=>p.code)});
+    }
+    return {carts};
+  }
+  if (GAME === "drop"){
+    // 4 trappes : le vrai prix, un faux proche (15-20 %) et deux faux éloignés (un au-dessus, un en dessous).
+    const nat = v => { let c = Math.round(v*100); c = c - (c % 10) + [9,9,5,0,5,9,2,4,7,9][Math.floor(R()*10)]; return Math.max(0.15, c/100); };
+    const apart = arr => arr.every((x,a)=>arr.every((y,b)=> a===b || Math.max(x,y)/Math.min(x,y) >= 1.08 && Math.abs(x-y) >= 0.06));
+    const items = pool().slice(0,5).map(p=>{
+      take(p);
+      const m = p.median; let opts = null;
+      for (let k=0; k<20 && !opts; k++){
+        const up = R() < 0.5, c = 0.15 + R()*0.05;
+        const cand = [m, nat(m*(up ? 1+c : 1-c)), nat(m*(1.38 + R()*0.2)), nat(m*(1 - 0.30 - R()*0.12))];
+        if (apart(cand)) opts = cand;
+      }
+      if (!opts) opts = [m, Math.round(m*120)/100, Math.round(m*150)/100, Math.max(0.15, Math.round(m*65)/100)];
+      const order = shuffled([0,1,2,3], R);
+      return {code: p.code, opts: order.map(o=>opts[o]), ans: order.indexOf(0)};
+    });
+    return {drops: items};
+  }
+  if (GAME === "intrus"){
+    const rounds = [];
+    for (let k=0; k<5; k++){
+      const five = pool().slice(0,5); if (five.length<5) break;
+      five.forEach(take);
+      const fakeIdx = Math.floor(R()*5);
+      const up = R() < 0.5;
+      const f = 0.30 + R()*0.30;
+      const real = five[fakeIdx].median;
+      let fake = Math.round(real * (up ? 1+f : 1-f) * 100)/100;
+      if (fake < 0.15) fake = Math.round(real*(1+f)*100)/100;
+      rounds.push({codes: five.map(p=>p.code), fakeIdx, fake, up: fake > real});
+    }
+    return {rounds};
+  }
+  if (GAME === "rayon"){
+    const shelves = [];
+    for (let k=0; k<2; k++){
+      const chosen = [];
+      for (const p of pool()){
+        const ok = chosen.every(q=>{ const hi=Math.max(p.median,q.median), lo=Math.min(p.median,q.median); return hi/lo >= 1.12 && hi-lo >= 0.15; });
+        if (ok) chosen.push(p);
+        if (chosen.length===5) break;
+      }
+      if (chosen.length<5) break;
+      chosen.forEach(take);
+      shelves.push({codes: chosen.map(p=>p.code), labels: shuffled(chosen.map(p=>p.code), R)});
+    }
+    return {shelves};
+  }
+}
+function planCodes(plan){
+  const out = [];
+  if (plan.items) out.push(...plan.items);
+  (plan.rounds||[]).forEach(r=>out.push(...(Array.isArray(r) ? r : r.codes)));
+  (plan.carts||[]).forEach(c=>out.push(...c.start));
+  (plan.shelves||[]).forEach(s=>out.push(...s.codes));
+  (plan.drops||[]).forEach(d=>out.push(d.code));
+  return out;
+}
+function weekdayOf(dIdx){ return new Date(Date.parse(LAUNCH+"T12:00:00Z") + dIdx*864e5).getUTCDay(); }
+function todaysPlan(){
+  // On rejoue tous les jours depuis le lancement pour savoir exactement ce qui est sorti récemment.
+  const history = [];
+  for (let d = 0; d < dayIndex; d++){
+    const recent = new Set(history.slice(-RECENT_DAYS).flat());
+    history.push(planCodes(buildPlan(d, gameForDay(d), recent)));
+  }
+  return buildPlan(dayIndex, GAME, new Set(history.slice(-RECENT_DAYS).flat()));
+}
+const PLAN = todaysPlan();
+window.__horsSolPlan = () => ({game: GAME, codes: planCodes(PLAN), plan: PLAN});
+
+// ============================================================
+//  RENDU GÉNÉRAL
+// ============================================================
+let state = {revealed:false};
+function render(){
+  paintSteps();
+  if (!ALL.length){ app.innerHTML = '<div class="card"><p>Les prix du jour n\'ont pas pu être chargés. Réessayez dans quelques minutes.</p></div>'; return; }
+  if (day.finished && !state.revealed) return renderEnd();
+  ({fourchette:renderFourchette, trio:renderTrio, rangement:renderRangement, drop:renderDrop, intrus:renderIntrus, rayon:renderRayon})[GAME]();
+}
+function nextBtn(){
+  const last = day.answers.length >= G.rounds;
+  return `<button class="cta" id="next">${last ? "Voir mon ticket" : "Suivant"}</button>`;
+}
+function wireNext(){
+  const b = $("#next"); if (!b) return;
+  b.addEventListener("click", ()=>{ state = {revealed:false}; render(); app.scrollIntoView({block:"start",behavior:"smooth"}); });
+}
+function commit(answer){
+  day.answers.push(answer);
+  if (day.answers.length >= G.rounds) finishDay(); else save(day);
+  state.revealed = true;
+}
+
+// ============================================================
+//  JEU 1 · LA FOURCHETTE
+// ============================================================
+const items = (PLAN.items||[]).map(byCode).filter(Boolean);
 function scoreGuess(guess, confId, truth){
   const c = CONF.find(x=>x.id===confId);
   const lo = guess*(1-c.pct), hi = guess*(1+c.pct);
@@ -274,110 +984,83 @@ function scoreGuess(guess, confId, truth){
   return {lo, hi, hit, base, bonus, bonusLabel: b ? b.label : "", pts: base + bonus,
           cls: b && b.id==="pile" ? "pile" : (hit ? "hit" : "miss")};
 }
-window.__horsSolScore = scoreGuess; // exposé pour test
-
-// ---- curseur log
+window.__horsSolScore = scoreGuess;
 const toPrice = t => { const p = MIN*Math.pow(MAX/MIN, t/1000); return roundP(p); };
 const toT = p => Math.round(1000*Math.log(p/MIN)/Math.log(MAX/MIN));
 function roundP(p){ return p < 1 ? Math.round(p*100)/100 : Math.round(p*20)/20; }
-const stepOf = p => p < 1 ? 0.01 : 0.05;
+const stepOf = p => p < 5 ? 0.01 : 0.05;
+let fs = {guess: 2.00, conf: "mid"};
 
-// ---- stockage local (facultatif)
-const KEY = "horssol:v1";
-function load(){ try{ return JSON.parse(localStorage.getItem(KEY)) || {}; }catch(e){ return {}; } }
-function save(s){ try{ localStorage.setItem(KEY, JSON.stringify(s)); }catch(e){} }
-let store = load();
-let day = store.day === today ? store : {day: today, answers: [], streak: store.streak||0, last: store.last||null};
-
-function streakAfterFinish(){
-  const y = parisISO(new Date(Date.parse(today+"T12:00:00Z") - 864e5));
-  return (day.last === y ? (day.streak||0) : 0) + 1;
-}
-
-// ---- données
-let DATA;
-try { DATA = JSON.parse($("#data").textContent); } catch(e){ DATA = {products:[]}; }
-if (DATA.updated) $("#upd").textContent = "Mise à jour : " + new Date(DATA.updated+"T12:00:00").toLocaleDateString("fr-FR") + ".";
-const items = pickDaily(DATA.products);
-
-let state = {guess: 2.00, conf: "mid", revealed: false};
-
-function paintSteps(){
-  const el = $("#steps").children;
-  for(let i=0;i<PER_DAY;i++){
-    const a = day.answers[i];
-    el[i].className = a ? a.cls : (i===day.answers.length ? "now" : "");
-  }
-  $("#streak").textContent = day.finished ? day.streak : (store.last && streakAlive() ? store.streak : 0);
-}
-function streakAlive(){
-  const y = parisISO(new Date(Date.parse(today+"T12:00:00Z") - 864e5));
-  return store.last === y || store.last === today;
-}
-
-function render(){
-  paintSteps();
-  if (!items.length){ app.innerHTML = '<div class="card"><p>Les prix du jour n\'ont pas pu être chargés. Réessayez dans quelques minutes.</p></div>'; return; }
-  if (day.answers.length >= PER_DAY && !state.revealed) return renderEnd();
+function renderFourchette(){
   const i = state.revealed ? day.answers.length-1 : day.answers.length;
   const p = items[i];
-  const c = CONF.find(x=>x.id===state.conf);
   const a = state.revealed ? day.answers[i] : null;
-  const lo = state.guess*(1-c.pct), hi = state.guess*(1+c.pct);
-
   app.innerHTML = `
   <section class="card" aria-live="polite">
     <div>
-      <div class="rayon">Produit ${i+1}/${PER_DAY} · ${p.rayon}</div>
+      <div class="rayon">Produit ${i+1}/5 · ${p.rayon}</div>
       <h2 class="pname">${p.name}</h2>
       <p class="pdetail">${p.detail}</p>
     </div>
     <div class="tag ${a?"pop":""}">
-      <div class="lbl">${a ? "Prix constaté" : "Votre estimation"}</div>
-      <div class="big" id="big">${bigPrice(a ? p.median : state.guess)}</div>
-      <div class="range" id="range">${a ? (p.per_unit ? euro(p.per_unit)+" / "+p.unit : "") : "entre "+euro(lo)+"<br>et "+euro(hi)}</div>
+      <div class="lbl">${a ? "Prix constaté" : "Votre estimation · touchez le prix pour le taper"}</div>
+      ${a ? `<div class="big" id="big">${bigPrice(p.median)}</div>`
+          : `<label class="big edit" for="priceInput"><input id="priceInput" type="text" inputmode="decimal" autocomplete="off" enterkeyhint="done" value="${fmt(fs.guess)}" aria-label="Votre prix en euros, modifiable"><span>€</span></label>`}
+      <div class="range" id="range">${a ? (p.per_unit ? "soit "+perUnit(p.median,p) : "") : rangeText(p)}</div>
     </div>
     ${a ? verdictHTML(p,a) : controlsHTML()}
-  </section>`;
-  if (!a) wire(); else $("#next").addEventListener("click", ()=>{ state = {guess: 2.00, conf: state.conf, revealed:false}; render(); $("#app").scrollIntoView({block:"start",behavior:"smooth"}); });
+  </section>
+  ${historyHTML(i)}`;
+  if (!a) wireFourchette(); else wireNext();
 }
-
+function historyHTML(upto){
+  const done = day.answers.slice(0, upto);
+  if (!done.length) return "";
+  const rows = done.map((a,k)=>{
+    const pr = items[k] || {name:"?",median:0};
+    return `<li><span class="h-n">${sqOf(a)} ${pr.name}</span><span class="h-p">${euro(pr.median)}</span>
+      <span class="h-d">vous ${euro(a.lo)} – ${euro(a.hi)} · ${a.pts ? "+"+a.pts : "0"} pt${a.pts>1?"s":""}${pr.per_unit ? " · "+perUnit(pr.median,pr) : ""}</span></li>`;
+  }).join("");
+  return `<details class="hist"><summary>Mes réponses précédentes (${done.length})</summary><ul>${rows}</ul></details>`;
+}
 function bigPrice(v){ const [e,c] = v.toFixed(2).split("."); return `${e}<sup>,${c} €</sup>`; }
-
 function controlsHTML(){
   return `
     <div>
       <div class="slider-row">
-        <button class="step" id="minus" aria-label="Baisser de quelques centimes">−</button>
-        <input type="range" id="slider" min="0" max="1000" step="1" value="${toT(state.guess)}" aria-label="Votre estimation du prix">
-        <button class="step" id="plus" aria-label="Monter de quelques centimes">+</button>
+        <button class="step" id="minus" aria-label="Baisser d'un centime">−</button>
+        <input type="range" id="slider" min="0" max="1000" step="1" value="${toT(fs.guess)}" aria-label="Votre estimation du prix">
+        <button class="step" id="plus" aria-label="Monter d'un centime">+</button>
       </div>
       <div class="scale" aria-hidden="true"><span>0,10 €</span><span>1,40 €</span><span>20 €</span></div>
     </div>
     <div>
       <p class="conf-title">Votre fourchette</p>
       <div class="conf" role="group" aria-label="Largeur de la fourchette">
-        ${CONF.map(c=>`<button data-c="${c.id}" aria-pressed="${state.conf===c.id}"><b>${c.label}</b><small>±${Math.round(c.pct*100)} % · ${c.pts} pts</small></button>`).join("")}
+        ${CONF.map(c=>`<button data-c="${c.id}" aria-pressed="${fs.conf===c.id}"><b>${c.label}</b><small>±${Math.round(c.pct*100)} % · ${c.pts} pts</small></button>`).join("")}
       </div>
       <p class="gain" id="gain">${gainText()}</p>
     </div>
     <button class="cta" id="go">Valider ma fourchette</button>`;
 }
-
-function gainText(){
-  const c = CONF.find(x=>x.id===state.conf);
-  return `Si le prix est entre <b>${euro(state.guess*(1-c.pct))}</b> et <b>${euro(state.guess*(1+c.pct))}</b> : <b>+${c.pts} pts</b>. Bonus si vous êtes à 2 % près (+50) ou 5 % près (+20).`;
+function rangeText(p){
+  const c = CONF.find(x=>x.id===fs.conf);
+  let t = "entre "+euro(fs.guess*(1-c.pct))+"<br>et "+euro(fs.guess*(1+c.pct));
+  if (p && p.qty) t += `<br><b class="perkg">soit ${perUnit(fs.guess,p)}</b>`;
+  return t;
 }
-
+function gainText(){
+  const c = CONF.find(x=>x.id===fs.conf);
+  return `Si le prix est entre <b>${euro(fs.guess*(1-c.pct))}</b> et <b>${euro(fs.guess*(1+c.pct))}</b> : <b>+${c.pts} pts</b>. Bonus si vous êtes à 3 % près (+50) ou 7 % près (+20).`;
+}
 function verdictHTML(p,a){
   const words = {pile:"🎯 Pile-poil", hit:"Dans la fourchette", near:"Dans la fourchette", miss:"Raté"};
   const parts = [];
-  if (a.base) parts.push(`fourchette +${a.base}`); else if (a.base===0) parts.push("hors fourchette 0");
+  if (a.base) parts.push(`fourchette +${a.base}`); else parts.push("hors fourchette 0");
   if (a.bonus) parts.push(`${a.bonusLabel.toLowerCase()} +${a.bonus}`);
   const calc = parts.join(" · ") + ` = ${a.pts} pts`;
   const diff = a.guess - p.median;
   const dir = Math.abs(diff) < 0.005 ? "pile le bon prix" : (diff>0 ? "trop cher de "+euro(Math.abs(diff)) : "trop bas de "+euro(Math.abs(diff)));
-  const last = day.answers.length >= PER_DAY;
   return `
     <div class="verdict">
       <div class="v ${a.cls}">${words[a.cls]} · +${a.pts}</div>
@@ -385,88 +1068,352 @@ function verdictHTML(p,a){
       <p>Votre fourchette : <b>${euro(a.lo)} – ${euro(a.hi)}</b>, centrée ${dir}.</p>
       <p>Prix médian sur ${p.n} relevés ; la moitié des magasins entre ${euro(p.p25)} et ${euro(p.p75)}.</p>
     </div>
-    <button class="cta" id="next">${last ? "Voir mon ticket" : "Produit suivant"}</button>`;
+    ${nextBtn()}`;
 }
-
-function wire(){
-  const s = $("#slider");
-  const upd = () => {
-    const c = CONF.find(x=>x.id===state.conf);
-    $("#big").innerHTML = bigPrice(state.guess);
-    $("#range").innerHTML = "entre "+euro(state.guess*(1-c.pct))+"<br>et "+euro(state.guess*(1+c.pct));
+function wireFourchette(){
+  const s = $("#slider"), inp = $("#priceInput");
+  const p = items[day.answers.length];
+  const upd = (fromInput) => {
+    if (!fromInput) inp.value = fmt(fs.guess);
+    $("#range").innerHTML = rangeText(p);
     $("#gain").innerHTML = gainText();
   };
-  s.addEventListener("input", ()=>{ state.guess = toPrice(+s.value); upd(); });
-  const nudge = dir => { const st = stepOf(state.guess); state.guess = Math.min(MAX, Math.max(MIN, roundP(state.guess + dir*st))); s.value = toT(state.guess); upd(); };
+  s.addEventListener("input", ()=>{ fs.guess = toPrice(+s.value); upd(); });
+  inp.addEventListener("focus", ()=>inp.select());
+  inp.addEventListener("input", ()=>{
+    const v = parseFloat(inp.value.replace(/[^0-9,.]/g,"").replace(",", "."));
+    if (!isFinite(v) || v <= 0) return;
+    fs.guess = Math.min(MAX, Math.max(MIN, Math.round(v*100)/100));
+    s.value = toT(fs.guess);
+    upd(true);
+  });
+  inp.addEventListener("blur", ()=>{ inp.value = fmt(fs.guess); });
+  inp.addEventListener("keydown", e=>{ if (e.key==="Enter") inp.blur(); });
+  const nudge = dir => { fs.guess = Math.min(MAX, Math.max(MIN, Math.round((fs.guess + dir*stepOf(fs.guess))*100)/100)); s.value = toT(fs.guess); upd(); };
   $("#minus").addEventListener("click", ()=>nudge(-1));
   $("#plus").addEventListener("click", ()=>nudge(1));
-  document.querySelectorAll(".conf button").forEach(b=>b.addEventListener("click", ()=>{
-    state.conf = b.dataset.c;
-    document.querySelectorAll(".conf button").forEach(x=>x.setAttribute("aria-pressed", x===b));
+  $$(".conf button").forEach(b=>b.addEventListener("click", ()=>{
+    fs.conf = b.dataset.c;
+    $$(".conf button").forEach(x=>x.setAttribute("aria-pressed", x===b));
     upd();
   }));
   $("#go").addEventListener("click", ()=>{
-    const p = items[day.answers.length];
-    const r = scoreGuess(state.guess, state.conf, p.median);
-    day.answers.push({code:p.code, guess:state.guess, conf:state.conf, lo:r.lo, hi:r.hi, base:r.base, bonus:r.bonus, bonusLabel:r.bonusLabel, pts:r.pts, cls:r.cls});
-    if (day.answers.length >= PER_DAY){
-      day.streak = streakAfterFinish(); day.last = today; day.finished = true;
-      store = day;
-      trackFinish(summary(day.answers), day.streak);
-    }
-    save(day);
-    state.revealed = true;
+    const r = scoreGuess(fs.guess, fs.conf, p.median);
+    commit({code:p.code, guess:fs.guess, conf:fs.conf, lo:r.lo, hi:r.hi, base:r.base, bonus:r.bonus, bonusLabel:r.bonusLabel, pts:r.pts, cls:r.cls});
+    fs.guess = 2.00;
     render();
   });
 }
 
+// ============================================================
+//  JEU 2 · LE TRIO AU KILO
+// ============================================================
+function renderTrio(){
+  const rounds = PLAN.rounds;
+  const i = state.revealed ? day.answers.length-1 : day.answers.length;
+  const codes = rounds[i]; const ps = codes.map(byCode);
+  const answer = ps.slice().sort((x,y)=>y.per_unit-x.per_unit)[0].code;
+  const a = state.revealed ? day.answers[i] : null;
+  app.innerHTML = `
+  <section class="card" aria-live="polite">
+    <div class="rayon">Manche ${i+1}/5</div>
+    <p class="q-ask">Lequel est le plus cher au kilo&nbsp;?</p>
+    <div class="opts">
+      ${ps.map(p=>{
+        let cls = "", flag = "";
+        if (a){ if (p.code===answer){ cls="ok"; flag = a.pick===answer ? "✓ Bien vu, le plus cher au kilo" : "Le plus cher au kilo"; }
+                else if (p.code===a.pick){ cls="bad"; flag="Votre choix"; } else cls="dim"; }
+        return `<button class="opt ${cls}" data-code="${p.code}" ${a?"disabled":""}>
+          <span class="on">${esc(p.name)}</span>
+          <span class="od">${esc(p.detail)}</span>
+          ${a ? `<span class="op"><b>${perUnit(p.median,p)}</b>${euro(p.median)} le paquet</span>` : ""}
+          ${flag ? `<span class="flag">${flag}</span>` : ""}
+        </button>`;}).join("")}
+    </div>
+    ${a ? `<div class="verdict"><div class="v ${a.cls}">${a.base ? "Bien vu · +100" : "Raté · 0"}</div></div>${nextBtn()}` : `<p class="howto">Les prix s'affichent après votre réponse.</p>`}
+  </section>`;
+  if (a) return wireNext();
+  $$(".opt").forEach(b=>b.addEventListener("click", ()=>{
+    const pick = b.dataset.code, ok = pick===answer;
+    commit({round:codes, pick, answer, base: ok?100:0, bonus:0, cls: ok?"hit":"miss"});
+    render();
+  }));
+}
+
+// ============================================================
+//  JEU 3 · LE RANGEMENT
+// ============================================================
+let rg = null;
+function renderRangement(){
+  const carts = PLAN.carts;
+  const i = state.revealed ? day.answers.length-1 : day.answers.length;
+  const cart = carts[i];
+  const a = state.revealed ? day.answers[i] : null;
+  if (!a && (!rg || rg.i !== i)) rg = {i, order: shuffled(cart.start, rng(dayIndex*31+i))};
+  const order = a ? a.order : rg.order;
+  const shown = a ? a.mine : rg.order;
+  const n = cart.start.length;
+  const truth = cart.start.slice().sort((x,y)=>byCode(x).median-byCode(y).median);
+  app.innerHTML = `
+  <section class="card" aria-live="polite">
+    <div class="rayon">Caddie ${i+1}/3 · ${n} produits${i===0?" · échauffement":i===2?" · pour les experts":""}</div>
+    <p class="q-ask">${a ? "Le bon ordre" : "Rangez du moins cher au plus cher"}</p>
+    <div class="edge"><span>▲ Moins cher</span></div>
+    <ol class="rank">
+      ${(a ? truth : shown).map((c,k)=>{ const p = byCode(c);
+        if (a){ const mk = a.marksByCode[c]; const myPos = a.mine.indexOf(c)+1;
+          return `<li class="${mk}"><span class="pos">${k+1}</span><span class="rn">${esc(p.name)}<small>${esc(p.detail)}${mk!=="ok"?` · vous l'aviez mis ${myPos}e`:""}</small></span>
+            <span class="res"><b>${euro(p.median)}</b>${perUnit(p.median,p)}</span></li>`; }
+        return `<li><span class="pos">${k+1}</span><span class="rn">${esc(p.name)}<small>${esc(p.detail)}</small></span>
+          <span class="arr"><button data-k="${k}" data-d="-1" aria-label="Monter ${esc(p.name)}" ${k===0?"disabled":""}>▲</button><button data-k="${k}" data-d="1" aria-label="Descendre ${esc(p.name)}" ${k===n-1?"disabled":""}>▼</button></span></li>`;
+      }).join("")}
+    </ol>
+    <div class="edge"><span>▼ Plus cher</span></div>
+    ${a ? `<div class="verdict"><div class="v ${a.cls}">${a.perfect ? "🛒 Caddie parfait" : a.good+"/"+n+" bien placés"} · +${a.base+a.bonus}</div>
+      <p class="calc">${a.good} bien placés${a.half?` · ${a.half} à une place près`:""} = ${a.base} pts${a.bonus?` · caddie parfait +${a.bonus}`:""}</p></div>${nextBtn()}`
+       : `<button class="cta" id="go">Valider ce caddie</button>`}
+  </section>`;
+  if (a) return wireNext();
+  $$(".rank .arr button").forEach(b=>b.addEventListener("click", ()=>{
+    const k = +b.dataset.k, d = +b.dataset.d, o = rg.order;
+    [o[k], o[k+d]] = [o[k+d], o[k]];
+    renderRangement();
+    const again = document.querySelector(`.rank .arr button[data-k="${k+d}"][data-d="${d}"]`) || document.querySelector(`.rank .arr button[data-k="${k+d}"]`);
+    if (again) again.focus();
+  }));
+  $("#go").addEventListener("click", ()=>{
+    const per = n===4 ? 35 : 36;
+    const marksByCode = {}; let good=0, half=0, pts=0;
+    rg.order.forEach((c,k)=>{ const d = Math.abs(truth.indexOf(c)-k);
+      if (d===0){ marksByCode[c]="ok"; good++; pts+=per; } else if (d===1){ marksByCode[c]="half"; half++; pts+=per/2; } else marksByCode[c]="bad"; });
+    const perfect = good===n;
+    commit({mine: rg.order.slice(), order: truth, marksByCode, marks: rg.order.map(c=>marksByCode[c]), good, half,
+            base: Math.round(pts), bonus: perfect?30:0, perfect, cls: perfect?"hit":(good+half/2 >= n/2 ? "near" : "miss")});
+    rg = null; render();
+  });
+}
+
+// ============================================================
+//  JEU 6 · LE CADDIE DROP (façon Money Drop)
+// ============================================================
+let dr = null;
+function renderDrop(){
+  const drops = PLAN.drops;
+  const i = state.revealed ? day.answers.length-1 : day.answers.length;
+  const d = drops[i]; const p = byCode(d.code);
+  const a = state.revealed ? day.answers[i] : null;
+  if (!a && (!dr || dr.i!==i)) dr = {i, bets:[0,0,0,0]};
+  const bets = a ? a.bets : dr.bets;
+  const left = 100 - bets.reduce((s,x)=>s+x,0);
+  const covered = bets.filter(x=>x>0).length;
+  // les mauvaises trappes s'ouvrent l'une après l'autre
+  const delays = {}; let dl = 0;
+  if (a) d.opts.forEach((_,k)=>{ if (k!==d.ans){ delays[k] = dl; if (bets[k]) dl += 0.6; } });
+  app.innerHTML = `
+  <section class="card" aria-live="polite">
+    <div>
+      <div class="rayon">Produit ${i+1}/5 · ${esc(p.rayon)}</div>
+      <h2 class="pname">${esc(p.name)}</h2>
+      <p class="pdetail">${esc(p.detail)}</p>
+    </div>
+    ${a ? "" : `<div class="pot"><span>Jetons à placer</span><b>${left}</b></div>`}
+    <ul class="traps">
+      ${d.opts.map((v,k)=>{
+        const n = bets[k];
+        let cls = n ? "has" : "", flag = "";
+        if (a){
+          if (k===d.ans){ cls = "win"; flag = `<span class="tflag late" style="--dl:${dl}s">${n ? "✓ Le bon prix : "+n+" jetons sauvés" : "C'était le bon prix"}</span>`; }
+          else { cls = n ? "lose open" : ""; if (n) flag = `<span class="tflag">Trappe ouverte : ${n} jetons perdus</span>`; }
+        }
+        return `<li class="trap ${cls}" style="--dl:${delays[k]||0}s">
+          <span class="tprice"><b>${euro(v)}</b><small>${perUnit(v,p)}</small></span>
+          ${a ? "" : `<button class="tbtn tminus" data-k="${k}" ${n?"":"disabled"} aria-label="Retirer 10 jetons de ${euro(v)}">−</button>`}
+          <span class="chips2">${n}<small>jetons</small></span>
+          ${a ? "" : `<button class="tbtn tplus" data-k="${k}" ${left===0?"disabled":""} aria-label="Poser 10 jetons sur ${euro(v)}">+</button>`}
+          ${flag}
+        </li>`;}).join("")}
+    </ul>
+    ${a ? `<div class="verdict late" style="--dl:${dl}s"><div class="v ${a.cls}">${a.kept===100 ? "💰 Tout sur la bonne" : a.kept ? a.kept+" jetons sauvés" : "Tout est tombé"} · +${a.base+a.bonus}</div>
+        <p class="calc">${a.kept} jetons = ${a.base} pts${a.bonus ? " · tout sur la bonne +"+a.bonus : ""}</p>
+        <p>Prix médian sur ${p.n} relevés${p.per_unit ? ", soit "+perUnit(p.median,p) : ""}.</p></div>
+        <div class="late" style="--dl:${dl}s">${nextBtn()}</div>`
+      : `${covered===4 ? `<p class="warn">Laissez au moins une trappe vide !</p>` : `<p class="howto">+ pose 10 jetons sur un prix, − en retire. Placez les 100 jetons en laissant au moins une trappe vide.</p>`}
+        <button class="cta" id="go" ${left===0 && covered<4 ? "" : "disabled"}>Valider : on ouvre les trappes !</button>`}
+  </section>`;
+  if (a) return wireNext();
+  const again = sel => { const el = document.querySelector(sel); if (el && !el.disabled) el.focus({preventScroll:true}); };
+  $$(".tplus").forEach(b=>b.addEventListener("click", ()=>{ const k = +b.dataset.k; if (left <= 0) return; dr.bets[k] += 10; renderDrop(); again(`.tplus[data-k="${k}"]`); }));
+  $$(".tminus").forEach(b=>b.addEventListener("click", ()=>{ const k = +b.dataset.k; dr.bets[k] = Math.max(0, dr.bets[k]-10); renderDrop(); again(`.tminus[data-k="${k}"]`); }));
+  $("#go").addEventListener("click", ()=>{
+    const kept = dr.bets[d.ans];
+    commit({code:d.code, opts:d.opts, ans:d.ans, bets:dr.bets.slice(), kept, base:kept, bonus: kept===100 ? 20 : 0,
+            cls: kept===100 ? "pile" : kept>=50 ? "hit" : kept>0 ? "near" : "miss"});
+    dr = null; render();
+  });
+}
+
+// ============================================================
+//  JEU 4 · L'INTRUS
+// ============================================================
+let it = null;
+function renderIntrus(){
+  const rounds = PLAN.rounds;
+  const finishedRound = state.revealed;
+  const i = finishedRound ? day.answers.length-1 : day.answers.length;
+  const r = rounds[i]; const ps = r.codes.map(byCode);
+  const fakeCode = r.codes[r.fakeIdx];
+  if (!finishedRound && (!it || it.i!==i)) it = {i, wrong:[], found:false, failed:false, flair:null};
+  const a = finishedRound ? day.answers[i] : null;
+  const st = a ? {wrong:a.wrong, found:a.tries>0, failed:a.tries===0, flair:a.flair} : it;
+  const done = st.found || st.failed;
+  const askFlair = !a && done && st.flair===null;   // trouvé ou raté : tout le monde a droit à la question
+  app.innerHTML = `
+  <section class="card" aria-live="polite">
+    <div class="rayon">Manche ${i+1}/5 · ${st.wrong.length ? "2e essai" : "1 faux prix"}</div>
+    <p class="q-ask">${done ? (st.found ? "Intrus démasqué !" : "Raté ! L'intrus, c'était lui") : "Quel prix est faux ?"}</p>
+    <div class="opts">
+      ${ps.map((p,k)=>{
+        const shownPrice = k===r.fakeIdx ? r.fake : p.median;
+        let cls="", flag="";
+        if (st.wrong.includes(p.code)){ cls="bad"; flag="Ce prix-là est juste"; }
+        // le vrai prix n'apparaît qu'après la question « trop cher ou trop bas »
+        if (done && p.code===fakeCode){ cls = st.found ? "ok" : "bad"; flag = a ? `Faux ! Vrai prix : ${euro(p.median)} (${perUnit(p.median,p)})` : "👉 C'est lui, l'intrus"; }
+        return `<button class="opt ${cls}" data-code="${p.code}" ${done||st.wrong.includes(p.code)?"disabled":""}>
+          <span class="on">${esc(p.name)}</span><span class="od">${esc(p.detail)}</span>
+          <span class="op"><b>${euro(shownPrice)}</b>${perUnit(shownPrice,p)}</span>
+          ${flag?`<span class="flag">${flag}</span>`:""}</button>`;}).join("")}
+    </div>
+    ${askFlair ? `<p class="conf-title">🔎 Bonus flair (+20) : d'après vous, ce prix affiché était…</p><div class="duo"><button class="ghost" data-up="1">Trop cher</button><button class="ghost" data-up="0">Trop bas</button></div>` : ""}
+    ${a ? `<div class="verdict"><div class="v ${a.cls}">${a.tries===1?"Du 1er coup":a.tries===2?"Au 2e essai":"Raté"} · +${a.base+a.bonus}</div>
+      <p class="calc">${a.base} pts${a.flair!==null ? (a.bonus ? " · flair +20 : bien vu" : " · flair raté") : ""}</p>
+      <p>Le prix affiché (${euro(a.fake)}) était <b>${a.fake > (byCode(a.code)||{}).median ? "trop cher" : "trop bas"}</b>.</p></div>${nextBtn()}` : ""}
+  </section>`;
+  if (a) return wireNext();
+  const close = () => {
+    const tries = it.failed ? 0 : it.wrong.length+1;
+    const base = tries===1 ? 100 : tries===2 ? 40 : 0;
+    const bonus = (it.flair !== null && it.flair === r.up) ? 20 : 0;
+    commit({code: fakeCode, fake: r.fake, wrong: it.wrong.slice(), tries, flair: it.flair, base, bonus,
+            cls: tries===1 ? (bonus?"pile":"hit") : tries===2 ? "near" : "miss"});
+    it = null; render();
+  };
+  if (askFlair){
+    $$(".duo button").forEach(b=>b.addEventListener("click", ()=>{ it.flair = b.dataset.up==="1"; close(); }));
+    return;
+  }
+  $$(".opt:not([disabled])").forEach(b=>b.addEventListener("click", ()=>{
+    if (b.dataset.code === fakeCode){ it.found = true; renderIntrus(); }
+    else { it.wrong.push(b.dataset.code); if (it.wrong.length >= 2) it.failed = true; renderIntrus(); }
+  }));
+}
+
+// ============================================================
+//  JEU 5 · LA MISE EN RAYON
+// ============================================================
+let ry = null;
+function renderRayon(){
+  const shelves = PLAN.shelves;
+  const i = state.revealed ? day.answers.length-1 : day.answers.length;
+  const sh = shelves[i];
+  const a = state.revealed ? day.answers[i] : null;
+  if (!a && (!ry || ry.i!==i)) ry = {i, slots:{}, sel:null};
+  const placed = a ? a.slots : ry.slots;
+  const inTray = a ? [] : sh.labels.filter(c=>!Object.values(placed).includes(c));
+  const full = Object.keys(placed).length === 5;
+  app.innerHTML = `
+  <section class="card" aria-live="polite">
+    <div class="rayon">Rayon ${i+1}/2</div>
+    <p class="q-ask">${a ? (a.good===5 ? "Rayon parfait !" : "Contrôle du rayon") : "Posez les étiquettes"}</p>
+    <ul class="shelf">
+      ${sh.codes.map(c=>{ const p = byCode(c); const lab = placed[c];
+        let cls = lab ? "full" : "", txt = lab ? euro(byCode(lab).median) : "＋ étiquette", extra="";
+        if (a){ const ok = lab===c; cls = ok ? "ok" : "bad"; if (!ok) extra = `<small>vrai : ${euro(p.median)}</small>`; }
+        return `<li><span class="rn">${esc(p.name)}<small>${esc(p.detail)}${a?" · "+perUnit(p.median,p):""}</small></span>
+          <button class="slot ${cls}" data-code="${c}" ${a?"disabled":""} aria-label="${lab?"Étiquette "+txt+" sur ":"Poser une étiquette sur "}${esc(p.name)}">${txt}${extra}</button></li>`; }).join("")}
+    </ul>
+    ${a ? `<div class="verdict"><div class="v ${a.cls}">${a.good}/5 étiquettes justes · +${a.base+a.bonus}</div>
+        <p class="calc">${a.good} × 50 = ${a.base} pts${a.bonus?" · rayon parfait +50":""}</p></div>${nextBtn()}`
+      : `<p class="howto">${ry.sel ? "Touchez maintenant le produit qui correspond." : "Touchez une étiquette, puis le produit sur lequel la poser."}</p>
+        <div class="tray" aria-label="Étiquettes à poser">
+          ${inTray.length ? inTray.map(c=>`<button class="lab" data-lab="${c}" aria-pressed="${ry.sel===c}">${euro(byCode(c).median)}</button>`).join("") : `<span class="tray-empty">Toutes les étiquettes sont posées.</span>`}
+        </div>
+        <button class="cta" id="go" ${full?"":"disabled"}>Valider le rayon</button>`}
+  </section>`;
+  if (a) return wireNext();
+  $$(".lab").forEach(b=>b.addEventListener("click", ()=>{ ry.sel = ry.sel===b.dataset.lab ? null : b.dataset.lab; renderRayon(); }));
+  $$(".slot").forEach(b=>b.addEventListener("click", ()=>{
+    const c = b.dataset.code;
+    if (ry.sel){ ry.slots[c] = ry.sel; ry.sel = null; }
+    else if (ry.slots[c]){ ry.sel = ry.slots[c]; delete ry.slots[c]; }
+    renderRayon();
+  }));
+  $("#go").addEventListener("click", ()=>{
+    const marks = sh.codes.map(c=>ry.slots[c]===c);
+    const good = marks.filter(Boolean).length;
+    commit({codes: sh.codes, slots: Object.assign({}, ry.slots), marks, good, base: good*50, bonus: good===5?50:0,
+            cls: good===5 ? "hit" : good>=3 ? "near" : "miss"});
+    ry = null; render();
+  });
+}
+
+// ============================================================
+//  FIN DE PARTIE
+// ============================================================
 function renderEnd(){
-  const sum = summary(day.answers);
+  const sum = summary();
   const t = TITLES.filter(x=>sum.base>=x[0]).pop();
-  const bonusTxt = sum.bonus ? ` + ${sum.bonus} bonus ${sum.piles ? "🎯" : "👌"}` : "";
-  const sq = a => ({pile:"🎯",hit:"🟩",near:"🟩",miss:"⬛"})[a.cls] || "⬛";
+  let pool = t[2];
+  if (GAME==="fourchette" && t[0] < 200){
+    const misses = day.answers.filter(a=>a.cls==="miss");
+    if (misses.length){
+      const high = misses.filter(a=>a.guess > ((byCode(a.code)||{}).median||0)).length;
+      pool = pool.concat(high*2 >= misses.length ? BIAS.high : BIAS.low);
+    }
+  }
+  if (!day.phrase || day.phraseTier !== t[0] || !pool.includes(day.phrase)){
+    day.phrase = pick(pool); day.phraseTier = t[0]; save(day);
+  }
+  const phrase = day.phrase;
+  const ico = G.bonusIco(day.answers);
+  const bonusTxt = sum.bonus ? ` + ${sum.bonus} bonus ${ico}` : "";
   const n = $("#num").textContent;
-  const prods = day.answers.map((a,i)=> items[i] || DATA.products.find(x=>x.code===a.code) || {name:"?",median:0});
-  const share = `🧾 Hors-Sol n°${n} — ${sum.base}/${BASEMAX}${bonusTxt}\n${sum.boss ? "🏆 Boss du rayon · " : ""}${t[1]}\n\n` +
-    day.answers.map((a,i)=>`${sq(a)} ${prods[i].name} · ${(a.base!=null?a.base:a.pts) ? "+"+(a.base!=null?a.base:a.pts) : "0"}${a.bonus ? " (+"+a.bonus+" bonus)" : ""}`).join("\n") +
-    `\n\nEt toi, tu connais mieux les prix que nos ministres ?\n${SITE}`;
-  const rows = day.answers.map((a,i)=>{
-    const p = prods[i];
-    return `<div class="row"><span class="n">${p.name}</span><span class="pts">${(a.base!=null?a.base:a.pts) ? "+"+(a.base!=null?a.base:a.pts) : "0"}</span>
-      <span class="d">vrai ${euro(p.median)} · vous ${euro(a.lo)}–${euro(a.hi)}${a.bonus ? " · "+a.bonusLabel.toLowerCase()+" +"+a.bonus : ""}</span></div>`;
-  }).join("");
-  const fb = loadFb();
+  const share = `🧾 Hors-Sol n°${n} · ${G.name}\n${sum.base}/${BASEMAX}${bonusTxt}\n${sum.boss ? "🏆 Boss du rayon · " : ""}${t[1]}\n« ${phrase} »\n\n` +
+    G.share(day.answers) + `\n\nEt toi, tu connais mieux les prix que nos ministres ?\n${SITE}`;
+  const rows = G.rows(day.answers).map(r=>`<div class="row"><span class="n">${esc(r.name)}</span><span class="pts">${ptsTxt(r.pts)}</span><span class="d">${esc(r.detail)}</span></div>`).join("");
+  const fb = SHOW_SURVEY ? loadFb() : true;   // sondage de fin en pause (à rallumer plus tard avec SHOW_SURVEY)
+  const nextWd = (weekday+1)%7;
   app.innerHTML = `
   <div style="display:flex;flex-direction:column;gap:18px">
     <div class="title-card">
       ${sum.boss ? '<div class="boss">🏆 Boss du rayon</div>' : ""}
       <div class="score"><b>${sum.base}</b><span>/ ${BASEMAX}</span></div>
-      ${sum.bonus ? `<div class="bonus">+ ${sum.bonus} bonus précision ${sum.piles ? "🎯" : "👌"}</div>` : ""}
-      <div class="t">${t[1]}</div><p>${t[2]}</p>
+      ${sum.bonus ? `<div class="bonus">+ ${sum.bonus} ${G.bonusName} ${ico}</div>` : ""}
+      <div class="t">${t[1]}</div><p class="punch">« ${esc(phrase)} »</p>
     </div>
     <div class="ticket">
       <h2>Hors-Sol</h2>
-      <p class="sub">Ticket n°${$("#num").textContent} · ${today.split("-").reverse().join("/")}</p>
+      <p class="sub">${G.name} · ticket n°${n} · ${today.split("-").reverse().join("/")}</p>
       ${rows}
       <div class="tot"><span>SCORE</span><span>${sum.base} / ${BASEMAX} pts</span></div>
-      ${sum.bonus ? `<div class="tot sub2"><span>BONUS PRÉCISION</span><span>+ ${sum.bonus} pts</span></div>` : ""}
+      ${sum.bonus ? `<div class="tot sub2"><span>${G.bonusName.toUpperCase()}</span><span>+ ${sum.bonus} pts</span></div>` : ""}
     </div>
     <div class="share">
       <button class="cta" id="share">Partager mon ticket</button>
-      <p class="hint">Vos produits et vos points, sans dévoiler les prix.</p>
+      <p class="hint">Votre score et vos résultats, sans dévoiler les prix.</p>
     </div>
     <p class="toast" id="toast" role="status"></p>
     <textarea id="sharetxt" readonly hidden rows="8" aria-label="Texte à partager"></textarea>
-    <p class="next">Prochain défi dans <b id="cd">--:--:--</b></p>
-    <section class="premium" id="fb" aria-labelledby="fbt">
+    <p class="next">Demain : <b>${slotInfo(nextWd).ico} ${slotInfo(nextWd).name}</b>, dans <b id="cd">--:--:--</b></p>
+    <section class="lgend" id="lgend" hidden></section>
+    ${fb ? "" : `<section class="premium" id="fb" aria-labelledby="fbt">
       <h3 id="fbt">Qu'est-ce qui vous ferait revenir encore plus ?</h3>
       <p>Choisissez ce qui vous tente, on construit la suite avec vos réponses.</p>
       <div class="chips" role="group" aria-label="Idées">
-        ${IDEAS.map(x=>`<button class="chip" data-id="${x.id}" aria-pressed="${fb?fb.includes(x.id):false}" ${fb?"disabled":""}>${x.label}</button>`).join("")}
+        ${IDEAS.map(x=>`<button class="chip" data-id="${x.id}" aria-pressed="false">${x.label}</button>`).join("")}
       </div>
-      <button class="ghost" id="fbsend" ${fb?"hidden":""} disabled>Envoyer mon avis</button>
-      <p class="thanks" id="fbthanks" ${fb?"":"hidden"}>Merci, c'est noté. Revenez demain pour le prochain défi.</p>
-    </section>
+      <button class="ghost" id="fbsend" disabled>Envoyer mon avis</button>
+      <p class="thanks" id="fbthanks" hidden>Merci, c'est noté. Revenez demain pour le prochain défi.</p>
+    </section>`}
   </div>`;
   async function doShare(text){
     if (navigator.share){ try{ await navigator.share({text}); track("partage"); return; }catch(e){ if(e && e.name==="AbortError") return; } }
@@ -474,32 +1421,460 @@ function renderEnd(){
     catch(e){ const ta=$("#sharetxt"); ta.value=text; ta.hidden=false; ta.focus(); ta.select(); $("#toast").textContent = "Sélectionnez le texte ci-dessous pour le copier."; }
   }
   $("#share").addEventListener("click", ()=>doShare(share));
-  const picked = new Set();
-  document.querySelectorAll(".chip").forEach(c=>c.addEventListener("click", ()=>{
-    const id=c.dataset.id; picked.has(id)?picked.delete(id):picked.add(id);
-    c.setAttribute("aria-pressed", picked.has(id)); $("#fbsend").disabled = picked.size===0;
-  }));
-  $("#fbsend").addEventListener("click", ()=>{
-    const ids=[...picked]; ids.forEach(id=>track("idee-"+id));
-    saveFb(ids);
-    document.querySelectorAll(".chip").forEach(c=>c.disabled=true);
-    $("#fbsend").hidden=true; $("#fbthanks").hidden=false;
-  });
+  if (!fb){
+    const picked = new Set();
+    $$(".chip").forEach(c=>c.addEventListener("click", ()=>{
+      const id=c.dataset.id; picked.has(id)?picked.delete(id):picked.add(id);
+      c.setAttribute("aria-pressed", picked.has(id)); $("#fbsend").disabled = picked.size===0;
+    }));
+    $("#fbsend").addEventListener("click", ()=>{
+      [...picked].forEach(id=>track("idee-"+id));
+      saveFb([...picked]);
+      $$(".chip").forEach(c=>c.disabled=true);
+      $("#fbsend").hidden=true; $("#fbthanks").hidden=false;
+    });
+  }
   tick(); setInterval(tick, 1000);
   paintSteps();
+  lgEnd();
 }
-
 function tick(){
   const el = $("#cd"); if(!el) return;
-  const now = new Date();
-  const parts = new Intl.DateTimeFormat("en-GB",{timeZone:"Europe/Paris",hour:"2-digit",minute:"2-digit",second:"2-digit",hour12:false}).format(now).split(":").map(Number);
-  let left = 86400 - (parts[0]*3600+parts[1]*60+parts[2]);
+  checkNewDay();
+  const parts = new Intl.DateTimeFormat("en-GB",{timeZone:"Europe/Paris",hour:"2-digit",minute:"2-digit",second:"2-digit",hour12:false}).format(new Date()).split(":").map(Number);
+  const left = 86400 - (parts[0]*3600+parts[1]*60+parts[2]);
   const h=Math.floor(left/3600), m=Math.floor(left%3600/60), s=left%60;
   el.textContent = [h,m,s].map(x=>String(x).padStart(2,"0")).join(":");
 }
+// ============================================================
+//  LIGUES ENTRE PROCHES (multijoueur sans compte)
+// ============================================================
+/*__LIGUES_CORE__*/
+const ORD = n => n === 1 ? "1er" : n + "e";
+const MONTHS = ["janvier","février","mars","avril","mai","juin","juillet","août","septembre","octobre","novembre","décembre"];
+let ME = lsGet("horssol:me");                 // {pid, key, name} : l'identité anonyme de ce téléphone
+let LGD = lsGet("horssol:lgcache");           // dernier état reçu du serveur
+if (LGD && LGD.today !== today) LGD = Object.assign({}, LGD, {stale:true});
+let lgv = {view:"list"};
+const rid = n => { const a = "abcdefghjkmnpqrstuvwxyz23456789"; const r = new Uint8Array(n);
+  try{ crypto.getRandomValues(r); }catch(e){ for (let i=0;i<n;i++) r[i] = Math.floor(Math.random()*256); }
+  return Array.from(r).map(x=>a[x % a.length]).join(""); };
+function lgEnsureMe(name){ if (!ME) ME = {pid: rid(16), key: rid(24), name}; else if (name) ME.name = name; lsSet("horssol:me", ME); }
+const dIdxOf = iso => Math.round((Date.parse(iso) - Date.parse(LAUNCH)) / 864e5);
+function summaryOf(game, ans){
+  const g = GAMES[game] || {};
+  return {base: Math.min(500, ans.reduce((s,a)=>s+(a.base||0),0)), bonus: ans.reduce((s,a)=>s+(a.bonus||0),0) + (g.extraBonus ? g.extraBonus(ans) : 0)};
+}
+// Les parties terminées de la semaine, lues sur ce téléphone (le serveur ne garde que la première reçue par jour).
+function lgLocalScores(){
+  const ws = lgWeekStart(today), out = [];
+  for (let k=0; k<7; k++){
+    const d = lgAddDays(ws, k); if (d > today) break;
+    const g = gameForDay(dIdxOf(d)), pl = lsGet("horssol:play:" + d + ":" + g);
+    if (!pl || !pl.finished || !pl.answers) continue;
+    const s = pl.sum || summaryOf(g, pl.answers);
+    let rows = pl.rows;
+    if (!rows){ try{ rows = GAMES[g].rows(pl.answers).map(r=>[r.name, r.pts, r.detail]); }catch(e){ rows = []; } }
+    out.push({day:d, game:g, base:s.base, bonus:s.bonus, ticket: JSON.stringify(rows)});
+  }
+  return out;
+}
+const LG_ERR = {
+  name:"Choisissez un prénom.", league_name:"Donnez un nom à la ligue.",
+  toomany:"Vous êtes déjà dans 10 ligues : c'est le maximum.", full:"Cette ligue est complète (30 joueurs maximum).",
+  notfound:"Cette ligue n'existe pas ou plus. Vérifiez le lien.", auth:"Ce téléphone n'est plus reconnu. Utilisez votre lien de récupération.",
+  server:"Le serveur a un souci. Réessayez dans un instant.", net:"Pas de connexion pour le moment. Réessayez dans un instant.",
+};
+const lgErrText = e => LG_ERR[e && e.message] || LG_ERR.net;
+async function lgCall(action, extra){
+  const body = Object.assign({action, pid:ME.pid, key:ME.key, name:ME.name || "", scores: lgLocalScores()}, extra || {});
+  let res;
+  if (TESTBAR) res = mockApi(body);
+  else {
+    const r = await fetch(API + "/api", {method:"POST", headers:{"Content-Type":"application/json", "X-Day":today}, body: JSON.stringify(body)});
+    res = await r.json();
+  }
+  if (!res || res.error) throw new Error(res ? res.error : "server");
+  LGD = res; lsSet("horssol:lgcache", res);
+  if (res.me && res.me.name && ME.name !== res.me.name){ ME.name = res.me.name; lsSet("horssol:me", ME); }
+  lgPaintBtn();
+  return res;
+}
+async function lgInfo(id){
+  if (TESTBAR) return mockInfo(id);
+  try{ const r = await fetch(API + "/league?id=" + encodeURIComponent(id)); return await r.json(); }catch(e){ return {error:"net"}; }
+}
+const lgLeagues = () => (LGD && LGD.leagues) || [];
+function lgPaintBtn(){
+  if (!LG_ON) return;
+  const n = lgLeagues().length;
+  $("#lgbtn").hidden = false;
+  $("#lgsub").textContent = n ? n + " ligue" + (n > 1 ? "s" : "") + " ›" : "Défiez vos proches ›";
+}
+function lgOpen(view, extra){
+  lgv = Object.assign({view: view || "list"}, extra || {});
+  document.body.classList.add("lg-open"); $("#lg").hidden = false;
+  lgRender(); window.scrollTo(0, 0);
+  if (ME && lgv.view !== "join" && lgv.view !== "help") lgRefresh();
+  track("ligue-ouverte");
+}
+function lgClose(){ document.body.classList.remove("lg-open"); $("#lg").hidden = true; render(); }
+async function lgRefresh(){
+  try{ await lgCall("sync"); lgv.err = ""; }catch(e){ lgv.err = lgErrText(e); }
+  if (!$("#lg").hidden) lgRender();
+}
+async function lgShare(text, okMsg){
+  const t = $("#lgtoast");
+  if (navigator.share){ try{ await navigator.share({text}); return true; }catch(e){ if (e && e.name === "AbortError") return false; } }
+  try{ await navigator.clipboard.writeText(text); if (t) t.textContent = okMsg || "Copié. Collez-le dans WhatsApp, SMS…"; return true; }
+  catch(e){ if (t) t.textContent = text; return false; }
+}
+function fmtWeek(ws){
+  const a = new Date(ws + "T12:00:00Z"), b = new Date(Date.parse(ws + "T12:00:00Z") + 6*864e5);
+  return a.getUTCMonth() === b.getUTCMonth() ? `du ${a.getUTCDate()} au ${b.getUTCDate()} ${MONTHS[b.getUTCMonth()]}`
+    : `du ${a.getUTCDate()} ${MONTHS[a.getUTCMonth()]} au ${b.getUTCDate()} ${MONTHS[b.getUTCMonth()]}`;
+}
+const lgHead = (title, back) => `<div class="lghead">${back ? `<button class="lnk" data-go="${back}">← Retour</button><span class="sp"></span>` : `<h2>${title}</h2>`}
+  <button class="lgq" data-go="help" aria-label="Comment marchent les ligues ?">?</button><button class="lnk" id="lgclose">Fermer</button></div>`;
+const lgNote = () => (lgv.err ? `<p class="lgerr" role="alert">${esc(lgv.err)}</p>` : "") + (lgv.msg ? `<p class="lgmsg">${esc(lgv.msg)}</p>` : "");
 
-// reprise d'une partie entamée
-if (day.answers.length && day.answers.length < PER_DAY) state.revealed = false;
+function lgListHTML(){
+  const L = lgLeagues();
+  return `${lgHead("🏆 Mes ligues")}
+    ${ME ? `<p class="lgme">Vous jouez sous le prénom <b>${esc(ME.name || "…")}</b> · <button class="lnk" data-go="name">changer</button></p>` : ""}
+    ${L.map(l=>{ const me = l.rows.find(r=>r.me) || {};
+      const td = l.hideToday ? "Aujourd'hui : jouez votre partie pour voir les scores 🔒"
+        : me.trank ? `Aujourd'hui : ${ORD(me.trank)} sur ${l.rows.filter(r=>r.today !== null).length}` : "Aujourd'hui : pas encore joué";
+      return `<button class="lgcard" data-open="${l.id}"><b>${esc(l.name)}</b>
+        <span class="r1">Semaine : ${ORD(me.rank || l.count)} sur ${l.count} · ${me.total || 0} pts · ${me.played || 0}/7 j</span><span>${td}</span></button>`; }).join("")}
+    ${L.length ? "" : `<p class="lgempty">Vous n'êtes dans aucune ligue pour l'instant. Créez-en une et envoyez le lien à vos proches : votre partie du jour comptera automatiquement.</p>`}
+    ${lgNote()}
+    <button class="cta" data-go="create" ${L.length >= LG_MAX_LEAGUES ? "disabled" : ""}>＋ Créer une ligue</button>
+    ${L.length >= LG_MAX_LEAGUES ? `<p class="howto">10 ligues maximum par joueur.</p>` : ""}
+    ${ME ? `<button class="ghost" id="lgrecov">🔑 Changer de téléphone : mon lien de récupération</button>` : ""}
+    <p class="toast" id="lgtoast" role="status"></p>`;
+}
+function lgRowHTML(l, r, i, pos, right){
+  return `<li class="${r.me ? "me" : ""}"><button class="lgrow" data-row="${i}" aria-expanded="${lgv.row === i}">
+    <span class="pos">${pos}</span><span class="nm">${esc(r.name)}${r.me ? " (vous)" : ""}${r.crowns ? `<small>👑 gagnant du jour ×${r.crowns}</small>` : ""}${r.playedToday && r.today === null ? `<small>🔒 a joué aujourd'hui</small>` : ""}</span>
+    <span class="tt">${right}</span></button>${lgv.row === i ? lgDetailHTML(l, r) : ""}</li>`;
+}
+function lgDetailHTML(l, r){
+  const cells = l.days.map(d=>{
+    const x = r.days[d], wd = new Date(d + "T12:00:00Z").getUTCDay(), lbl = `${DAYS_FR[wd]} ${+d.slice(8)}`;
+    if (d > l.today) return `<div class="lgday">${lbl}<b>·</b></div>`;
+    if (!x) return `<div class="lgday">${lbl}<b>–</b>${d === l.today ? "à jouer" : "pas joué"}</div>`;
+    if (x.hidden) return `<div class="lgday">${lbl}<b>🔒</b>a joué</div>`;
+    const ico = (GAMES[x.g] || {}).ico || "";
+    return `<button class="lgday ${x.win ? "win" : ""}" data-day="${d}" aria-pressed="${lgv.tk === d}" aria-label="${lbl} : ${x.t} points">${lbl}<b>${x.t}</b>${x.win ? "👑" : ico}</button>`;
+  }).join("");
+  let tk = "";
+  const x = lgv.tk && r.days[lgv.tk];
+  if (x && !x.hidden){
+    let rows = null; try{ rows = JSON.parse(x.tk || "null"); }catch(e){}
+    const g = GAMES[x.g] || {name:""};
+    tk = x.tk === null ? `<p class="howto">Le ticket de ce jour s'affichera quand vous aurez joué ce jour-là.</p>`
+      : `<div class="lgtk"><div><span><b>${esc(g.ico || "")} ${esc(g.name)}</b></span><span><b>${x.b} + ${x.x} bonus</b></span></div>
+        ${rows && rows.length ? rows.map(z=>`<div><span>${esc(z[0])}</span><span>${z[1] ? "+" + z[1] : "0"}</span><small>${esc(z[2] || "")}</small></div>`).join("") : `<div><small>Détail non disponible.</small></div>`}</div>`;
+  }
+  return `<div class="lgdet"><div class="lgdays">${cells}</div>${tk || `<p class="howto">Touchez un jour pour voir le ticket.</p>`}</div>`;
+}
+function lgLeagueHTML(){
+  const l = lgLeagues().find(x=>x.id === lgv.id);
+  if (!l) return lgListHTML();
+  const tab = lgv.tab || "week";
+  let list = "";
+  if (tab === "week") list = l.rows.map((r,i)=>lgRowHTML(l, r, i, r.rank, `<b>${r.total}</b>${r.played}/7 j`)).join("");
+  else if (!l.hideToday){
+    const on = l.rows.map((r,i)=>[r,i]).filter(([r])=>r.today !== null).sort((a,b)=>a[0].trank - b[0].trank);
+    const off = l.rows.map((r,i)=>[r,i]).filter(([r])=>r.today === null);
+    list = on.map(([r,i])=>lgRowHTML(l, r, i, r.trank, `<b>${r.today}</b>${r.trank === 1 ? "👑 du jour" : "pts"}`)).join("")
+         + off.map(([r,i])=>lgRowHTML(l, r, i, "–", "pas encore joué")).join("");
+  }
+  return `${lgHead("", "list")}
+    ${lgv.fresh ? `<p class="lgfresh">✅ Ligue créée ! Envoyez maintenant le lien à vos proches avec le bouton « Inviter ».</p>` : ""}
+    ${lgv.joined ? `<p class="lgfresh">✅ Bienvenue dans la ligue ! Votre partie du jour y compte automatiquement.</p>` : ""}
+    <h2 class="lgname">${esc(l.name)}</h2>
+    <p class="lgsub">${l.count} joueur${l.count > 1 ? "s" : ""} sur 30 · semaine ${fmtWeek(l.ws)}</p>
+    ${l.champion ? `<div class="lgchamp">🏆 Champion${l.champion.names.length > 1 ? "s" : ""} de la semaine dernière : <b>${l.champion.names.map(esc).join(" et ")}</b> (${l.champion.total} pts, ${l.champion.played}/7 j)</div>` : ""}
+    <div class="seg" role="group" aria-label="Classement"><button data-tab="week" aria-pressed="${tab === "week"}">La semaine</button><button data-tab="day" aria-pressed="${tab === "day"}">Aujourd'hui</button></div>
+    ${l.hideToday ? `<p class="howto">🔒 Les scores d'aujourd'hui restent cachés tant que vous n'avez pas joué votre partie du jour.</p>` : ""}
+    ${list ? `<ol class="lgrank">${list}</ol><p class="howto">Touchez un joueur pour voir sa semaine jour par jour.</p>` : ""}
+    ${l.palmares.length ? `<div class="lgpal"><b>Palmarès</b> (semaines gagnées) : ${l.palmares.map(p=>`${esc(p.name)} 🏆×${p.n}`).join(" · ")}</div>` : ""}
+    ${lgNote()}
+    <button class="cta" id="lginvite">📨 Inviter des proches</button>
+    <p class="toast" id="lgtoast" role="status"></p>
+    <button class="ghost danger" id="lgleave">Quitter la ligue</button>`;
+}
+const lgNameField = (label) => ME ? "" : `<label for="lgpn">${label}</label><input id="lgpn" maxlength="15" autocomplete="given-name" placeholder="Ex. : Rémy">`;
+function lgCreateHTML(){
+  return `${lgHead("", "list")}<h2 class="lgname">Créer une ligue</h2>
+    <div class="lgform">${lgNameField("Votre prénom (visible par les joueurs de vos ligues)")}
+      <label for="lgln">Nom de la ligue</label><input id="lgln" maxlength="30" placeholder="Ex. : La Famille, Les potes du foot"></div>
+    ${lgNote()}<button class="cta" id="lgdo">Créer la ligue</button>
+    <p class="howto">Vous recevrez ensuite un lien à envoyer à vos proches (WhatsApp, SMS…). Jusqu'à 30 joueurs par ligue.</p>`;
+}
+function lgNameHTML(){
+  return `${lgHead("", "list")}<h2 class="lgname">Mon prénom</h2>
+    <div class="lgform"><label for="lgnn">Le prénom affiché dans toutes vos ligues</label><input id="lgnn" maxlength="15" value="${esc(ME ? ME.name : "")}"></div>
+    ${lgNote()}<button class="cta" id="lgdo">Enregistrer</button>`;
+}
+function lgJoinHTML(){
+  const i = lgv.info;
+  const ok = i && !i.error;
+  return `${lgHead("", "list")}<h2 class="lgname">Invitation</h2>
+    ${!i ? `<p class="txt">Chargement de l'invitation…</p>` : ok ? `<p class="txt">Vous êtes invité à rejoindre la ligue <b>« ${esc(i.name)} »</b> (${i.count} joueur${i.count > 1 ? "s" : ""}).</p>` : `<p class="lgerr">${esc(LG_ERR[i.error] || LG_ERR.net)}</p>`}
+    ${ok ? `${ME ? `<p class="lgme">Vous jouerez sous le prénom <b>${esc(ME.name)}</b>.</p>` : `<div class="lgform">${lgNameField("Votre prénom (visible par les joueurs de la ligue)")}</div>`}
+      <p class="howto">Une seule partie par jour, qui compte dans toutes vos ligues. Pas de compte, pas d'email.</p>
+      ${lgNote()}<button class="cta" id="lgdo">Rejoindre la ligue</button>` : `<button class="ghost" data-go="list">Voir mes ligues</button>`}`;
+}
+function lgHelpHTML(){
+  return `${lgHead("", lgv.back || "list")}<h2 class="lgname">Les ligues, comment ça marche ?</h2>
+  <div class="lghelp">
+    <h3>🏁 Créer une ligue</h3>
+    <p>Touchez « Créer une ligue », donnez-lui un nom (« La Famille », « Les potes du foot »…), puis « Inviter des proches » pour envoyer le lien par WhatsApp, SMS ou email.</p>
+    <h3>🤝 Rejoindre une ligue</h3>
+    <p>Cliquez sur le lien reçu, choisissez votre prénom (une seule fois), et c'est fait. Pas de compte, pas de mot de passe, pas d'email.</p>
+    <h3>🎯 Une partie par jour, partout</h3>
+    <p>Vous jouez votre partie du jour une seule fois : votre score compte automatiquement dans toutes vos ligues. Rejoindre une ligue en cours de semaine ? Vos parties déjà jouées cette semaine sont comptées.</p>
+    <h3>📅 Le classement</h3>
+    <ul>
+      <li><b>Chaque jour</b> : le meilleur score gagne la journée 👑 (ex aequo possibles).</li>
+      <li><b>Chaque semaine</b>, du lundi au dimanche : on additionne les points et les bonus. Un jour non joué vaut 0.</li>
+      <li>À côté du total, « 5/7 j » indique le nombre de jours joués.</li>
+      <li>En cas d'égalité sur la semaine, celui qui a joué <b>le moins de jours</b> passe devant : il a la meilleure moyenne.</li>
+      <li>Le lundi, le <b>champion de la semaine</b> est annoncé 🏆, et le palmarès compte les semaines gagnées.</li>
+    </ul>
+    <h3>🔒 Pas de triche à la lecture</h3>
+    <p>Les scores du jour des autres restent cachés tant que vous n'avez pas joué votre partie. En touchant un joueur, vous voyez sa semaine jour par jour, et ses tickets pour les jours que vous avez aussi joués.</p>
+    <h3>📏 Les limites</h3>
+    <p>30 joueurs maximum par ligue, 10 ligues maximum par joueur. Vous pouvez quitter une ligue à tout moment et changer de prénom quand vous voulez.</p>
+    <h3>📱 Changer de téléphone</h3>
+    <p>Votre téléphone vous reconnaît tout seul. Pour jouer sur un autre appareil, envoyez-vous votre « lien de récupération » (dans Mes ligues) et ouvrez-le sur le nouveau : vous retrouvez vos ligues. Ne le partagez avec personne.</p>
+    <h3>🛡️ Vos données</h3>
+    <p>Seuls votre prénom et vos scores sont enregistrés, sans email ni adresse IP. Le détail des scores est effacé au bout de 4 semaines ; seul le palmarès reste.</p>
+  </div>
+  <button class="cta" data-go="${lgLeagues().length ? "list" : "create"}">${lgLeagues().length ? "Voir mes ligues" : "Créer ma première ligue"}</button>`;
+}
+function lgRender(){
+  const box = $("#lg");
+  const v = lgv.view;
+  box.innerHTML = v === "league" ? lgLeagueHTML() : v === "create" ? lgCreateHTML() : v === "name" ? lgNameHTML()
+    : v === "join" ? lgJoinHTML() : v === "help" ? lgHelpHTML() : lgListHTML();
+  box.querySelector("#lgclose").addEventListener("click", lgClose);
+  box.querySelectorAll("[data-go]").forEach(b=>b.addEventListener("click", ()=>{
+    const go = b.dataset.go;
+    lgv = {view: go, id: lgv.id, back: go === "help" ? (lgv.view === "league" ? "league" : "list") : undefined};
+    if (go === "create" && !ME) lgv.err = "";
+    lgRender(); window.scrollTo(0, 0);
+    if (go === "list" && ME) lgRefresh();
+  }));
+  box.querySelectorAll("[data-open]").forEach(b=>b.addEventListener("click", ()=>{ lgv = {view:"league", id:b.dataset.open}; lgRender(); window.scrollTo(0,0); }));
+  box.querySelectorAll("[data-tab]").forEach(b=>b.addEventListener("click", ()=>{ lgv.tab = b.dataset.tab; lgv.row = null; lgv.tk = null; lgRender(); }));
+  box.querySelectorAll("[data-row]").forEach(b=>b.addEventListener("click", ()=>{ const i = +b.dataset.row; lgv.row = lgv.row === i ? null : i; lgv.tk = null; lgRender(); }));
+  box.querySelectorAll("[data-day]").forEach(b=>b.addEventListener("click", ()=>{ lgv.tk = lgv.tk === b.dataset.day ? null : b.dataset.day; lgRender(); }));
+  const inv = box.querySelector("#lginvite");
+  if (inv) inv.addEventListener("click", ()=>{
+    const l = lgLeagues().find(x=>x.id === lgv.id);
+    track("ligue-invitation");
+    lgShare(`Rejoins ma ligue « ${l.name} » sur Hors-Sol ! Un mini-jeu par jour sur les prix des courses, et on compare nos scores. Connais-tu mieux les prix que nos ministres ? 👉 ${SITE}/#l-${l.id}`,
+            "Lien copié. Collez-le dans WhatsApp, SMS…");
+  });
+  const lv = box.querySelector("#lgleave");
+  if (lv) lv.addEventListener("click", async ()=>{
+    const l = lgLeagues().find(x=>x.id === lgv.id);
+    if (!confirm(`Quitter la ligue « ${l.name} » ? Vous n'apparaîtrez plus dans son classement. Vous pourrez revenir avec le lien d'invitation.`)) return;
+    try{ await lgCall("leave", {league: l.id}); lgv = {view:"list", msg:"Vous avez quitté la ligue."}; }catch(e){ lgv.err = lgErrText(e); }
+    lgRender();
+  });
+  const rc = box.querySelector("#lgrecov");
+  if (rc) rc.addEventListener("click", ()=>lgShare(`Mon lien Hors-Sol pour retrouver mes ligues sur un autre téléphone (à ne partager avec personne) : ${SITE}/#moi-${ME.pid}.${ME.key}`,
+            "Lien copié. Envoyez-le-vous (email, notes…) et ouvrez-le sur le nouveau téléphone. Ne le partagez avec personne."));
+  const go = box.querySelector("#lgdo");
+  if (go) go.addEventListener("click", lgSubmit);
+  box.querySelectorAll(".lgform input").forEach(inp=>inp.addEventListener("keydown", e=>{ if (e.key === "Enter") lgSubmit(); }));
+}
+async function lgSubmit(){
+  const btn = $("#lgdo"); if (!btn || btn.disabled) return;
+  lgv.err = ""; lgv.msg = "";
+  const pn = $("#lgpn");
+  if (pn && !pn.value.trim()){ lgv.err = LG_ERR.name; return lgRender(); }
+  const ln = $("#lgln"), nn = $("#lgnn");
+  if (ln && !ln.value.trim()){ lgv.err = LG_ERR.league_name; return lgRender(); }
+  if (nn && !nn.value.trim()){ lgv.err = LG_ERR.name; return lgRender(); }
+  if (pn) lgEnsureMe(pn.value.trim().slice(0, 15));
+  btn.disabled = true; btn.textContent = "Un instant…";
+  try{
+    if (lgv.view === "create"){
+      const res = await lgCall("create", {league_name: ln.value.trim().slice(0, 30)});
+      track("ligue-creee"); lgv = {view:"league", id: res.focus, fresh:true};
+    } else if (lgv.view === "join"){
+      await lgCall("join", {league: lgv.id});
+      track("ligue-rejointe"); lgv = {view:"league", id: lgv.id, joined:true};
+    } else if (lgv.view === "name"){
+      const old = ME.name; ME.name = nn.value.trim().slice(0, 15); lsSet("horssol:me", ME);
+      try{ await lgCall("sync"); }catch(e){ ME.name = old; lsSet("horssol:me", ME); throw e; }
+      lgv = {view:"list", msg:"Prénom modifié dans toutes vos ligues."};
+    }
+  }catch(e){ lgv.err = lgErrText(e); }
+  lgRender(); window.scrollTo(0, 0);
+}
+// Bloc « Mes ligues » sur l'écran de fin de partie.
+function lgEnd(){
+  const box = $("#lgend"); if (!box || !LG_ON) return;
+  box.hidden = false;
+  const L = lgLeagues().filter(l=>!LGD.stale);
+  if (!lgLeagues().length){
+    box.innerHTML = `<h3>🏆 Nouveau : les ligues entre proches</h3>
+      <p class="howto">Créez une ligue, envoyez le lien à votre famille ou à vos amis, et comparez vos scores chaque jour et chaque semaine. Sans compte.</p>
+      <button class="cta" data-lg="create">Créer une ligue</button><button class="lnk" data-lg="help">Comment ça marche ?</button>`;
+  } else {
+    box.innerHTML = `<h3>🏆 Mes ligues</h3>` + (L.length ? L.map(l=>{ const me = l.rows.find(r=>r.me) || {};
+        return `<button class="lgline" data-lgid="${l.id}"><span><b>${esc(l.name)}</b></span><span>${me.trank ? ORD(me.trank) + " aujourd'hui" : "envoi…"} · ${ORD(me.rank || l.count)} de la semaine</span></button>`; }).join("")
+        : `<p class="howto">Mise à jour des classements…</p>`) + `<button class="ghost" data-lg="list">Voir les classements</button>`;
+  }
+  box.querySelectorAll("[data-lg]").forEach(b=>b.addEventListener("click", ()=>lgOpen(b.dataset.lg)));
+  box.querySelectorAll("[data-lgid]").forEach(b=>b.addEventListener("click", ()=>lgOpen("league", {id: b.dataset.lgid})));
+}
+
+// ---- Faux serveur pour la maquette : mêmes règles que le vrai, avec des joueurs de démonstration.
+function mockStore(){ return lsGet("horssol:mock") || {players:{}, leagues:{}, members:[], scores:{}}; }
+function mockSeed(st){
+  if (st.leagues.voisins1) return;
+  st.leagues.voisins1 = {name:"Les voisins", created:"2026-10-01"};
+  ["Gérard","Nadia","Lucas","Marie"].forEach((n,i)=>{ const pid = "botv" + i; st.players[pid] = n; st.members.push({league:"voisins1", pid, joined:i}); });
+}
+function mockBots(st, id, names){ names.forEach((n,i)=>{ const pid = "bot" + id + i; st.players[pid] = n; st.members.push({league:id, pid, joined:i}); }); }
+function mockBotScore(pid, d){
+  if (d > today) return null;
+  let h = 0; for (const c of pid + d) h = (h * 31 + c.charCodeAt(0)) | 0;
+  const r = rng(h);
+  if (r() > (d === today ? 0.6 : 0.85)) return null;
+  return {pid, day:d, game: gameForDay(dIdxOf(d)), base: 100 + Math.floor(r()*36)*10, bonus: r() < 0.4 ? 20*(1+Math.floor(r()*3)) : 0, ticket:""};
+}
+function mockInfo(id){ const st = mockStore(); mockSeed(st); lsSet("horssol:mock", st); const lg = st.leagues[id];
+  return lg ? {ok:true, id, name:lg.name, count: st.members.filter(m=>m.league === id).length} : {error:"notfound"}; }
+function mockApi(b){
+  const st = mockStore(); mockSeed(st);
+  if (!st.players[b.pid] && !b.name) return {error:"name"};
+  if (b.name) st.players[b.pid] = b.name;
+  const ws = lgWeekStart(today), lw = lgAddDays(ws, -7);
+  (b.scores || []).forEach(s=>{ if (s.day >= ws && s.day <= today){ const m = st.scores[b.pid] = st.scores[b.pid] || {}; if (!m[s.day]) m[s.day] = Object.assign({pid:b.pid}, s); } });
+  const mine = () => st.members.filter(m=>m.pid === b.pid);
+  let focus = null;
+  if (b.action === "create"){
+    if (mine().length >= LG_MAX_LEAGUES) return {error:"toomany"};
+    focus = "m" + rid(7); st.leagues[focus] = {name: b.league_name, created:"2026-10-01"};
+    st.members.push({league:focus, pid:b.pid, joined:Date.now()});
+    mockBots(st, focus, ["Mamie Jo","Tonton Marc","Julie","Karim","Sophie"]);
+  } else if (b.action === "join"){
+    if (!st.leagues[b.league]) return {error:"notfound"};
+    if (!st.members.some(m=>m.league === b.league && m.pid === b.pid)){
+      if (mine().length >= LG_MAX_LEAGUES) return {error:"toomany"};
+      if (st.members.filter(m=>m.league === b.league).length >= LG_MAX_MEMBERS) return {error:"full"};
+      st.members.push({league:b.league, pid:b.pid, joined:Date.now()});
+    }
+  } else if (b.action === "leave"){
+    st.members = st.members.filter(m=>!(m.league === b.league && m.pid === b.pid));
+  }
+  lsSet("horssol:mock", st);
+  const leagues = mine().map(mm=>{
+    const id = mm.league, lg = st.leagues[id];
+    const members = st.members.filter(m=>m.league === id).sort((x,y)=>x.joined - y.joined).map(m=>({pid:m.pid, name: st.players[m.pid] || "?"}));
+    const scoreOf = (pid, d) => (st.scores[pid] || {})[d] || (pid.startsWith("bot") ? mockBotScore(pid, d) : null);
+    const range = (w0, w1) => { const out = []; members.forEach(m=>{ for (let d = w0; d <= w1; d = lgAddDays(d, 1)){ const s = scoreOf(m.pid, d); if (s) out.push(s); } }); return out; };
+    const champions = lgChampions(members, range(lw, lgAddDays(lw, 6)), lw);
+    const titles = [];
+    for (let k = 1; k <= 3; k++){ const w = lgAddDays(ws, -7*k); lgChampions(members, range(w, lgAddDays(w, 6)), w).forEach(c=>titles.push(c)); }
+    return lgView({league:{id, name:lg.name}, members, scores: range(ws, today), titles, champions, me: b.pid, today});
+  });
+  return {ok:true, today, me:{name: st.players[b.pid]}, leagues, focus};
+}
+
+// ---- Liens spéciaux : invitation (#l-xxxx) et récupération sur un nouveau téléphone (#moi-xxxx.yyyy)
+if (LG_ON){
+  lgPaintBtn();
+  $("#lgbtn").addEventListener("click", ()=>lgOpen("list"));
+  const h = location.hash || "";
+  const mJoin = h.match(/^#l-([a-z0-9]{6,40})$/), mRec = h.match(/^#moi-([a-z0-9]{6,40})\.([a-z0-9]{16,64})$/);
+  if (mJoin || mRec) history.replaceState(null, "", location.pathname + location.search);
+  if (mRec){
+    ME = {pid: mRec[1], key: mRec[2], name: ME && ME.pid === mRec[1] ? ME.name : ""}; lsSet("horssol:me", ME);
+    LGD = null; lsSet("horssol:lgcache", null);
+    lgOpen("list", {msg:"Bienvenue ! Vos ligues sont récupérées sur cet appareil."});
+  } else if (mJoin){
+    const id = mJoin[1];
+    if (lgLeagues().some(l=>l.id === id)) lgOpen("league", {id});
+    else { lgOpen("join", {id}); lgInfo(id).then(info=>{ if (lgv.view === "join" && lgv.id === id){ lgv.info = info; lgRender(); } }); }
+  } else if (ME && lgLeagues().length){
+    lgCall("sync").then(()=>{ lgEnd(); }).catch(()=>{});
+  }
+  const ti = document.getElementById("tinvite");
+  if (ti) ti.addEventListener("click", ()=>{ lgOpen("join", {id:"voisins1"}); lgv.info = mockInfo("voisins1"); lgRender(); });
+}
+
+// ============================================================
+//  CONTACT (formulaire Web3Forms : l'adresse email du site n'apparaît jamais dans la page)
+// ============================================================
+const CONTACT_KEY = "__CONTACT_KEY__";
+const CT_ON = !!(TESTBAR || (CONTACT_KEY && !CONTACT_KEY.startsWith("__")));
+let ctType = "bug";
+const CT_HINT = {
+  bug: "Décrivez ce qui s'est passé. On joint automatiquement le n° du défi, le jeu du jour et le type d'appareil, pour retrouver le problème plus vite.",
+  msg: "Une remarque, une idée, une proposition de partenariat ? On lit tout.",
+};
+const CT_PH = {bug: "Ex. : sur le Caddie Drop, le bouton + ne répond plus après…", msg: "Votre message…"};
+function ctPaint(){
+  $$("#contact [data-ct]").forEach(b=>b.setAttribute("aria-pressed", b.dataset.ct === ctType));
+  $("#cthint").textContent = CT_HINT[ctType]; $("#ctmsg").placeholder = CT_PH[ctType];
+}
+function ctOpen(type){
+  if (!CT_ON) return;
+  ctType = type || "bug"; ctPaint(); $("#cterr").textContent = "";
+  $("#contact").hidden = false; setTimeout(()=>$("#ctmsg").focus(), 50);
+}
+function ctClose(){ $("#contact").hidden = true; }
+if (CT_ON){
+  $("#ctwrap").hidden = false;
+  $("#contactlink").addEventListener("click", ()=>ctOpen("bug"));
+  $$("#contact [data-ct]").forEach(b=>b.addEventListener("click", ()=>{ ctType = b.dataset.ct; ctPaint(); }));
+  $("#ctclose").addEventListener("click", ctClose);
+  $("#contact").addEventListener("click", e=>{ if (e.target.id === "contact") ctClose(); });
+  document.addEventListener("keydown", e=>{ if (e.key === "Escape" && !$("#contact").hidden) ctClose(); });
+  $("#ctsend").addEventListener("click", async ()=>{
+    const msg = $("#ctmsg").value.trim(), mail = $("#ctmail").value.trim(), btn = $("#ctsend");
+    if (msg.length < 3){ $("#cterr").textContent = "Écrivez quelques mots avant d'envoyer."; return; }
+    if (mail && !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(mail)){ $("#cterr").textContent = "Cet email ne semble pas valide (vous pouvez aussi le laisser vide)."; return; }
+    if ($("#ctbot").checked) return;   // robot
+    const ctx = ctType === "bug" ? `\n\n---\nDéfi n°${$("#num").textContent} du ${today} · jeu : ${G.name}${IS_LOI ? " (49.3)" : ""} · étape ${day.answers.length}/${G.rounds}${day.finished ? " (terminé)" : ""}\nÉcran : ${window.innerWidth}×${window.innerHeight} · ${navigator.userAgent}` : "";
+    btn.disabled = true; btn.textContent = "Envoi…"; $("#cterr").textContent = "";
+    try{
+      let ok = true;
+      if (!TESTBAR){
+        const r = await fetch("https://api.web3forms.com/submit", {method:"POST", headers:{"Content-Type":"application/json", "Accept":"application/json"},
+          body: JSON.stringify({access_key: CONTACT_KEY, subject: ctType === "bug" ? "[Hors-Sol] 🐞 Bug signalé" : "[Hors-Sol] 💬 Nouveau message",
+            from_name: "Hors-Sol (site)", email: mail || undefined, replyto: mail || undefined, message: msg + ctx, botcheck: false})});
+        const j = await r.json().catch(()=>({}));
+        ok = r.ok && j.success !== false;
+      }
+      if (!ok) throw new Error("send");
+      track("contact-" + ctType);
+      $("#ctmsg").value = "";
+      $("#ctbox").insertAdjacentHTML("afterbegin", `<p class="lgfresh" id="ctok">✅ Merci ! Votre message est bien parti${mail ? ", on vous répond dès que possible" : ""}.</p>`);
+      setTimeout(()=>{ const o = $("#ctok"); if (o) o.remove(); ctClose(); }, 2500);
+    }catch(e){ $("#cterr").textContent = "L'envoi n'a pas marché. Vérifiez votre connexion et réessayez."; }
+    btn.disabled = false; btn.textContent = "Envoyer";
+  });
+  if ((location.hash || "") === "#contact"){ history.replaceState(null, "", location.pathname + location.search); ctOpen("bug"); }
+}
+window.addEventListener("hashchange", ()=>location.reload());
+// Nouveau jour : si la page est restée ouverte (onglet en arrière-plan, téléphone en veille),
+// on recharge dès minuit ou dès le retour sur l'onglet pour afficher la série du jour.
+function checkNewDay(){ if (testDay === null && parisISO() !== realToday) location.reload(); }
+document.addEventListener("visibilitychange", ()=>{ if (!document.hidden) checkNewDay(); });
+window.addEventListener("pageshow", checkNewDay);
+window.addEventListener("focus", checkNewDay);
+setInterval(checkNewDay, 5000);
 render();
 })();
 </script>

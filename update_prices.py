@@ -33,9 +33,9 @@ API = "https://prices.openfoodfacts.org/api/v1"
 USER_AGENT = "HorsSol/0.1 (jeu de prix quotidien; https://es-tu-hors-sol.fr)"
 MIN_RELEVES = 3          # sous ce seuil, le prix n'est pas fiable
 FENETRE_JOURS = 365      # relevés pris en compte
-MAX_AUTO = 60            # produits populaires ajoutés automatiquement
-ECART_MAX = 0.6
-MIN_PRODUITS = 8         # sous ce seuil, on garde les données de la veille          # écarte les produits dont les prix sont trop dispersés
+MAX_AUTO = 300           # produits populaires ajoutés automatiquement
+ECART_MAX = 0.6          # écarte les produits dont les prix sont trop dispersés
+MIN_PRODUITS = 40        # sous ce seuil, on garde les données de la veille
 
 HERE = Path(__file__).parent
 
@@ -49,11 +49,16 @@ def get(path, **params):
 
 def popular_codes(limit):
     """Produits avec le plus de relevés de prix."""
-    data = get("products", order_by="-price_count", size=100)
+    items = []
+    for page in (1, 2, 3, 4):
+        items += get("products", order_by="-price_count", size=100, page=page).get("items", [])
+        time.sleep(0.5)
     out = []
-    for p in data.get("items", []):
+    for p in items:
         name = (p.get("product_name") or "").strip()
         if p.get("code") and name and p.get("product_quantity"):
+            if len(name) > 70:
+                continue
             out.append({
                 "code": p["code"],
                 "name": name,
@@ -104,7 +109,7 @@ def build(raw=None):
         for p in popular_codes(MAX_AUTO):
             if p["code"] not in candidates:
                 unit = "L" if p["qty_unit"] in ("ml", "cl", "l", "L") else "kg"
-                factor = 1000 if p["qty_unit"] in ("g", "ml") else 1
+                factor = {"g": 1000, "ml": 1000, "cl": 100}.get(p["qty_unit"], 1)
                 candidates[p["code"]] = {
                     "name": f'{p["name"]} {p["brands"]}'.strip(),
                     "detail": f'{p["qty"]} {p["qty_unit"]}',
@@ -131,15 +136,46 @@ def build(raw=None):
         print(f"Seulement {len(products)} produits : products.json n'est pas modifié.", file=sys.stderr)
         sys.exit(0)
 
+    # Une seule série par jour pour tout le monde : la nouvelle liste n'entre en jeu
+    # que le lendemain à minuit (champ "next"). La liste du jour ne bouge jamais en cours de journée.
+    today = paris_today()
+    new_list = sorted(products, key=lambda p: p["code"])
+    path = HERE / "products.json"
+    old = json.loads(path.read_text()) if path.exists() else None
+    if old and old.get("products"):
+        nxt = old.get("next") or {}
+        if nxt.get("from") and nxt["from"] <= today.isoformat():
+            current = {"updated": nxt.get("updated"), "products": nxt["products"]}
+        else:
+            current = {"updated": old.get("updated"), "products": old["products"]}
+    else:
+        current = {"updated": today.isoformat(), "products": new_list}
+
     out = {
-        "updated": date.today().isoformat(),
+        "updated": current["updated"],
         "source": "Open Prices (Open Food Facts) — ODbL",
         "window_days": FENETRE_JOURS,
-        "products": sorted(products, key=lambda p: p["code"]),
+        "products": current["products"],
+        "next": {
+            "from": (today + timedelta(days=1)).isoformat(),
+            "updated": today.isoformat(),
+            "products": new_list,
+        },
     }
-    (HERE / "products.json").write_text(json.dumps(out, ensure_ascii=False, indent=1))
-    print(f"{len(products)} produits écrits dans products.json", file=sys.stderr)
+    path.write_text(json.dumps(out, ensure_ascii=False, indent=1))
+    print(f"{len(products)} produits prêts pour demain ({out['next']['from']}) ; "
+          f"{len(current['products'])} produits en jeu aujourd'hui.", file=sys.stderr)
     return out
+
+
+def paris_today():
+    """Date du jour à Paris (le serveur GitHub est à l'heure UTC)."""
+    try:
+        from zoneinfo import ZoneInfo
+        from datetime import datetime
+        return datetime.now(ZoneInfo("Europe/Paris")).date()
+    except Exception:
+        return date.today()
 
 
 if __name__ == "__main__":
