@@ -24,6 +24,7 @@ import json
 import statistics
 import sys
 import time
+import urllib.error
 import urllib.parse
 import urllib.request
 from datetime import date, timedelta
@@ -41,17 +42,33 @@ HERE = Path(__file__).parent
 
 
 def get(path, **params):
+    """Appel à l'API, avec 4 essais espacés si elle répond lentement ou en erreur (429, 5xx, coupure)."""
     url = f"{API}/{path}?{urllib.parse.urlencode(params)}"
     req = urllib.request.Request(url, headers={"User-Agent": USER_AGENT})
-    with urllib.request.urlopen(req, timeout=30) as r:
-        return json.load(r)
+    last = None
+    for wait in (0, 3, 10, 30):
+        if wait:
+            time.sleep(wait)
+        try:
+            with urllib.request.urlopen(req, timeout=30) as r:
+                return json.load(r)
+        except urllib.error.HTTPError as e:
+            last = e
+            if e.code not in (429, 500, 502, 503, 504):
+                raise
+        except (urllib.error.URLError, TimeoutError, ConnectionError, json.JSONDecodeError) as e:
+            last = e
+    raise last
 
 
 def popular_codes(limit):
     """Produits avec le plus de relevés de prix."""
     items = []
     for page in (1, 2, 3, 4):
-        items += get("products", order_by="-price_count", size=100, page=page).get("items", [])
+        try:
+            items += get("products", order_by="-price_count", size=100, page=page).get("items", [])
+        except Exception as e:  # une page en échec : on garde ce qu'on a déjà
+            print(f"  page {page} des produits populaires indisponible ({e})", file=sys.stderr)
         time.sleep(0.5)
     out = []
     for p in items:
@@ -119,8 +136,22 @@ def build(raw=None):
                 }
 
     products = []
+    failures = 0
+    started = time.time()
     for code, meta in candidates.items():
-        prices = raw.get(code, []) if raw is not None else french_prices(code, since)
+        if raw is None and time.time() - started > 25 * 60:
+            print("  temps maximum atteint (25 min) : on s'arrête là", file=sys.stderr)
+            break
+        try:
+            prices = raw.get(code, []) if raw is not None else french_prices(code, since)
+            failures = 0
+        except Exception as e:  # un produit en erreur ne bloque plus toute la mise à jour
+            failures += 1
+            print(f"  erreur   {meta['name']} ({e})", file=sys.stderr)
+            if failures >= 15:
+                print("  l'API ne répond plus : on s'arrête là", file=sys.stderr)
+                break
+            continue
         s = summarize(prices)
         if not s:
             print(f"  ignoré  {meta['name']} ({len(prices)} relevés)", file=sys.stderr)
