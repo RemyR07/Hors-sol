@@ -8,6 +8,18 @@ const LG_MAX_MEMBERS = 30;   // joueurs par ligue
 const LG_MAX_LEAGUES = 10;   // ligues par joueur
 const LG_KEEP_DAYS = 28;     // détail jour par jour conservé 4 semaines
 
+// Calendrier des jeux (identique au jeu) : sert au serveur pour personnaliser le rappel de 18 h.
+const LG_LAUNCH = "2026-10-16";
+const LG_WEEK = {1:"trio", 2:"fourchette", 3:"rangement", 4:"drop", 5:"intrus", 6:"rayon", 0:"loi"};
+function lgRng(seed){return function(){seed|=0;seed=seed+0x6D2B79F5|0;let t=Math.imul(seed^seed>>>15,1|seed);t=t+Math.imul(t^t>>>7,61|t)^t;return((t^t>>>14)>>>0)/4294967296}}
+function lgGameForDay(iso){
+  const g = LG_WEEK[new Date(iso + "T12:00:00Z").getUTCDay()];
+  if (g !== "loi") return g;
+  const d = Math.round((Date.parse(iso) - Date.parse(LG_LAUNCH)) / 864e5);
+  const r = lgRng(4930 + d * 7919); r();
+  return LG_GAMES[Math.floor(r() * LG_GAMES.length)];
+}
+
 function lgAddDays(iso, n){ return new Date(Date.parse(iso + "T12:00:00Z") + n*864e5).toISOString().slice(0,10); }
 function lgWeekStart(iso){ const wd = (new Date(iso + "T12:00:00Z").getUTCDay() + 6) % 7; return lgAddDays(iso, -wd); }
 
@@ -88,7 +100,97 @@ const SCHEMA = [
   "CREATE INDEX IF NOT EXISTS scores_day ON scores (day)",
   "CREATE TABLE IF NOT EXISTS titles (league TEXT NOT NULL, week TEXT NOT NULL, pid TEXT NOT NULL, name TEXT, total INTEGER, played INTEGER, PRIMARY KEY (league, week, pid))",
   "CREATE TABLE IF NOT EXISTS weeks_done (league TEXT NOT NULL, week TEXT NOT NULL, PRIMARY KEY (league, week))",
+  "CREATE TABLE IF NOT EXISTS push_subs (pid TEXT PRIMARY KEY, endpoint TEXT NOT NULL, p256dh TEXT, auth TEXT, streak INTEGER DEFAULT 0, created TEXT, last_sent TEXT)",
+  "CREATE TABLE IF NOT EXISTS settings (k TEXT PRIMARY KEY, v TEXT NOT NULL)",
 ];
+
+// ============================================================
+//  RAPPEL DE 18 H (notifications Web Push, sans contenu chiffré :
+//  le téléphone vient chercher le texte du jour sur /rappel)
+// ============================================================
+const JEUX = {fourchette:"la Fourchette", trio:"le Trio au kilo", rangement:"le Rangement", drop:"le Caddie Drop", intrus:"l'Intrus", rayon:"la Mise en rayon"};
+const ICO = {fourchette:"🎯", trio:"⚖️", rangement:"🛒", drop:"💰", intrus:"🔎", rayon:"🏷️"};
+const RAPPELS = [
+  "{i} Plus que 6 h pour {j}. Après minuit, on vous nomme ministre.",
+  "{i} {J} vous attend. Le gouvernement, lui, a déjà oublié le prix du pain.",
+  "🥖 Le prix de la baguette n'attend pas. {J} non plus : plus que 6 h !",
+  "📉 Un ministre vient de battre votre score. Ah non, vous n'avez pas encore joué.",
+  "🧾 Votre ticket du jour est vide. Même une note de frais est mieux remplie.",
+  "🛒 Vos courses ne vont pas se deviner toutes seules : {j} ferme à minuit.",
+  "🎩 Un conseiller ministériel a répondu à votre place : « 10 centimes ». Corrigez ça avant minuit.",
+  "⏳ Il reste 6 h. C'est plus que le temps d'un débat à l'Assemblée sur le prix du lait.",
+  "📢 Communiqué officiel : {j} du jour n'a toujours pas été joué. Une commission d'enquête est envisagée.",
+  "🚗 Le chauffeur du ministre est en route. Vous, vous pouvez encore jouer à {j} sans lui.",
+  "🤔 Le Nutella a encore augmenté ? Vérifiez-le dans {j} avant minuit.",
+  "🏃 Dernière ligne droite : {j} vous attend, la caisse ferme à minuit.",
+];
+const RAPPELS_JEU = {
+  drop: ["💰 Le Caddie Drop vous attend. Même le ministre a misé ses jetons, lui.", "💰 100 jetons dorment dans votre caddie. Les trappes ferment à minuit !"],
+  trio: ["⚖️ Il vous reste 6 h pour le Trio au kilo. Le prix au kilo, ce n'est pas qu'au marché !"],
+  intrus: ["🔎 Un faux prix se cache dans les rayons. Démasquez l'Intrus avant minuit !"],
+  rayon: ["🏷️ Les étiquettes traînent par terre. Le chef de rayon, c'est vous : plus que 6 h !"],
+  rangement: ["🛒 Trois caddies en vrac vous attendent. Rangez-les avant la fermeture !"],
+  fourchette: ["🎯 La Fourchette est servie. Ne la laissez pas refroidir jusqu'à minuit !"],
+};
+const RAPPELS_LOI = ["🏛️ Le 49.3 a décidé du jeu du jour : {j}. Vous, vous n'avez pas encore décidé de jouer ?"];
+const RAPPELS_SERIE = ["🔥 Votre série de {s} jours va s'éteindre ! Le gouvernement compte sur votre oubli.",
+                       "🔥 {s} jours d'affilée… Ce serait dommage de tout perdre pour un oubli. Plus que 6 h !"];
+
+function rappelTexte(today, streak){
+  const g = lgGameForDay(today), loi = new Date(today + "T12:00:00Z").getUTCDay() === 0;
+  let pool = RAPPELS.concat(RAPPELS_JEU[g] || []);
+  if (loi) pool = pool.concat(RAPPELS_LOI, RAPPELS_LOI);
+  if (streak >= 3) pool = pool.concat(RAPPELS_SERIE, RAPPELS_SERIE);
+  const r = lgRng(Date.parse(today) / 864e5 + streak * 31);
+  const j = JEUX[g] || "le défi du jour";
+  const body = pool[Math.floor(r() * pool.length)]
+    .replace("{i}", ICO[g] || "🛒").replace("{J}", j.charAt(0).toUpperCase() + j.slice(1)).replace(/\{j\}/g, j).replace("{s}", streak);
+  return {title: "Hors-Sol · plus que 6 h !", body, url: "/?src=rappel"};
+}
+
+const b64u = buf => btoa(String.fromCharCode(...new Uint8Array(buf))).replace(/\+/g, "-").replace(/\//g, "_").replace(/=+$/, "");
+// Clés VAPID créées une seule fois par le serveur lui-même et rangées dans la base (rien à configurer à la main).
+async function vapidKeys(db){
+  const row = await db.prepare("SELECT v FROM settings WHERE k = 'vapid'").first();
+  if (row) return JSON.parse(row.v);
+  const kp = await crypto.subtle.generateKey({name:"ECDSA", namedCurve:"P-256"}, true, ["sign", "verify"]);
+  const priv = await crypto.subtle.exportKey("jwk", kp.privateKey);
+  const pub = b64u(await crypto.subtle.exportKey("raw", kp.publicKey));
+  const keys = {priv, pub};
+  await db.prepare("INSERT OR IGNORE INTO settings (k, v) VALUES ('vapid', ?)").bind(JSON.stringify(keys)).run();
+  return JSON.parse((await db.prepare("SELECT v FROM settings WHERE k = 'vapid'").first()).v);
+}
+async function vapidHeader(endpoint, keys){
+  const enc = o => b64u(new TextEncoder().encode(JSON.stringify(o)));
+  const unsigned = enc({typ:"JWT", alg:"ES256"}) + "." + enc({aud: new URL(endpoint).origin, exp: Math.floor(Date.now()/1000) + 12*3600, sub: "https://es-tu-hors-sol.fr"});
+  const key = await crypto.subtle.importKey("jwk", keys.priv, {name:"ECDSA", namedCurve:"P-256"}, false, ["sign"]);
+  const sig = await crypto.subtle.sign({name:"ECDSA", hash:"SHA-256"}, key, new TextEncoder().encode(unsigned));
+  return `vapid t=${unsigned}.${b64u(sig)}, k=${keys.pub}`;
+}
+// Appelé toutes les 10 minutes entre 16 h et 17 h 50 UTC : n'agit que pendant l'heure de 18 h à Paris (été comme hiver).
+async function runReminders(env, today, force){
+  const hour = +new Intl.DateTimeFormat("en-GB", {timeZone:"Europe/Paris", hour:"2-digit", hour12:false}).format(new Date());
+  if (hour !== 18 && !force) return {skipped:"hour", hour};
+  const db = env.DB, keys = await vapidKeys(db);
+  // Rappel seulement si : pas encore joué aujourd'hui, ET au moins une partie dans les 7 derniers jours
+  // (un joueur qui a décroché ou désinstallé ne reçoit pas plus de 7 rappels, puis plus rien).
+  const subs = (await db.prepare(`SELECT pid, endpoint FROM push_subs
+      WHERE (last_sent IS NULL OR last_sent < ?)
+        AND pid NOT IN (SELECT pid FROM scores WHERE day = ?)
+        AND pid IN (SELECT pid FROM scores WHERE day >= ? AND day < ?)
+      LIMIT 40`).bind(today, today, lgAddDays(today, -7), today).all()).results;
+  if (!subs.length) return {sent:0};
+  await db.batch(subs.map(s=>db.prepare("UPDATE push_subs SET last_sent = ? WHERE pid = ?").bind(today, s.pid)));
+  let sent = 0, gone = [];
+  for (const s of subs){
+    try{
+      const r = await fetch(s.endpoint, {method:"POST", headers:{"Authorization": await vapidHeader(s.endpoint, keys), "TTL":"21600", "Urgency":"normal", "Content-Length":"0"}});
+      if (r.status === 404 || r.status === 410) gone.push(s.pid); else if (r.ok) sent++;
+    }catch(e){}
+  }
+  if (gone.length) await db.batch(gone.map(pid=>db.prepare("DELETE FROM push_subs WHERE pid = ?").bind(pid)));
+  return {sent, gone: gone.length, batch: subs.length};
+}
 let schemaReady = false;
 
 function parisDate(d = new Date()){
@@ -132,12 +234,14 @@ async function handle(body, env, today){
   const player = await db.prepare("SELECT pid, key_hash, name FROM players WHERE pid = ?").bind(pid).first();
   const hash = await sha(key);
   const name = clean(body.name, 15);
+  const needsName = body.action === "create" || body.action === "join";
   if (!player){
-    if (!name) throw new Oops("name");
+    if (!name && needsName) throw new Oops("name");
     await db.prepare("INSERT INTO players (pid, key_hash, name, created) VALUES (?, ?, ?, ?)").bind(pid, hash, name, today).run();
   } else {
     if (player.key_hash !== hash) throw new Oops("auth", 403);
     if (name && name !== player.name) await db.prepare("UPDATE players SET name = ? WHERE pid = ?").bind(name, pid).run();
+    if (!name && !player.name && needsName) throw new Oops("name");
   }
 
   // Scores de la semaine en cours envoyés par le téléphone (une seule partie par jour, la première reçue compte).
@@ -174,9 +278,19 @@ async function handle(body, env, today){
       if (n >= LG_MAX_MEMBERS) throw new Oops("full");
       await db.prepare("INSERT INTO members (league, pid, joined) VALUES (?, ?, ?)").bind(id, pid, new Date().toISOString()).run();
     }
+  } else if (body.action === "remind_on"){
+    const sub = body.sub || {}, ep = String(sub.endpoint || "");
+    const okUrl = env.TEST === "1" ? /^https?:\/\/[^\s]{6,900}$/ : /^https:\/\/[^\s]{10,900}$/;   // en test local : faux service de notification
+    if (!okUrl.test(ep)) throw new Oops("sub");
+    await db.prepare("INSERT INTO push_subs (pid, endpoint, p256dh, auth, streak, created) VALUES (?, ?, ?, ?, ?, ?) ON CONFLICT(pid) DO UPDATE SET endpoint = excluded.endpoint, p256dh = excluded.p256dh, auth = excluded.auth")
+      .bind(pid, ep, String((sub.keys||{}).p256dh || "").slice(0, 200), String((sub.keys||{}).auth || "").slice(0, 100), Math.max(0, Math.round(+body.streak || 0)), today).run();
+  } else if (body.action === "remind_off"){
+    await db.prepare("DELETE FROM push_subs WHERE pid = ?").bind(pid).run();
   } else if (body.action === "leave"){
     await db.prepare("DELETE FROM members WHERE league = ? AND pid = ?").bind(String(body.league || ""), pid).run();
   }
+
+  if (Number.isFinite(+body.streak)) await db.prepare("UPDATE push_subs SET streak = ? WHERE pid = ?").bind(Math.max(0, Math.round(+body.streak)), pid).run();
 
   // Ménage de temps en temps : le détail des scores n'est gardé que 4 semaines (le palmarès reste).
   if (Math.random() < 0.02){
@@ -187,10 +301,17 @@ async function handle(body, env, today){
   const views = [];
   for (const lg of leagues) views.push(await leagueView(db, lg, pid, today));
   const me = await db.prepare("SELECT name FROM players WHERE pid = ?").bind(pid).first();
-  return {ok:true, today, me:{name: me.name}, leagues: views, focus: body.focus || null};
+  const remind = !!(await db.prepare("SELECT 1 FROM push_subs WHERE pid = ?").bind(pid).first());
+  return {ok:true, today, me:{name: me.name}, leagues: views, focus: body.focus || null, remind};
 }
 
 export default {
+  async scheduled(event, env, ctx){
+    ctx.waitUntil((async ()=>{
+      if (!schemaReady){ await env.DB.batch(SCHEMA.map(s=>env.DB.prepare(s))); schemaReady = true; }
+      await runReminders(env, parisDate(), false);
+    })());
+  },
   async fetch(req, env){
     const origin = req.headers.get("Origin") || "";
     const allowed = ORIGINS.includes(origin) || /^http:\/\/(localhost|127\.0\.0\.1)(:\d+)?$/.test(origin);
@@ -207,6 +328,19 @@ export default {
         const id = url.searchParams.get("id") || "";
         const lg = ID_RE.test(id) && await env.DB.prepare("SELECT id, name, (SELECT COUNT(*) FROM members WHERE league = leagues.id) AS count FROM leagues WHERE id = ?").bind(id).first();
         return lg ? json({ok:true, id:lg.id, name:lg.name, count:lg.count}) : json({error:"notfound"}, 404);
+      }
+      if (req.method === "GET" && url.pathname === "/vapid"){
+        return json({ok:true, key: (await vapidKeys(env.DB)).pub});
+      }
+      if (req.method === "GET" && url.pathname === "/rappel"){
+        const pid = url.searchParams.get("pid") || "";
+        const row = ID_RE.test(pid) && await env.DB.prepare("SELECT streak FROM push_subs WHERE pid = ?").bind(pid).first();
+        // la série n'est « en jeu » que si le joueur a joué hier
+        const hier = row && await env.DB.prepare("SELECT 1 FROM scores WHERE pid = ? AND day = ?").bind(pid, lgAddDays(today, -1)).first();
+        return json(rappelTexte(today, hier ? row.streak || 0 : 0));
+      }
+      if (env.TEST === "1" && url.pathname === "/__rappels"){
+        return json(await runReminders(env, today, true));
       }
       if (req.method === "POST" && url.pathname === "/api"){
         const body = await req.json();

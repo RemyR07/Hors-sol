@@ -18,6 +18,7 @@ update_prices.py  ──►  products.json  ──►  build.py  ──►  inde
 2. **Quel prix ?** La médiane des relevés en France, en euros, sur 12 mois.
    La médiane écarte les promos et les fautes de frappe.
 3. **Garde-fous :** au moins 3 relevés, et pas de produit dont les prix partent dans tous les sens.
+   Produits ajoutés automatiquement : nom nettoyé (marque répétée, poids, emojis), noms étrangers écartés, plus de 20 € ou de 60 €/kg écartés, poids des packs corrigé (4x100 g = 400 g), 3 produits maximum par marque, rayon deviné d'après le nom.
 4. **Une série par jour, la même pour tous :** les prix calculés dans la nuit (ou par un lancement manuel) sont rangés dans `next` et n'entrent en jeu qu'au minuit suivant. La liste du jour ne change jamais en cours de journée.
 5. **Changement de jour :** si la page est restée ouverte, le jeu se recharge tout seul à minuit ou au retour sur l'onglet.
 
@@ -131,3 +132,11 @@ Score du jour sur 500 (points de fourchette). Bonus de précision affichés à p
 - Fenêtre « Hors-Sol a changé ! » : montrée une fois par mise à jour (`UPDATE_ID` dans `template.html`), uniquement aux joueurs qui avaient déjà joué. Événement `maj-lue`.
 - Contact : formulaire « Nous écrire » (bug / commentaire) envoyé via Web3Forms ; l'adresse email n'apparaît jamais dans le site. Clé à mettre dans `config.json` (`contact_key`). Sans clé, le lien Contact est caché. Événements `contact-bug`, `contact-msg`.
 - Sondage de fin : en pause (`SHOW_SURVEY = false` dans `template.html`).
+
+## Installer sur l'écran d'accueil + rappel de 18 h
+
+- Fenêtre « Oui / Non » 1 seconde après la fin de la partie, à partir du 2e jour joué, sur téléphone : 1) ajouter Hors-Sol à l'écran d'accueil (bouton natif sur Android, tuto sur iPhone), 2) le rappel de 18 h. Chaque question n'est posée qu'une fois (`horssol:ask`). Événements en plus : `appli-refusee`, `rappel-refuse`.
+- Rappel « 🔔 Me prévenir à 18 h si j'oublie ma partie » : notification envoyée uniquement aux joueurs qui ne l'ont pas encore faite ce jour-là. Sur iPhone, seulement une fois le jeu installé.
+- `sw-source.js` → `sw.js` (généré par `build.py`) : reçoit la notification et va chercher le texte du jour sur `/rappel`.
+- Serveur : table `push_subs`, clés VAPID créées automatiquement (table `settings`), déclencheur Cron `*/10 16,17 * * *` qui n'agit qu'entre 18 h et 18 h 59 à Paris (40 notifications max par passage, 6 passages = 240/jour sur l'offre gratuite). Arrêt automatique : pas de rappel si aucune partie dans les 7 derniers jours.
+- Événements GoatCounter : `appli-proposee`, `appli-tuto`, `appli-installee`, `appli-ouverte`, `rappel-active`, `rappel-coupe`, `rappel-ouvert`.

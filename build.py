@@ -50,6 +50,8 @@ data = json.dumps(json.loads((here / "products.json").read_text()), ensure_ascii
 tpl = (here / "template.html").read_text().replace("__DATA__", data.replace("</", "<\\/"))
 tpl = tpl.replace("/*__LIGUES_CORE__*/", core).replace("__API_LIGUES__", api)
 tpl = tpl.replace("__CONTACT_KEY__", (cfg.get("contact_key") or "").strip())
+# Service worker du rappel de 18 h (doit être à la racine du site)
+(here / "sw.js").write_text((here / "sw-source.js").read_text().replace("__API_LIGUES__", api))
 cut = tpl.index('<div class="wrap">')
 head_part = tpl[:cut].replace("<title>Hors-Sol</title>", f"<title>{TITRE}</title>")
 page = HEAD + head_part + "</head>\n<body>\n" + tpl[cut:] + "\n</body>\n</html>\n"

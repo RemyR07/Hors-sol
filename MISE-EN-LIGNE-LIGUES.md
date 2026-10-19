@@ -36,3 +36,9 @@ puis lance **Actions → Prix du jour → Run workflow** pour reconstruire le si
 - Mettre à jour le serveur : refaire l'étape 4 avec le nouveau `serveur-ligues.js`.
 - Voir les données : D1 → `horssol` → **Console** (lecture seule conseillée).
 - Gratuit jusqu'à 100 000 requêtes par jour : très largement suffisant.
+
+## 7. Le réveil du rappel de 18 h (une seule fois)
+1. Worker `hors-sol-ligues` → onglet **Settings** → **Trigger events** (ou « Triggers »).
+2. **Add** → **Cron Triggers**.
+3. Colle cette expression : `*/10 16,17 * * *` → **Add** / **Save**.
+   (C'est en heure universelle : le serveur vérifie lui-même qu'il est bien 18 h à Paris, été comme hiver.)
