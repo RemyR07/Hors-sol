@@ -140,3 +140,11 @@ Score du jour sur 500 (points de fourchette). Bonus de précision affichés à p
 - `sw-source.js` → `sw.js` (généré par `build.py`) : reçoit la notification et va chercher le texte du jour sur `/rappel`.
 - Serveur : table `push_subs`, clés VAPID créées automatiquement (table `settings`), déclencheur Cron `*/10 16,17 * * *` qui n'agit qu'entre 18 h et 18 h 59 à Paris (40 notifications max par passage, 6 passages = 240/jour sur l'offre gratuite). Arrêt automatique : pas de rappel si aucune partie dans les 7 derniers jours.
 - Événements GoatCounter : `appli-proposee`, `appli-tuto`, `appli-installee`, `appli-ouverte`, `rappel-active`, `rappel-coupe`, `rappel-ouvert`.
+
+## Équité des jeux (vérifié sur 150 jours simulés)
+
+- Trio : place du plus cher au kilo tirée à part (1/3 chacune, max 2 fois la même place par jour) ; dès le 26/10, « le paquet le plus cher » n'est la bonne réponse qu'1 fois sur 3.
+- Caddie Drop : prix rangés du moins cher au plus cher, rang du vrai prix au hasard (max 2 fois la même place par jour), faux prix aux centimes « naturels ».
+- Intrus : place du faux au hasard, faux prix aux centimes « naturels » (imitent les vrais : beaucoup de ,99 / ,49).
+- Fourchette : prix de départ du curseur différent pour chaque produit (0,60 € à 9 €).
+- Rangement et Mise en rayon : ordres de départ au hasard (vérifié).

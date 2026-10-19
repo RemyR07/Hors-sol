@@ -871,6 +871,10 @@ function paintSteps(){
 // Anti-répétition : les produits vus les 3 jours précédents passent en fin de liste
 // (ils ne reviennent que s'il n'y a vraiment pas assez d'autres produits).
 const RECENT_DAYS = 3;
+// Derniers chiffres des vrais prix (ex. beaucoup de ,99 et de ,49) : les faux prix les imitent, pour ne pas se trahir par leurs centimes.
+const ENDS = ALL.map(p=>Math.round(p.median*100) % 10);
+const natEnd = (v, r) => { let c = Math.round(v*100); c = c - (c % 10) + ENDS[Math.floor(r()*ENDS.length)]; return Math.max(0.15, c/100); };
+const TRIO_V2 = Math.round((Date.parse("2026-10-26") - Date.parse(LAUNCH)) / 864e5);   // nouvelle règle du Trio à partir du lundi 26/10
 function buildPlan(dIdx, game, recent){
   const R = rng(20261016 + dIdx * 7919 + game.length * 104729);
   const GAME = game;
@@ -881,16 +885,32 @@ function buildPlan(dIdx, game, recent){
   if (GAME === "fourchette") return {items: pool().slice(0,5).map(p=>p.code)};
   if (GAME === "trio"){
     const rounds = [];
+    // Place du plus cher au kilo : tirée à part (sans toucher au choix des produits), chaque place 1re/2e/3e au plus 2 fois par jour.
+    const disp = rng(dIdx * 7717 + 13);
+    const extra = shuffled([0,1,2], disp).slice(0, 2);
+    const slots = shuffled([0,1,2].concat(extra), disp);
+    // Piège du format (à partir du 26/10) : 2 fois sur 3, le plus cher au kilo n'est PAS le plus cher au paquet,
+    // pour que « je prends le paquet le plus cher » ne marche pas mieux que le hasard.
+    const trapR = rng(dIdx * 104723 + 7);
     for (let k=0; k<5; k++){
       const c = pool().filter(p=>p.unit==="kg" && p.per_unit).slice(0, 40);
       let found = null;
+      const want = dIdx >= TRIO_V2 ? (trapR() < 2/3 ? "piege" : "direct") : null;
+      for (let pass = 0; pass < 2 && !found; pass++)
       for (let a=0; a<c.length && !found; a++) for (let b=a+1; b<c.length && !found; b++) for (let d=b+1; d<c.length && !found; d++){
         const t = [c[a],c[b],c[d]].sort((x,y)=>y.per_unit-x.per_unit);
-        if (t[0].per_unit >= t[1].per_unit*1.15 && t[1].per_unit >= t[2].per_unit*1.05) found = [c[a],c[b],c[d]];
+        if (!(t[0].per_unit >= t[1].per_unit*1.15 && t[1].per_unit >= t[2].per_unit*1.05)) continue;
+        const topPack = Math.max(t[0].median, t[1].median, t[2].median) === t[0].median;
+        if (pass === 0 && want === "piege" && topPack) continue;
+        if (pass === 0 && want === "direct" && !topPack) continue;
+        found = [c[a],c[b],c[d]];
       }
       if (!found) break;
       found.forEach(take);
-      rounds.push(found.map(p=>p.code));
+      const byKg = found.slice().sort((x,y)=>y.per_unit - x.per_unit);
+      const others = disp() < 0.5 ? [byKg[1], byKg[2]] : [byKg[2], byKg[1]];
+      others.splice(slots[k], 0, byKg[0]);
+      rounds.push(others.map(p=>p.code));
     }
     return {rounds};
   }
@@ -918,7 +938,7 @@ function buildPlan(dIdx, game, recent){
     // 4 trappes : le vrai prix + 3 faux. On tire au hasard combien de faux sont MOINS chers que le vrai (0, 1, 2 ou 3),
     // pour que le vrai prix puisse être le moins cher, le plus cher ou au milieu : impossible de deviner par élimination.
     // Il y a toujours un faux proche (15 à 20 %) pour garder du suspense.
-    const nat = v => { let c = Math.round(v*100); c = c - (c % 10) + [9,9,5,0,5,9,2,4,7,9][Math.floor(R()*10)]; return Math.max(0.15, c/100); };
+    const nat = v => natEnd(v, R);
     const apart = arr => arr.every((x,a)=>arr.every((y,b)=> a===b || Math.max(x,y)/Math.min(x,y) >= 1.08 && Math.abs(x-y) >= 0.06));
     // Sur les 5 produits du jour, la bonne trappe occupe chaque place (1re à 4e) au plus 2 fois : pas de motif répété.
     // (les 5 produits sont tirés AVANT tout le reste : le choix des produits reste identique d'une version à l'autre)
@@ -944,6 +964,7 @@ function buildPlan(dIdx, game, recent){
   }
   if (GAME === "intrus"){
     const rounds = [];
+    const ends = rng(dIdx * 6007 + 3);
     for (let k=0; k<5; k++){
       const five = pool().slice(0,5); if (five.length<5) break;
       five.forEach(take);
@@ -953,6 +974,8 @@ function buildPlan(dIdx, game, recent){
       const real = five[fakeIdx].median;
       let fake = Math.round(real * (up ? 1+f : 1-f) * 100)/100;
       if (fake < 0.15) fake = Math.round(real*(1+f)*100)/100;
+      const nf = natEnd(fake, ends);                         // centimes « naturels » (tirage à part : ne change pas les produits)
+      if (Math.abs(nf/real - 1) >= 0.2) fake = nf;
       rounds.push({codes: five.map(p=>p.code), fakeIdx, fake, up: fake > real});
     }
     return {rounds};
@@ -1039,7 +1062,9 @@ const toPrice = t => { const p = MIN*Math.pow(MAX/MIN, t/1000); return roundP(p)
 const toT = p => Math.round(1000*Math.log(p/MIN)/Math.log(MAX/MIN));
 function roundP(p){ return p < 1 ? Math.round(p*100)/100 : Math.round(p*20)/20; }
 const stepOf = p => p < 5 ? 0.01 : 0.05;
-let fs = {guess: 2.00, conf: "mid"};
+// Prix de départ du curseur : différent pour chaque produit (entre 0,60 € et 9 €), pour qu'il ne donne aucun indice.
+function startGuess(i){ const r = rng(dayIndex * 131 + i * 17 + 5); r(); return roundP(0.6 * Math.pow(15, r())); }
+let fs = {guess: startGuess(day.answers.length), conf: "mid"};
 
 function renderFourchette(){
   const i = state.revealed ? day.answers.length-1 : day.answers.length;
@@ -1150,7 +1175,7 @@ function wireFourchette(){
   $("#go").addEventListener("click", ()=>{
     const r = scoreGuess(fs.guess, fs.conf, p.median);
     commit({code:p.code, guess:fs.guess, conf:fs.conf, lo:r.lo, hi:r.hi, base:r.base, bonus:r.bonus, bonusLabel:r.bonusLabel, pts:r.pts, cls:r.cls});
-    fs.guess = 2.00;
+    fs.guess = startGuess(day.answers.length);
     render();
   });
 }
