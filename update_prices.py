@@ -201,7 +201,7 @@ POIDS = [
     rf"\b\d+(?:[.,]\d+)?\s?{UNITES}\b",                       # 250g, 1.75L, 500 ml
     r"\(\s*\d+(?:[.,]\d+)?\s?oz\s*\)", r"\b\d+\s?[x×]\b", r"\b[x×]\s?\d+\b", r"\b\d/\d\b", r"\bPET\b", r"\b\d+\s?-?\s?pack\b",
 ]
-SOCIETE = re.compile(r"\b(SAS|SARL|France|S\.?A\.?U?\.?|SpA|GmbH|Srl|nv|Company|Belux|Nahrungsmittel|K\.?G\.?|Ltd|Inc|Iberica|Fratelli|G\. e R\.|Sprungli|Egidio|Glico|Mondelēz|McIlhenny)\b\.?", re.I)
+SOCIETE = re.compile(r"\b(SAS|SARL|France|Foods Europe|B\.V|BV|S\.?A\.?U?\.?|SpA|GmbH|Srl|nv|Company|Belux|Nahrungsmittel|K\.?G\.?|Ltd|Inc|Iberica|Fratelli|G\. e R\.|Sprungli|Egidio|Glico|Mondelēz|McIlhenny)\b\.?", re.I)
 ETRANGER = re.compile(r"(milch|mandel|nudeln|geröstet|ohne zucker|\bnatur mit\b|kokosnuss|drank|biologische|schuimbare|\brice drink\b|\bpeanut\b|\bsojasaus\b|\bvegetale\b)", re.I)
 EMOJI = re.compile("[\U0001F000-\U0001FAFF\u2600-\u27BF]")
 RAYONS = [
