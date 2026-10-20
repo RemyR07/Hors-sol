@@ -12,7 +12,7 @@ Logique :
   2. Règles de fiabilité : au moins MIN_RELEVES relevés, dans MIN_MAGASINS magasins,
      un relevé de moins de RECENT_MOIS mois, prix peu dispersés.
   3. Fiche Open Food Facts : nom en français obligatoire, poids lisible, pas d'alcool,
-     de complément alimentaire, de produit bébé ou animal. Fiches gardées dans fiches.json.
+     de complément alimentaire, de produit bébé ou animal. Fiches gardées dans products.json (clé "_fiches").
   4. Prix de référence = médiane (insensible aux promos et erreurs de saisie).
   5. + produits de catalog.json (noms choisis à la main) et produits frais de l'Insee.
 
@@ -59,23 +59,25 @@ MAX_AUTO_TOTAL = 1000    # plafond de produits automatiques (taille de la page d
 DUMP = "https://prices.openfoodfacts.org/data"
 OFF_PRODUIT = ("https://world.openfoodfacts.org/api/v2/product/{code}"
                "?fields=product_name_fr,product_name,lang,brands,product_quantity,product_quantity_unit,quantity,categories_tags")
-FICHES = "fiches.json"            # mémoire des fiches déjà lues (évite de tout redemander chaque nuit)
 FICHES_MAX_PAR_NUIT = 1500        # nouvelles fiches lues au maximum par lancement
 FICHES_MINUTES = 30               # … et pas plus de 30 minutes
 FICHES_VALIDITE_JOURS = 90        # une fiche est relue au bout de 3 mois
 EXCLUS_CATS = {"en:alcoholic-beverages", "en:dietary-supplements", "en:pet-food", "en:baby-foods", "en:baby-milks"}
 CAT_RAYONS = [  # rayon affiché, d'après les catégories Open Food Facts (le premier qui correspond gagne)
-    ("Surgelés",    ["en:frozen-foods", "en:ice-creams-and-sorbets", "en:ice-creams", "en:frozen-desserts"]),
-    ("Apéro",       ["en:salty-snacks", "en:appetizers", "en:crisps", "en:chips-and-fries"]),
+    ("Surgelés",    ["en:ice-creams-and-sorbets", "en:frozen-desserts", "en:ice-creams"]),
+    ("Boulangerie", ["en:breads", "en:viennoiseries"]),
+    ("Apéro",       ["en:salty-snacks", "en:appetizers", "en:crisps", "en:chips-and-fries", "en:dips", "en:salted-spreads", "en:rillettes"]),
+    ("Épicerie",    ["en:sauces", "en:condiments", "en:vinegars", "en:mayonnaises"]),
     ("Biscuits",    ["en:biscuits-and-cakes", "en:biscuits", "en:cakes"]),
     ("Confiserie",  ["en:chocolates", "en:confectioneries", "en:candies"]),
-    ("Petit-déj",   ["en:breakfast-cereals", "en:spreads", "en:jams", "en:coffees", "en:teas", "en:honeys", "en:breakfasts"]),
-    ("Crèmerie",    ["en:dairies", "en:cheeses", "en:yogurts", "en:eggs", "en:butters", "en:dairy-desserts"]),
-    ("Boissons",    ["en:beverages"]),
+    ("Petit-déj",   ["en:breakfast-cereals", "en:sweet-spreads", "en:hazelnut-spreads", "en:jams", "en:coffees", "en:teas",
+                     "en:honeys", "en:cocoa-and-chocolate-powders"]),
+    ("Crèmerie",    ["en:dairies", "en:cheeses", "en:yogurts", "en:eggs", "en:butters", "en:dairy-desserts", "en:milks"]),
+    ("Boissons",    ["en:beverages", "en:waters", "en:plant-based-milk-alternatives"]),
     ("Conserves",   ["en:canned-foods"]),
-    ("Frais",       ["en:prepared-meats", "en:meals", "en:sandwiches", "en:fresh-pasta"]),
+    ("Frais",       ["en:prepared-meats", "en:meals", "en:sandwiches", "en:fresh-pasta", "en:meat-analogues"]),
     ("Boucherie",   ["en:meats", "en:poultries"]),
-    ("Boulangerie", ["en:breads"]),
+    ("Surgelés",    ["en:frozen-foods"]),       # en dernier : certaines fiches sont mal classées « surgelé »
 ]
 CATS_UTILES = EXCLUS_CATS | {t for _, tags in CAT_RAYONS for t in tags}
 
@@ -199,7 +201,7 @@ POIDS = [
     rf"\b\d+(?:[.,]\d+)?\s?{UNITES}\b",                       # 250g, 1.75L, 500 ml
     r"\(\s*\d+(?:[.,]\d+)?\s?oz\s*\)", r"\b\d+\s?[x×]\b", r"\b[x×]\s?\d+\b", r"\b\d/\d\b", r"\bPET\b", r"\b\d+\s?-?\s?pack\b",
 ]
-SOCIETE = re.compile(r"\b(SAS|S\.?A\.?U?\.?|SpA|GmbH|Srl|nv|Company|Belux|Nahrungsmittel|K\.?G\.?|Ltd|Inc|Iberica|Fratelli|G\. e R\.|Sprungli|Egidio|Glico|Mondelēz|McIlhenny)\b\.?", re.I)
+SOCIETE = re.compile(r"\b(SAS|SARL|France|S\.?A\.?U?\.?|SpA|GmbH|Srl|nv|Company|Belux|Nahrungsmittel|K\.?G\.?|Ltd|Inc|Iberica|Fratelli|G\. e R\.|Sprungli|Egidio|Glico|Mondelēz|McIlhenny)\b\.?", re.I)
 ETRANGER = re.compile(r"(milch|mandel|nudeln|geröstet|ohne zucker|\bnatur mit\b|kokosnuss|drank|biologische|schuimbare|\brice drink\b|\bpeanut\b|\bsojasaus\b|\bvegetale\b)", re.I)
 EMOJI = re.compile("[\U0001F000-\U0001FAFF\u2600-\u27BF]")
 RAYONS = [
@@ -225,14 +227,13 @@ def joli_format(qty, unit):
     return f"{qty:g} {unit}"
 
 def nettoie_marque(brand):
-    b = SOCIETE.sub("", brand or "").replace("  ", " ").strip(" -,.")
+    # « Délisse, Leclerc » : on ne garde que la première marque ; on retire « SAS », « sarl »…
+    b = SOCIETE.sub("", re.sub(r"[?!]+", "", (brand or "").split(",")[0])).replace("  ", " ").strip(" -,.")
     if b.isupper() and len(b) > 3:
         b = b.title()
     mots = b.split()
-    if len(mots) > 2:
-        # « Ben & Jerry's » reste entier ; « Jacobs Douwe Egberts » devient « Jacobs »
-        return " ".join(mots[:3]) if mots[1] in ("&", "et", "and") else mots[0]
-    return " ".join(mots)
+    # la marque entière (« Ben & Jerry's », « Old El Paso », « Marque Repère ») ; trop longue : pas de marque
+    return " ".join(mots) if len(mots) <= 5 else ""
 
 def nettoie_nom(name, brand):
     n = EMOJI.sub("", name)
@@ -430,9 +431,13 @@ def rayon_par_categorie(cats):
     return None
 
 
-def charge_fiches(path):
+_FICHES = {}
+
+
+def charge_fiches():
+    """Mémoire des fiches : rangée dans products.json (clé "_fiches"), retirée du jeu par build.py."""
     try:
-        return json.loads(path.read_text())
+        return dict(json.loads((HERE / "products.json").read_text()).get("_fiches") or {})
     except Exception:
         return {}
 
@@ -456,6 +461,8 @@ def ILLISIBLE_OK(name):
         return False
     if re.search(r"\d{5,}", name):          # un code-barres ou une référence dans le nom
         return False
+    if re.search(r"(\s[&+\-–]|\b(de|du|des|di|del|la|le|les|the|old|san|st|et|à|au|aux))\s*$|,\s*$", name, re.I):
+        return False                          # nom coupé (« Ben & », « Old », « Les »)
     return True
 
 
@@ -468,8 +475,7 @@ def candidats_du_fichier(releves, deja, exclus):
     print(f"{len(eligibles)} produits passent les règles de fiabilité "
           f"(≥{MIN_RELEVES} relevés, ≥{MIN_MAGASINS} magasins, relevé de moins de {RECENT_MOIS} mois, prix peu dispersés)",
           file=sys.stderr)
-    path = HERE / FICHES
-    fiches = charge_fiches(path)
+    fiches = charge_fiches()
     perime = (date.today() - timedelta(days=FICHES_VALIDITE_JOURS)).isoformat()
     lus, start, out = 0, time.time(), {}
     n = {"pas lue (on la lira la nuit prochaine)": 0, "inconnu d'Open Food Facts (souvent non alimentaire)": 0,
@@ -499,10 +505,7 @@ def candidats_du_fichier(releves, deja, exclus):
         if not meta:
             n["nom, poids ou unité inutilisable"] += 1; continue
         out[c] = meta
-    try:
-        path.write_text(json.dumps(dict(sorted(fiches.items())), ensure_ascii=False, separators=(",", ":")))
-    except Exception as e:
-        print(f"  mémoire des fiches non enregistrée ({e})", file=sys.stderr)
+    _FICHES.clear(); _FICHES.update(sorted(fiches.items()))   # enregistrées dans products.json (clé "_fiches")
     print(f"{lus} fiches lues cette nuit ; {len(out)} produits avec une fiche propre en français", file=sys.stderr)
     for k, v in n.items():
         if v:
@@ -555,6 +558,17 @@ def build(raw=None, insee_xml=None, dump_dir=None):
         try:
             releves = releves_du_fichier(since, dump_dir)
             candidates.update(candidats_du_fichier(releves, candidates, exclus))
+            # Stabilité : un produit déjà dans le jeu y reste tant qu'il a au moins 3 relevés en France sur 12 mois
+            # (les règles « 2 magasins / relevé récent » ne s'appliquent qu'aux nouveaux venus).
+            anciens = 0
+            for p in precedents():
+                c = p["code"]
+                if c in candidates or c in exclus or c.startswith("insee-") or not ILLISIBLE_OK(p["name"]):
+                    continue
+                candidates[c] = {"name": p["name"], "detail": p["detail"], "rayon": p["rayon"], "qty": p.get("qty"),
+                                 "unit": p["unit"], "auto": True, "ancien": True, "brand": ""}
+                anciens += 1
+            print(f"{anciens} produits déjà en jeu conservés avec leur fiche actuelle", file=sys.stderr)
         except Exception as e:
             releves = None
             print(f"Fichier complet Open Prices indisponible ({e}) : ancienne méthode (800 produits populaires)",
@@ -589,7 +603,7 @@ def build(raw=None, insee_xml=None, dump_dir=None):
                 print("  l'API ne répond plus : on s'arrête là", file=sys.stderr)
                 break
             continue
-        if meta.get("auto") and (nshops < MIN_MAGASINS or newest < (date.today() - timedelta(days=30 * RECENT_MOIS)).isoformat()):
+        if meta.get("auto") and not meta.get("ancien") and (nshops < MIN_MAGASINS or newest < (date.today() - timedelta(days=30 * RECENT_MOIS)).isoformat()):
             print(f"  ignoré  {meta['name']} ({nshops} magasin(s), dernier relevé {newest or '?'})", file=sys.stderr)
             continue
         s = summarize(prices)
@@ -616,7 +630,8 @@ def build(raw=None, insee_xml=None, dump_dir=None):
                 print(f"  écarté  {pr['name']} (prix {pr['median']} €, {pr.get('per_unit')} €/{pr['unit']})", file=sys.stderr)
                 continue
             key = (pr["name"].lower(), pr["detail"])
-            b = pr.get("brand") or pr["name"].split()[0].lower()
+            mots = [w for w in pr["name"].lower().split() if w not in ("la", "le", "les", "l'", "de", "du", "des")]
+            b = pr.get("brand") or (mots[0] if mots else pr["name"].lower())
             if key in seen:
                 garde["doublon de nom"] += 1; continue
             if per_brand.get(b, 0) >= MAX_PAR_MARQUE:
@@ -626,7 +641,7 @@ def build(raw=None, insee_xml=None, dump_dir=None):
             per_brand[b] = per_brand.get(b, 0) + 1
             seen.add(key)
             n_auto += 1
-        pr.pop("auto", None); pr.pop("brand", None)
+        pr.pop("auto", None); pr.pop("brand", None); pr.pop("ancien", None)
         kept.append(pr)
     products = kept
     print(f"{n_auto} produits automatiques Open Prices gardés après les garde-fous", file=sys.stderr)
@@ -675,9 +690,27 @@ def build(raw=None, insee_xml=None, dump_dir=None):
             "products": new_list,
         },
     }
-    path.write_text(json.dumps(out, ensure_ascii=False, indent=1))
+    if not _FICHES and old and old.get("_fiches"):
+        _FICHES.update(old["_fiches"])          # nuit de secours : on garde la mémoire existante
+    text = json.dumps(out, ensure_ascii=False, indent=1)
+    if _FICHES:                                 # mémoire des fiches, sur une seule ligne en fin de fichier
+        text = text[:-2] + ',\n "_fiches": ' + json.dumps(_FICHES, ensure_ascii=False, separators=(",", ":")) + "\n}"
+    path.write_text(text)
     print(f"{len(products)} produits prêts pour demain ({out['next']['from']}) ; "
           f"{len(current['products'])} produits en jeu aujourd'hui.", file=sys.stderr)
+    return out
+
+
+def precedents():
+    """Produits de la liste jouée aujourd'hui."""
+    try:
+        old = json.loads((HERE / "products.json").read_text())
+    except Exception:
+        return []
+    vus, out = set(), []
+    for p in old.get("products", []):            # la liste réellement jouée aujourd'hui
+        if p["code"] not in vus:
+            vus.add(p["code"]); out.append(p)
     return out
 
 

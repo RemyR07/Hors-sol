@@ -1,4 +1,19 @@
 {
  "_info": "Produits à ne jamais mettre dans le jeu (nom bizarre, pas du quotidien…). Ajoute le code-barres entre guillemets, ou le code Insee (ex. 000641429). Exemple : \"codes\": [\"3017620422003\", \"000641429\"]",
- "codes": []
+ "codes": [
+  "3228857002306",
+  "3450970001274",
+  "5410126832570",
+  "5449000092861",
+  "8002270044892",
+  "8710438108002"
+ ],
+ "_notes": {
+  "3228857002306": "Goûter chocalin Harry's : poids faux (3,5 kg)",
+  "5449000092861": "Coca-Cola verre : prix douteux (6,47 €)",
+  "8002270044892": "San Pellegrino 1 L : prix douteux (4,14 €)",
+  "5410126832570": "Gaufre Lotus : doublon",
+  "3450970001274": "« Chocolat E.Leclerc » : nom trop vague",
+  "8710438108002": "« MC CAN Cote Resto » : nom illisible"
+ }
 }

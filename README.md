@@ -160,6 +160,8 @@ Score du jour sur 500 (points de fourchette). Bonus de précision affichés à p
 - Anti-répétition : un produit vu dans les 14 derniers jours passe en fin de liste (3 jours avant le 26/10).
 - Open Prices (maj18) : le script télécharge le **fichier complet** (`prices.openfoodfacts.org/data/prices.jsonl.gz`) au lieu d'interroger 800 produits un par un. Secours automatique sur l'ancienne méthode si le fichier est indisponible.
 - Règles pour un produit ajouté automatiquement : au moins 3 relevés en France sur 12 mois, dans au moins 2 magasins, dont un de moins de 6 mois, prix peu dispersés ; **nom en français** sur Open Food Facts ; nom lisible (pas de code, pas d'adresse web) ; pas d'alcool, complément alimentaire, produit bébé ou animal ; prix ≤ 20 € ; entre 0,30 et 60 €/kg (0,10 €/L pour les boissons) ; 3 produits par marque au maximum ; 1 000 produits automatiques au maximum.
+- Stabilité : un produit déjà en jeu y reste tant qu'il a au moins 3 relevés en France sur 12 mois (les règles « 2 magasins / relevé récent » ne visent que les nouveaux).
+- Noms : marque complète (« Old El Paso », « Marque Repère »), première marque seulement si plusieurs ; un nom qui finit sur « & », « Les », « Old »… est considéré comme coupé et écarté.
 - Rayon affiché : d'après les catégories Open Food Facts, sinon d'après le nom.
-- `fiches.json` : mémoire des fiches Open Food Facts déjà lues (relues tous les 3 mois). Le premier lancement lit jusqu'à 1 500 fiches (≈ 30 min), les suivants seulement les nouveaux produits.
+- Mémoire des fiches Open Food Facts déjà lues, rangée dans `products.json` (clé `_fiches`, retirée du jeu par `build.py`) (relues tous les 3 mois). Le premier lancement lit jusqu'à 1 500 fiches (≈ 30 min), les suivants seulement les nouveaux produits.
 - `exclus.json` : liste de codes (code-barres ou code Insee) à ne jamais utiliser. À modifier directement sur GitHub.
