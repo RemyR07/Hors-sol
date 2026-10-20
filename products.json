@@ -2635,32 +2635,6 @@
     "per_unit": 6.85
    },
    {
-    "code": "3017620429484",
-    "name": "Nutella",
-    "detail": "825 g",
-    "rayon": "Petit-déj",
-    "qty": 0.825,
-    "unit": "kg",
-    "median": 6.26,
-    "p25": 5.86,
-    "p75": 6.96,
-    "n": 18,
-    "per_unit": 7.59
-   },
-   {
-    "code": "3017760015097",
-    "name": "La Coqueline (fraise) LU, Mondelez",
-    "detail": "165 g",
-    "rayon": "Biscuits",
-    "qty": 0.165,
-    "unit": "kg",
-    "median": 1.79,
-    "p25": 1.65,
-    "p75": 1.91,
-    "n": 21,
-    "per_unit": 10.85
-   },
-   {
     "code": "3017760038331",
     "name": "La Barquette (chocolat) LU",
     "detail": "120 g",
@@ -2672,19 +2646,6 @@
     "p75": 1.5,
     "n": 30,
     "per_unit": 11.83
-   },
-   {
-    "code": "3017760756198",
-    "name": "Cookies Granola LU",
-    "detail": "184 g",
-    "rayon": "Biscuits",
-    "qty": 0.184,
-    "unit": "kg",
-    "median": 2.12,
-    "p25": 1.83,
-    "p75": 2.42,
-    "n": 20,
-    "per_unit": 11.52
    },
    {
     "code": "3017760756297",
@@ -2700,23 +2661,10 @@
     "per_unit": 12.45
    },
    {
-    "code": "3017760819121",
-    "name": "Chamonix LU, Mondelez",
-    "detail": "250 g",
-    "rayon": "Biscuits",
-    "qty": 0.25,
-    "unit": "kg",
-    "median": 1.81,
-    "p25": 1.66,
-    "p75": 2.06,
-    "n": 21,
-    "per_unit": 7.24
-   },
-   {
     "code": "3019089042242",
     "name": "Rillettes de saumon Petit Navire",
     "detail": "125 g",
-    "rayon": "Petit-déj",
+    "rayon": "Apéro",
     "qty": 0.125,
     "unit": "kg",
     "median": 2.21,
@@ -2752,34 +2700,8 @@
     "per_unit": 7.61
    },
    {
-    "code": "3023290036686",
-    "name": "Riz au lait vanille Nestlé,",
-    "detail": "460 g",
-    "rayon": "Crèmerie",
-    "qty": 0.46,
-    "unit": "kg",
-    "median": 1.84,
-    "p25": 1.68,
-    "p75": 2.09,
-    "n": 19,
-    "per_unit": 4.0
-   },
-   {
-    "code": "3023290050378",
-    "name": "Viennois L'original chocolat Nestlé",
-    "detail": "400 g",
-    "rayon": "Crèmerie",
-    "qty": 0.4,
-    "unit": "kg",
-    "median": 1.78,
-    "p25": 1.75,
-    "p75": 1.97,
-    "n": 14,
-    "per_unit": 4.45
-   },
-   {
     "code": "3023290624302",
-    "name": "Gâteau de riz sur lit de caramel Nestlé,",
+    "name": "Gâteau de riz sur lit de caramel Nestlé",
     "detail": "400 g",
     "rayon": "Crèmerie",
     "qty": 0.4,
@@ -2815,6 +2737,32 @@
     "p75": 1.65,
     "n": 12,
     "per_unit": 2.98
+   },
+   {
+    "code": "3029330022428",
+    "name": "14 Maxi Tranches complet sans sucres ajoutés Jacquet",
+    "detail": "550 g",
+    "rayon": "Petit-déj",
+    "qty": 0.55,
+    "unit": "kg",
+    "median": 1.78,
+    "p25": 1.62,
+    "p75": 1.98,
+    "n": 10,
+    "per_unit": 3.24
+   },
+   {
+    "code": "3029330071273",
+    "name": "Pain de mie Jacquet",
+    "detail": "825 g",
+    "rayon": "Petit-déj",
+    "qty": 0.825,
+    "unit": "kg",
+    "median": 2.65,
+    "p25": 2.28,
+    "p75": 2.85,
+    "n": 5,
+    "per_unit": 3.21
    },
    {
     "code": "3029330801900",
@@ -2856,8 +2804,21 @@
     "per_unit": 3.02
    },
    {
+    "code": "3033491279713",
+    "name": "Danette chocolat Danone",
+    "detail": "500 g",
+    "rayon": "Crèmerie",
+    "qty": 0.5,
+    "unit": "kg",
+    "median": 1.56,
+    "p25": 1.54,
+    "p75": 1.66,
+    "n": 10,
+    "per_unit": 3.12
+   },
+   {
     "code": "3033491279737",
-    "name": "Danette caramel Danone, Danette",
+    "name": "Danette caramel Danone",
     "detail": "500 g",
     "rayon": "Crèmerie",
     "qty": 0.5,
@@ -2867,19 +2828,6 @@
     "p75": 2.05,
     "n": 17,
     "per_unit": 3.58
-   },
-   {
-    "code": "3033491279898",
-    "name": "Danette saveur pistache Danone,",
-    "detail": "500 g",
-    "rayon": "Crèmerie",
-    "qty": 0.5,
-    "unit": "kg",
-    "median": 1.95,
-    "p25": 1.69,
-    "p75": 1.96,
-    "n": 14,
-    "per_unit": 3.9
    },
    {
     "code": "3033491325250",
@@ -2896,7 +2844,7 @@
    },
    {
     "code": "3033491377105",
-    "name": "Danette le liegeois chocolat Danone,",
+    "name": "Danette le liegeois chocolat Danone",
     "detail": "400 g",
     "rayon": "Crèmerie",
     "qty": 0.4,
@@ -2909,9 +2857,9 @@
    },
    {
     "code": "3033710065967",
-    "name": "Nesquik Cacao Nestle France",
+    "name": "Nesquik Cacao Nestle",
     "detail": "1 kg",
-    "rayon": "Épicerie",
+    "rayon": "Petit-déj",
     "qty": 1.0,
     "unit": "kg",
     "median": 6.42,
@@ -2947,6 +2895,45 @@
     "per_unit": 10.6
    },
    {
+    "code": "3046920022507",
+    "name": "Excellence Noir Caramel à la pointe de sel Lindt",
+    "detail": "100 g",
+    "rayon": "Confiserie",
+    "qty": 0.1,
+    "unit": "kg",
+    "median": 2.7,
+    "p25": 2.42,
+    "p75": 2.99,
+    "n": 8,
+    "per_unit": 27.0
+   },
+   {
+    "code": "3046920022606",
+    "name": "Excellence 85% cacao Lindt",
+    "detail": "100 g",
+    "rayon": "Confiserie",
+    "qty": 0.1,
+    "unit": "kg",
+    "median": 2.55,
+    "p25": 2.31,
+    "p75": 3.03,
+    "n": 8,
+    "per_unit": 25.5
+   },
+   {
+    "code": "3046920022651",
+    "name": "Noir Intense Lindt",
+    "detail": "100 g",
+    "rayon": "Confiserie",
+    "qty": 0.1,
+    "unit": "kg",
+    "median": 2.67,
+    "p25": 2.32,
+    "p75": 2.82,
+    "n": 10,
+    "per_unit": 26.7
+   },
+   {
     "code": "3046920029780",
     "name": "Chocolat noir 70 % Lindt Excellence",
     "detail": "Tablette de 100 g",
@@ -2961,7 +2948,7 @@
    },
    {
     "code": "3048282322646",
-    "name": "Lulu L'Ourson Chocolat LU,",
+    "name": "Lulu L'Ourson Chocolat",
     "detail": "150 g",
     "rayon": "Biscuits",
     "qty": 0.15,
@@ -3013,7 +3000,7 @@
    },
    {
     "code": "3061990143365",
-    "name": "Goût chocolat BN,",
+    "name": "Goût chocolat BN",
     "detail": "285 g",
     "rayon": "Biscuits",
     "qty": 0.285,
@@ -3208,7 +3195,7 @@
    },
    {
     "code": "3154230800484",
-    "name": "Tendre Croc' L'original Jambon et Fromage HERTA,",
+    "name": "Tendre Croc' L'original Jambon et Fromage Herta",
     "detail": "200 g",
     "rayon": "Frais",
     "qty": 0.2,
@@ -3233,6 +3220,19 @@
     "per_unit": 11.12
    },
    {
+    "code": "3168930002987",
+    "name": "Cuites au four nature Lay's",
+    "detail": "130 g",
+    "rayon": "Épicerie",
+    "qty": 0.13,
+    "unit": "kg",
+    "median": 1.86,
+    "p25": 1.44,
+    "p75": 2.02,
+    "n": 7,
+    "per_unit": 14.31
+   },
+   {
     "code": "3168930163480",
     "name": "Alvalle Gazpacho l'original ALVALLé",
     "detail": "1 L",
@@ -3249,7 +3249,7 @@
     "code": "3168930166078",
     "name": "Doritos Salsa douce",
     "detail": "280 g",
-    "rayon": "Épicerie",
+    "rayon": "Apéro",
     "qty": 0.28,
     "unit": "kg",
     "median": 2.74,
@@ -3262,7 +3262,7 @@
     "code": "3168930166108",
     "name": "Sour Cream Doritos",
     "detail": "280 g",
-    "rayon": "Épicerie",
+    "rayon": "Apéro",
     "qty": 0.28,
     "unit": "kg",
     "median": 2.65,
@@ -3288,7 +3288,7 @@
     "code": "3168930171881",
     "name": "Creamy Guacamole Doritos",
     "detail": "270 g",
-    "rayon": "Petit-déj",
+    "rayon": "Apéro",
     "qty": 0.27,
     "unit": "kg",
     "median": 2.46,
@@ -3312,7 +3312,7 @@
    },
    {
     "code": "3176571744012",
-    "name": "Candy'Up goût Fraise Candia,",
+    "name": "Candy'Up goût Fraise Candia",
     "detail": "1,2 L",
     "rayon": "Crèmerie",
     "qty": 1.2,
@@ -3335,6 +3335,19 @@
     "p75": 3.22,
     "n": 18,
     "per_unit": 2.36
+   },
+   {
+    "code": "3176571983008",
+    "name": "Viva lait écrémé candia",
+    "detail": "1 L",
+    "rayon": "Crèmerie",
+    "qty": 1.0,
+    "unit": "L",
+    "median": 1.35,
+    "p25": 1.2,
+    "p75": 1.48,
+    "n": 9,
+    "per_unit": 1.35
    },
    {
     "code": "3176582033327",
@@ -3376,10 +3389,23 @@
     "per_unit": 10.8
    },
    {
+    "code": "3178530404050",
+    "name": "La Madeleine chocolat au lait Bonne Maman",
+    "detail": "300 g",
+    "rayon": "Biscuits",
+    "qty": 0.3,
+    "unit": "kg",
+    "median": 4.45,
+    "p25": 3.74,
+    "p75": 4.82,
+    "n": 33,
+    "per_unit": 14.83
+   },
+   {
     "code": "3178530405774",
-    "name": "Crêpes bretonnes St",
+    "name": "Crêpes bretonnes St Michel Biscuits",
     "detail": "315 g",
-    "rayon": "Épicerie",
+    "rayon": "Biscuits",
     "qty": 0.315,
     "unit": "kg",
     "median": 2.6,
@@ -3426,6 +3452,19 @@
     "p75": 3.29,
     "n": 32,
     "per_unit": 6.35
+   },
+   {
+    "code": "3178530412741",
+    "name": "Bonne Maman - Mini Marble Cake Chocolat",
+    "detail": "300 g",
+    "rayon": "Biscuits",
+    "qty": 0.3,
+    "unit": "kg",
+    "median": 4.02,
+    "p25": 3.69,
+    "p75": 4.38,
+    "n": 27,
+    "per_unit": 13.4
    },
    {
     "code": "3178530421132",
@@ -3571,6 +3610,32 @@
     "per_unit": 5.83
    },
    {
+    "code": "3215061062776",
+    "name": "Lotus Gaufres Fourrées cœur fondant Vergeoise (5x2p)",
+    "detail": "310 g",
+    "rayon": "Biscuits",
+    "qty": 0.31,
+    "unit": "kg",
+    "median": 3.03,
+    "p25": 2.86,
+    "p75": 3.26,
+    "n": 14,
+    "per_unit": 9.77
+   },
+   {
+    "code": "3228470052085",
+    "name": "Intense 100% arabica - Intensité 7 Jacobs Douwe",
+    "detail": "500 g",
+    "rayon": "Épicerie",
+    "qty": 0.5,
+    "unit": "kg",
+    "median": 9.12,
+    "p25": 8.99,
+    "p75": 9.49,
+    "n": 3,
+    "per_unit": 18.24
+   },
+   {
     "code": "3228470062046",
     "name": "Café moulu L'Or intense",
     "detail": "Paquet de 250 g",
@@ -3597,23 +3662,10 @@
     "per_unit": 25.16
    },
    {
-    "code": "3228850006035",
-    "name": "Pain de mie longue conservation Harrys",
-    "detail": "250 g",
-    "rayon": "Boulangerie",
-    "qty": 0.25,
-    "unit": "kg",
-    "median": 0.9,
-    "p25": 0.83,
-    "p75": 1.05,
-    "n": 15,
-    "per_unit": 3.6
-   },
-   {
     "code": "3228857000166",
-    "name": "100% mie complet Harris, Harrys",
+    "name": "100% mie complet Harris",
     "detail": "500 g",
-    "rayon": "Surgelés",
+    "rayon": "Boulangerie",
     "qty": 0.5,
     "unit": "kg",
     "median": 2.3,
@@ -3624,9 +3676,9 @@
    },
    {
     "code": "3228857000852",
-    "name": "Pain de mie 100% mie nature Harrys,",
+    "name": "Pain de mie 100% mie nature Harrys",
     "detail": "500 g",
-    "rayon": "Surgelés",
+    "rayon": "Boulangerie",
     "qty": 0.5,
     "unit": "kg",
     "median": 1.79,
@@ -3634,19 +3686,6 @@
     "p75": 2.13,
     "n": 16,
     "per_unit": 3.58
-   },
-   {
-    "code": "3228857000876",
-    "name": "Pain Extra Moelleux Nature Sans Sucres Ajoutés Harrys",
-    "detail": "280 g",
-    "rayon": "Boulangerie",
-    "qty": 0.28,
-    "unit": "kg",
-    "median": 0.87,
-    "p25": 0.87,
-    "p75": 1.05,
-    "n": 15,
-    "per_unit": 3.11
    },
    {
     "code": "3228857001118",
@@ -3665,7 +3704,7 @@
     "code": "3228857001194",
     "name": "Beau & bon Céréales & graines Harrys",
     "detail": "320 g",
-    "rayon": "Surgelés",
+    "rayon": "Boulangerie",
     "qty": 0.32,
     "unit": "kg",
     "median": 2.18,
@@ -3689,9 +3728,9 @@
    },
    {
     "code": "3228857002184",
-    "name": "American sandwich nature Harrys, harrys",
+    "name": "American sandwich nature Harrys",
     "detail": "550 g",
-    "rayon": "Surgelés",
+    "rayon": "Boulangerie",
     "qty": 0.55,
     "unit": "kg",
     "median": 1.75,
@@ -3699,19 +3738,6 @@
     "p75": 1.94,
     "n": 16,
     "per_unit": 3.18
-   },
-   {
-    "code": "3228857002306",
-    "name": "Goûter cacao et chocolat chocalin Harry's, Harrys",
-    "detail": "3,5 kg",
-    "rayon": "Biscuits",
-    "qty": 3.5,
-    "unit": "kg",
-    "median": 3.79,
-    "p25": 3.5,
-    "p75": 4.16,
-    "n": 14,
-    "per_unit": 1.08
    },
    {
     "code": "3229820019604",
@@ -3743,7 +3769,7 @@
     "code": "3229820762050",
     "name": "Sauce soja Tanoshi",
     "detail": "20 cl",
-    "rayon": "Crèmerie",
+    "rayon": "Épicerie",
     "qty": 0.2,
     "unit": "L",
     "median": 3.23,
@@ -3756,7 +3782,7 @@
     "code": "3229820765341",
     "name": "Vinaigre de riz Tanoshi",
     "detail": "15 cl",
-    "rayon": "Boissons",
+    "rayon": "Épicerie",
     "qty": 0.15,
     "unit": "L",
     "median": 3.95,
@@ -3818,19 +3844,6 @@
     "per_unit": 8.61
    },
    {
-    "code": "3242272270157",
-    "name": "Sodebo pastabox fusilli a la bolognaise",
-    "detail": "330 g",
-    "rayon": "Frais",
-    "qty": 0.33,
-    "unit": "kg",
-    "median": 2.74,
-    "p25": 2.63,
-    "p75": 2.98,
-    "n": 15,
-    "per_unit": 8.3
-   },
-   {
     "code": "3242272270454",
     "name": "Sodebo pastabox fusilli au saumon",
     "detail": "300 g",
@@ -3871,7 +3884,7 @@
    },
    {
     "code": "3248340054070",
-    "name": "Lait C'est",
+    "name": "Lait C'est qui le patron",
     "detail": "6 L",
     "rayon": "Crèmerie",
     "qty": 6.0,
@@ -3948,10 +3961,23 @@
     "per_unit": 0.54
    },
    {
+    "code": "3256223377437",
+    "name": "Boisson soja nature",
+    "detail": "1 L",
+    "rayon": "Boissons",
+    "qty": 1.0,
+    "unit": "L",
+    "median": 0.88,
+    "p25": 0.88,
+    "p75": 0.88,
+    "n": 11,
+    "per_unit": 0.88
+   },
+   {
     "code": "3256540000339",
-    "name": "Croissants Brioche",
+    "name": "Croissants Brioche Pasquier",
     "detail": "320 g",
-    "rayon": "Petit-déj",
+    "rayon": "Boulangerie",
     "qty": 0.32,
     "unit": "kg",
     "median": 1.93,
@@ -3977,7 +4003,7 @@
     "code": "3256540000698",
     "name": "Pains au lait Brioche Pasquier",
     "detail": "350 g",
-    "rayon": "Petit-déj",
+    "rayon": "Boulangerie",
     "qty": 0.35,
     "unit": "kg",
     "median": 1.57,
@@ -3990,7 +4016,7 @@
     "code": "3256540001008",
     "name": "Pains au chocolat pasquier",
     "detail": "360 g",
-    "rayon": "Confiserie",
+    "rayon": "Boulangerie",
     "qty": 0.36,
     "unit": "kg",
     "median": 2.35,
@@ -4029,7 +4055,7 @@
     "code": "3256549999337",
     "name": "Brioches barre chocolat au lait Pitch",
     "detail": "300 g",
-    "rayon": "Petit-déj",
+    "rayon": "Boulangerie",
     "qty": 0.3,
     "unit": "kg",
     "median": 2.89,
@@ -4042,7 +4068,7 @@
     "code": "3256549999368",
     "name": "Brioche Pépites de Chocolat Pitch",
     "detail": "300 g",
-    "rayon": "Petit-déj",
+    "rayon": "Boulangerie",
     "qty": 0.3,
     "unit": "kg",
     "median": 2.54,
@@ -4063,6 +4089,19 @@
     "p75": 2.65,
     "n": 14,
     "per_unit": 10.91
+   },
+   {
+    "code": "3270190128717",
+    "name": "Soja Sans sucres ajoutés Carrefour BIO",
+    "detail": "1 L",
+    "rayon": "Crèmerie",
+    "qty": 1.0,
+    "unit": "L",
+    "median": 0.99,
+    "p25": 0.92,
+    "p75": 0.99,
+    "n": 4,
+    "per_unit": 0.99
    },
    {
     "code": "3273220082089",
@@ -4091,6 +4130,19 @@
     "per_unit": 4.77
    },
    {
+    "code": "3273220083000",
+    "name": "Yaourt au Soja Citron Sojasun",
+    "detail": "400 g",
+    "rayon": "Crèmerie",
+    "qty": 0.4,
+    "unit": "kg",
+    "median": 1.91,
+    "p25": 1.66,
+    "p75": 1.91,
+    "n": 11,
+    "per_unit": 4.77
+   },
+   {
     "code": "3273220083260",
     "name": "Sojasun Myrtilles",
     "detail": "400 g",
@@ -4102,6 +4154,19 @@
     "p75": 2.05,
     "n": 14,
     "per_unit": 4.7
+   },
+   {
+    "code": "3274080001005",
+    "name": "Cristaline Eau De Source",
+    "detail": "9 L",
+    "rayon": "Boissons",
+    "qty": 9.0,
+    "unit": "L",
+    "median": 1.14,
+    "p25": 1.09,
+    "p75": 1.17,
+    "n": 8,
+    "per_unit": 0.13
    },
    {
     "code": "3281780085105",
@@ -4196,7 +4261,7 @@
    },
    {
     "code": "3322680009966",
-    "name": "Crêpes Cracky Whaou, Whaou!",
+    "name": "Crêpes Cracky Whaou",
     "detail": "256 g",
     "rayon": "Épicerie",
     "qty": 0.256,
@@ -4274,7 +4339,7 @@
    },
    {
     "code": "3336971209133",
-    "name": "Curly cacahuete Vico, Curly",
+    "name": "Curly cacahuete Vico",
     "detail": "100 g",
     "rayon": "Apéro",
     "qty": 0.1,
@@ -4302,7 +4367,7 @@
     "code": "3354599571005",
     "name": "Beurre plaquette AOP doux Grand Fermage",
     "detail": "250 g",
-    "rayon": "Petit-déj",
+    "rayon": "Crèmerie",
     "qty": 0.25,
     "unit": "kg",
     "median": 2.7,
@@ -4352,7 +4417,7 @@
    },
    {
     "code": "3375610002346",
-    "name": "Skyr soja nature Les",
+    "name": "Skyr soja nature Les Prés d'Ariège",
     "detail": "400 g",
     "rayon": "Crèmerie",
     "qty": 0.4,
@@ -4365,7 +4430,7 @@
    },
    {
     "code": "3414280077060",
-    "name": "6 Gros Œufs L'oeuf",
+    "name": "6 Gros Œufs L'oeuf de nos villages",
     "detail": "360 g",
     "rayon": "Crèmerie",
     "qty": 0.36,
@@ -4429,6 +4494,19 @@
     "per_unit": 24.44
    },
    {
+    "code": "3450970001007",
+    "name": "Haricots Blancs Eco Plus",
+    "detail": "530 g",
+    "rayon": "Conserves",
+    "qty": 0.53,
+    "unit": "kg",
+    "median": 0.93,
+    "p25": 0.91,
+    "p75": 0.93,
+    "n": 7,
+    "per_unit": 1.75
+   },
+   {
     "code": "3450970001137",
     "name": "Tomates pelées Eco+",
     "detail": "Boîte de 800 g",
@@ -4442,19 +4520,6 @@
     "per_unit": 1.35
    },
    {
-    "code": "3450970001274",
-    "name": "Chocolat E.Leclerc,",
-    "detail": "500 g",
-    "rayon": "Confiserie",
-    "qty": 0.5,
-    "unit": "kg",
-    "median": 3.78,
-    "p25": 3.78,
-    "p75": 3.78,
-    "n": 15,
-    "per_unit": 7.56
-   },
-   {
     "code": "3450970002325",
     "name": "Crème fraîche épaisse Eco+",
     "detail": "Pot de 50 cl",
@@ -4466,6 +4531,19 @@
     "p75": 1.89,
     "n": 31,
     "per_unit": 3.78
+   },
+   {
+    "code": "3450970006446",
+    "name": "16 galettes au Beurre Eco",
+    "detail": "125 g",
+    "rayon": "Biscuits",
+    "qty": 0.125,
+    "unit": "kg",
+    "median": 0.64,
+    "p25": 0.62,
+    "p75": 0.64,
+    "n": 13,
+    "per_unit": 5.12
    },
    {
     "code": "3450970006767",
@@ -4505,6 +4583,19 @@
     "p75": 1.63,
     "n": 19,
     "per_unit": 1.62
+   },
+   {
+    "code": "3450970016674",
+    "name": "Fromage blanc au lait demi-écrémé €co+",
+    "detail": "1 kg",
+    "rayon": "Crèmerie",
+    "qty": 1.0,
+    "unit": "kg",
+    "median": 1.79,
+    "p25": 1.79,
+    "p75": 1.79,
+    "n": 9,
+    "per_unit": 1.79
    },
    {
     "code": "3450970024686",
@@ -4559,19 +4650,6 @@
     "per_unit": 6.08
    },
    {
-    "code": "3450970060486",
-    "name": "Riz au lait saveur vanille Eco +",
-    "detail": "200 g",
-    "rayon": "Crèmerie",
-    "qty": 0.2,
-    "unit": "kg",
-    "median": 0.55,
-    "p25": 0.55,
-    "p75": 0.57,
-    "n": 15,
-    "per_unit": 2.75
-   },
-   {
     "code": "3450970069069",
     "name": "Sucre en poudre Eco+",
     "detail": "Paquet de 1 kg",
@@ -4585,8 +4663,21 @@
     "per_unit": 0.87
    },
    {
+    "code": "3450970102124",
+    "name": "Lait Demi-Ecrémé - Stérilisé UHT E.Leclerc",
+    "detail": "1 L",
+    "rayon": "Crèmerie",
+    "qty": 1.0,
+    "unit": "L",
+    "median": 0.92,
+    "p25": 0.92,
+    "p75": 0.92,
+    "n": 13,
+    "per_unit": 0.92
+   },
+   {
     "code": "3450970103916",
-    "name": "Maïs doux en grains sous vide Eco, €CO+",
+    "name": "Maïs doux en grains sous vide Eco",
     "detail": "285 g",
     "rayon": "Conserves",
     "qty": 0.285,
@@ -4666,7 +4757,7 @@
     "code": "3450971456578",
     "name": "Beurre doux Eco+",
     "detail": "200 g",
-    "rayon": "Petit-déj",
+    "rayon": "Crèmerie",
     "qty": 0.2,
     "unit": "kg",
     "median": 1.38,
@@ -4687,6 +4778,19 @@
     "p75": 1.78,
     "n": 19,
     "per_unit": 5.56
+   },
+   {
+    "code": "3451790563256",
+    "name": "Beurre à teneur réduite en MG (60%) Montfleuri",
+    "detail": "250 g",
+    "rayon": "Crèmerie",
+    "qty": 0.25,
+    "unit": "kg",
+    "median": 1.94,
+    "p25": 1.93,
+    "p75": 2.04,
+    "n": 21,
+    "per_unit": 7.76
    },
    {
     "code": "3451790563379",
@@ -4716,9 +4820,9 @@
    },
    {
     "code": "3456300014556",
-    "name": "Fourrés Chocolat Jardin",
+    "name": "Fourrés Chocolat Jardin Bio étic",
     "detail": "300 g",
-    "rayon": "Surgelés",
+    "rayon": "Biscuits",
     "qty": 0.3,
     "unit": "kg",
     "median": 2.55,
@@ -4729,7 +4833,7 @@
    },
    {
     "code": "3456580128011",
-    "name": "Tarte aux pommes Pâtissons!",
+    "name": "Tarte aux pommes Pâtissons",
     "detail": "140 g",
     "rayon": "Épicerie",
     "qty": 0.14,
@@ -4744,7 +4848,7 @@
     "code": "3456770002183",
     "name": "Double Plaisir - Crème lemon curd Mamie Nova",
     "detail": "280 g",
-    "rayon": "Surgelés",
+    "rayon": "Crèmerie",
     "qty": 0.28,
     "unit": "kg",
     "median": 2.11,
@@ -4768,7 +4872,7 @@
    },
    {
     "code": "3468570116601",
-    "name": "Rozana sarl ROZANA",
+    "name": "Rozana",
     "detail": "1 L",
     "rayon": "Boissons",
     "qty": 1.0,
@@ -4936,6 +5040,19 @@
     "per_unit": 0.86
    },
    {
+    "code": "3512690000576",
+    "name": "Déliss' Original Isla delice",
+    "detail": "350 g",
+    "rayon": "Crèmerie",
+    "qty": 0.35,
+    "unit": "kg",
+    "median": 2.57,
+    "p25": 2.4,
+    "p75": 3.31,
+    "n": 4,
+    "per_unit": 7.34
+   },
+   {
     "code": "3523230030755",
     "name": "Beurre au sel de mer Grand Fermage",
     "detail": "Plaquette de 500 g",
@@ -4952,7 +5069,7 @@
     "code": "3523230030793",
     "name": "Beurre demi-sel grand fermage",
     "detail": "250 g",
-    "rayon": "Petit-déj",
+    "rayon": "Crèmerie",
     "qty": 0.25,
     "unit": "kg",
     "median": 2.64,
@@ -4960,6 +5077,19 @@
     "p75": 2.79,
     "n": 19,
     "per_unit": 10.56
+   },
+   {
+    "code": "3523237756009",
+    "name": "La bûche légère -30% M.G Soignon",
+    "detail": "180 g",
+    "rayon": "Crèmerie",
+    "qty": 0.18,
+    "unit": "kg",
+    "median": 2.63,
+    "p25": 2.39,
+    "p75": 2.85,
+    "n": 7,
+    "per_unit": 14.61
    },
    {
     "code": "3535800015123",
@@ -4988,6 +5118,32 @@
     "per_unit": 13.97
    },
    {
+    "code": "3560071427535",
+    "name": "Pâte à tartiner saveur noisette Carrefour",
+    "detail": "750 g",
+    "rayon": "Petit-déj",
+    "qty": 0.75,
+    "unit": "kg",
+    "median": 3.34,
+    "p25": 3.1,
+    "p75": 3.37,
+    "n": 7,
+    "per_unit": 4.45
+   },
+   {
+    "code": "3560071483234",
+    "name": "Kaonuts Carrefour",
+    "detail": "400 g",
+    "rayon": "Petit-déj",
+    "qty": 0.4,
+    "unit": "kg",
+    "median": 2.87,
+    "p25": 2.05,
+    "p75": 2.92,
+    "n": 7,
+    "per_unit": 7.17
+   },
+   {
     "code": "3564700001226",
     "name": "Lentilles vertes Marque Repère",
     "detail": "Paquet de 500 g",
@@ -5001,6 +5157,19 @@
     "per_unit": 3.32
    },
    {
+    "code": "3564700007792",
+    "name": "Crème fraîche 30% mg Délisse",
+    "detail": "50 cl",
+    "rayon": "Crèmerie",
+    "qty": 0.5,
+    "unit": "L",
+    "median": 1.95,
+    "p25": 1.95,
+    "p75": 1.97,
+    "n": 6,
+    "per_unit": 3.9
+   },
+   {
     "code": "3564700009321",
     "name": "Chorizo doux Saint Azay",
     "detail": "225 g",
@@ -5012,19 +5181,6 @@
     "p75": 1.89,
     "n": 17,
     "per_unit": 8.4
-   },
-   {
-    "code": "3564700010846",
-    "name": "Chocolat dessert pâtissier Marque Repère",
-    "detail": "200 g",
-    "rayon": "Confiserie",
-    "qty": 0.2,
-    "unit": "kg",
-    "median": 1.79,
-    "p25": 1.79,
-    "p75": 1.79,
-    "n": 15,
-    "per_unit": 8.95
    },
    {
     "code": "3564700013274",
@@ -5054,7 +5210,7 @@
    },
    {
     "code": "3564700031131",
-    "name": "Gâteau de Riz au Caramel Délisse,",
+    "name": "Gâteau de Riz au Caramel Délisse",
     "detail": "400 g",
     "rayon": "Crèmerie",
     "qty": 0.4,
@@ -5067,7 +5223,7 @@
    },
    {
     "code": "3564700213049",
-    "name": "Lasagnes à garnir Marque",
+    "name": "Lasagnes à garnir Marque Repère",
     "detail": "500 g",
     "rayon": "Épicerie",
     "qty": 0.5,
@@ -5080,7 +5236,7 @@
    },
    {
     "code": "3564700288443",
-    "name": "Demi-baguettes pré-cuites Marque",
+    "name": "Demi-baguettes pré-cuites Marque Repère",
     "detail": "300 g",
     "rayon": "Boulangerie",
     "qty": 0.3,
@@ -5106,7 +5262,7 @@
    },
    {
     "code": "3564700426920",
-    "name": "Fondue 3 fromages Marque",
+    "name": "Fondue 3 fromages Marque Repère",
     "detail": "400 g",
     "rayon": "Crèmerie",
     "qty": 0.4,
@@ -5119,7 +5275,7 @@
    },
    {
     "code": "3564700493175",
-    "name": "Gateau de riz Délisse,",
+    "name": "Gateau de riz Délisse",
     "detail": "500 g",
     "rayon": "Crèmerie",
     "qty": 0.5,
@@ -5145,7 +5301,7 @@
    },
    {
     "code": "3564700579947",
-    "name": "Semoule au lait saveur vanille Délisse,",
+    "name": "Semoule au lait saveur vanille Délisse",
     "detail": "920 g",
     "rayon": "Crèmerie",
     "qty": 0.92,
@@ -5157,17 +5313,17 @@
     "per_unit": 2.37
    },
    {
-    "code": "3564700644232",
-    "name": "Semoule de blé fine qualité supérieure Comptoir",
-    "detail": "500 g",
-    "rayon": "Épicerie",
-    "qty": 0.5,
+    "code": "3564700621639",
+    "name": "Emmental rapé Les Croisés",
+    "detail": "325 g",
+    "rayon": "Crèmerie",
+    "qty": 0.325,
     "unit": "kg",
-    "median": 0.93,
-    "p25": 0.9,
-    "p75": 0.96,
-    "n": 13,
-    "per_unit": 1.86
+    "median": 2.65,
+    "p25": 2.65,
+    "p75": 2.65,
+    "n": 7,
+    "per_unit": 8.15
    },
    {
     "code": "3564706596788",
@@ -5183,6 +5339,19 @@
     "per_unit": 14.25
    },
    {
+    "code": "3564706598430",
+    "name": "Comté Marque Repère",
+    "detail": "350 g",
+    "rayon": "Crèmerie",
+    "qty": 0.35,
+    "unit": "kg",
+    "median": 4.83,
+    "p25": 4.75,
+    "p75": 4.91,
+    "n": 15,
+    "per_unit": 13.8
+   },
+   {
     "code": "3564707000239",
     "name": "Œufs bio",
     "detail": "374 g",
@@ -5196,8 +5365,34 @@
     "per_unit": 5.59
    },
    {
+    "code": "3564707000550",
+    "name": "Lait demi-écrémé bio bouteille",
+    "detail": "6 L",
+    "rayon": "Crèmerie",
+    "qty": 6.0,
+    "unit": "L",
+    "median": 6.48,
+    "p25": 6.48,
+    "p75": 6.48,
+    "n": 3,
+    "per_unit": 1.08
+   },
+   {
+    "code": "3564707095723",
+    "name": "Boisson au soja nature bio",
+    "detail": "1 L",
+    "rayon": "Boissons",
+    "qty": 1.0,
+    "unit": "L",
+    "median": 0.88,
+    "p25": 0.88,
+    "p75": 0.88,
+    "n": 5,
+    "per_unit": 0.88
+   },
+   {
     "code": "3564709174631",
-    "name": "Pur jus tomate du lot et garonne Leclerc,",
+    "name": "Pur jus tomate du lot et garonne Leclerc",
     "detail": "1 L",
     "rayon": "Boissons",
     "qty": 1.0,
@@ -5210,9 +5405,9 @@
    },
    {
     "code": "3587220002252",
-    "name": "La gâche tranchée",
+    "name": "La gâche tranchée La Fournée Dorée",
     "detail": "500 g",
-    "rayon": "Épicerie",
+    "rayon": "Boulangerie",
     "qty": 0.5,
     "unit": "kg",
     "median": 2.17,
@@ -5222,17 +5417,56 @@
     "per_unit": 4.34
    },
    {
-    "code": "3587220551507",
-    "name": "La Gâche Tranchée aux pépites de chocolat",
-    "detail": "500 g",
-    "rayon": "Confiserie",
-    "qty": 0.5,
+    "code": "3587220002733",
+    "name": "Mini brioche Burger La Fournée Dorée",
+    "detail": "200 g",
+    "rayon": "Boulangerie",
+    "qty": 0.2,
     "unit": "kg",
-    "median": 3.08,
-    "p25": 2.92,
-    "p75": 3.22,
-    "n": 20,
-    "per_unit": 6.16
+    "median": 2.25,
+    "p25": 2.25,
+    "p75": 2.53,
+    "n": 14,
+    "per_unit": 11.25
+   },
+   {
+    "code": "3596710018987",
+    "name": "Emmental râpé Auchan",
+    "detail": "200 g",
+    "rayon": "Crèmerie",
+    "qty": 0.2,
+    "unit": "kg",
+    "median": 1.77,
+    "p25": 1.73,
+    "p75": 1.77,
+    "n": 9,
+    "per_unit": 8.85
+   },
+   {
+    "code": "3596710019007",
+    "name": "Emmental râpé Auchan",
+    "detail": "350 g",
+    "rayon": "Crèmerie",
+    "qty": 0.35,
+    "unit": "kg",
+    "median": 2.95,
+    "p25": 2.95,
+    "p75": 3.07,
+    "n": 7,
+    "per_unit": 8.43
+   },
+   {
+    "code": "3596710354238",
+    "name": "Avoine Bio Auchan Bio",
+    "detail": "1 L",
+    "rayon": "Boissons",
+    "qty": 1.0,
+    "unit": "L",
+    "median": 1.75,
+    "p25": 1.75,
+    "p75": 1.75,
+    "n": 4,
+    "per_unit": 1.75
    },
    {
     "code": "3596710414765",
@@ -5246,6 +5480,19 @@
     "p75": 1.27,
     "n": 21,
     "per_unit": 2.42
+   },
+   {
+    "code": "3596710467815",
+    "name": "Houmous - aux pois chiches Auchan",
+    "detail": "200 g",
+    "rayon": "Apéro",
+    "qty": 0.2,
+    "unit": "kg",
+    "median": 1.98,
+    "p25": 1.89,
+    "p75": 1.98,
+    "n": 7,
+    "per_unit": 9.9
    },
    {
     "code": "3599741001904",
@@ -5264,7 +5511,7 @@
     "code": "3599741006374",
     "name": "Pommes noisettes croustillantes et fondantes Findus",
     "detail": "500 g",
-    "rayon": "Surgelés",
+    "rayon": "Apéro",
     "qty": 0.5,
     "unit": "kg",
     "median": 2.39,
@@ -5379,7 +5626,7 @@
    },
    {
     "code": "3661344221772",
-    "name": "Yaourt saveur myrtille sauvage Les",
+    "name": "Yaourt saveur myrtille sauvage Les 2 Vaches",
     "detail": "460 g",
     "rayon": "Crèmerie",
     "qty": 0.46,
@@ -5407,7 +5654,7 @@
     "code": "3664346305983",
     "name": "Poudre Poulain Grand Arôme",
     "detail": "250 g",
-    "rayon": "Épicerie",
+    "rayon": "Petit-déj",
     "qty": 0.25,
     "unit": "kg",
     "median": 1.97,
@@ -5417,10 +5664,23 @@
     "per_unit": 7.88
    },
    {
+    "code": "3664346312936",
+    "name": "Pâte à tartiner aux noisettes et au cacao Poulain",
+    "detail": "400 g",
+    "rayon": "Petit-déj",
+    "qty": 0.4,
+    "unit": "kg",
+    "median": 3.58,
+    "p25": 3.07,
+    "p75": 3.84,
+    "n": 6,
+    "per_unit": 8.95
+   },
+   {
     "code": "3664346315371",
     "name": "Grand Arôme moins de sucre Poulain",
     "detail": "400 g",
-    "rayon": "Boissons",
+    "rayon": "Petit-déj",
     "qty": 0.4,
     "unit": "kg",
     "median": 3.95,
@@ -5433,7 +5693,7 @@
     "code": "3664346355070",
     "name": "Poulain poudre chocolat 32%",
     "detail": "800 g",
-    "rayon": "Confiserie",
+    "rayon": "Petit-déj",
     "qty": 0.8,
     "unit": "kg",
     "median": 5.67,
@@ -5496,7 +5756,7 @@
    },
    {
     "code": "3700311801651",
-    "name": "Chips Tous",
+    "name": "Chips Tous les jours",
     "detail": "200 g",
     "rayon": "Apéro",
     "qty": 0.2,
@@ -5509,7 +5769,7 @@
    },
    {
     "code": "3700656402339",
-    "name": "Panciotti Saucisson et fromage Corte",
+    "name": "Panciotti Saucisson et fromage Corte del gusto",
     "detail": "130 g",
     "rayon": "Frais",
     "qty": 0.13,
@@ -5521,17 +5781,17 @@
     "per_unit": 25.0
    },
    {
-    "code": "3760049794298",
-    "name": "Pain de mie Bio grandes tranches céréales & graines La",
-    "detail": "500 g",
-    "rayon": "Boulangerie",
-    "qty": 0.5,
+    "code": "3760020507916",
+    "name": "Gaufrettes chocolat Jardin Bio",
+    "detail": "200 g",
+    "rayon": "Biscuits",
+    "qty": 0.2,
     "unit": "kg",
-    "median": 2.69,
-    "p25": 2.65,
-    "p75": 2.81,
-    "n": 14,
-    "per_unit": 5.38
+    "median": 2.96,
+    "p25": 2.57,
+    "p75": 3.39,
+    "n": 10,
+    "per_unit": 14.8
    },
    {
     "code": "3760056260113",
@@ -5560,6 +5820,19 @@
     "per_unit": 6.92
    },
    {
+    "code": "3760091727732",
+    "name": "Beurre bio cacahuète Ethiquable",
+    "detail": "350 g",
+    "rayon": "Crèmerie",
+    "qty": 0.35,
+    "unit": "kg",
+    "median": 4.49,
+    "p25": 4.19,
+    "p75": 4.75,
+    "n": 8,
+    "per_unit": 12.83
+   },
+   {
     "code": "3760109520133",
     "name": "Viande hachée pur bœuf Eco+",
     "detail": "Barquette de 800 g",
@@ -5574,9 +5847,9 @@
    },
    {
     "code": "3760109528092",
-    "name": "Rillettes du Mans - Sans Arôme E.Leclerc,",
+    "name": "Rillettes du Mans - Sans Arôme E.Leclerc",
     "detail": "220 g",
-    "rayon": "Petit-déj",
+    "rayon": "Apéro",
     "qty": 0.22,
     "unit": "kg",
     "median": 1.05,
@@ -5587,7 +5860,7 @@
    },
    {
     "code": "3760109528603",
-    "name": "Saucisson Cuit A L'Ail - Gout Fumé E.Leclerc,",
+    "name": "Saucisson Cuit A L'Ail - Gout Fumé E.Leclerc",
     "detail": "400 g",
     "rayon": "Frais",
     "qty": 0.4,
@@ -5599,10 +5872,23 @@
     "per_unit": 3.43
    },
    {
+    "code": "3760253400008",
+    "name": "Pesto alla Genovese Italians do",
+    "detail": "135 g",
+    "rayon": "Épicerie",
+    "qty": 0.135,
+    "unit": "kg",
+    "median": 4.68,
+    "p25": 4.02,
+    "p75": 5.63,
+    "n": 8,
+    "per_unit": 34.67
+   },
+   {
     "code": "3760324300015",
     "name": "2 Steaks végétaux et gourmands HappyVore",
     "detail": "200 g",
-    "rayon": "Épicerie",
+    "rayon": "Frais",
     "qty": 0.2,
     "unit": "kg",
     "median": 3.99,
@@ -5612,10 +5898,23 @@
     "per_unit": 19.95
    },
    {
+    "code": "3770008009653",
+    "name": "La pâte à tartiner cacao noisette Funkie",
+    "detail": "200 g",
+    "rayon": "Petit-déj",
+    "qty": 0.2,
+    "unit": "kg",
+    "median": 4.25,
+    "p25": 4.04,
+    "p75": 4.8,
+    "n": 8,
+    "per_unit": 21.25
+   },
+   {
     "code": "3770016162036",
     "name": "Nuggets Végétaux et Gourmands HappyVore",
     "detail": "210 g",
-    "rayon": "Épicerie",
+    "rayon": "Frais",
     "qty": 0.21,
     "unit": "kg",
     "median": 3.78,
@@ -5628,7 +5927,7 @@
     "code": "3770016162043",
     "name": "Merguez Végétale HappyVore",
     "detail": "200 g",
-    "rayon": "Épicerie",
+    "rayon": "Frais",
     "qty": 0.2,
     "unit": "kg",
     "median": 3.99,
@@ -5690,30 +5989,17 @@
     "per_unit": 10.33
    },
    {
-    "code": "5000112611762",
+    "code": "5000112611878",
     "name": "Coca cola zero",
-    "detail": "1,25 L",
-    "rayon": "Boissons",
-    "qty": 1.25,
-    "unit": "L",
-    "median": 1.69,
-    "p25": 1.48,
-    "p75": 1.81,
-    "n": 14,
-    "per_unit": 1.35
-   },
-   {
-    "code": "5000112611861",
-    "name": "Coca",
     "detail": "1,75 L",
     "rayon": "Boissons",
     "qty": 1.75,
     "unit": "L",
-    "median": 2.43,
-    "p25": 2.39,
-    "p75": 2.45,
-    "n": 18,
-    "per_unit": 1.39
+    "median": 1.85,
+    "p25": 1.71,
+    "p75": 2.03,
+    "n": 16,
+    "per_unit": 1.06
    },
    {
     "code": "5000159560498",
@@ -5730,7 +6016,7 @@
    },
    {
     "code": "5000168198491",
-    "name": "Sablés Anglais L'Original McVitie's,",
+    "name": "Sablés Anglais L'Original McVitie's",
     "detail": "400 g",
     "rayon": "Biscuits",
     "qty": 0.4,
@@ -5820,19 +6106,6 @@
     "per_unit": 12.53
    },
    {
-    "code": "5410041040807",
-    "name": "Pim's - Framboise Lu",
-    "detail": "150 g",
-    "rayon": "Biscuits",
-    "qty": 0.15,
-    "unit": "kg",
-    "median": 1.69,
-    "p25": 1.54,
-    "p75": 2.19,
-    "n": 25,
-    "per_unit": 11.27
-   },
-   {
     "code": "5410093901347",
     "name": "Graisse à frire Vandemoortele",
     "detail": "1 kg",
@@ -5847,7 +6120,7 @@
    },
    {
     "code": "5410096784701",
-    "name": "Riz au lait vanille Nestlé,",
+    "name": "Riz au lait vanille Nestlé",
     "detail": "500 g",
     "rayon": "Crèmerie",
     "qty": 0.5,
@@ -5898,19 +6171,6 @@
     "per_unit": 9.48
    },
    {
-    "code": "5410126832570",
-    "name": "Lotus Gaufre de Liège Chocolat au lait (7x1p)",
-    "detail": "363 g",
-    "rayon": "Biscuits",
-    "qty": 0.363,
-    "unit": "kg",
-    "median": 3.44,
-    "p25": 3.27,
-    "p75": 3.49,
-    "n": 20,
-    "per_unit": 9.48
-   },
-   {
     "code": "5411188102809",
     "name": "Myrtille alpro",
     "detail": "500 g",
@@ -5935,19 +6195,6 @@
     "p75": 2.51,
     "n": 16,
     "per_unit": 2.33
-   },
-   {
-    "code": "5411188110842",
-    "name": "Danone Alpro® Boisson à la noisette",
-    "detail": "1 L",
-    "rayon": "Boissons",
-    "qty": 1.0,
-    "unit": "L",
-    "median": 2.28,
-    "p25": 2.19,
-    "p75": 2.56,
-    "n": 14,
-    "per_unit": 2.28
    },
    {
     "code": "5411188115366",
@@ -5976,17 +6223,17 @@
     "per_unit": 2.05
    },
    {
-    "code": "5449000092861",
-    "name": "Coca-Cola Verre",
-    "detail": "1,5 L",
-    "rayon": "Boissons",
-    "qty": 1.5,
-    "unit": "L",
-    "median": 6.47,
-    "p25": 5.81,
-    "p75": 6.99,
-    "n": 17,
-    "per_unit": 4.31
+    "code": "5411188118961",
+    "name": "Nature aux Amandes - Végétal soja & amande Danone",
+    "detail": "500 g",
+    "rayon": "Crèmerie",
+    "qty": 0.5,
+    "unit": "kg",
+    "median": 1.92,
+    "p25": 1.78,
+    "p75": 2.19,
+    "n": 8,
+    "per_unit": 3.84
    },
    {
     "code": "5449000267436",
@@ -6054,8 +6301,34 @@
     "per_unit": 16.19
    },
    {
+    "code": "7300400481588",
+    "name": "Fibres wasa",
+    "detail": "230 g",
+    "rayon": "Petit-déj",
+    "qty": 0.23,
+    "unit": "kg",
+    "median": 1.87,
+    "p25": 1.72,
+    "p75": 2.01,
+    "n": 8,
+    "per_unit": 8.13
+   },
+   {
+    "code": "7311070032611",
+    "name": "Krisprolls Complets",
+    "detail": "425 g",
+    "rayon": "Petit-déj",
+    "qty": 0.425,
+    "unit": "kg",
+    "median": 3.69,
+    "p25": 3.4,
+    "p75": 3.91,
+    "n": 6,
+    "per_unit": 8.68
+   },
+   {
     "code": "7394376621680",
-    "name": "Bio Barista - Boisson à base d'avoine moussante Oat-Ly!",
+    "name": "Bio Barista - Boisson à base d'avoine moussante Oat-Ly",
     "detail": "1 L",
     "rayon": "Boissons",
     "qty": 1.0,
@@ -6065,19 +6338,6 @@
     "p75": 2.79,
     "n": 26,
     "per_unit": 2.65
-   },
-   {
-    "code": "7613034579942",
-    "name": "Eau minérale naturelle gazeuse Nestlé, Perrier",
-    "detail": "1,98 L",
-    "rayon": "Boissons",
-    "qty": 1.98,
-    "unit": "L",
-    "median": 2.93,
-    "p25": 2.84,
-    "p75": 3.13,
-    "n": 16,
-    "per_unit": 1.48
    },
    {
     "code": "7613034975386",
@@ -6091,19 +6351,6 @@
     "p75": 5.18,
     "n": 21,
     "per_unit": 9.39
-   },
-   {
-    "code": "7613034975416",
-    "name": "Extrême Chocolat Nestlé",
-    "detail": "72 cl",
-    "rayon": "Surgelés",
-    "qty": 0.72,
-    "unit": "L",
-    "median": 4.89,
-    "p25": 4.35,
-    "p75": 5.45,
-    "n": 17,
-    "per_unit": 6.79
    },
    {
     "code": "7613035040823",
@@ -6120,9 +6367,9 @@
    },
    {
     "code": "7613035694958",
-    "name": "Carré gourmand Tomates et mozzarella Garden",
+    "name": "Carré gourmand Tomates et mozzarella Garden Gourmet",
     "detail": "160 g",
-    "rayon": "Crèmerie",
+    "rayon": "Frais",
     "qty": 0.16,
     "unit": "kg",
     "median": 2.49,
@@ -6158,19 +6405,6 @@
     "per_unit": 11.95
    },
    {
-    "code": "7622201133337",
-    "name": "Figolu LU, Mondelez",
-    "detail": "192 g",
-    "rayon": "Biscuits",
-    "qty": 0.192,
-    "unit": "kg",
-    "median": 1.85,
-    "p25": 1.66,
-    "p75": 2.46,
-    "n": 22,
-    "per_unit": 9.64
-   },
-   {
     "code": "7622201521059",
     "name": "Choco Brookie Milka",
     "detail": "152 g",
@@ -6198,7 +6432,7 @@
    },
    {
     "code": "7622201809638",
-    "name": "Napolitain l'Original LU,",
+    "name": "Napolitain l'Original LU",
     "detail": "180 g",
     "rayon": "Biscuits",
     "qty": 0.18,
@@ -6224,7 +6458,7 @@
    },
    {
     "code": "7622202028335",
-    "name": "Mikado Chocolat au lait LU,",
+    "name": "Mikado Chocolat au lait",
     "detail": "100 g",
     "rayon": "Biscuits",
     "qty": 0.1,
@@ -6234,6 +6468,19 @@
     "p75": 2.57,
     "n": 24,
     "per_unit": 20.2
+   },
+   {
+    "code": "7622210137258",
+    "name": "Oreo Double Creme",
+    "detail": "157 g",
+    "rayon": "Biscuits",
+    "qty": 0.157,
+    "unit": "kg",
+    "median": 1.52,
+    "p25": 1.33,
+    "p75": 1.83,
+    "n": 12,
+    "per_unit": 9.68
    },
    {
     "code": "7622210449283",
@@ -6340,23 +6587,23 @@
     "per_unit": 13.85
    },
    {
-    "code": "8000500025857",
-    "name": "Barre Chocolatée Kinder Bueno Chocolat au Lait",
-    "detail": "129 g",
-    "rayon": "Confiserie",
-    "qty": 0.129,
+    "code": "8000430138719",
+    "name": "Mozzarella Galbani",
+    "detail": "125 g",
+    "rayon": "Crèmerie",
+    "qty": 0.125,
     "unit": "kg",
-    "median": 2.76,
-    "p25": 2.48,
-    "p75": 3.4,
-    "n": 22,
-    "per_unit": 21.4
+    "median": 1.1,
+    "p25": 0.96,
+    "p75": 1.21,
+    "n": 9,
+    "per_unit": 8.8
    },
    {
     "code": "8000500045497",
     "name": "Biscuits Nutella & Go packs",
     "detail": "104 g",
-    "rayon": "Petit-déj",
+    "rayon": "Boulangerie",
     "qty": 0.104,
     "unit": "kg",
     "median": 3.1,
@@ -6367,7 +6614,7 @@
    },
    {
     "code": "8000500223369",
-    "name": "Biscuits Nutella B-ready Noisettes et Cacao Ferrero,",
+    "name": "Biscuits Nutella B-ready Noisettes et Cacao Ferrero",
     "detail": "330 g",
     "rayon": "Biscuits",
     "qty": 0.33,
@@ -6377,32 +6624,6 @@
     "p75": 4.98,
     "n": 15,
     "per_unit": 13.61
-   },
-   {
-    "code": "8000500227848",
-    "name": "Biscuits Nutella B-ready Noisettes et Cacao",
-    "detail": "132 g",
-    "rayon": "Biscuits",
-    "qty": 0.132,
-    "unit": "kg",
-    "median": 2.49,
-    "p25": 2.33,
-    "p75": 3.0,
-    "n": 17,
-    "per_unit": 18.86
-   },
-   {
-    "code": "8000500242612",
-    "name": "Schoko-Bons Kinder,",
-    "detail": "225 g",
-    "rayon": "Confiserie",
-    "qty": 0.225,
-    "unit": "kg",
-    "median": 4.12,
-    "p25": 3.94,
-    "p75": 4.81,
-    "n": 22,
-    "per_unit": 18.31
    },
    {
     "code": "8000500267103",
@@ -6429,19 +6650,6 @@
     "p75": 2.85,
     "n": 24,
     "per_unit": 17.11
-   },
-   {
-    "code": "8000500290392",
-    "name": "Barre Chocolatée Kinder Bueno Chocolat au Lait",
-    "detail": "258 g",
-    "rayon": "Confiserie",
-    "qty": 0.258,
-    "unit": "kg",
-    "median": 5.37,
-    "p25": 4.55,
-    "p75": 5.4,
-    "n": 13,
-    "per_unit": 20.81
    },
    {
     "code": "8000500290484",
@@ -6496,21 +6704,8 @@
     "per_unit": 23.57
    },
    {
-    "code": "8000500382769",
-    "name": "Nutella biscuits",
-    "detail": "207 g",
-    "rayon": "Biscuits",
-    "qty": 0.207,
-    "unit": "kg",
-    "median": 3.18,
-    "p25": 2.37,
-    "p75": 3.55,
-    "n": 15,
-    "per_unit": 15.36
-   },
-   {
     "code": "8000500384794",
-    "name": "Kinder Tronky Ferrero, Kinder",
+    "name": "Kinder Tronky Ferrero",
     "detail": "90 g",
     "rayon": "Biscuits",
     "qty": 0.09,
@@ -6536,7 +6731,7 @@
    },
    {
     "code": "8000500426494",
-    "name": "Nutella Plant-Based Ferrero, Nutella",
+    "name": "Nutella Plant-Based Ferrero",
     "detail": "350 g",
     "rayon": "Petit-déj",
     "qty": 0.35,
@@ -6548,21 +6743,8 @@
     "per_unit": 12.34
    },
    {
-    "code": "8002270044892",
-    "name": "Eau minérale naturelle gazeuse San Pellegrino",
-    "detail": "1 L",
-    "rayon": "Boissons",
-    "qty": 1.0,
-    "unit": "L",
-    "median": 4.14,
-    "p25": 3.88,
-    "p75": 4.45,
-    "n": 16,
-    "per_unit": 4.14
-   },
-   {
     "code": "8002270049941",
-    "name": "Eau minérale naturelle gazeuse San",
+    "name": "Eau minérale naturelle gazeuse San Pellegrino",
     "detail": "3 L",
     "rayon": "Boissons",
     "qty": 3.0,
@@ -6575,7 +6757,7 @@
    },
    {
     "code": "8019428000013",
-    "name": "Boisson de Riz naturel - Bio The",
+    "name": "Boisson de Riz naturel - Bio The Bridge",
     "detail": "1 L",
     "rayon": "Boissons",
     "qty": 1.0,
@@ -6601,7 +6783,7 @@
    },
    {
     "code": "8052575090230",
-    "name": "Nocciolata Rigoni",
+    "name": "Nocciolata Rigoni Di Asiago",
     "detail": "250 g",
     "rayon": "Petit-déj",
     "qty": 0.25,
@@ -6624,6 +6806,19 @@
     "p75": 9.05,
     "n": 15,
     "per_unit": 13.77
+   },
+   {
+    "code": "8076802085738",
+    "name": "Rigatoni Penne Rigate Nº73 Barilla",
+    "detail": "500 g",
+    "rayon": "Épicerie",
+    "qty": 0.5,
+    "unit": "kg",
+    "median": 1.14,
+    "p25": 1.03,
+    "p75": 1.23,
+    "n": 9,
+    "per_unit": 2.28
    },
    {
     "code": "8076808890015",
@@ -6691,23 +6886,23 @@
     "per_unit": 11.65
    },
    {
-    "code": "80861263",
-    "name": "Pâte à tartiner Nutella",
-    "detail": "220 g",
-    "rayon": "Petit-déj",
-    "qty": 0.22,
+    "code": "8076809573252",
+    "name": "Baiocchi nocciola Barilla G.",
+    "detail": "260 g",
+    "rayon": "Biscuits",
+    "qty": 0.26,
     "unit": "kg",
-    "median": 2.68,
-    "p25": 2.49,
-    "p75": 2.95,
-    "n": 20,
-    "per_unit": 12.18
+    "median": 3.47,
+    "p25": 2.98,
+    "p75": 3.68,
+    "n": 12,
+    "per_unit": 13.35
    },
    {
     "code": "8410076350213",
-    "name": "Salsa dip Old",
+    "name": "Salsa dip Old El Paso",
     "detail": "312 g",
-    "rayon": "Épicerie",
+    "rayon": "Apéro",
     "qty": 0.312,
     "unit": "kg",
     "median": 2.99,
@@ -6718,9 +6913,9 @@
    },
    {
     "code": "8410076421449",
-    "name": "Sauce apéritif Guacamole Old",
+    "name": "Sauce apéritif Guacamole Old El Paso",
     "detail": "320 g",
-    "rayon": "Petit-déj",
+    "rayon": "Apéro",
     "qty": 0.32,
     "unit": "kg",
     "median": 2.67,
@@ -6731,7 +6926,7 @@
    },
    {
     "code": "8410076470553",
-    "name": "Sauce à cuisiner Fajita Old",
+    "name": "Sauce à cuisiner Fajita Old El Paso",
     "detail": "395 g",
     "rayon": "Épicerie",
     "qty": 0.395,
@@ -6743,10 +6938,36 @@
     "per_unit": 7.09
    },
    {
+    "code": "8410076470812",
+    "name": "Blé Complet Wraps General Mills",
+    "detail": "350 g",
+    "rayon": "Frais",
+    "qty": 0.35,
+    "unit": "kg",
+    "median": 3.51,
+    "p25": 3.1,
+    "p75": 3.81,
+    "n": 5,
+    "per_unit": 10.03
+   },
+   {
+    "code": "8410076610737",
+    "name": "Barre de céréales protéinés Nature Valley",
+    "detail": "160 g",
+    "rayon": "Petit-déj",
+    "qty": 0.16,
+    "unit": "kg",
+    "median": 3.53,
+    "p25": 2.65,
+    "p75": 3.95,
+    "n": 7,
+    "per_unit": 22.06
+   },
+   {
     "code": "8445290503206",
     "name": "Nesquik poche recharge",
     "detail": "800 g",
-    "rayon": "Épicerie",
+    "rayon": "Petit-déj",
     "qty": 0.8,
     "unit": "kg",
     "median": 4.69,
@@ -6759,7 +6980,7 @@
     "code": "8445291659445",
     "name": "Garden Gourmet La Panée Soja",
     "detail": "207 g",
-    "rayon": "Crèmerie",
+    "rayon": "Frais",
     "qty": 0.207,
     "unit": "kg",
     "median": 2.91,
@@ -6780,19 +7001,6 @@
     "p75": 2.38,
     "n": 9,
     "per_unit": 2.86
-   },
-   {
-    "code": "8710438108002",
-    "name": "MC CAN Cote Resto McCain",
-    "detail": "650 g",
-    "rayon": "Surgelés",
-    "qty": 0.65,
-    "unit": "kg",
-    "median": 2.81,
-    "p25": 2.13,
-    "p75": 3.6,
-    "n": 14,
-    "per_unit": 4.32
    },
    {
     "code": "8711327370708",
@@ -6886,6 +7094,32 @@
     "per_unit": 16.02
    },
    {
+    "code": "8711327608665",
+    "name": "Glaces Amande Magnum",
+    "detail": "300 g",
+    "rayon": "Surgelés",
+    "qty": 0.3,
+    "unit": "kg",
+    "median": 3.44,
+    "p25": 3.02,
+    "p75": 4.46,
+    "n": 24,
+    "per_unit": 11.47
+   },
+   {
+    "code": "8712100724572",
+    "name": "Levure Chimique Alsacienne",
+    "detail": "88 g",
+    "rayon": "Épicerie",
+    "qty": 0.088,
+    "unit": "kg",
+    "median": 0.81,
+    "p25": 0.8,
+    "p75": 0.87,
+    "n": 4,
+    "per_unit": 9.2
+   },
+   {
     "code": "8712566361601",
     "name": "Amora Sauce Samouraï",
     "detail": "255 g",
@@ -6915,7 +7149,7 @@
     "code": "8715035110106",
     "name": "Sauce Soja - Kikkoman",
     "detail": "15 cl",
-    "rayon": "Crèmerie",
+    "rayon": "Épicerie",
     "qty": 0.15,
     "unit": "L",
     "median": 4.88,
@@ -6925,10 +7159,23 @@
     "per_unit": 32.53
    },
    {
+    "code": "8715035110304",
+    "name": "Sauce soja Kikkoman Foods Europe B.V",
+    "detail": "25 cl",
+    "rayon": "Épicerie",
+    "qty": 0.25,
+    "unit": "L",
+    "median": 5.13,
+    "p25": 4.7,
+    "p75": 5.52,
+    "n": 14,
+    "per_unit": 20.52
+   },
+   {
     "code": "8715035130104",
     "name": "Sauce Soja à teneur en sel réduite Kikkoman",
     "detail": "15 cl",
-    "rayon": "Crèmerie",
+    "rayon": "Épicerie",
     "qty": 0.15,
     "unit": "L",
     "median": 4.74,
@@ -6967,7 +7214,7 @@
     "code": "8718114734484",
     "name": "Maille Mayonnaise Fine Qualité Traiteur Bocal",
     "detail": "320 g",
-    "rayon": "Épicerie",
+    "rayon": "Apéro",
     "qty": 0.32,
     "unit": "kg",
     "median": 2.84,
@@ -6980,7 +7227,7 @@
     "code": "8720182461247",
     "name": "Amora Moutarde Forte",
     "detail": "185 g",
-    "rayon": "Surgelés",
+    "rayon": "Épicerie",
     "qty": 0.185,
     "unit": "kg",
     "median": 1.85,
@@ -6991,7 +7238,7 @@
    },
    {
     "code": "8720182557452",
-    "name": "Moutarde à l’ancienne Maille, Unilever",
+    "name": "Moutarde à l’ancienne Maille",
     "detail": "360 g",
     "rayon": "Épicerie",
     "qty": 0.36,
@@ -7001,19 +7248,6 @@
     "p75": 3.22,
     "n": 14,
     "per_unit": 8.56
-   },
-   {
-    "code": "8722700113348",
-    "name": "Tomato Ketchup Amora",
-    "detail": "280 g",
-    "rayon": "Épicerie",
-    "qty": 0.28,
-    "unit": "kg",
-    "median": 1.26,
-    "p25": 1.08,
-    "p75": 1.44,
-    "n": 17,
-    "per_unit": 4.5
    },
    {
     "code": "8722700125174",
@@ -7040,6 +7274,19 @@
     "p75": 4.95,
     "n": 15,
     "per_unit": 16.84
+   },
+   {
+    "code": "9002490205973",
+    "name": "Red Bull - Energy Drink",
+    "detail": "25 cl",
+    "rayon": "Boissons",
+    "qty": 0.25,
+    "unit": "L",
+    "median": 1.13,
+    "p25": 1.12,
+    "p75": 1.2,
+    "n": 12,
+    "per_unit": 4.52
    },
    {
     "code": "insee-000442423",
@@ -7672,5 +7919,6 @@
     "period": "2026-09"
    }
   ]
- }
+ },
+ "_fiches": {"0022314010025":{"fr":"Crème de marrons de l'Ardèche","nom":"Crème de marrons de l'Ardèche","lang":"fr","marque":"Clement Faugier","qte":500,"unite":"g","quantite":"500g","cats":[],"t":"2026-10-20"},"0037600106009":{"fr":"Creamy Peanut Butter","nom":"","lang":"nl","marque":"Skippy","qte":340,"unite":"g","quantite":"340g","cats":[],"t":"2026-10-20"},"0046000815213":{"fr":"guacamole","nom":"guacamole","lang":"fr","marque":"Old El Paso","qte":20,"unite":"g","quantite":"20g","cats":["en:condiments"],"t":"2026-10-20"},"3017620429484":{"fr":"Nutella","nom":"Nutella","lang":"fr","marque":"Nutella, Ferrero","qte":825,"unite":"g","quantite":"825 g","cats":["en:sweet-spreads","en:hazelnut-spreads"],"t":"2026-10-20"},"3017760015097":{"fr":"La Coqueline (fraise)","nom":"La Coqueline (fraise)","lang":"fr","marque":"LU, Mondelez","qte":165,"unite":"g","quantite":"165 g e","cats":["en:biscuits-and-cakes","en:biscuits","en:cakes"],"t":"2026-10-20"},"3017760038331":{"fr":"La Barquette (chocolat)","nom":"La Barquette (chocolat)","lang":"fr","marque":"LU","qte":120,"unite":"g","quantite":"120 g","cats":["en:biscuits-and-cakes","en:biscuits","en:cakes"],"t":"2026-10-20"},"3017760329798":{"fr":"Pockitos Chocolat au lait","nom":"Pockitos Chocolat au lait","lang":"fr","marque":"Lu, Mondelez, Pépito","qte":295,"unite":"g","quantite":"295 g","cats":["en:biscuits-and-cakes","en:biscuits"],"t":"2026-10-20"},"3017760544795":{"fr":"La Paille d'Or aux fraises","nom":"La Paille d'Or aux fraises","lang":"fr","marque":"LU, Mondelez","qte":170,"unite":"g","quantite":"170 g e","cats":["en:biscuits-and-cakes","en:biscuits"],"t":"2026-10-20"},"3017760589895":{"fr":"Mini Rollos Chocolat au Lait & Coeur fondant au Lait","nom":"Mini Rollos Chocolat au Lait & Coeur fondant au Lait","lang":"fr","marque":"LU, Mondelez, Pépito","qte":225,"unite":"g","quantite":"225 g","cats":["en:biscuits-and-cakes","en:biscuits"],"t":"2026-10-20"},"3017760635295":{"fr":"Granola l'original","nom":"Granola l'original","lang":"fr","marque":"Lu","qte":225,"unite":"g","quantite":"225g","cats":["en:biscuits-and-cakes","en:biscuits"],"t":"2026-10-20"},"3017760756198":{"fr":"Cookies Granola LU","nom":"Cookies Granola LU","lang":"fr","marque":"LU","qte":184,"unite":"g","quantite":"184g","cats":["en:biscuits-and-cakes","en:biscuits"],"t":"2026-10-20"},"3017760756297":{"fr":"Granola Gros éclats de Chocolat","nom":"Granola Gros éclats de Chocolat","lang":"fr","marque":"Granola, Kraft Foods, LU, Mondelez, Unilever","qte":184,"unite":"g","quantite":"184 g (8 biscuits)","cats":["en:biscuits-and-cakes","en:biscuits"],"t":"2026-10-20"},"3017760819121":{"fr":"Chamonix","nom":"Chamonix","lang":"fr","marque":"LU, Mondelez","qte":250,"unite":"g","quantite":"250 g ℮, (20 biscuits x 12,5 g)","cats":["en:biscuits-and-cakes","en:biscuits"],"t":"2026-10-20"},"3019089042242":{"fr":"Rillettes de saumon","nom":"Rillettes de saumon","lang":"fr","marque":"PETIT NAVIRE","qte":125,"unite":"g","quantite":"125 g","cats":["en:salted-spreads","en:rillettes"],"t":"2026-10-20"},"3021690201123":{"fr":"Lentilles Cuisinées à l'Auvergnate","nom":"Lentilles Cuisinées à l'Auvergnate","lang":"fr","marque":"Raynal & Roquelaure","qte":410,"unite":"g","quantite":"410 g","cats":["en:meals"],"t":"2026-10-20"},"3023290030356":{"fr":"MaronSui‘s L‘Original","nom":"MaronSui‘s L‘Original","lang":"fr","marque":"La Laitière","qte":276,"unite":"g","quantite":"275,2g (4x69g)","cats":["en:dairies","en:dairy-desserts"],"t":"2026-10-20"},"3023290036686":{"fr":"Riz au lait vanille","nom":"Riz au lait","lang":"en","marque":"Nestlé, La Laitière","qte":460,"unite":"g","quantite":"4x115g","cats":["en:dairies","en:dairy-desserts"],"t":"2026-10-20"},"3023290050378":{"fr":"Viennois L'original chocolat 4 x 100 g","nom":"Viennois L'original chocolat 4 x 100 g","lang":"fr","marque":"Nestlé","qte":400,"unite":"g","quantite":"400 g","cats":["en:dairies","en:dairy-desserts"],"t":"2026-10-20"},"3023290624302":{"fr":"Gâteau de riz sur lit de caramel","nom":"Gâteau de riz sur lit de caramel","lang":"fr","marque":"Nestlé, La Laitière","qte":400,"unite":"g","quantite":"400g","cats":["en:dairies","en:dairy-desserts"],"t":"2026-10-20"},"3023292266005":{"fr":"Gâteau de riz au caramel","nom":"Gâteau de riz au caramel","lang":"fr","marque":"Nestlé, La Laitière","qte":500,"unite":"g","quantite":"500 g e","cats":["en:dairies","en:biscuits-and-cakes","en:dairy-desserts","en:cakes"],"t":"2026-10-20"},"3023470001015":{"fr":"Galettes St Michel au beurre 4X5 - 130g","nom":"Galettes St Michel au beurre 4X5 - 130g","lang":"fr","marque":"saint michel","qte":130,"unite":"g","quantite":"130 g","cats":["en:biscuits-and-cakes","en:biscuits"],"t":"2026-10-20"},"3023470001084":{"fr":"Galettes Au bon beurre (8x5)","nom":"Galettes Au bon beurre (8x5)","lang":"fr","marque":"St Michel","qte":260,"unite":"g","quantite":"2x130 g","cats":["en:biscuits-and-cakes","en:biscuits"],"t":"2026-10-20"},"3023470200050":{"fr":"Savaroises au chocolat","nom":"Savaroises au chocolat","lang":"fr","marque":"St Michel","qte":220,"unite":"g","quantite":"220 g","cats":["en:biscuits-and-cakes","en:biscuits","en:cakes"],"t":"2026-10-20"},"3029330801900":{"fr":"Pain Burger Géant","nom":"Pain Burger Géant","lang":"fr","marque":"Jacquet","qte":330,"unite":"g","quantite":"330 g","cats":["en:breads"],"t":"2026-10-20"},"3029330801924":{"fr":"pain Burger complet","nom":"pain Burger complet","lang":"fr","marque":"jacquet","qte":330,"unite":"g","quantite":"330 g","cats":["en:breads"],"t":"2026-10-20"},"3033491279737":{"fr":"Danette caramel","nom":"Danette caramel","lang":"fr","marque":"Danone, Danette","qte":500,"unite":"g","quantite":"500g (4x125g)","cats":["en:dairies","en:dairy-desserts"],"t":"2026-10-20"},"3033491279898":{"fr":"Danette saveur pistache 125 g x 4","nom":"Danette saveur pistache 125 g x 4","lang":"fr","marque":"Danone, Danette, Danette creme dessert","qte":500,"unite":"g","quantite":"0.5 kg","cats":["en:dairies","en:dairy-desserts","en:yogurts"],"t":"2026-10-20"},"3033491377105":{"fr":"Danette le liegeois chocolat 100 g x 4","nom":"Danette le liegeois chocolat 100 g x 4","lang":"fr","marque":"Danone, Danette, Danette liegeois","qte":400,"unite":"g","quantite":"0.4 kg","cats":["en:dairies","en:dairy-desserts"],"t":"2026-10-20"},"3033710019526":{"fr":"KITKAT Ball, Billes au chocolat au Lait, 250g","nom":"KITKAT Ball, Billes au chocolat au Lait, 250g","lang":"fr","marque":"Nestlé, Kit kat ball, Kitkat","qte":250,"unite":"g","quantite":"250 g","cats":["en:confectioneries"],"t":"2026-10-20"},"3033710065967":{"fr":"NESQUIK Cacao","nom":"NESQUIK Cacao","lang":"fr","marque":"NESTLE FRANCE","qte":1000,"unite":"g","quantite":"1 kg","cats":["en:cocoa-and-chocolate-powders"],"t":"2026-10-20"},"3038352357104":{"fr":"Panzani semoule moyen 500 /6","nom":"Panzani semoule moyen 500 /6","lang":"fr","marque":"Panzani","qte":500,"unite":"g","quantite":"500 g","cats":[],"t":"2026-10-20"},"3038354199603":{"fr":"Panzani sauce pesto basilic 200g","nom":"Panzani sauce pesto basilic 200g","lang":"fr","marque":"Panzani","qte":200,"unite":"g","quantite":"200 g","cats":["en:condiments","en:sauces"],"t":"2026-10-20"},"3045320001570":{"fr":"Confiture Framboises","nom":"Confiture Framboises","lang":"fr","marque":"Bonne Maman","qte":370,"unite":"g","quantite":"370g","cats":["en:sweet-spreads","en:jams"],"t":"2026-10-20"},"3045320001587":{"fr":"Confiture Extra de Myrtilles","nom":"Confiture Extra de Myrtilles","lang":"fr","marque":"Bonne Maman","qte":370,"unite":"g","quantite":"370 g","cats":["en:sweet-spreads","en:jams"],"t":"2026-10-20"},"3045320001594":{"fr":"Bonne Maman - Mirabelle Plum Jam, 370g (13oz)","nom":"Bonne Maman - Mirabelle Plum Jam, 370g (13oz)","lang":"fr","marque":"Bonne Maman","qte":370,"unite":"g","quantite":"370 g","cats":["en:sweet-spreads","en:jams"],"t":"2026-10-20"},"3045320001655":{"fr":"confiture bonne maman 4 fruits","nom":"confiture bonne maman 4 fruits","lang":"fr","marque":"Bonne Maman","qte":370,"unite":"g","quantite":"370g","cats":["en:sweet-spreads","en:jams"],"t":"2026-10-20"},"3045320057294":{"fr":"Galettes pur beurre","nom":"Galettes pur beurre","lang":"fr","marque":"Bonne Maman","qte":170,"unite":"g","quantite":"170 g","cats":["en:biscuits-and-cakes","en:biscuits"],"t":"2026-10-20"},"3045320517699":{"fr":"Crème caramel aux œufs frais","nom":"Crème caramel aux œufs frais","lang":"fr","marque":"Bonne Maman","qte":400,"unite":"g","quantite":"400 g (4 * 100 g)","cats":["en:dairies","en:dairy-desserts"],"t":"2026-10-20"},"3047100055421":{"fr":"Suze","nom":"Suze","lang":"fr","marque":"Pernod  sa","qte":1000,"unite":"ml","quantite":"1 l","cats":["en:beverages","en:alcoholic-beverages"],"t":"2026-10-20"},"3048282322646":{"fr":"Lulu L'Ourson Chocolat","nom":"Lulu L'Ourson Chocolat","lang":"fr","marque":"LU, Mondelez International","qte":150,"unite":"g","quantite":"150 g","cats":["en:biscuits-and-cakes","en:biscuits","en:cakes"],"t":"2026-10-20"},"3048282332645":{"fr":"LULU","nom":"LULU","lang":"en","marque":"Lu","qte":150,"unite":"g","quantite":"150 g (5 x 30 g)","cats":["en:biscuits-and-cakes","en:cakes"],"t":"2026-10-20"},"3048282900646":{"fr":"Pepito lu pépite choco","nom":"Pepito lu pépite choco","lang":"fr","marque":"LU, Mondelez","qte":150,"unite":"g","quantite":"150 g","cats":["en:biscuits-and-cakes","en:biscuits","en:cakes"],"t":"2026-10-20"},"3057640262128":{"fr":"Bonbonne 100% de matière recyclée","nom":"Volvic Nature 800cl PET","lang":"de","marque":"Volvic","qte":8000,"unite":"ml","quantite":"8 l","cats":["en:beverages","en:waters"],"t":"2026-10-20"},"3061990141101":{"fr":"Mini BN Chocolat","nom":"Mini BN Chocolat","lang":"fr","marque":"BN MINI","qte":175,"unite":"g","quantite":"5x35g (175g)","cats":["en:biscuits-and-cakes","en:biscuits"],"t":"2026-10-20"},"3061990141118":{"fr":"Mini Strawberry flavour","nom":"BN - Cookies - Mini Strawberry","lang":"en","marque":"BN","qte":175,"unite":"g","quantite":"175g","cats":["en:biscuits-and-cakes","en:biscuits","en:cakes"],"t":"2026-10-20"},"3061990143365":{"fr":"Goût chocolat","nom":"Goût chocolat","lang":"fr","marque":"BN, United Biscuits","qte":285,"unite":"g","quantite":"285 g","cats":["en:biscuits-and-cakes","en:biscuits"],"t":"2026-10-20"},"3068320011837":{"fr":"Badoit Finement pétillante","nom":"Badoit Finement pétillante","lang":"fr","marque":"Badoit","qte":3000,"unite":"ml","quantite":"3 l (6 x 50 cl)","cats":["en:beverages","en:waters"],"t":"2026-10-20"},"3068320114460":{"fr":"Badoit 6x1 L PET","nom":"Badoit 6x1 L PET","lang":"de","marque":"Badoit","qte":6000,"unite":"ml","quantite":"6 l","cats":["en:beverages","en:waters"],"t":"2026-10-20"},"3068320123271":{"fr":"La Salvetat","nom":"La Salvetat","lang":"fr","marque":"La Salvetat","qte":6900,"unite":"ml","quantite":"6.9 l (6 x 1,15 l)","cats":["en:beverages","en:waters"],"t":"2026-10-20"},"3083680002929":{"fr":"Macédoine 1/2","nom":"Macédoine 1/2","lang":"fr","marque":"Bonduelle","qte":265,"unite":"g","quantite":"265 g","cats":["en:canned-foods","en:meals","en:salty-snacks","en:appetizers"],"t":"2026-10-20"},"3083680085311":{"fr":"Petits Pois 4/4","nom":"Petits Pois 4/4","lang":"fr","marque":"Cassegrain","qte":465,"unite":"g","quantite":"465 g","cats":["en:canned-foods"],"t":"2026-10-20"},"3083680085335":{"fr":"Flageolets préparés 1/2","nom":"Flageolets préparés 1/2","lang":"fr","marque":"Cassegrain","qte":265,"unite":"g","quantite":"265 g","cats":["en:canned-foods"],"t":"2026-10-20"},"3083680481991":{"fr":"Petits Pois et Carottes 4/4","nom":"Petits Pois et Carottes 4/4","lang":"fr","marque":"Cassegrain","qte":465,"unite":"g","quantite":"465 g","cats":["en:canned-foods"],"t":"2026-10-20"},"3083680482011":{"fr":"Flageolets préparés 4/4","nom":"Flageolets préparés 4/4","lang":"fr","marque":"Cassegrain","qte":465,"unite":"g","quantite":"465 g","cats":["en:canned-foods"],"t":"2026-10-20"},"3083680482035":{"fr":"Petits Pois 1/4","nom":"Petits Pois 1/4","lang":"fr","marque":"Cassegrain","qte":140,"unite":"g","quantite":"140 g","cats":["en:canned-foods"],"t":"2026-10-20"},"3083680482066":{"fr":"Flageolets préparés","nom":"Flageolets préparés","lang":"fr","marque":"Cassegrain","qte":130,"unite":"g","quantite":"130 g","cats":["en:canned-foods"],"t":"2026-10-20"},"3083680613576":{"fr":"Lentilles préparées 1/2","nom":"Lentilles préparées 1/2","lang":"fr","marque":"Cassegrain","qte":265,"unite":"g","quantite":"265 g","cats":["en:canned-foods","en:meals"],"t":"2026-10-20"},"3083680652094":{"fr":"Lentilles préparées","nom":"Lentilles préparées","lang":"fr","marque":"Cassegrain","qte":130,"unite":"g","quantite":"130 g","cats":["en:canned-foods","en:meals"],"t":"2026-10-20"},"3083680901024":{"fr":"Ratatouille Cuisinée à la Provençal","nom":"Ratatouille Cuisinée à la Provençal","lang":"fr","marque":"Cassegrain","qte":185,"unite":"g","quantite":"185 g","cats":["en:canned-foods","en:meals"],"t":"2026-10-20"},"3083681001808":{"fr":"Haricots Coco cuisinés aux Tomates","nom":"Haricots Coco cuisinés aux Tomates","lang":"fr","marque":"Cassegrain","qte":435,"unite":"g","quantite":"435 g","cats":["en:canned-foods","en:meals"],"t":"2026-10-20"},"3083681017779":{"fr":"Aubergines cuisinées à la Provençale","nom":"Aubergines cuisinées à la Provençale","lang":"fr","marque":"Cassegrain","qte":185,"unite":"g","quantite":"185 g","cats":["en:canned-foods","en:meals"],"t":"2026-10-20"},"3083681017809":{"fr":"Courgettes à la Provençale 1/4","nom":"Courgettes à la Provençale 1/4","lang":"fr","marque":"Cassegrain","qte":185,"unite":"g","quantite":"185 g","cats":[],"t":"2026-10-20"},"3083681027860":{"fr":"Haricots Verts extra-fins 4/4","nom":"Haricots Verts extra-fins 4/4","lang":"fr","marque":"Cassegrain","qte":390,"unite":"g","quantite":"390 g","cats":["en:canned-foods"],"t":"2026-10-20"},"3083681029994":{"fr":"Tajine de Légumes Grillés 1/2","nom":"Tajine de Légumes Grillés 1/2","lang":"fr","marque":"Cassegrain","qte":375,"unite":"g","quantite":"375 g","cats":["en:canned-foods","en:meals"],"t":"2026-10-20"},"3083681042450":{"fr":"Courgettes à la Provençale 4/4","nom":"Courgettes à la Provençale 4/4","lang":"fr","marque":"Cassegrain","qte":660,"unite":"g","quantite":"660 g","cats":["en:canned-foods","en:meals"],"t":"2026-10-20"},"3083681057843":{"fr":"Haricots Verts extra-fins 1/4","nom":"Haricots Verts extra-fins 1/4","lang":"fr","marque":"Cassegrain","qte":110,"unite":"g","quantite":"110 g","cats":["en:canned-foods"],"t":"2026-10-20"},"3083681059793":{"fr":"Poivrons cuisinés piment Espelette","nom":"Poivrons cuisinés piment Espelette","lang":"fr","marque":"Cassegrain","qte":375,"unite":"g","quantite":"375 g","cats":["en:canned-foods","en:meals"],"t":"2026-10-20"},"3083681085990":{"fr":"Haricots rouges Très peu de jus 1/2","nom":"Haricots rouges Très peu de jus 1/2","lang":"fr","marque":"Bonduelle","qte":250,"unite":"g","quantite":"250 g","cats":["en:canned-foods"],"t":"2026-10-20"},"3083681093926":{"fr":"Aubergines cuisinées à la Provençal","nom":"Aubergines cuisinées à la Provençal","lang":"fr","marque":"Cassegrain","qte":375,"unite":"g","quantite":"375 g","cats":["en:canned-foods","en:meals"],"t":"2026-10-20"},"3083681094282":{"fr":"Petits Pois 1/2","nom":"Petits Pois 1/2","lang":"fr","marque":"Cassegrain","qte":280,"unite":"g","quantite":"280 g","cats":["en:canned-foods"],"t":"2026-10-20"},"3083681094459":{"fr":"Courgettes à la Provençale 1/2","nom":"Courgettes à la Provençale 1/2","lang":"fr","marque":"Cassegrain","qte":375,"unite":"g","quantite":"375 g","cats":["en:canned-foods"],"t":"2026-10-20"},"3083681094923":{"fr":"Haricots Verts extra-fins 1/2","nom":"Haricots Verts extra-fins 1/2","lang":"fr","marque":"Cassegrain","qte":220,"unite":"g","quantite":"220 g","cats":["en:canned-foods"],"t":"2026-10-20"},"3083681095296":{"fr":"Ratatouille Cuisinée à la Provençal","nom":"Ratatouille Cuisinée à la Provençal","lang":"fr","marque":"Cassegrain","qte":380,"unite":"g","quantite":"380 g","cats":["en:canned-foods","en:meals"],"t":"2026-10-20"},"3083681095319":{"fr":"Petits Pois et Carottes 1/2","nom":"Petits Pois et Carottes 1/2","lang":"fr","marque":"Cassegrain","qte":265,"unite":"g","quantite":"265 g","cats":["en:canned-foods"],"t":"2026-10-20"},"3083681148916":{"fr":"Rata & Quinoa","nom":"Rata & Quinoa","lang":"fr","marque":"Cassegrain","qte":375,"unite":"g","quantite":"375 g","cats":["en:canned-foods"],"t":"2026-10-20"},"3083681177732":{"fr":"Curry de pois chiches a l'indienne","nom":"Curry de pois chiches a l'indienne","lang":"fr","marque":"Cassegrain","qte":430,"unite":"g","quantite":"430 g","cats":["en:meals"],"t":"2026-10-20"},"3083681177763":{"fr":"Chili de haricots rouges a la mex","nom":"Chili de haricots rouges a la mex","lang":"fr","marque":"Cassegrain","qte":430,"unite":"g","quantite":"430 g","cats":["en:canned-foods"],"t":"2026-10-20"},"3088866541056":{"fr":"Brossard le cake à l'anglaise","nom":"Brossard le cake à l'anglaise","lang":"fr","marque":"Brossard","qte":400,"unite":"g","quantite":"400 g","cats":["en:biscuits-and-cakes","en:cakes"],"t":"2026-10-20"},"3095758048012":{"fr":"le supérieur au torchon 2 tranches sans couenne","nom":"le supérieur au torchon 2 tranches sans couenne","lang":"fr","marque":"fleury michon","qte":80,"unite":"g","quantite":"80 g","cats":["en:meats","en:prepared-meats"],"t":"2026-10-20"},"3104544010260":{"fr":"Graisse de Canard","nom":"Graisse de Canard","lang":"fr","marque":"Maison Montfort","qte":320,"unite":"g","quantite":"320 g","cats":[],"t":"2026-10-20"},"3116430216342":{"fr":"DéliChoc Milk Chocolate Biscuits","nom":"DéliChoc Milk Chocolate Biscuits","lang":"en","marque":"DéliChoc","qte":150,"unite":"g","quantite":"150g","cats":["en:biscuits-and-cakes","en:biscuits"],"t":"2026-10-20"},"3154230800484":{"fr":"Tendre Croc' L'original Jambon et Fromage x2","nom":"Tendre Croc' L'original Jambon et Fromage x2","lang":"fr","marque":"HERTA, Tendre Croc', herta","qte":200,"unite":"g","quantite":"200 g","cats":["en:sandwiches"],"t":"2026-10-20"},"3166350006271":{"fr":"Tagliatelles à la Carbonara lardons fumés et crème fraîche","nom":"Tagliatelles à la Carbonara lardons fumés et crème fraîche","lang":"fr","marque":"Marie","qte":330,"unite":"g","quantite":"330 g","cats":["en:meals"],"t":"2026-10-20"},"3166352967037":{"fr":"Poisson à l'andalouse riz safrané aux petits légumes","nom":"Poisson à l'andalouse riz safrané aux petits légumes","lang":"fr","marque":"Marie","qte":300,"unite":"g","quantite":"300 g e","cats":["en:meals"],"t":"2026-10-20"},"3166352967211":{"fr":"Petites gambas compotée de tomates Tagliatelles au pesto","nom":"Petites gambas compotée de tomates Tagliatelles au pesto","lang":"fr","marque":"Marie","qte":280,"unite":"g","quantite":"280 g e","cats":["en:frozen-foods","en:meals"],"t":"2026-10-20"},"3168930163480":{"fr":"Alvalle Gazpacho l'original","nom":"Alvalle Gazpacho l'original","lang":"fr","marque":"ALVALLé","qte":1000,"unite":"ml","quantite":"1L","cats":["en:beverages","en:meals"],"t":"2026-10-20"},"3168930166078":{"fr":"Doritos Salsa douce","nom":"Doritos Salsa douce","lang":"fr","marque":"Doritos","qte":280,"unite":"g","quantite":"280 g","cats":["en:condiments","en:sauces","en:dips"],"t":"2026-10-20"},"3168930166108":{"fr":"Sour Cream","nom":"Sour Cream","lang":"fr","marque":"Doritos","qte":280,"unite":"g","quantite":"280 g","cats":["en:condiments","en:sauces","en:dips"],"t":"2026-10-20"},"3168930166139":{"fr":"Nacho Cheese","nom":"Nacho Cheese","lang":"fr","marque":"Doritos","qte":280,"unite":"g","quantite":"280 g","cats":[],"t":"2026-10-20"},"3168930168133":{"fr":"Chips recette paysanne nature","nom":"Chips recette paysanne nature","lang":"fr","marque":"Lay's","qte":155,"unite":"g","quantite":"155 g","cats":["en:salty-snacks","en:appetizers","en:chips-and-fries","en:crisps"],"t":"2026-10-20"},"3168930171881":{"fr":"Creamy Guacamole","nom":"Creamy Guacamole","lang":"fr","marque":"Doritos","qte":270,"unite":"g","quantite":"270 g","cats":["en:condiments","en:sauces","en:dips"],"t":"2026-10-20"},"3175681257566":{"fr":"Gingembre saveur citron","nom":"Gingembre saveur citron","lang":"fr","marque":"Gerblé","qte":132,"unite":"g","quantite":"132 g (12 x 11 g)","cats":["en:biscuits-and-cakes","en:biscuits"],"t":"2026-10-20"},"3176571744012":{"fr":"Candy'Up goût Fraise","nom":"Candy'Up goût Fraise","lang":"fr","marque":"Candia, Candy Up, Candyup","qte":1200,"unite":"ml","quantite":"1,2 L (6x20cL)","cats":["en:beverages","en:dairies"],"t":"2026-10-20"},"3176571744289":{"fr":"Candy'Up Goût Chocolat🍫","nom":"Candy'Up Goût Chocolat🍫","lang":"fr","marque":"SODIMA","qte":1200,"unite":"ml","quantite":"1,2 L (6*20 cl)","cats":["en:beverages","en:dairies"],"t":"2026-10-20"},"3177630361034":{"fr":"Le Yaourt -  Pêche jaune","nom":"Le Yaourt -  Pêche jaune","lang":"fr","marque":"Mamie Nova","qte":300,"unite":"g","quantite":"300 g (2 * 150 g)","cats":["en:dairies","en:dairy-desserts","en:yogurts"],"t":"2026-10-20"},"3178530402988":{"fr":"Tartelettes citron","nom":"Tartelettes citron","lang":"fr","marque":"Bonne Maman","qte":125,"unite":"g","quantite":"125g (9 sachets)","cats":["en:biscuits-and-cakes","en:biscuits","en:cakes"],"t":"2026-10-20"},"3178530404142":{"fr":"Bonne Maman - Le petit Quatre-Quarts pur beurre, 300g (10 sachets fraîcheur)","nom":"Bonne Maman - Le petit Quatre-Quarts pur beurre, 300g (10 sachets fraîcheur)","lang":"fr","marque":"Bonne Maman","qte":300,"unite":"g","quantite":"300 g","cats":["en:biscuits-and-cakes","en:biscuits","en:cakes"],"t":"2026-10-20"},"3178530404784":{"fr":"Madeleines moelleuses","nom":"Madeleines moelleuses","lang":"fr","marque":"St Michel","qte":250,"unite":"g","quantite":"250 g","cats":["en:biscuits-and-cakes","en:cakes"],"t":"2026-10-20"},"3178530405736":{"fr":"Bonne Maman - Quatre Quarts, 500g (17.6oz)","nom":"Bonne Maman - Quatre Quarts, 500g (17.6oz)","lang":"fr","marque":"Bonne Maman","qte":500,"unite":"g","quantite":"500 g e","cats":["en:biscuits-and-cakes","en:cakes"],"t":"2026-10-20"},"3178530405774":{"fr":"Crêpes bretonnes 12 x 26,25 g","nom":"Crêpes bretonnes 12 x 26,25 g","lang":"fr","marque":"ST MICHEL BISCUITS SAS","qte":315,"unite":"g","quantite":"315 g","cats":[],"t":"2026-10-20"},"3178530405804":{"fr":"Tronches de cake - Moelleux Chocolat","nom":"Tronches de cake - Moelleux Chocolat","lang":"fr","marque":"St Michel","qte":175,"unite":"g","quantite":"175 g","cats":["en:biscuits-and-cakes","en:biscuits","en:cakes"],"t":"2026-10-20"},"3178530407396":{"fr":"Petit Cookies Pépites de chocolat","nom":"Petit Cookies Pépites de chocolat","lang":"fr","marque":"Bonne Maman","qte":250,"unite":"g","quantite":"250g","cats":["en:biscuits-and-cakes","en:biscuits"],"t":"2026-10-20"},"3178530407402":{"fr":"Petits Cakes aux Fruits","nom":"Petits Cakes aux Fruits","lang":"fr","marque":"Bonne Maman","qte":300,"unite":"g","quantite":"300 g","cats":["en:biscuits-and-cakes","en:cakes"],"t":"2026-10-20"},"3178530408379":{"fr":"Financiers amandes","nom":"Financiers amandes","lang":"en","marque":"Bonne Maman","qte":250,"unite":"g","quantite":"250 g","cats":["en:biscuits-and-cakes","en:cakes"],"t":"2026-10-20"},"3178530408515":{"fr":"Petits Muffins Chocolat","nom":"","lang":"nl","marque":"Bonne Maman","qte":235,"unite":"g","quantite":"235 g","cats":["en:biscuits-and-cakes","en:cakes"],"t":"2026-10-20"},"3178530414431":{"fr":"MADELEINE CITRON","nom":"MADELEINE CITRON","lang":"fr","marque":"Bonne Maman","qte":300,"unite":"g","quantite":"300g","cats":["en:biscuits-and-cakes","en:cakes"],"t":"2026-10-20"},"3178530416848":{"fr":"Tam Tam L'Original","nom":"Tam Tam L'Original","lang":"fr","marque":"St Michel","qte":275,"unite":"g","quantite":"275 g","cats":["en:biscuits-and-cakes","en:cakes"],"t":"2026-10-20"},"3178530421064":{"fr":"Petites tartelettes Chocolat caramel","nom":"Petites tartelettes Chocolat caramel","lang":"fr","marque":"Bonne Maman","qte":250,"unite":"g","quantite":"250 g","cats":["en:biscuits-and-cakes","en:biscuits"],"t":"2026-10-20"},"3178530421132":{"fr":"Galette moelleuse chocolat au lait","nom":"Galette moelleuse chocolat au lait","lang":"fr","marque":"St Michel","qte":180,"unite":"g","quantite":"180 g","cats":["en:biscuits-and-cakes","en:biscuits","en:cakes"],"t":"2026-10-20"},"3178530421194":{"fr":"Doomino Chocolat","nom":"Doomino Chocolat","lang":"fr","marque":"Saint Michel","qte":180,"unite":"g","quantite":"180g","cats":["en:biscuits-and-cakes","en:biscuits","en:cakes"],"t":"2026-10-20"},"3178530421224":{"fr":"La madeleine cœur framboise","nom":"La madeleine cœur framboise","lang":"fr","marque":"Bonne Maman","qte":300,"unite":"g","quantite":"300 g","cats":["en:biscuits-and-cakes","en:biscuits","en:cakes"],"t":"2026-10-20"},"3178530421392":{"fr":"La Madeleine coeur myrtille","nom":"La Madeleine coeur myrtille","lang":"fr","marque":"Bonne Maman","qte":300,"unite":"g","quantite":"300 g","cats":["en:biscuits-and-cakes","en:cakes"],"t":"2026-10-20"},"3178530422733":{"fr":"Galette Moelleuse marbrée chocolat","nom":"Galette Moelleuse marbrée chocolat","lang":"fr","marque":"St Michel","qte":180,"unite":"g","quantite":"180g","cats":["en:biscuits-and-cakes","en:cakes"],"t":"2026-10-20"},"3178530423150":{"fr":"La galette fourrée","nom":"La galette fourrée","lang":"fr","marque":"St Michel","qte":240,"unite":"g","quantite":"240 g","cats":["en:biscuits-and-cakes","en:biscuits"],"t":"2026-10-20"},"3178530423792":{"fr":"Galette moelleuse tigrée chocolat","nom":"Galette moelleuse tigrée chocolat","lang":"fr","marque":"St Michel","qte":180,"unite":"g","quantite":"180 g","cats":["en:biscuits-and-cakes","en:biscuits","en:cakes"],"t":"2026-10-20"},"3178530423839":{"fr":"Petites Madeleines","nom":"Petites Madeleines","lang":"fr","marque":"Bonne Maman","qte":235,"unite":"g","quantite":"235 g","cats":["en:biscuits-and-cakes","en:cakes"],"t":"2026-10-20"},"3179730005306":{"fr":"Eau gazeuse Perrier","nom":"Eau gazeuse Perrier","lang":"fr","marque":"Perrier","qte":3000,"unite":"ml","quantite":"6x50cl","cats":["en:beverages","en:waters"],"t":"2026-10-20"},"3179730121884":{"fr":"PET 50CL EAU GAZEUSE PERRIER","nom":"PET 50CL EAU GAZEUSE PERRIER","lang":"fr","marque":"Perrier","qte":500,"unite":"ml","quantite":"50cl","cats":["en:beverages","en:waters"],"t":"2026-10-20"},"3184670006610":{"fr":"La Panna Cotta  et son coulis mangue passion","nom":"La Panna Cotta  et son coulis mangue passion","lang":"fr","marque":"Rians","qte":240,"unite":"g","quantite":"240 g (2x 120 g)","cats":["en:dairies","en:dairy-desserts"],"t":"2026-10-20"},"3184670006627":{"fr":"Panna Cotta","nom":"Panna Cotta","lang":"fr","marque":"Rians","qte":240,"unite":"g","quantite":"240 g - 2 x (100+20g)","cats":["en:dairies","en:dairy-desserts"],"t":"2026-10-20"},"3185200001341":{"fr":"Croûtons de pain croustillants","nom":"Croûtons de pain croustillants","lang":"fr","marque":"Tipiak","qte":220,"unite":"g","quantite":"220g","cats":["en:breads"],"t":"2026-10-20"},"3215061062776":{"fr":"LOTUS Gaufres Fourrées cœur fondant Vergeoise 310g (5x2p)","nom":"LOTUS Gaufres Fourrées cœur fondant Vergeoise 310g (5x2p)","lang":"fr","marque":"Lotus","qte":310,"unite":"g","quantite":"310 g","cats":["en:biscuits-and-cakes"],"t":"2026-10-20"},"3215061072737":{"fr":"LOTUS Gaufres Fourrées cœur fondant saveur Vanille 310g (5x2p)","nom":"LOTUS Gaufres Fourrées cœur fondant saveur Vanille 310g (5x2p)","lang":"fr","marque":"Lotus","qte":310,"unite":"g","quantite":"310 g","cats":["en:biscuits-and-cakes"],"t":"2026-10-20"},"3228470065214":{"fr":"Senséo Corsé","nom":"Senséo Corsé","lang":"fr","marque":"Senseo","qte":277,"unite":"g","quantite":"40 dosettes (277 g)","cats":["en:beverages","en:coffees"],"t":"2026-10-20"},"3228850006035":{"fr":"Pain de mie longue conservation","nom":"Pain de mie longue conservation","lang":"fr","marque":"Harrys","qte":250,"unite":"g","quantite":"250 g","cats":["en:breads"],"t":"2026-10-20"},"3228857000166":{"fr":"100% mie complet","nom":"100% mie complet","lang":"fr","marque":"Harris, Harrys","qte":500,"unite":"g","quantite":"500 g","cats":["en:frozen-foods","en:breads"],"t":"2026-10-20"},"3228857000852":{"fr":"Pain de mie 100% mie nature","nom":"Pain de mie 100% mie nature","lang":"fr","marque":"Harrys, Harys 100% Mie","qte":500,"unite":"g","quantite":"500g","cats":["en:dairies","en:cheeses","en:frozen-foods","en:breads"],"t":"2026-10-20"},"3228857000876":{"fr":"Pain Extra Moelleux Nature Sans Sucres Ajoutés","nom":"Pain Extra Moelleux Nature Sans Sucres Ajoutés","lang":"fr","marque":"Harrys","qte":280,"unite":"g","quantite":"280 g","cats":["en:breads"],"t":"2026-10-20"},"3228857000883":{"fr":"Extra moelleux nature","nom":"Extra moelleux nature","lang":"fr","marque":"Harrys","qte":500,"unite":"g","quantite":"500 g","cats":["en:breads"],"t":"2026-10-20"},"3228857001194":{"fr":"Beau & bon Céréales & graines","nom":"Beau & bon Céréales & graines","lang":"fr","marque":"Harrys","qte":320,"unite":"g","quantite":"320 g","cats":["en:frozen-foods","en:breads"],"t":"2026-10-20"},"3228857001316":{"fr":"Brioche Tranchée Recette Classique","nom":"Brioche Tranchée Recette Classique","lang":"fr","marque":"Harrys","qte":485,"unite":"g","quantite":"485 g","cats":["en:viennoiseries"],"t":"2026-10-20"},"3228857001835":{"fr":"Pain de mie 100% mie harrys epaisse nature 500g","nom":"Pain de mie 100% mie harrys epaisse nature 500g","lang":"fr","marque":"Harrys","qte":500,"unite":"g","quantite":"500 g","cats":["en:breads"],"t":"2026-10-20"},"3228857002184":{"fr":"American sandwich nature","nom":"American sandwich nature","lang":"fr","marque":"Harrys, harrys","qte":550,"unite":"g","quantite":"550 g","cats":["en:frozen-foods","en:breads"],"t":"2026-10-20"},"3228857002221":{"fr":"American sandwich Céréales","nom":"American sandwich Céréales","lang":"fr","marque":"Harrys","qte":550,"unite":"g","quantite":"550 g","cats":["en:frozen-foods","en:breads"],"t":"2026-10-20"},"3229820129112":{"fr":"Amande intense","nom":"Amande intense","lang":"fr","marque":"Bjorg","qte":1000,"unite":"ml","quantite":"1 L","cats":["en:beverages","en:plant-based-milk-alternatives"],"t":"2026-10-20"},"3229820762050":{"fr":"Sauce soja","nom":"Sauce soja","lang":"fr","marque":"Tanoshi","qte":200,"unite":"ml","quantite":"200 ml","cats":["en:condiments","en:sauces"],"t":"2026-10-20"},"3229820765341":{"fr":"Vinaigre de riz","nom":"Vinaigre de riz","lang":"fr","marque":"Tanoshi","qte":150,"unite":"ml","quantite":"150 ml","cats":["en:beverages","en:condiments","en:vinegars"],"t":"2026-10-20"},"3229820783338":{"fr":"Épeautre noisette","nom":"Épeautre noisette","lang":"fr","marque":"Bjorg","qte":1000,"unite":"ml","quantite":"1 L","cats":["en:beverages","en:plant-based-milk-alternatives"],"t":"2026-10-20"},"3229820787015":{"fr":"Amande sans sucres","nom":"Amande sans sucres","lang":"fr","marque":"Bjorg","qte":1000,"unite":"ml","quantite":"1 l","cats":["en:beverages","en:plant-based-milk-alternatives"],"t":"2026-10-20"},"3229820789002":{"fr":"Amande vanille","nom":"Amande vanille","lang":"fr","marque":"Bjorg","qte":1000,"unite":"ml","quantite":"1 L e","cats":["en:beverages","en:plant-based-milk-alternatives"],"t":"2026-10-20"},"3229820789910":{"fr":"Amande Noisette","nom":"Amande Noisette","lang":"fr","marque":"Bjorg","qte":1000,"unite":"ml","quantite":"1 L","cats":["en:beverages","en:plant-based-milk-alternatives"],"t":"2026-10-20"},"3242272256854":{"fr":"Sodebo cremiobox 280g pipe rigate poulet a la creme","nom":"Sodebo cremiobox 280g pipe rigate poulet a la creme","lang":"fr","marque":"Sodebo, cremiobox","qte":280,"unite":"g","quantite":"280 g","cats":["en:meals"],"t":"2026-10-20"},"3242272270157":{"fr":"Sodebo pastabox 330g fusilli a la bolognaise","nom":"Sodebo pastabox 330g fusilli a la bolognaise","lang":"fr","marque":"Sodebo","qte":330,"unite":"g","quantite":"330 g","cats":["en:meals"],"t":"2026-10-20"},"3242272270454":{"fr":"Sodebo pastabox 300g fusilli au saumon","nom":"Sodebo pastabox 300g fusilli au saumon","lang":"fr","marque":"Sodebo","qte":300,"unite":"g","quantite":"300 g","cats":["en:meals"],"t":"2026-10-20"},"3242272890751":{"fr":"Suédois - Duo de saumon","nom":"Suédois - Duo de saumon","lang":"fr","marque":"Sodebo","qte":135,"unite":"g","quantite":"135 g","cats":["en:meals","en:sandwiches"],"t":"2026-10-20"},"3242272890959":{"fr":"Suédois jambon cheddar","nom":"Suédois jambon cheddar","lang":"fr","marque":"Sodebo","qte":135,"unite":"g","quantite":"135 g","cats":["en:prepared-meats","en:sandwiches"],"t":"2026-10-20"},"3248340054070":{"fr":"lait","nom":"lait","lang":"fr","marque":"C'est qui le patron ?!, La Marque du Consommateur","qte":6000,"unite":"ml","quantite":"6 x 1 L","cats":["en:beverages","en:dairies","en:milks"],"t":"2026-10-20"},"3248830687559":{"fr":"Cordon Bleu de Dinde et Coquillettes à l'Emmental","nom":"Cordon Bleu de Dinde et Coquillettes à l'Emmental","lang":"fr","marque":"Marie","qte":280,"unite":"g","quantite":"280 g","cats":["en:meals"],"t":"2026-10-20"},"3248832960025":{"fr":"Penne au saumon et crème d'épinards","nom":"Penne au saumon et crème d'épinards","lang":"fr","marque":"Marie","qte":280,"unite":"g","quantite":"280 g e","cats":["en:meals"],"t":"2026-10-20"},"3248832960209":{"fr":"Penne au Poulet et au Pesto","nom":"Penne au Poulet et au Pesto","lang":"fr","marque":"Marie","qte":280,"unite":"g","quantite":"280 g e","cats":["en:meals"],"t":"2026-10-20"},"3248832967277":{"fr":"Coquillettes au Jambon et au Fromage","nom":"Coquillettes au Jambon et au Fromage","lang":"fr","marque":"Marie","qte":280,"unite":"g","quantite":"280 g","cats":["en:meals"],"t":"2026-10-20"},"3250546610271":{"fr":"Amora moutarde flacon265g","nom":"Moutarde Fine et Forte Flacon Souple","lang":"en","marque":"Amora","qte":265,"unite":"g","quantite":"265 g","cats":["en:condiments","en:sauces"],"t":"2026-10-20"},"3252755250002":{"fr":"Madeleines Longues Marbrées chocolat","nom":"Madeleines Longues Marbrées chocolat","lang":"fr","marque":"Le Ster","qte":250,"unite":"g","quantite":"250 g","cats":["en:biscuits-and-cakes","en:cakes"],"t":"2026-10-20"},"3254382016921":{"fr":"Eau De Source Pétillante","nom":"Eau De Source Pétillante","lang":"fr","marque":"Cristaline","qte":"3000","unite":"ml","quantite":"3000 ml (6x50cl)","cats":["en:beverages","en:waters"],"t":"2026-10-20"},"3256540000339":{"fr":"Croissants","nom":"Croissants","lang":"fr","marque":"Brioche Pasquier, Pasquier","qte":320,"unite":"g","quantite":"320 g","cats":["en:viennoiseries"],"t":"2026-10-20"},"3256540000698":{"fr":"Pains au lait","nom":"Pains au lait","lang":"en","marque":"Brioche Pasquier","qte":350,"unite":"g","quantite":"x10 (350g)","cats":["en:viennoiseries"],"t":"2026-10-20"},"3256540001008":{"fr":"Pains au chocolat pasquier x8","nom":"Pains au chocolat pasquier x8","lang":"fr","marque":"Pasquier","qte":360,"unite":"g","quantite":"8 x 45 g","cats":["en:viennoiseries"],"t":"2026-10-20"},"3256540002494":{"fr":"ptits pain bretzel","nom":"ptits pain bretzel","lang":"fr","marque":"Pasquier","qte":270,"unite":"g","quantite":"270 g","cats":["en:breads"],"t":"2026-10-20"},"3256549996862":{"fr":"Pancake pépites de chocolat","nom":"Pancake pépites de chocolat","lang":"fr","marque":"Pasquier","qte":280,"unite":"g","quantite":"280 g","cats":[],"t":"2026-10-20"},"3256549999337":{"fr":"Brioches barre chocolat au lait","nom":"Brioches barre chocolat au lait","lang":"fr","marque":"Pitch","qte":300,"unite":"g","quantite":"300 g","cats":["en:viennoiseries"],"t":"2026-10-20"},"3256549999368":{"fr":"Brioche Pépites de Chocolat","nom":"Brioche Pépites de Chocolat","lang":"fr","marque":"PITCH","qte":300,"unite":"g","quantite":"300 g","cats":["en:viennoiseries"],"t":"2026-10-20"},"3265470166077":{"fr":"Sauce Quick Suprême Spicy","nom":"Sauce Quick Suprême Spicy","lang":"fr","marque":"Lesieur","qte":220,"unite":"g","quantite":"220 g","cats":["en:condiments","en:sauces"],"t":"2026-10-20"},"3273220082089":{"fr":"Fruits Mixés Abricot Goyave - Dessert Végétal","nom":"Fruits Mixés Abricot Goyave - Dessert Végétal","lang":"fr","marque":"Sojasun","qte":100,"unite":"g","quantite":"4 × 100 g","cats":["en:dairies","en:dairy-desserts","en:yogurts"],"t":"2026-10-20"},"3273220082188":{"fr":"Framboise Passion","nom":"Framboise Passion","lang":"fr","marque":"Sojasun","qte":400,"unite":"g","quantite":"400 g (4×100 g)","cats":[],"t":"2026-10-20"},"3273220083260":{"fr":"SOJASUN MYRTILLES 4X100G","nom":"SOJASUN MYRTILLES 4X100G","lang":"fr","marque":"Sojasun","qte":100,"unite":"g","quantite":"4×100 g","cats":[],"t":"2026-10-20"},"3281780085105":{"fr":"Taboulé au poulet à la ciboulette","nom":"Taboulé au poulet à la ciboulette","lang":"fr","marque":"Pierre Martinet","qte":300,"unite":"g","quantite":"300 g","cats":["en:meals","en:salty-snacks","en:appetizers","en:meats","en:poultries"],"t":"2026-10-20"},"3281780889994":{"fr":"Salade de quinoa aux légumes","nom":"Salade de quinoa aux légumes","lang":"fr","marque":"Pierre Martinet","qte":250,"unite":"g","quantite":"250 g","cats":["en:meals"],"t":"2026-10-20"},"3297760097143":{"fr":"Pommes Mangues avec morceaux","nom":"Pommes Mangues avec morceaux","lang":"fr","marque":"Charles & Alice","qte":400,"unite":"g","quantite":"400 g (4 x 100 g)","cats":[],"t":"2026-10-20"},"3302740003868":{"fr":"Le couscous à la marocaine","nom":"Le couscous à la marocaine","lang":"fr","marque":"Fleury Michon","qte":450,"unite":"g","quantite":"450 g","cats":["en:meals"],"t":"2026-10-20"},"3302740031038":{"fr":"Rougail Saucisse - Riz créole","nom":"Rougail Saucisse - Riz créole","lang":"fr","marque":"Fleury Michon","qte":300,"unite":"g","quantite":"300 g","cats":["en:meals"],"t":"2026-10-20"},"3302740057465":{"fr":"Hachis parmentier emmental","nom":"Hachis parmentier emmental","lang":"fr","marque":"Fleury Michon","qte":300,"unite":"g","quantite":"300 g","cats":["en:meals"],"t":"2026-10-20"},"3302740087042":{"fr":"Les Tranches Végé Pois chiches","nom":"Les Tranches Végé Pois chiches","lang":"fr","marque":"Fleury Michon","qte":120,"unite":"g","quantite":"120 g","cats":["en:meat-analogues"],"t":"2026-10-20"},"3302740087059":{"fr":"Les tranches végé lentilles","nom":"Les tranches végé lentilles","lang":"fr","marque":"Fleury Michon","qte":120,"unite":"g","quantite":"120g","cats":["en:meat-analogues"],"t":"2026-10-20"},"3302740368103":{"fr":"La Tajine de Boeuf et ses Légumes du Soleil","nom":"La Tajine de Boeuf et ses Légumes du Soleil","lang":"fr","marque":"Fleury Michon","qte":350,"unite":"g","quantite":"350 g","cats":["en:meals"],"t":"2026-10-20"},"3302740483103":{"fr":"Filet de Saumon Purée de Brocolis","nom":"Filet de Saumon Purée de Brocolis","lang":"fr","marque":"Fleury Michon","qte":300,"unite":"g","quantite":"300 g","cats":["en:meals"],"t":"2026-10-20"},"3302740484100":{"fr":"Le Chili Con Carne et son riz blanc","nom":"Le Chili Con Carne et son riz blanc","lang":"fr","marque":"Fleury Michon","qte":300,"unite":"g","quantite":"300g","cats":["en:meals"],"t":"2026-10-20"},"3302740606106":{"fr":"Risotto poulet & cèpes, crème fraîche, petits oignons","nom":"Risotto poulet & cèpes, crème fraîche, petits oignons","lang":"fr","marque":"Fleury Michon","qte":280,"unite":"g","quantite":"280 g","cats":["en:meals"],"t":"2026-10-20"},"3302741859105":{"fr":"La Paëlla Valenciana, poulet rôti, chorizo et fruits de mer","nom":"La Paëlla Valenciana, poulet rôti, chorizo et fruits de mer","lang":"fr","marque":"Fleury Michon","qte":400,"unite":"g","quantite":"400 g","cats":["en:meals"],"t":"2026-10-20"},"3322680009966":{"fr":"Crêpes Cracky x8","nom":"Crêpes Cracky x8","lang":"fr","marque":"Whaou, Whaou!","qte":256,"unite":"g","quantite":"256 g","cats":[],"t":"2026-10-20"},"3322680010290":{"fr":"crêpes de Landerneau","nom":"crêpes de Landerneau","lang":"fr","marque":"Le Ster","qte":300,"unite":"g","quantite":"300g","cats":[],"t":"2026-10-20"},"3322680010801":{"fr":"Whaou 8 Crêpes Chocolat","nom":"Whaou 8 Crêpes Chocolat","lang":"fr","marque":"Whaou!","qte":256,"unite":"g","quantite":"256 g","cats":[],"t":"2026-10-20"},"3327272107266":{"fr":"Menguy's Beurre de cacahuètes crunchy","nom":"Menguy's Beurre de cacahuètes crunchy","lang":"fr","marque":"Menguy's","qte":454,"unite":"g","quantite":"454 g","cats":[],"t":"2026-10-20"},"3327272107969":{"fr":"Menguy's Peanut 100%","nom":"Menguy's Peanut 100%","lang":"fr","marque":"Menguy's","qte":454,"unite":"g","quantite":"454 g","cats":[],"t":"2026-10-20"},"3327272108096":{"fr":"Beurre De Cacahuètes Crémeux Au Chocolat Et Noisettes","nom":"Peanut Choco","lang":"en","marque":"Menguy's","qte":430,"unite":"g","quantite":"430 g","cats":["en:sweet-spreads"],"t":"2026-10-20"},"3336971209133":{"fr":"Curly cacahuete","nom":"Curly cacahuete","lang":"fr","marque":"Vico, Curly","qte":100,"unite":"g","quantite":"100 g","cats":["en:salty-snacks","en:appetizers"],"t":"2026-10-20"},"3336972109074":{"fr":"Monster Munch crazy original","nom":"Monster Munch crazy original","lang":"fr","marque":"Vico","qte":150,"unite":"g","quantite":"150 g","cats":["en:salty-snacks","en:appetizers","en:chips-and-fries","en:crisps"],"t":"2026-10-20"},"3354599571005":{"fr":"Beurre plaquette AOP doux","nom":"Beurre plaquette AOP doux","lang":"fr","marque":"Grand Fermage","qte":250,"unite":"g","quantite":"250 g","cats":["en:dairies","en:butters"],"t":"2026-10-20"},"3367651001884":{"fr":"Sandwich Les Minis jambon emmental","nom":"Sandwich Les Minis jambon emmental","lang":"fr","marque":"Daunat","qte":130,"unite":"g","quantite":"130 g (2 x 65 g)","cats":["en:sandwiches"],"t":"2026-10-20"},"3367651001891":{"fr":"Les minis maxi moelleux poulet emmental","nom":"Les minis maxi moelleux poulet emmental","lang":"fr","marque":"Daunat","qte":130,"unite":"g","quantite":"2 * 65 g (130 g)","cats":["en:sandwiches"],"t":"2026-10-20"},"3367651004274":{"fr":"Be wrappy poulet rôti façon fajitas","nom":"Be wrappy poulet rôti façon fajitas","lang":"fr","marque":"Daunat","qte":190,"unite":"g","quantite":"190 g","cats":["en:sandwiches"],"t":"2026-10-20"},"3367651008104":{"fr":"Minis Tartinades Thon fromage frais ciboulette","nom":"Minis Tartinades Thon fromage frais ciboulette","lang":"fr","marque":"Daunat","qte":130,"unite":"g","quantite":"130 g (2 x 65 g)","cats":["en:sandwiches"],"t":"2026-10-20"},"3367651008333":{"fr":"Le chicken cheddar wrap","nom":"Le chicken cheddar wrap","lang":"fr","marque":"Daunat","qte":190,"unite":"g","quantite":"190 g","cats":["en:sandwiches"],"t":"2026-10-20"},"3375610002346":{"fr":"Skyr soja nature","nom":"Skyr soja nature","lang":"fr","marque":"Les Prés d'Ariège","qte":400,"unite":"g","quantite":"400g","cats":[],"t":"2026-10-20"},"3412290071801":{"fr":"Fromage à tartiner Ail et fines herbes fouetté MADAME LOIK - 150g","nom":"Fromage à tartiner Ail et fines herbes fouetté MADAME LOIK - 150g","lang":"fr","marque":"Paysan Breton, Paysan breton","qte":150,"unite":"g","quantite":"150 g","cats":["en:dairies","en:cheeses","en:salted-spreads"],"t":"2026-10-20"},"3414280077060":{"fr":"6 Gros Œufs","nom":"6 Gros Œufs","lang":"fr","marque":"L'oeuf de nos villages","qte":360,"unite":"g","quantite":"360 g (6 x 60 g)","cats":["en:eggs"],"t":"2026-10-20"},"3415581101010":{"fr":"Vanilla","nom":"Vanilla","lang":"nl","marque":"Häagen-Dazs","qte":400,"unite":"g","quantite":"400 g / 460 ml","cats":["en:frozen-foods","en:frozen-desserts","en:ice-creams-and-sorbets","en:ice-creams"],"t":"2026-10-20"},"3415581113716":{"fr":"Classics Belgian Chocolate","nom":"Belgian Chocolate","lang":"nl","marque":"Häagen-Dazs","qte":460,"unite":"ml","quantite":"460ml","cats":["en:frozen-foods","en:frozen-desserts","en:ice-creams-and-sorbets","en:ice-creams"],"t":"2026-10-20"},"3415581114713":{"fr":"Salted caramel","nom":"Salted Caramel","lang":"nl","marque":"Häagen-Dazs","qte":400,"unite":"ml","quantite":"400ml","cats":["en:frozen-foods","en:frozen-desserts","en:ice-creams-and-sorbets","en:ice-creams"],"t":"2026-10-20"},"3415581115017":{"fr":"Glace vanille pécan","nom":"Glace vanille pécan","lang":"fr","marque":"Häagen-Dazs","qte":400,"unite":"g","quantite":"400g","cats":["en:frozen-foods","en:frozen-desserts","en:ice-creams-and-sorbets","en:ice-creams"],"t":"2026-10-20"},"3415581117011":{"fr":"Speculoos caramel biscuits & cream","nom":"Speculoos caramel biscuits & cream","lang":"fr","marque":"Häagen-Dazs","qte":400,"unite":"g","quantite":"400 g","cats":["en:frozen-foods","en:frozen-desserts","en:ice-creams-and-sorbets","en:ice-creams"],"t":"2026-10-20"},"3415581154719":{"fr":"Crème glacée cookie dough chip","nom":"Crème glacée cookie dough chip","lang":"fr","marque":"Häagen-Dazs","qte":394,"unite":"g","quantite":"394 g","cats":["en:frozen-foods","en:frozen-desserts","en:ice-creams-and-sorbets","en:ice-creams"],"t":"2026-10-20"},"3415581187717":{"fr":"Vanilla-Caramel-Brownie","nom":"Vanilla-Caramel-Brownie","lang":"de","marque":"Häagen-Dazs","qte":386,"unite":"g","quantite":"386 g / 460 ml","cats":["en:frozen-foods","en:frozen-desserts","en:ice-creams-and-sorbets","en:ice-creams"],"t":"2026-10-20"},"3415581520712":{"fr":"Fruit collection Mini Cups","nom":"Fruit collection Mini Cups","lang":"fr","marque":"Häagen-Dazs","qte":326,"unite":"g","quantite":"326 g / 380 ml","cats":["en:frozen-foods","en:confectioneries","en:frozen-desserts","en:ice-creams-and-sorbets","en:ice-creams"],"t":"2026-10-20"},"3415581545715":{"fr":"Mini pots crème glacée caramel collection","nom":"Mini pots crème glacée caramel collection","lang":"fr","marque":"Häagen-Dazs","qte":324,"unite":"g","quantite":"324 g (4 x 81 g)","cats":["en:frozen-foods","en:frozen-desserts","en:ice-creams-and-sorbets","en:ice-creams"],"t":"2026-10-20"},"3415581569117":{"fr":"Macadamia nut brittle mini cups","nom":"Macadamia nut brittle mini cups","lang":"fr","marque":"Häagen-Dazs","qte":324,"unite":"g","quantite":"324g (4x81g)","cats":["en:frozen-foods","en:frozen-desserts","en:ice-creams-and-sorbets","en:ice-creams"],"t":"2026-10-20"},"3415581571110":{"fr":"Favorite Selection Festive Edition","nom":"Favorite Selection Festive Edition","lang":"fr","marque":"Häagen-Dazs","qte":380,"unite":"ml","quantite":"380 ml (4 x 95 ml)","cats":["en:frozen-foods","en:frozen-desserts","en:ice-creams-and-sorbets","en:ice-creams"],"t":"2026-10-20"},"3415581586718":{"fr":"Vanilla Collection","nom":"Vanilla Collection","lang":"fr","marque":"Häagen-Dazs","qte":380,"unite":"ml","quantite":"4 X 95 ml","cats":["en:frozen-foods","en:frozen-desserts","en:ice-creams-and-sorbets","en:ice-creams"],"t":"2026-10-20"},"3415587128011":{"fr":"Peanut butter crunch","nom":"Peanut butter crunch","lang":"fr","marque":"Häagen-Dazs, General Mills","qte":460,"unite":"ml","quantite":"460ml","cats":["en:dairies","en:frozen-foods","en:dairy-desserts","en:frozen-desserts","en:ice-creams-and-sorbets","en:ice-creams"],"t":"2026-10-20"},"3415587541018":{"fr":"Cracking Macadamia Nut Brittle","nom":"Cracking Macadamia Nut Brittle","lang":"fr","marque":"Häagen-Dazs","qte":201,"unite":"g","quantite":"201 g","cats":["en:frozen-foods","en:frozen-desserts","en:ice-creams-and-sorbets","en:ice-creams"],"t":"2026-10-20"},"3431410131003":{"fr":"Crêpe Dentelle Chocolat au lait","nom":"Crêpe Dentelle Chocolat au lait","lang":"fr","marque":"Gavottes","qte":90,"unite":"g","quantite":"90 g","cats":["en:biscuits-and-cakes","en:biscuits"],"t":"2026-10-20"},"3450970006446":{"fr":"16 galettes au Beurre","nom":"16 galettes au Beurre","lang":"fr","marque":"Eco, €co","qte":125,"unite":"g","quantite":"125 g (16 galettes)","cats":["en:biscuits-and-cakes","en:biscuits"],"t":"2026-10-20"},"3450970006965":{"fr":"Huile de tournesol","nom":"Huile de tournesol","lang":"fr","marque":"Eco+","qte":1000,"unite":"ml","quantite":"1l","cats":[],"t":"2026-10-20"},"3450970024723":{"fr":"Huile arachide","nom":"Huile arachide","lang":"fr","marque":"ECO+","qte":1000,"unite":"ml","quantite":"1L","cats":["en:frozen-foods"],"t":"2026-10-20"},"3450970027786":{"fr":"Cacahuètes Grillées à Sec","nom":"Cacahuètes Grillées à Sec","lang":"fr","marque":"Eco+, Leclerc","qte":150,"unite":"g","quantite":"150 g","cats":["en:salty-snacks"],"t":"2026-10-20"},"3450970060486":{"fr":"Riz au lait saveur vanille","nom":"Riz au lait saveur vanille","lang":"fr","marque":"Eco +","qte":200,"unite":"g","quantite":"200g","cats":[],"t":"2026-10-20"},"3450970102124":{"fr":"Lait Demi-Ecrémé - Stérilisé UHT","nom":"Lait Demi-Ecrémé - Stérilisé UHT","lang":"fr","marque":"E.Leclerc, Eco +, Eco+, Leclerc","qte":1000,"unite":"ml","quantite":"1l","cats":["en:beverages","en:dairies","en:milks"],"t":"2026-10-20"},"3450970103916":{"fr":"Maïs doux en grains sous vide","nom":"Maïs doux en grains sous vide","lang":"fr","marque":"Eco, €CO+","qte":285,"unite":"g","quantite":"285 g","cats":["en:canned-foods"],"t":"2026-10-20"},"3450970104432":{"fr":"Morceaux de Thon Listao","nom":"Morceaux de Thon Listao","lang":"fr","marque":"Eco+","qte":130,"unite":"g","quantite":"130 g égouttés (185 g)","cats":["en:canned-foods"],"t":"2026-10-20"},"3450970104593":{"fr":"Miettes de thon à la tomate","nom":"Miettes de thon à la tomate","lang":"fr","marque":"Eco+","qte":104,"unite":"g","quantite":"104g","cats":["en:canned-foods"],"t":"2026-10-20"},"3450970124072":{"fr":"Chorizo Doux","nom":"Chorizo Doux","lang":"fr","marque":"Eco+","qte":250,"unite":"g","quantite":"250 g","cats":["en:meats","en:prepared-meats"],"t":"2026-10-20"},"3450970154574":{"fr":"Eau Pétillante","nom":"Eau Pétillante","lang":"fr","marque":"Eco+","qte":3000,"unite":"ml","quantite":"6x50cl","cats":["en:beverages","en:waters"],"t":"2026-10-20"},"3450971456257":{"fr":"Lentilles blondes","nom":"Lentilles blondes","lang":"fr","marque":"eco+","qte":500,"unite":"g","quantite":"500g","cats":[],"t":"2026-10-20"},"3450971456530":{"fr":"Beurre demi-sel à teneur réduite en matière grasse 60% Mat.Gr.","nom":"Beurre demi-sel à teneur réduite en matière grasse 60% Mat.Gr.","lang":"fr","marque":"ECO+","qte":200,"unite":"g","quantite":"200 g","cats":["en:dairies","en:butters"],"t":"2026-10-20"},"3450971456578":{"fr":"Beurre doux","nom":"Beurre doux","lang":"fr","marque":"ECO+","qte":200,"unite":"g","quantite":"200g","cats":["en:dairies","en:butters"],"t":"2026-10-20"},"3450971462807":{"fr":"Coulommiers","nom":"Coulommiers","lang":"fr","marque":"€co+","qte":320,"unite":"g","quantite":"320g","cats":["en:dairies","en:cheeses"],"t":"2026-10-20"},"3451790563256":{"fr":"Beurre à teneur réduite en MG (60%)","nom":"Beurre à teneur réduite en M.G. (60%) doux","lang":"en","marque":"Montfleuri, Savencia","qte":250,"unite":"g","quantite":"250g","cats":["en:dairies","en:butters"],"t":"2026-10-20"},"3451790988042":{"fr":"La Crème Entière De Normandie 30%MG","nom":"La Crème Entière De Normandie 30%MG","lang":"fr","marque":"Elle & Vire","qte":200,"unite":"ml","quantite":"200ml","cats":["en:dairies"],"t":"2026-10-20"},"3456300014556":{"fr":"Fourrés Chocolat🍫","nom":"Fourrés Chocolat🍫","lang":"fr","marque":"Jardin Bio étic, jardin bio étic Léa Nature","qte":300,"unite":"g","quantite":"300 g","cats":["en:frozen-foods","en:biscuits-and-cakes","en:biscuits"],"t":"2026-10-20"},"3456580128011":{"fr":"Tarte aux pommes","nom":"Tarte aux pommes","lang":"fr","marque":"Pâtissons!","qte":140,"unite":"g","quantite":"140 g","cats":[],"t":"2026-10-20"},"3456770002183":{"fr":"Double Plaisir - Crème lemon curd","nom":"Double Plaisir - Crème lemon curd","lang":"fr","marque":"Mamie Nova","qte":280,"unite":"g","quantite":"280g (2 x 140 g)","cats":["en:dairies","en:frozen-foods","en:dairy-desserts","en:yogurts"],"t":"2026-10-20"},"3456774758772":{"fr":"Le Yaourt Mandarine Citron Vert","nom":"Le Yaourt Mandarine Citron Vert","lang":"fr","marque":"Mamie Nova","qte":300,"unite":"g","quantite":"300 g (2 * 150 g)","cats":["en:dairies","en:dairy-desserts","en:yogurts"],"t":"2026-10-20"},"3456774781602":{"fr":"Le Fondant Chocolat","nom":"Le Fondant Chocolat","lang":"fr","marque":"Mamie Nova","qte":300,"unite":"g","quantite":"300g (2x150 g)","cats":["en:dairies","en:dairy-desserts"],"t":"2026-10-20"},"3468570116601":{"fr":"ROZANA","nom":"ROZANA","lang":"fr","marque":"sarl ROZANA","qte":1000,"unite":"ml","quantite":"1L","cats":["en:beverages","en:waters"],"t":"2026-10-20"},"3468570116700":{"fr":"Eau Minérale Naturelle Pétillante","nom":"Eau Minérale Naturelle Pétillante","lang":"fr","marque":"Rozana","qte":6000,"unite":"ml","quantite":"6000 ml (6x1L)","cats":["en:beverages","en:waters"],"t":"2026-10-20"},"3468572044629":{"fr":"Eau Minérale Naturelle Pétillante","nom":"Eau Minérale Naturelle Pétillante","lang":"fr","marque":"Rozana","qte":3000,"unite":"ml","quantite":"3000 ml (6x500ml)","cats":["en:beverages","en:waters"],"t":"2026-10-20"},"3487400004413":{"fr":"L'original","nom":"L'original","lang":"fr","marque":"Ebly","qte":500,"unite":"g","quantite":"500g","cats":[],"t":"2026-10-20"},"3487400006776":{"fr":"Riz au curry et légumes","nom":"Riz au curry et légumes","lang":"fr","marque":"Ben's Original","qte":220,"unite":"g","quantite":"220 g","cats":["en:meals"],"t":"2026-10-20"},"3487400006929":{"fr":"Riz à la Méditerranéenne","nom":"Riz à la Méditerranéenne","lang":"fr","marque":"Ben's Original","qte":220,"unite":"g","quantite":"220 g","cats":["en:meals"],"t":"2026-10-20"},"3487400006967":{"fr":"Riz aux Champignons de Paris","nom":"Riz aux Champignons de Paris","lang":"fr","marque":"Ben's Original","qte":220,"unite":"g","quantite":"220 g","cats":["en:frozen-foods","en:meals"],"t":"2026-10-20"},"3487400007001":{"fr":"Riz aromatisé au citron et romarin","nom":"Riz aromatisé au citron et romarin","lang":"fr","marque":"Ben's Original","qte":220,"unite":"g","quantite":"220 g","cats":["en:meals"],"t":"2026-10-20"},"3497911101129":{"fr":"Chips saveur Poulet Braisé","nom":"Chips saveur Poulet Braisé","lang":"fr","marque":"Brets","qte":125,"unite":"g","quantite":"125g","cats":["en:salty-snacks","en:appetizers","en:chips-and-fries","en:crisps"],"t":"2026-10-20"},"3497911105127":{"fr":"Saveur Sel & Vinaigre","nom":"Saveur Sel & Vinaigre","lang":"fr","marque":"Brets","qte":125,"unite":"g","quantite":"125 g","cats":["en:salty-snacks","en:appetizers","en:chips-and-fries","en:crisps"],"t":"2026-10-20"},"3497917000518":{"fr":"brets saveur chèvre et piment d'Espelette","nom":"Chèvre piment d'Espelette","lang":"en","marque":"Brets","qte":125,"unite":"g","quantite":"125 g","cats":["en:salty-snacks","en:appetizers","en:chips-and-fries","en:crisps"],"t":"2026-10-20"},"3497917000907":{"fr":"Chips saveur fromage du Jura","nom":"Chips saveur fromage du Jura","lang":"fr","marque":"Brets","qte":125,"unite":"g","quantite":"125 g","cats":["en:salty-snacks","en:appetizers","en:chips-and-fries","en:crisps"],"t":"2026-10-20"},"3497917002352":{"fr":"Chips Saveur Sauce Pommes Frites","nom":"Chips Saveur Sauce Pommes Frites","lang":"fr","marque":"Brets","qte":125,"unite":"g","quantite":"125 g","cats":["en:salty-snacks","en:appetizers","en:chips-and-fries","en:crisps"],"t":"2026-10-20"},"3497917002741":{"fr":"Chips saveur Pesto Mozzarella","nom":"Chips saveur Pesto Mozzarella","lang":"fr","marque":"Brets","qte":125,"unite":"g","quantite":"125 g","cats":["en:salty-snacks","en:appetizers","en:chips-and-fries","en:crisps"],"t":"2026-10-20"},"3497917002789":{"fr":"Chips Saveur Beurre Salé","nom":"Chips Saveur Beurre Salé","lang":"fr","marque":"Brets","qte":125,"unite":"g","quantite":"125 g","cats":["en:frozen-foods","en:salty-snacks","en:appetizers","en:chips-and-fries","en:crisps"],"t":"2026-10-20"},"3497917003151":{"fr":"Chips saveur miel moutarde","nom":"Chips saveur miel moutarde","lang":"fr","marque":"Brets","qte":125,"unite":"g","quantite":"125 g","cats":["en:salty-snacks","en:appetizers","en:chips-and-fries","en:crisps"],"t":"2026-10-20"},"3497917003564":{"fr":"Chips saveur cheddar jalapeno","nom":"Chips saveur cheddar jalapeno","lang":"fr","marque":"Brets","qte":125,"unite":"g","quantite":"125 g","cats":["en:salty-snacks","en:appetizers","en:chips-and-fries","en:crisps"],"t":"2026-10-20"},"3497917003588":{"fr":"Chips Saveur Sauce Curry","nom":"Chips Saveur Sauce Curry","lang":"fr","marque":"Brets","qte":125,"unite":"g","quantite":"125 g","cats":["en:salty-snacks","en:appetizers","en:chips-and-fries","en:crisps"],"t":"2026-10-20"},"3498425591253":{"fr":"Mini brownie choco pepites","nom":"Mini brownie choco pepites","lang":"fr","marque":"Brossard","qte":240,"unite":"g","quantite":"240 g (8 × 30 g)","cats":["en:biscuits-and-cakes","en:cakes"],"t":"2026-10-20"},"3502110008329":{"fr":"Pepsi 1,5L","nom":"Pepsi 1,5L","lang":"fr","marque":"Pepsi","qte":1500,"unite":"ml","quantite":"1500 ml","cats":["en:beverages"],"t":"2026-10-20"},"3502110009357":{"fr":"Pepsi Zéro sucres 1,5 L","nom":"Pepsi Max","lang":"en","marque":"Pepsi, Pepsi Max, Pepsi zero, PepsiCo","qte":1500,"unite":"ml","quantite":"1,5 L","cats":["en:beverages"],"t":"2026-10-20"},"3523230030793":{"fr":"beurre demi-sel","nom":"beurre demi-sel","lang":"fr","marque":"grand fermage","qte":250,"unite":"g","quantite":"250 g","cats":["en:dairies","en:butters"],"t":"2026-10-20"},"3523680438224":{"fr":"Bio et équitable","nom":"Bio et équitable","lang":"fr","marque":"Carrefour BIO","qte":null,"unite":"","quantite":"5 pièces","cats":[],"t":"2026-10-20"},"3535800015123":{"fr":"Rochers Chocolat & Crêpe dentelle","nom":"Rochers Chocolat & Crêpe dentelle","lang":"fr","marque":"Gavottes","qte":95,"unite":"g","quantite":"95g","cats":["en:biscuits-and-cakes","en:confectioneries","en:biscuits"],"t":"2026-10-20"},"3560071008574":{"fr":"PISTACHES Grillées & salées","nom":"PISTACHES Grillées & salées","lang":"fr","marque":"Carrefour","qte":300,"unite":"g","quantite":"300 g","cats":["en:salty-snacks"],"t":"2026-10-20"},"3564700000656":{"fr":"Le Palet Breton","nom":"Le Palet Breton","lang":"fr","marque":"Marque Repère, P'tit Déli","qte":125,"unite":"g","quantite":"125 g","cats":["en:biscuits-and-cakes","en:biscuits"],"t":"2026-10-20"},"3564700001042":{"fr":"Huile dolives","nom":"Huile dolives","lang":"fr","marque":"Marque Repère, Rustica","qte":1000,"unite":"ml","quantite":"1 l","cats":[],"t":"2026-10-20"},"3564700009321":{"fr":"Chorizo doux","nom":"Chorizo doux","lang":"fr","marque":"Saint Azay","qte":225,"unite":"g","quantite":"225g","cats":["en:meats","en:prepared-meats"],"t":"2026-10-20"},"3564700009338":{"fr":"Chorizo Saint Azay fort Pur porc piment d'Espagne","nom":"Chorizo Saint Azay fort Pur porc piment d'Espagne","lang":"fr","marque":"Marque Repère, Saint-Azay","qte":225,"unite":"g","quantite":"225 g","cats":["en:meats","en:prepared-meats"],"t":"2026-10-20"},"3564700009345":{"fr":"Chorizo  Extra Fort","nom":"Chorizo  Extra Fort","lang":"fr","marque":"Marque Repère, Saint-Azay, Scamark (Filiale E. Leclerc)","qte":225,"unite":"g","quantite":"225 g","cats":["en:meats","en:prepared-meats"],"t":"2026-10-20"},"3564700010846":{"fr":"Chocolat dessert pâtissier","nom":"Chocolat dessert pâtissier","lang":"fr","marque":"Marque Repère","qte":200,"unite":"g","quantite":"200 g","cats":["en:chocolates"],"t":"2026-10-20"},"3564700014646":{"fr":"Emmental râpé","nom":"Emmental râpé","lang":"fr","marque":"Les Croisés","qte":210,"unite":"g","quantite":"3 x 70 g","cats":["en:dairies","en:cheeses"],"t":"2026-10-20"},"3564700019344":{"fr":"Pain de mie moulé ferme nature","nom":"Pain de mie moulé ferme nature","lang":"fr","marque":"Marque Repère, Épi d'Or","qte":500,"unite":"g","quantite":"500 g","cats":["en:breads"],"t":"2026-10-20"},"3564700026564":{"fr":"Crackers nature","nom":"Crackers nature","lang":"fr","marque":"Marque Repère, Tokapi","qte":100,"unite":"g","quantite":"100 g","cats":["en:salty-snacks","en:appetizers"],"t":"2026-10-20"},"3564700027585":{"fr":"Légumes pour couscous","nom":"Légumes pour couscous","lang":"fr","marque":"Marque Repère, Notre Jardin, Scamark (Filiale E. Leclerc)","qte":800,"unite":"g","quantite":"800 g","cats":["en:canned-foods","en:meals"],"t":"2026-10-20"},"3564700031131":{"fr":"Gâteau de Riz au Caramel","nom":"Gâteau de Riz au Caramel","lang":"fr","marque":"Délisse, Marque Repère","qte":400,"unite":"g","quantite":"4 x 100 g","cats":["en:dairies","en:dairy-desserts"],"t":"2026-10-20"},"3564700213049":{"fr":"Lasagnes à garnir","nom":"Lasagnes à garnir","lang":"fr","marque":"Marque Repère, Turini","qte":500,"unite":"g","quantite":"500 g","cats":[],"t":"2026-10-20"},"3564700288443":{"fr":"Demi-baguettes pré-cuites x 2","nom":"Demi-baguettes pré-cuites x 2","lang":"fr","marque":"Marque Repère, Épi d'Or","qte":300,"unite":"g","quantite":"300 g","cats":["en:breads"],"t":"2026-10-20"},"3564700397602":{"fr":"Compotes de pommes","nom":"Compotes de pommes","lang":"fr","marque":"Marque Repère, Douceur du Verger","qte":400,"unite":"g","quantite":"4 x 100 g","cats":[],"t":"2026-10-20"},"3564700426920":{"fr":"Fondue 3 fromages","nom":"Fondue 3 fromages","lang":"fr","marque":"Marque Repère, Les Croisés","qte":400,"unite":"g","quantite":"400 g","cats":["en:dairies"],"t":"2026-10-20"},"3564700443934":{"fr":"Mystère du prieuré","nom":"Mystère du prieuré","lang":"fr","marque":"Marque Repère, Les Croisés, Scamark (Filiale E. Leclerc)","qte":340,"unite":"g","quantite":"340 g","cats":["en:dairies","en:cheeses"],"t":"2026-10-20"},"3564700451359":{"fr":"Riz au lait saveur Vanille au lait entier (8 pots)","nom":"Riz au lait saveur Vanille au lait entier (8 pots)","lang":"fr","marque":"Délisse, Marque Repère","qte":920,"unite":"g","quantite":"8 x 115 g","cats":["en:dairies","en:dairy-desserts","en:biscuits-and-cakes","en:cakes"],"t":"2026-10-20"},"3564700493175":{"fr":"Gateau de riz","nom":"Gateau de riz","lang":"fr","marque":"Délisse, Marque Repère","qte":500,"unite":"g","quantite":"500 g","cats":["en:dairies","en:dairy-desserts"],"t":"2026-10-20"},"3564700512562":{"fr":"Penne Rigate au blé complet","nom":"Penne Rigate au blé complet","lang":"fr","marque":"Turini","qte":500,"unite":"g","quantite":"500 g","cats":[],"t":"2026-10-20"},"3564700514047":{"fr":"Châtaignes pelées au feu","nom":"Châtaignes pelées au feu","lang":"fr","marque":"Marque Repère, Notre Jardin","qte":420,"unite":"g","quantite":"420 g","cats":["en:canned-foods"],"t":"2026-10-20"},"3564700579947":{"fr":"Semoule au lait saveur vanille","nom":"Semoule au lait saveur vanille","lang":"fr","marque":"Délisse, Marque Repère","qte":920,"unite":"g","quantite":"8 x 115 g","cats":["en:dairies","en:dairy-desserts"],"t":"2026-10-20"},"3564700640340":{"fr":"Petits pains nature précuits x 6","nom":"Petits pains nature précuits x 6","lang":"fr","marque":"Marque Repère, Epi d'Or","qte":300,"unite":"g","quantite":"300 g","cats":["en:breads"],"t":"2026-10-20"},"3564700644232":{"fr":"Semoule de blé fine qualité supérieure","nom":"Semoule de blé fine qualité supérieure","lang":"fr","marque":"Comptoir du Grain","qte":500,"unite":"g","quantite":"500 g","cats":[],"t":"2026-10-20"},"3564700804445":{"fr":"Pressés clémentine","nom":"Pressés clémentine","lang":"fr","marque":"Marque Repère, Jafaden","qte":1500,"unite":"ml","quantite":"1,5 l","cats":["en:beverages"],"t":"2026-10-20"},"3564700832288":{"fr":"Chocolat noir Pâtissier","nom":"Chocolat noir Pâtissier","lang":"fr","marque":"Marque Repère, Tablette d'Or","qte":600,"unite":"g","quantite":"3 x 200 g","cats":["en:chocolates"],"t":"2026-10-20"},"3564707000239":{"fr":"Œufs bio x6","nom":"Œufs bio x6","lang":"fr","marque":"Bio Village","qte":374,"unite":"g","quantite":"374 g","cats":["en:eggs"],"t":"2026-10-20"},"3564709174631":{"fr":"Pur jus tomate du lot et garonne","nom":"Pur jus tomate du lot et garonne","lang":"fr","marque":"Leclerc, Nos Regions Ont Du Talent","qte":1000,"unite":"ml","quantite":"1 L","cats":["en:beverages"],"t":"2026-10-20"},"3587220002252":{"fr":"La gâche tranchée","nom":"La gâche tranchée","lang":"fr","marque":"La Fournée Dorée","qte":500,"unite":"g","quantite":"500 g","cats":["en:viennoiseries"],"t":"2026-10-20"},"3587220002733":{"fr":"Mini brioche Burger","nom":"Mini brioche Burger","lang":"fr","marque":"La Fournée Dorée","qte":200,"unite":"g","quantite":"200g","cats":["en:breads"],"t":"2026-10-20"},"3587220551507":{"fr":"La Gâche Tranchée aux pépites de chocolat","nom":"La Gâche Tranchée aux pépites de chocolat","lang":"fr","marque":"La Fournée dorée","qte":500,"unite":"g","quantite":"500g","cats":["en:viennoiseries"],"t":"2026-10-20"},"3599740009925":{"fr":"Pommes Dauphine","nom":"Pommes Dauphine","lang":"fr","marque":"Findus","qte":200,"unite":"g","quantite":"200 g","cats":["en:frozen-foods","en:chips-and-fries"],"t":"2026-10-20"},"3599741001904":{"fr":"Pommes Croustine","nom":"Pommes Croustine","lang":"fr","marque":"Findus","qte":420,"unite":"g","quantite":"420 g","cats":[],"t":"2026-10-20"},"3599741006374":{"fr":"Pommes noisettes croustillantes et fondantes","nom":"Pommes noisettes croustillantes et fondantes","lang":"fr","marque":"Findus","qte":500,"unite":"g","quantite":"500g","cats":["en:frozen-foods","en:chips-and-fries"],"t":"2026-10-20"},"3599741007241":{"fr":"Pommes rissolées","nom":"Pommes rissolées","lang":"fr","marque":"Findus","qte":590,"unite":"g","quantite":"590 g","cats":["en:frozen-foods"],"t":"2026-10-20"},"3608580124047":{"fr":"Be Nuts ! - Pâte à tartiner Cacahuète","nom":"Be Nuts ! - Pâte à tartiner Cacahuète","lang":"fr","marque":"Andros","qte":325,"unite":"g","quantite":"325 g","cats":["en:sweet-spreads"],"t":"2026-10-20"},"3608580142966":{"fr":"Pâte à tartiner cacahuètes et cacao","nom":"Pâte à tartiner cacahuètes et cacao","lang":"fr","marque":"Bonne Maman","qte":350,"unite":"g","quantite":"350 g","cats":["en:sweet-spreads"],"t":"2026-10-20"},"3608580765653":{"fr":"Mousse au chocolat intense","nom":"Mousse au chocolat intense","lang":"fr","marque":"Bonne Maman","qte":200,"unite":"g","quantite":"4*50 g","cats":[],"t":"2026-10-20"},"3608580823452":{"fr":"Confiture Abricot INTENSE","nom":"Confiture Abricot INTENSE","lang":"fr","marque":"Bonne Maman","qte":335,"unite":"g","quantite":"335 g","cats":["en:sweet-spreads","en:jams"],"t":"2026-10-20"},"3608580823490":{"fr":"Myrtille Intense","nom":"Myrtille Intense","lang":"fr","marque":"Bonne Maman","qte":335,"unite":"g","quantite":"335g","cats":["en:sweet-spreads","en:jams"],"t":"2026-10-20"},"3608580934783":{"fr":"Baba au rhum à la chantilly","nom":"Baba au rhum à la chantilly","lang":"fr","marque":"Bonne Maman","qte":280,"unite":"g","quantite":"2x140 g","cats":["en:biscuits-and-cakes"],"t":"2026-10-20"},"3660140846455":{"fr":"Brossard - brownie familial pepites de chocolat 285gr","nom":"Brossard - brownie familial pepites de chocolat 285gr","lang":"fr","marque":"Brossard","qte":285,"unite":"g","quantite":"285 g","cats":["en:biscuits-and-cakes","en:cakes"],"t":"2026-10-20"},"3660140929752":{"fr":"P'tit savane Chocolat","nom":"P'tit savane Chocolat","lang":"fr","marque":"Brossard","qte":150,"unite":"g","quantite":"150 g (5x30g)","cats":["en:biscuits-and-cakes","en:cakes"],"t":"2026-10-20"},"3660140948258":{"fr":"Savane","nom":"Savane","lang":"fr","marque":"Brossard","qte":310,"unite":"g","quantite":"310 g","cats":["en:biscuits-and-cakes","en:cakes"],"t":"2026-10-20"},"3660140948357":{"fr":"Savane tout choco","nom":"Savane tout choco","lang":"fr","marque":"Brossard","qte":310,"unite":"g","quantite":"310 g","cats":["en:biscuits-and-cakes","en:cakes"],"t":"2026-10-20"},"3660140953351":{"fr":"Savane chocolat","nom":"Savane chocolat","lang":"fr","marque":"Brossard","qte":210,"unite":"g","quantite":"210 g","cats":["en:biscuits-and-cakes","en:cakes"],"t":"2026-10-20"},"3660140958851":{"fr":"Savane Max Barr'","nom":"Savane Max Barr'","lang":"fr","marque":"Brossard","qte":210,"unite":"g","quantite":"210g (7x30g)","cats":["en:biscuits-and-cakes","en:cakes"],"t":"2026-10-20"},"3660140963855":{"fr":"Savane P’tit Moelleux Fourrage Choco","nom":"Savane P’tit Moelleux Fourrage Choco","lang":"fr","marque":"Brossard","qte":135,"unite":"g","quantite":"135g","cats":["en:biscuits-and-cakes","en:cakes"],"t":"2026-10-20"},"3660603004774":{"fr":"Sauce Béarnaise bocal","nom":"Sauce Béarnaise bocal","lang":"fr","marque":"Bénédicta","qte":260,"unite":"g","quantite":"260 g","cats":["en:condiments","en:sauces"],"t":"2026-10-20"},"3660603004828":{"fr":"SAUCE AIOLI","nom":"SAUCE AIOLI","lang":"fr","marque":"Bénédicta","qte":260,"unite":"g","quantite":"260g","cats":["en:condiments","en:sauces"],"t":"2026-10-20"},"3660603004842":{"fr":"Sauce au poivre","nom":"Sauce au poivre","lang":"fr","marque":"Bénédicta","qte":260,"unite":"g","quantite":"260 g","cats":["en:condiments","en:sauces"],"t":"2026-10-20"},"3660603004859":{"fr":"Tartare sauce aux cornichons et aux câpres","nom":"Tartare sauce aux cornichons et aux câpres","lang":"en","marque":"Bénédicta","qte":260,"unite":"g","quantite":"260 g","cats":["en:condiments","en:sauces"],"t":"2026-10-20"},"3660603004897":{"fr":"Sauce Bourguignonne","nom":"Sauce Bourguignonne","lang":"fr","marque":"Bénédicta","qte":270,"unite":"g","quantite":"270 g e","cats":["en:condiments","en:sauces"],"t":"2026-10-20"},"3660603081843":{"fr":"Mayonnaise","nom":"Mayonnaise","lang":"fr","marque":"Bénédicta","qte":255,"unite":"g","quantite":"255g","cats":["en:condiments","en:sauces","en:mayonnaises"],"t":"2026-10-20"},"3660603081867":{"fr":"Mayonnaise","nom":"Mayonnaise","lang":"fr","marque":"Bénédicta","qte":510,"unite":"g","quantite":"510 g","cats":["en:condiments","en:sauces","en:mayonnaises"],"t":"2026-10-20"},"3660603081904":{"fr":"Mayonnaise comme à la maison","nom":"Mayonnaise comme à la maison","lang":"fr","marque":"Bénédicta","qte":255,"unite":"g","quantite":"255 g","cats":["en:condiments","en:sauces","en:mayonnaises"],"t":"2026-10-20"},"3661344221772":{"fr":"Yaourt saveur myrtille sauvage","nom":"Yaourt saveur myrtille sauvage","lang":"fr","marque":"LES 2 VACHES","qte":460,"unite":"g","quantite":"460 g (4x115g)","cats":["en:dairies","en:dairy-desserts","en:yogurts"],"t":"2026-10-20"},"3664320911537":{"fr":"Eau minérale naturelle","nom":"Eau minérale naturelle","lang":"fr","marque":"Quézac","qte":3000,"unite":"ml","quantite":"6 x 50 cl","cats":["en:beverages","en:waters"],"t":"2026-10-20"},"3664346305983":{"fr":"Poudre Poulain Grand Arôme","nom":"Poulain","lang":"en","marque":"Poulain","qte":250,"unite":"g","quantite":"250 g","cats":["en:cocoa-and-chocolate-powders"],"t":"2026-10-20"},"3664346315371":{"fr":"Grand Arôme moins de sucre","nom":"Grand Arôme moins de sucres","lang":"en","marque":"Poulain","qte":400,"unite":"g","quantite":"400 g","cats":["en:beverages","en:cocoa-and-chocolate-powders"],"t":"2026-10-20"},"3664346355070":{"fr":"Poulain poudre chocolat 32% 800g","nom":"Poulain poudre chocolat 32% 800g","lang":"fr","marque":"Poulain","qte":800,"unite":"g","quantite":"800g","cats":["en:cocoa-and-chocolate-powders"],"t":"2026-10-20"},"3700157500695":{"fr":"La madeleine classique","nom":"La madeleine classique","lang":"fr","marque":"Maison Colibri","qte":182,"unite":"g","quantite":"182g","cats":["en:biscuits-and-cakes","en:biscuits","en:cakes"],"t":"2026-10-20"},"3700157500701":{"fr":"La madeleine noisette","nom":"La madeleine noisette","lang":"fr","marque":"Maison Colibri","qte":182,"unite":"g","quantite":"182 g","cats":["en:biscuits-and-cakes","en:cakes"],"t":"2026-10-20"},"3700157500718":{"fr":"La Madeleine Classique - Coque chocolat au lait","nom":"La Madeleine Classique - Coque chocolat au lait","lang":"fr","marque":"Maison Colibri","qte":182,"unite":"g","quantite":"182 g","cats":["en:biscuits-and-cakes","en:cakes"],"t":"2026-10-20"},"3700157500749":{"fr":"Madeleine","nom":"Madeleine","lang":"fr","marque":"Maison Colibri","qte":174,"unite":"g","quantite":"174g","cats":["en:biscuits-and-cakes","en:cakes"],"t":"2026-10-20"},"3700157500770":{"fr":"La madelaine citron","nom":"La madelaine citron","lang":"fr","marque":"Maison Colibri","qte":200,"unite":"g","quantite":"200g (8 madeleines)","cats":["en:biscuits-and-cakes","en:cakes"],"t":"2026-10-20"},"3700278400881":{"fr":"Banania Original - Cacao Céréales Touche De Banane & Miel","nom":"Banania Original - Cacao Céréales Touche De Banane & Miel","lang":"fr","marque":"Banania","qte":400,"unite":"g","quantite":"400 g","cats":["en:beverages","en:cocoa-and-chocolate-powders"],"t":"2026-10-20"},"3700279301484":{"fr":"Crème Dessert Praliné","nom":"Crème Dessert Praliné","lang":"fr","marque":"Crème Dessert, MONT BLANC, Mont Blanc","qte":570,"unite":"g","quantite":"570 g","cats":["en:dairies","en:canned-foods","en:dairy-desserts"],"t":"2026-10-20"},"3700311801651":{"fr":"Chips","nom":"Chips","lang":"fr","marque":"Tous les jours","qte":200,"unite":"g","quantite":"200 g","cats":["en:salty-snacks","en:appetizers","en:chips-and-fries","en:crisps"],"t":"2026-10-20"},"3700656402339":{"fr":"Panciotti Saucisson et fromage","nom":"Panciotti Saucisson et fromage","lang":"fr","marque":"Corte del gusto","qte":130,"unite":"g","quantite":"130 g","cats":["en:meals","en:prepared-meats","en:sandwiches"],"t":"2026-10-20"},"3760049794298":{"fr":"Pain de mie Bio grandes tranches céréales & graines 500g","nom":"Pain de mie Bio grandes tranches céréales & graines 500g","lang":"fr","marque":"La Boulangère, La boulangere","qte":500,"unite":"g","quantite":"500 g","cats":["en:breads"],"t":"2026-10-20"},"3760056260113":{"fr":"Mozzarella","nom":"Mozzarella","lang":"fr","marque":"Casa Azzurra","qte":125,"unite":"g","quantite":"125 g","cats":["en:dairies","en:cheeses"],"t":"2026-10-20"},"3760060580016":{"fr":"Saindoux pur porc Extra","nom":"Saindoux pur porc Extra","lang":"fr","marque":"Lardina","qte":250,"unite":"g","quantite":"250 g","cats":[],"t":"2026-10-20"},"3760109520201":{"fr":"Lardons supérieurs nature","nom":"Lardons supérieurs nature","lang":"fr","marque":"ECO+","qte":200,"unite":"g","quantite":"2x100g = 200 g","cats":["en:meats","en:prepared-meats"],"t":"2026-10-20"},"3760109520232":{"fr":"Allumette fumées qualité supérieure","nom":"Allumette fumées qualité supérieure","lang":"fr","marque":"Eco+","qte":200,"unite":"g","quantite":"2 x 100 g","cats":["en:meats","en:prepared-meats"],"t":"2026-10-20"},"3760109520256":{"fr":"Cubes de Poitrine Fumée","nom":"Cubes de Poitrine Fumée","lang":"fr","marque":"Eco+","qte":180,"unite":"g","quantite":"180 g","cats":["en:meats","en:prepared-meats"],"t":"2026-10-20"},"3760109528092":{"fr":"Rillettes du Mans - Sans Arôme","nom":"Rillettes du Mans - Sans Arôme","lang":"fr","marque":"E.Leclerc, Eco+, Leclerc","qte":220,"unite":"g","quantite":"220 g","cats":["en:salted-spreads","en:meats","en:prepared-meats","en:rillettes"],"t":"2026-10-20"},"3760109528306":{"fr":"Bacon fumé au bois de hêtre","nom":"Bacon fumé au bois de hêtre","lang":"fr","marque":"ECO+","qte":150,"unite":"g","quantite":"150 g","cats":["en:meats","en:prepared-meats"],"t":"2026-10-20"},"3760109528603":{"fr":"Saucisson Cuit A L'Ail - Gout Fumé","nom":"Saucisson Cuit A L'Ail - Gout Fumé","lang":"fr","marque":"E.Leclerc, Eco+, Leclerc","qte":400,"unite":"g","quantite":"400 g","cats":["en:meats","en:prepared-meats"],"t":"2026-10-20"},"3760122966116":{"fr":"Cookie frais chocolat au lait aux noisettes 70g","nom":"Cookie frais chocolat au lait aux noisettes 70g","lang":"fr","marque":"MICHEL & AUGUSTIN","qte":70,"unite":"g","quantite":"70 g","cats":["en:biscuits-and-cakes","en:biscuits"],"t":"2026-10-20"},"3760324300015":{"fr":"2 Steaks végétaux et gourmands","nom":"2 Steaks végétaux et gourmands","lang":"en","marque":"HappyVore","qte":200,"unite":"g","quantite":"200 g","cats":["en:meat-analogues"],"t":"2026-10-20"},"3760324300053":{"fr":"Haché Végétal et Gourmand","nom":"Haché Végétal et Gourmand","lang":"fr","marque":"HappyVore","qte":200,"unite":"g","quantite":"200 g","cats":["en:meat-analogues"],"t":"2026-10-20"},"3770016162029":{"fr":"Aiguillettes végétales et gourmandes","nom":"Aiguillettes végétales et gourmandes","lang":"fr","marque":"HappyVore","qte":150,"unite":"g","quantite":"150 g","cats":["en:meat-analogues"],"t":"2026-10-20"},"3770016162036":{"fr":"Nuggets Végétaux et Gourmands","nom":"Nuggets Végétaux et Gourmands","lang":"fr","marque":"HappyVore","qte":210,"unite":"g","quantite":"210 g","cats":["en:meat-analogues"],"t":"2026-10-20"},"3770016162043":{"fr":"Merguez Végétale","nom":"Merguez Végétale","lang":"fr","marque":"HappyVore","qte":200,"unite":"g","quantite":"200 g","cats":["en:meat-analogues"],"t":"2026-10-20"},"3770018078038":{"fr":"Lardons végétaux fumés","nom":"Rostlinná slanina","lang":"cs","marque":"LA VIE","qte":150,"unite":"g","quantite":"2x75 g","cats":["en:meat-analogues"],"t":"2026-10-20"},"3770018078151":{"fr":"Bacon Vegetal Fumé","nom":"Bacon Vegetal Fumé","lang":"fr","marque":"LA VIE","qte":120,"unite":"g","quantite":"120 g","cats":["en:meat-analogues"],"t":"2026-10-20"},"4001724039143":{"fr":"Ristorante - Pizza vegetale","nom":"Ristorante Pizza Vegetale","lang":"de","marque":"Dr. August Oetker Nahrungsmittel KG Bereich Tiefkühlkost","qte":385,"unite":"g","quantite":"385g","cats":["en:frozen-foods","en:meals"],"t":"2026-10-20"},"4014400928891":{"fr":"Knoppers","nom":"Knoppers","lang":"fr","marque":"Storck","qte":25,"unite":"g","quantite":"25g","cats":["en:biscuits-and-cakes","en:biscuits"],"t":"2026-10-20"},"4017100499715":{"fr":"La Grande Galette 1905","nom":"La Grande Galette 1905","lang":"fr","marque":"St Michel","qte":150,"unite":"g","quantite":"150 g, 3 sachets de 3 galettes","cats":["en:biscuits-and-cakes","en:biscuits"],"t":"2026-10-20"},"5000112611762":{"fr":"coca cola zero 1,25L","nom":"coca cola zero 1,25L","lang":"fr","marque":"Coca-Cola, Coke ZÉRO®","qte":1250,"unite":"ml","quantite":"1,25 L e","cats":["en:beverages"],"t":"2026-10-20"},"5000112611861":{"fr":"PET 1.75L COCA","nom":"PET 1.75L COCA","lang":"fr","marque":"Coca-Cola","qte":1750,"unite":"ml","quantite":"1.75 L ℮","cats":["en:beverages"],"t":"2026-10-20"},"5000112611878":{"fr":"coca cola zero","nom":"coca cola zero","lang":"fr","marque":"Coca-Cola Europacific Partners Services Bulgaria EOOD","qte":1750,"unite":"ml","quantite":"1,75 L e","cats":["en:beverages"],"t":"2026-10-20"},"5000168198491":{"fr":"Sablés Anglais L'Original","nom":"Sablés Anglais L'Original","lang":"fr","marque":"McVitie's, United Biscuits","qte":400,"unite":"g","quantite":"400 g","cats":["en:biscuits-and-cakes","en:biscuits"],"t":"2026-10-20"},"5000168198514":{"fr":"Sablés chocolat","nom":"Sablés chocolat","lang":"fr","marque":"McVitie's","qte":300,"unite":"g","quantite":"300 g","cats":["en:biscuits-and-cakes","en:biscuits"],"t":"2026-10-20"},"5053990155354":{"fr":"Sour Cream & Onion","nom":"Sour Cream & Onion","lang":"fr","marque":"Pringles","qte":175,"unite":"g","quantite":"175 g","cats":["en:salty-snacks","en:appetizers","en:chips-and-fries","en:crisps"],"t":"2026-10-20"},"5053990156009":{"fr":"Pringles Original","nom":"Pringles Original","lang":"fr","marque":"Pringles","qte":175,"unite":"g","quantite":"175 g","cats":["en:salty-snacks","en:appetizers","en:chips-and-fries","en:crisps"],"t":"2026-10-20"},"5410041001204":{"fr":"Tuc Original","nom":"Tuc Original","lang":"en","marque":"Mondelēz","qte":100,"unite":"g","quantite":"100 gram","cats":["en:salty-snacks","en:appetizers"],"t":"2026-10-20"},"5410041010800":{"fr":"Petit écolier chocolat noir pur beurre de cacao","nom":"Petit écolier chocolat noir pur beurre de cacao","lang":"fr","marque":"LU, MONDELEZ BELGIUM SERVICES BVBA","qte":150,"unite":"g","quantite":"150 g","cats":["en:biscuits-and-cakes","en:biscuits"],"t":"2026-10-20"},"5410041040807":{"fr":"Pim's - Framboise","nom":"Pim's - Framboise","lang":"fr","marque":"Lu","qte":150,"unite":"g","quantite":"150 g","cats":["en:biscuits-and-cakes","en:biscuits","en:cakes"],"t":"2026-10-20"},"5410041376609":{"fr":"Pim's Fraise touche de Fraise des Bois","nom":"Pim's Fraise touche de Fraise des Bois","lang":"fr","marque":"Lu","qte":150,"unite":"g","quantite":"150 g e","cats":["en:biscuits-and-cakes","en:biscuits"],"t":"2026-10-20"},"5410093901347":{"fr":"Graisse à frire","nom":"Graisse à frire","lang":"fr","marque":"Vandemoortele","qte":1000,"unite":"g","quantite":"1 kg e (4 * 250 g)","cats":[],"t":"2026-10-20"},"5410096784701":{"fr":"Riz au lait vanille","nom":"Riz au lait vanille","lang":"fr","marque":"Nestlé, La Laitière","qte":500,"unite":"g","quantite":"4 x 125g","cats":[],"t":"2026-10-20"},"5410126706970":{"fr":"LOTUS BISCOFF à tartiner - Creamy - 410g","nom":"LOTUS BISCOFF à tartiner - Creamy - 410g","lang":"fr","marque":"Lotus","qte":410,"unite":"g","quantite":"410 g","cats":["en:sweet-spreads","en:biscuits-and-cakes","en:biscuits"],"t":"2026-10-20"},"5410126832372":{"fr":"Gaufre de Liège Chocolat","nom":"Gaufre de Liège Chocolat","lang":"fr","marque":"Lotus","qte":363,"unite":"g","quantite":"363g","cats":["en:biscuits-and-cakes"],"t":"2026-10-20"},"5411188102809":{"fr":"Myrtille","nom":"Heidelbeere","lang":"de","marque":"alpro","qte":500,"unite":"g","quantite":"500 g","cats":["en:dairies"],"t":"2026-10-20"},"5411188110835":{"fr":"Amande Grillée de méditerranée","nom":"Alpro Mandeldrink, Original 1L","lang":"de","marque":"Danone Belux nv","qte":1000,"unite":"ml","quantite":"1 L","cats":["en:beverages","en:plant-based-milk-alternatives"],"t":"2026-10-20"},"5411188110842":{"fr":"Danone ALPRO® Boisson à la noisette 1L","nom":"Rich and indulgent Hazelnut","lang":"de","marque":"alpro, Danone Belux nv","qte":1000,"unite":"ml","quantite":"1 l","cats":["en:beverages","en:plant-based-milk-alternatives"],"t":"2026-10-20"},"5411188115366":{"fr":"Alpro smooth subtle creamy oat","nom":"Alpro smooth subtle creamy oat","lang":"fr","marque":"alpro","qte":1000,"unite":"ml","quantite":"1 L","cats":["en:beverages","en:plant-based-milk-alternatives"],"t":"2026-10-20"},"5411188115472":{"fr":"Alpro Boisson à base de soja, Original 1L","nom":"Soyamilch","lang":"de","marque":"alpro","qte":1000,"unite":"ml","quantite":"1 l","cats":["en:beverages","en:plant-based-milk-alternatives"],"t":"2026-10-20"},"5411188120742":{"fr":"Alpro Vanille Amande","nom":"Mandel Vanille Geschmack","lang":"en","marque":"alpro","qte":1000,"unite":"ml","quantite":"1 L","cats":["en:beverages","en:plant-based-milk-alternatives"],"t":"2026-10-20"},"5449000020628":{"fr":"Coca-Cola","nom":"Coca-Cola","lang":"fr","marque":"Coca-Cola","qte":3000,"unite":"ml","quantite":"6 x 50 cl","cats":[],"t":"2026-10-20"},"5449000267436":{"fr":"Coca-Cola Cherry","nom":"Coca-Cola Cherry","lang":"fr","marque":"Coca-Cola, Coke","qte":1250,"unite":"ml","quantite":"1.25 L","cats":["en:beverages"],"t":"2026-10-20"},"5449000283870":{"fr":"Coca-Cola Sans Sucres Sans colories","nom":"Coca-Cola Sans Sucres Sans colories","lang":"fr","marque":"Coca-Cola, Coca-Cola Company","qte":1980,"unite":"ml","quantite":"6 x 330 ml","cats":["en:beverages"],"t":"2026-10-20"},"5449000283900":{"fr":"Coca-Cola","nom":"Coca-Cola","lang":"fr","marque":"Coca-Cola","qte":1980,"unite":"ml","quantite":"6 x 330 ml","cats":["en:beverages"],"t":"2026-10-20"},"5449000304520":{"fr":"Coca-Cola Sans sucres Sans caféine","nom":"Coca-Cola Sans sucres Sans caféine","lang":"fr","marque":"Coca-Cola","qte":1980,"unite":"ml","quantite":"6 x 33 cl","cats":["en:beverages"],"t":"2026-10-20"},"5900130030982":{"fr":"Almond & Java Vanilla","nom":"Almond & Java Vanilla","lang":"fr","marque":"Nestlé, Froneri, Nuii","qte":268,"unite":"g","quantite":"268 g / 360 ml","cats":["en:frozen-foods","en:frozen-desserts","en:ice-creams-and-sorbets","en:ice-creams"],"t":"2026-10-20"},"5900783008062":{"fr":"Sauce mayo mix","nom":"Sauce mayo mix","lang":"fr","marque":"Heinz","qte":425,"unite":"g","quantite":"425 g","cats":["en:condiments","en:sauces","en:mayonnaises"],"t":"2026-10-20"},"5900951314407":{"fr":"Minis","nom":"m&mas minis","lang":"pt","marque":"M&M's","qte":176,"unite":"g","quantite":"176 g","cats":["en:confectioneries"],"t":"2026-10-20"},"7394376621680":{"fr":"Bio Barista - Boisson à base d'avoine moussante","nom":"Bio Barista - Biologische schuimbare haverdrank","lang":"nl","marque":"OAT-LY!","qte":1000,"unite":"ml","quantite":"1 l","cats":["en:beverages","en:plant-based-milk-alternatives"],"t":"2026-10-20"},"7613034579942":{"fr":"Eau minérale naturelle gazeuse","nom":"Eau minérale naturelle gazeuse","lang":"fr","marque":"Nestlé, Perrier","qte":1980,"unite":"ml","quantite":"6 x 33cl","cats":["en:beverages","en:waters"],"t":"2026-10-20"},"7613034975386":{"fr":"Extrême original - vanille pépites de nougatine","nom":"Extrême original - vanille pépites de nougatine","lang":"fr","marque":"Nestlé","qte":426,"unite":"g","quantite":"426 g (6 cônes)","cats":["en:frozen-foods","en:frozen-desserts","en:ice-creams-and-sorbets","en:ice-creams"],"t":"2026-10-20"},"7613034975416":{"fr":"Extrême Chocolat","nom":"Extrême Chocolat","lang":"fr","marque":"Nestlé","qte":720,"unite":"ml","quantite":"720 ml e (426 g)","cats":["en:frozen-foods","en:frozen-desserts","en:ice-creams-and-sorbets","en:ice-creams"],"t":"2026-10-20"},"7613035468535":{"fr":"Mini cônes vanille nougatine & chocolat nougatine","nom":"Mini cônes vanille nougatine & chocolat nougatine","lang":"fr","marque":"Nestlé","qte":312,"unite":"g","quantite":"312 g ℮, 8 cônes","cats":["en:frozen-foods","en:frozen-desserts","en:ice-creams-and-sorbets","en:ice-creams"],"t":"2026-10-20"},"7613035694958":{"fr":"Carré gourmand Tomates et mozzarella","nom":"Carré gourmand Tomates et mozzarella","lang":"fr","marque":"Garden Gourmet, Garden gourmet","qte":160,"unite":"g","quantite":"160 g","cats":["en:meat-analogues"],"t":"2026-10-20"},"7613035833319":{"fr":"Eau minérale naturelle","nom":"Eau minérale naturelle","lang":"fr","marque":"Perrier","qte":6000,"unite":"ml","quantite":"6x1l","cats":["en:beverages","en:waters"],"t":"2026-10-20"},"7613035888265":{"fr":"L'Original Fraise-Vanille sauce aux fruits rouges","nom":"L'Original Fraise-Vanille sauce aux fruits rouges","lang":"fr","marque":"Nestlé","qte":426,"unite":"g","quantite":"426 g e","cats":["en:frozen-foods","en:frozen-desserts","en:ice-creams-and-sorbets","en:ice-creams"],"t":"2026-10-20"},"7613035937420":{"fr":"HERTA Knacki Veggie Saucisses végétales x6 -210g","nom":"HERTA Knacki Veggie Saucisses végétales x6 -210g","lang":"fr","marque":"Herta, Knacki","qte":210,"unite":"g","quantite":"210 g","cats":["en:meals","en:meat-analogues"],"t":"2026-10-20"},"7622201133337":{"fr":"Figolu","nom":"Figolu","lang":"fr","marque":"LU, Mondelez","qte":192,"unite":"g","quantite":"192 g (12 x 16 g)","cats":["en:biscuits-and-cakes","en:biscuits"],"t":"2026-10-20"},"7622201521059":{"fr":"Choco Brookie","nom":"Choco Brookie","lang":"fr","marque":"Milka","qte":152,"unite":"g","quantite":"152g","cats":["en:biscuits-and-cakes","en:cakes"],"t":"2026-10-20"},"7622201680534":{"fr":"Guet Apens","nom":"Guet Apens","lang":"fr","marque":"LU, Mondelez","qte":105,"unite":"g","quantite":"105 g","cats":["en:biscuits-and-cakes","en:biscuits"],"t":"2026-10-20"},"7622201751722":{"fr":"Granola cookie cœur extra moelleux","nom":"Granola cookie cœur extra moelleux","lang":"fr","marque":"Granola","qte":140,"unite":"g","quantite":"5 x 28 g","cats":["en:biscuits-and-cakes","en:biscuits"],"t":"2026-10-20"},"7622201809638":{"fr":"Napolitain l'Original","nom":"Napolitain l'Original","lang":"fr","marque":"LU, Mondelez, Mondelez International","qte":180,"unite":"g","quantite":"180 g (6 x 30 g)","cats":["en:biscuits-and-cakes","en:cakes"],"t":"2026-10-20"},"7622202028335":{"fr":"Mikado Chocolat au lait","nom":"Mikado Chocolat au lait","lang":"fr","marque":"Glico, LU, Mikado, Mondelez International","qte":100,"unite":"g","quantite":"100g","cats":["en:biscuits-and-cakes","en:biscuits"],"t":"2026-10-20"},"7622210422163":{"fr":"La Paille d'Or aux framboises","nom":"La Paille d'Or aux framboises","lang":"fr","marque":"Lu, Mondelez International","qte":170,"unite":"g","quantite":"170 g","cats":["en:biscuits-and-cakes","en:biscuits"],"t":"2026-10-20"},"7622210450098":{"fr":"Prince goût tout Choco au blé complet","nom":"Prince goût tout Choco au blé complet","lang":"fr","marque":"LU Prince","qte":300,"unite":"g","quantite":"300 g","cats":["en:biscuits-and-cakes","en:biscuits"],"t":"2026-10-20"},"7622210476104":{"fr":"Véritable Petit Beurre","nom":"Véritable Petit Beurre","lang":"fr","marque":"LU","qte":400,"unite":"g","quantite":"400 g (4 x 100 g)","cats":["en:biscuits-and-cakes","en:biscuits"],"t":"2026-10-20"},"7622210476241":{"fr":"Petit brun extra","nom":"Petit brun extra","lang":"fr","marque":"Brun, Mondelez","qte":300,"unite":"g","quantite":"300 g","cats":["en:biscuits-and-cakes","en:biscuits"],"t":"2026-10-20"},"7622210476296":{"fr":"Thé - Biscuits","nom":"Thé - Biscuits","lang":"fr","marque":"Lu, Mondelez International","qte":350,"unite":"g","quantite":"350 g ℮","cats":["en:biscuits-and-cakes","en:biscuits"],"t":"2026-10-20"},"7622210623799":{"fr":"Choco Brownie","nom":"chocolat brownie","lang":"it","marque":"Milka","qte":180,"unite":"g","quantite":"180 g (6 x 30 g)","cats":["en:biscuits-and-cakes","en:cakes"],"t":"2026-10-20"},"7622210774101":{"fr":"Petit LU Moelleux","nom":"Petit LU Moelleux","lang":"fr","marque":"LU","qte":140,"unite":"g","quantite":"140 g","cats":["en:biscuits-and-cakes","en:biscuits"],"t":"2026-10-20"},"7622300292508":{"fr":"Choco SUPRÊME","nom":"Choco SUPRÊME","lang":"nl","marque":"Milka","qte":180,"unite":"g","quantite":"180 g","cats":[],"t":"2026-10-20"},"7622300336738":{"fr":"Oreo Original","nom":"OREO ORIGINAL","lang":"nl","marque":"Oreo","qte":154,"unite":"g","quantite":"154g","cats":["en:biscuits-and-cakes","en:biscuits"],"t":"2026-10-20"},"7622300784751":{"fr":"Cake & Choc","nom":"","lang":"nl","marque":"Milka, Mondelēz","qte":175,"unite":"g","quantite":"175g","cats":["en:biscuits-and-cakes","en:cakes"],"t":"2026-10-20"},"8000500025857":{"fr":"Barre Chocolatée Kinder Bueno Chocolat au Lait","nom":"Barre Chocolatée Kinder Bueno Chocolat au Lait","lang":"fr","marque":"Kinder","qte":129,"unite":"g","quantite":"129 g","cats":["en:confectioneries"],"t":"2026-10-20"},"8000500045497":{"fr":"Biscuits Nutella & Go x2 packs - 104g","nom":"Biscuits Nutella & Go x2 packs - 104g","lang":"fr","marque":"Nutella, Ferrero, Nutella & go, Nutella & go !","qte":104,"unite":"g","quantite":"2 x 52 g","cats":["en:sweet-spreads","en:breads","en:hazelnut-spreads"],"t":"2026-10-20"},"8000500217078":{"fr":"B-ready","nom":"B-ready","lang":"fr","marque":"Nutella, Ferrero, Nutella b-ready","qte":220,"unite":"g","quantite":"220 g","cats":["en:biscuits-and-cakes","en:confectioneries","en:biscuits"],"t":"2026-10-20"},"8000500223369":{"fr":"Biscuits NUTELLA B-ready Noisettes et Cacao x15 - 330g","nom":"Biscuits NUTELLA B-ready Noisettes et Cacao x15 - 330g","lang":"fr","marque":"Ferrero, Nutella B-ready, Nutella b-ready","qte":330,"unite":"g","quantite":"330 g","cats":["en:biscuits-and-cakes","en:confectioneries","en:biscuits"],"t":"2026-10-20"},"8000500227848":{"fr":"Biscuits NUTELLA B-ready Noisettes et Cacao x6 - 132g","nom":"Biscuits NUTELLA B-ready Noisettes et Cacao x6 - 132g","lang":"fr","marque":"Nutella, Nutella b-ready","qte":132,"unite":"g","quantite":"132 g","cats":["en:biscuits-and-cakes","en:confectioneries","en:biscuits"],"t":"2026-10-20"},"8000500242612":{"fr":"Schoko-Bons","nom":"Schoko-Bons","lang":"fr","marque":"Kinder, Ferrero, Mixte","qte":225,"unite":"g","quantite":"225 g","cats":["en:confectioneries","en:candies"],"t":"2026-10-20"},"8000500267103":{"fr":"Kinder délice","nom":"Kinder délice 10x","lang":"en","marque":"Kinder","qte":390,"unite":"g","quantite":"390g","cats":["en:biscuits-and-cakes","en:biscuits"],"t":"2026-10-20"},"8000500289877":{"fr":"Bonbons Kinder Schokobons Chocolat Blanc - 200g","nom":"Kinder Schokobons White","lang":"en","marque":"Kinder","qte":200,"unite":"g","quantite":"200 g","cats":["en:confectioneries","en:chocolates"],"t":"2026-10-20"},"8000500290392":{"fr":"Barre Chocolatée Kinder Bueno Chocolat au Lait","nom":"Barre Chocolatée Kinder Bueno Chocolat au Lait","lang":"fr","marque":"Kinder, Ferrero, Mixte","qte":258,"unite":"g","quantite":"258 g","cats":["en:confectioneries"],"t":"2026-10-20"},"8000500290484":{"fr":"Kinder Bueno White","nom":"Kinder Bueno White","lang":"fr","marque":"Kinder, Ferrero, Mixte","qte":234,"unite":"g","quantite":"234 g (6x39g)","cats":["en:confectioneries"],"t":"2026-10-20"},"8000500310397":{"fr":"Biscuits NUTELLA Biscuits Noisettes et Cacao x12 - 166g","nom":"nutella biscuits","lang":"en","marque":"Nutella, Ferrero, Nutella biscuits","qte":166,"unite":"g","quantite":"166 g","cats":["en:biscuits-and-cakes","en:biscuits"],"t":"2026-10-20"},"8000500362303":{"fr":"Biscuits KINDER Happy Hippo Lait et Cacao x5 - 103,5g","nom":"Biscuits KINDER Happy Hippo Lait et Cacao x5 - 103,5g","lang":"fr","marque":"Kinder","qte":103.5,"unite":"g","quantite":"103.5 g","cats":["en:biscuits-and-cakes","en:confectioneries","en:biscuits"],"t":"2026-10-20"},"8000500382769":{"fr":"Nutella biscuits🍪","nom":"Nutella biscuits🍪","lang":"fr","marque":"Nutella","qte":207,"unite":"g","quantite":"207 g","cats":["en:biscuits-and-cakes","en:biscuits"],"t":"2026-10-20"},"8000500384794":{"fr":"Kinder Tronky 5-pack","nom":"Kinder Tronky 5-pack","lang":"nl","marque":"Ferrero, Kinder","qte":90,"unite":"g","quantite":"90 g (5 x 18 g)","cats":["en:biscuits-and-cakes","en:confectioneries","en:biscuits"],"t":"2026-10-20"},"8000500385807":{"fr":"Kinder DUO","nom":"Kinder DUO","lang":"fr","marque":"Kinder","qte":150,"unite":"g","quantite":"150 g","cats":["en:biscuits-and-cakes","en:biscuits"],"t":"2026-10-20"},"8000500391228":{"fr":"Kinder Kinderini","nom":"Kinder Kinderini","lang":"fr","marque":"Kinder","qte":250,"unite":"g","quantite":"250 g","cats":["en:biscuits-and-cakes","en:biscuits"],"t":"2026-10-20"},"8000500406427":{"fr":"Kinder Chocolate Ice Cream","nom":"Kinder Chocolate Ice Cream","lang":"fr","marque":"Kinder","qte":152,"unite":"g","quantite":"4x38g / 4x55ml","cats":["en:frozen-foods","en:frozen-desserts","en:ice-creams-and-sorbets","en:ice-creams"],"t":"2026-10-20"},"8000500425183":{"fr":"Glace au Nutella","nom":"Glace au Nutella","lang":"en","marque":"Nutella, Ferrero","qte":230,"unite":"g","quantite":"230 g / 470 ml","cats":["en:frozen-foods","en:frozen-desserts","en:ice-creams-and-sorbets","en:ice-creams"],"t":"2026-10-20"},"8000500426449":{"fr":"Crunchy Cookies","nom":"Crunchy Cookies","lang":"fr","marque":"Kinder","qte":136,"unite":"g","quantite":"8 x 17 g = 136 g","cats":["en:biscuits-and-cakes","en:biscuits"],"t":"2026-10-20"},"8000500426494":{"fr":"Nutella Plant-Based","nom":"Nutella Plant-Based","lang":"en","marque":"Ferrero, Nutella","qte":350,"unite":"g","quantite":"350 g","cats":["en:sweet-spreads","en:hazelnut-spreads"],"t":"2026-10-20"},"8002270049941":{"fr":"Eau minérale naturelle gazeuse","nom":"Eau minérale naturelle gazeuse","lang":"fr","marque":"San Pellegrino, S. pellegrino","qte":3000,"unite":"ml","quantite":"6x50cl","cats":["en:beverages","en:waters"],"t":"2026-10-20"},"8019428000013":{"fr":"Boisson de Riz naturel - 1L\tBio","nom":"Rice drink","lang":"en","marque":"The Bridge, the bridge la familiglia organic","qte":1000,"unite":"ml","quantite":"1 L","cats":["en:beverages","en:plant-based-milk-alternatives"],"t":"2026-10-20"},"8019428000105":{"fr":"Boisson avoine naturel","nom":"Boisson avoine naturel","lang":"fr","marque":"The Bridge","qte":1000,"unite":"ml","quantite":"1L","cats":["en:beverages","en:plant-based-milk-alternatives"],"t":"2026-10-20"},"8052575090230":{"fr":"Nocciolata","nom":"Nocciolata","lang":"en","marque":"Rigoni Di Asiago","qte":250,"unite":"g","quantite":"250 g","cats":["en:sweet-spreads","en:hazelnut-spreads"],"t":"2026-10-20"},"8052575090254":{"fr":"Rigoni di Asiago - Nocciolata bio","nom":"Rigoni di Asiago - Nocciolata bio","lang":"fr","marque":"Rigoni di Asiago","qte":650,"unite":"g","quantite":"650 g","cats":["en:sweet-spreads","en:hazelnut-spreads"],"t":"2026-10-20"},"8076808890015":{"fr":"Pâtes tortellini jambon fromage collezione 250g","nom":"Pâtes tortellini jambon fromage collezione 250g","lang":"fr","marque":"Barilla","qte":250,"unite":"g","quantite":"250 g","cats":["en:meals"],"t":"2026-10-20"},"8076809517706":{"fr":"Baiocchi Classici","nom":"Baiocchi Classici","lang":"fr","marque":"Mulino Bianco","qte":336,"unite":"g","quantite":"336 g","cats":["en:biscuits-and-cakes","en:biscuits"],"t":"2026-10-20"},"8076809517751":{"fr":"Pesto alla Calabrese 190g","nom":"Pesto alla Calabrese 190g","lang":"fr","marque":"Barilla","qte":190,"unite":"g","quantite":"190 g","cats":["en:condiments","en:sauces"],"t":"2026-10-20"},"80861263":{"fr":"Pâte à tartiner","nom":"Pâte à tartiner","lang":"fr","marque":"Nutella","qte":220,"unite":"g","quantite":"220g","cats":["en:sweet-spreads","en:hazelnut-spreads"],"t":"2026-10-20"},"8410076350213":{"fr":"Salsa dip","nom":"Salsa dip","lang":"en","marque":"Old El Paso","qte":312,"unite":"g","quantite":"312 g","cats":["en:condiments","en:sauces","en:dips"],"t":"2026-10-20"},"8410076421449":{"fr":"Sauce apéritif Guacamole","nom":"Sauce apéritif Guacamole","lang":"en","marque":"Old El Paso","qte":320,"unite":"g","quantite":"320gr","cats":["en:condiments","en:sauces","en:dips"],"t":"2026-10-20"},"8410076470553":{"fr":"Sauce à cuisiner Fajita","nom":"Sauce à cuisiner Fajita","lang":"fr","marque":"Old El Paso","qte":395,"unite":"g","quantite":"395g","cats":["en:condiments","en:sauces"],"t":"2026-10-20"},"8445290503206":{"fr":"Nesquik poche recharge 800g","nom":"Nesquik poche recharge 800g","lang":"fr","marque":"Nesquik, Nestlé","qte":800,"unite":"g","quantite":"800 g","cats":["en:cocoa-and-chocolate-powders"],"t":"2026-10-20"},"8445291659445":{"fr":"GARDEN GOURMET La Panée Soja","nom":"GARDEN GOURMET La Panée Soja","lang":"fr","marque":"Garden Gourmet, Garden gourmet","qte":207,"unite":"g","quantite":"207 g","cats":["en:meat-analogues"],"t":"2026-10-20"},"8710522906453":{"fr":"Sauce Deluxe","nom":"Sauce Deluxe","lang":"fr","marque":"Amora","qte":247,"unite":"g","quantite":"247 g","cats":["en:condiments","en:sauces"],"t":"2026-10-20"},"8711327370708":{"fr":"Ben & Jerry's Glace en Pot Chocolate Fudge Brownie 465ml","nom":"Chocolate Fudge Brownie","lang":"de","marque":"Ben & Jerry's","qte":408,"unite":"g","quantite":"408 g","cats":["en:frozen-foods","en:frozen-desserts","en:ice-creams-and-sorbets","en:ice-creams"],"t":"2026-10-20"},"8711327371002":{"fr":"Half Baked","nom":"Half Baked","lang":"en","marque":"Ben & Jerry's","qte":465,"unite":"ml","quantite":"465ml / 406 g","cats":["en:dairies","en:frozen-foods","en:dairy-desserts","en:frozen-desserts","en:ice-creams-and-sorbets","en:ice-creams"],"t":"2026-10-20"},"8711327374256":{"fr":"Vanilla Pecan Blondie","nom":"Vanilla Pecan Blondie","lang":"fr","marque":"Ben & Jerry's","qte":414,"unite":"g","quantite":"414 g","cats":["en:frozen-foods","en:frozen-desserts","en:ice-creams-and-sorbets","en:ice-creams"],"t":"2026-10-20"},"8711327374515":{"fr":"Ben & Jerry's Glace en Pot Peanut Butter Cup 465ml","nom":"Ben & Jerry's Glace en Pot Peanut Butter Cup 465ml","lang":"fr","marque":"Ben & Jerry's","qte":425,"unite":"g","quantite":"425 g","cats":["en:frozen-foods","en:frozen-desserts","en:ice-creams-and-sorbets","en:ice-creams"],"t":"2026-10-20"},"8711327606081":{"fr":"Chocolat blanc","nom":"Chocolat blanc","lang":"fr","marque":"Magnum","qte":294,"unite":"g","quantite":"294 g","cats":["en:frozen-foods","en:frozen-desserts","en:ice-creams-and-sorbets","en:ice-creams"],"t":"2026-10-20"},"8711327606234":{"fr":"Magnum Vanille & Chocolat Classic","nom":"Magnum Vanille & Chocolat Classic","lang":"fr","marque":"Magnum","qte":300,"unite":"g","quantite":"300 g","cats":["en:frozen-foods","en:frozen-desserts","en:ice-creams-and-sorbets","en:ice-creams"],"t":"2026-10-20"},"8711327608207":{"fr":"Magnum Glace Bâtonnet Mini Vanille & Chocolat Classic 6x55ml","nom":"Magnum Glace Bâtonnet Mini Vanille & Chocolat Classic 6x55ml","lang":"fr","marque":"Magnum","qte":249,"unite":"g","quantite":"249 g","cats":["en:frozen-foods","en:frozen-desserts","en:ice-creams-and-sorbets","en:ice-creams"],"t":"2026-10-20"},"8711327611924":{"fr":"Mini Almond","nom":"Magnum Mini IJs Almond","lang":"nl","marque":"Magnum","qte":265.8,"unite":"g","quantite":"265.8 g (330 ml)","cats":["en:frozen-foods","en:frozen-desserts","en:ice-creams-and-sorbets","en:ice-creams"],"t":"2026-10-20"},"8712100479243":{"fr":"Amora Sauce Pommes Frites Flacon Souple 260g","nom":"Amora Sauce Pommes Frites Flacon Souple 260g","lang":"fr","marque":"Amora","qte":260,"unite":"g","quantite":"260 g","cats":["en:condiments","en:sauces"],"t":"2026-10-20"},"8712566361601":{"fr":"Amora Sauce Samouraï 255g","nom":"Amora Sauce Samouraï 255g","lang":"fr","marque":"AMORA, Amora","qte":255,"unite":"g","quantite":"255 g","cats":["en:condiments","en:sauces"],"t":"2026-10-20"},"8712566381340":{"fr":"Amora Sauce Barbecue Miel Flacon Souple 282g","nom":"Amora Sauce Barbecue Miel Flacon Souple 282g","lang":"fr","marque":"Amora","qte":282,"unite":"g","quantite":"282 g","cats":["en:condiments","en:sauces"],"t":"2026-10-20"},"8714100903506":{"fr":"Tabasco Sauce Epicée Rouge 60ml","nom":"Tabasco Sauce Epicée Rouge 60ml","lang":"fr","marque":"McIlhenny Company, Tabasco","qte":60,"unite":"ml","quantite":"60 ml","cats":["en:condiments","en:sauces"],"t":"2026-10-20"},"8715035110106":{"fr":"Sauce Soja - Kikkoman","nom":"Sojasaus","lang":"en","marque":"Kikkoman","qte":150,"unite":"ml","quantite":"150ml","cats":["en:condiments","en:sauces"],"t":"2026-10-20"},"8715035110304":{"fr":"Sauce soja","nom":"Sauce Soja","lang":"en","marque":"Kikkoman Foods Europe B.V.","qte":250,"unite":"ml","quantite":"250ml","cats":["en:condiments","en:sauces"],"t":"2026-10-20"},"8715035130104":{"fr":"Sauce Soja à teneur en sel réduite","nom":"Sauce Soja à teneur en sel réduite","lang":"fr","marque":"Kikkoman","qte":150,"unite":"ml","quantite":"150ml","cats":["en:condiments","en:sauces"],"t":"2026-10-20"},"8715035250307":{"fr":"Sauce soja sucrée","nom":"Sauce soja sucrée","lang":"fr","marque":"KIKKOMAN","qte":250,"unite":"ml","quantite":"250ml","cats":["en:condiments","en:sauces"],"t":"2026-10-20"},"8715035360303":{"fr":"Sauce Yakitori, Nappage Et Marinade","nom":"SAUCE YAKITORI","lang":"en","marque":"kikkoman","qte":250,"unite":"ml","quantite":"250 ml","cats":["en:condiments","en:sauces"],"t":"2026-10-20"},"87157215":{"fr":"Tomato Ketchup","nom":"Tomato Ketchup","lang":"en","marque":"Heinz","qte":250,"unite":"g","quantite":"250g","cats":["en:condiments","en:sauces"],"t":"2026-10-20"},"8718114734484":{"fr":"MAILLE Mayonnaise Fine Qualité Traiteur Bocal 320g","nom":"Maille Mayonnaise","lang":"en","marque":"Maille","qte":320,"unite":"g","quantite":"320g","cats":["en:condiments","en:sauces","en:dips","en:mayonnaises"],"t":"2026-10-20"},"8720182460721":{"fr":"Amora Moutarde Forte Verre 430g","nom":"Amora Moutarde Forte Verre 430g","lang":"fr","marque":"Amora","qte":430,"unite":"g","quantite":"430 g","cats":["en:condiments","en:sauces"],"t":"2026-10-20"},"8720182461247":{"fr":"Amora Moutarde Forte 185g","nom":"Amora Moutarde Forte 185g","lang":"fr","marque":"Amora","qte":185,"unite":"g","quantite":"185 g","cats":["en:frozen-foods","en:condiments","en:sauces"],"t":"2026-10-20"},"8720182557452":{"fr":"Moutarde à l’ancienne","nom":"Moutarde à l’ancienne","lang":"fr","marque":"Maille, Unilever","qte":360,"unite":"g","quantite":"360 g","cats":["en:condiments","en:sauces"],"t":"2026-10-20"},"8722700113348":{"fr":"Tomato Ketchup","nom":"Tomato Ketchup","lang":"fr","marque":"Amora","qte":280,"unite":"g","quantite":"280 g","cats":["en:condiments","en:sauces"],"t":"2026-10-20"},"8722700125174":{"fr":"Amora Sauce Burger 260g","nom":"Amora Sauce Burger 260g","lang":"fr","marque":"Amora","qte":260,"unite":"g","quantite":"260 g","cats":["en:condiments","en:sauces"],"t":"2026-10-20"},"8722700197508":{"fr":"Vinaigre Balsamique de Modène 25 cl","nom":"Vinaigre Balsamique de Modène 25 cl","lang":"fr","marque":"Maille","qte":250,"unite":"ml","quantite":"250 ml","cats":["en:condiments","en:vinegars"],"t":"2026-10-20"}}
 }
