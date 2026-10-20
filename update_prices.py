@@ -6,12 +6,15 @@ Génère products.json, le seul fichier de données que lit le jeu.
 À lancer une fois par jour (GitHub Actions, cron, Cloudflare Worker…).
 
 Logique :
-  1. Produits du quotidien = les produits les plus relevés par les Français
-     sur Open Prices (un produit que plein de gens scannent est un produit
-     que plein de gens achètent), + ceux listés dans catalog.json.
-  2. Pour chacun : relevés en France, en euros, sur les 12 derniers mois.
-  3. On garde le produit seulement s'il a au moins MIN_RELEVES relevés.
+  1. On télécharge le fichier complet d'Open Prices (publié chaque nuit) et on garde
+     tous les produits relevés en France, en euros, sur les 12 derniers mois.
+     (Secours si le fichier est indisponible : les 800 produits les plus relevés, via l'API.)
+  2. Règles de fiabilité : au moins MIN_RELEVES relevés, dans MIN_MAGASINS magasins,
+     un relevé de moins de RECENT_MOIS mois, prix peu dispersés.
+  3. Fiche Open Food Facts : nom en français obligatoire, poids lisible, pas d'alcool,
+     de complément alimentaire, de produit bébé ou animal. Fiches gardées dans fiches.json.
   4. Prix de référence = médiane (insensible aux promos et erreurs de saisie).
+  5. + produits de catalog.json (noms choisis à la main) et produits frais de l'Insee.
 
 Données : Open Prices (Open Food Facts), licence ODbL — créditer la source.
 
@@ -20,6 +23,9 @@ Usage :
   python3 update_prices.py --from-raw raw_prices.json   # hors ligne
 """
 import argparse
+import gzip
+import tempfile
+import xml.etree.ElementTree as ET
 import json
 import re
 import statistics
@@ -32,16 +38,46 @@ from datetime import date, timedelta
 from pathlib import Path
 
 API = "https://prices.openfoodfacts.org/api/v1"
+INSEE = "https://bdm.insee.fr/series/sdmx/data/SERIES_BDM/{ids}?lastNObservations=4&detail=dataonly"
+INSEE_FRAIS_MOIS = 4     # une série Insee n'est gardée que si son dernier prix a moins de 4 mois (fruits de saison…)
 USER_AGENT = "HorsSol/0.1 (jeu de prix quotidien; https://es-tu-hors-sol.fr)"
 MIN_RELEVES = 3          # sous ce seuil, le prix n'est pas fiable
 FENETRE_JOURS = 365      # relevés pris en compte
-MAX_AUTO = 300           # produits populaires ajoutés automatiquement
+MAX_AUTO = 800           # produits populaires examinés chaque nuit
+MIN_MAGASINS = 2         # produit automatique : relevé dans au moins 2 magasins différents
+RECENT_MOIS = 6          # … et au moins un relevé de moins de 6 mois
 ECART_MAX = 0.6          # écarte les produits dont les prix sont trop dispersés
 MIN_PRODUITS = 40        # sous ce seuil, on garde les données de la veille
 MAX_PRIX = 20.0          # au-delà : pas un produit du quotidien (alcools, coffrets…)
 MAX_PAR_KILO = 60.0      # au-delà : poids mal saisi (ex. Nutella « 15 g » à 4,75 €)
 MIN_QTE_G = 30           # en dessous de 30 g / 3 cl : poids sans doute faux
 MAX_PAR_MARQUE = 3       # variété : 3 produits automatiques maximum par marque
+MIN_PAR_KILO = 0.30      # en dessous (0,10 €/L pour les boissons, ex. pack d'eau) : poids mal saisi (ex. 5 kg noté au lieu de 500 g)
+MAX_AUTO_TOTAL = 1000    # plafond de produits automatiques (taille de la page du jeu)
+
+# Fichier complet Open Prices (régénéré chaque nuit) et fiches produits Open Food Facts
+DUMP = "https://prices.openfoodfacts.org/data"
+OFF_PRODUIT = ("https://world.openfoodfacts.org/api/v2/product/{code}"
+               "?fields=product_name_fr,product_name,lang,brands,product_quantity,product_quantity_unit,quantity,categories_tags")
+FICHES = "fiches.json"            # mémoire des fiches déjà lues (évite de tout redemander chaque nuit)
+FICHES_MAX_PAR_NUIT = 1500        # nouvelles fiches lues au maximum par lancement
+FICHES_MINUTES = 30               # … et pas plus de 30 minutes
+FICHES_VALIDITE_JOURS = 90        # une fiche est relue au bout de 3 mois
+EXCLUS_CATS = {"en:alcoholic-beverages", "en:dietary-supplements", "en:pet-food", "en:baby-foods", "en:baby-milks"}
+CAT_RAYONS = [  # rayon affiché, d'après les catégories Open Food Facts (le premier qui correspond gagne)
+    ("Surgelés",    ["en:frozen-foods", "en:ice-creams-and-sorbets", "en:ice-creams", "en:frozen-desserts"]),
+    ("Apéro",       ["en:salty-snacks", "en:appetizers", "en:crisps", "en:chips-and-fries"]),
+    ("Biscuits",    ["en:biscuits-and-cakes", "en:biscuits", "en:cakes"]),
+    ("Confiserie",  ["en:chocolates", "en:confectioneries", "en:candies"]),
+    ("Petit-déj",   ["en:breakfast-cereals", "en:spreads", "en:jams", "en:coffees", "en:teas", "en:honeys", "en:breakfasts"]),
+    ("Crèmerie",    ["en:dairies", "en:cheeses", "en:yogurts", "en:eggs", "en:butters", "en:dairy-desserts"]),
+    ("Boissons",    ["en:beverages"]),
+    ("Conserves",   ["en:canned-foods"]),
+    ("Frais",       ["en:prepared-meats", "en:meals", "en:sandwiches", "en:fresh-pasta"]),
+    ("Boucherie",   ["en:meats", "en:poultries"]),
+    ("Boulangerie", ["en:breads"]),
+]
+CATS_UTILES = EXCLUS_CATS | {t for _, tags in CAT_RAYONS for t in tags}
 
 HERE = Path(__file__).parent
 
@@ -66,10 +102,74 @@ def get(path, **params):
     raise last
 
 
+# ---------- Produits frais : prix moyens mensuels de l'Insee (source officielle) ----------
+def insee_fetch(ids):
+    """Télécharge les dernières valeurs des séries Insee (SDMX, accès libre). Renvoie le texte XML."""
+    url = INSEE.format(ids="+".join(ids))
+    req = urllib.request.Request(url, headers={"User-Agent": USER_AGENT, "Accept": "application/xml"})
+    last = None
+    for wait in (0, 5, 20):
+        if wait:
+            time.sleep(wait)
+        try:
+            with urllib.request.urlopen(req, timeout=60) as r:
+                return r.read().decode("utf-8")
+        except Exception as e:  # réseau, 5xx…
+            last = e
+    raise last
+
+
+def insee_parse(xml_text):
+    """{idbank: (période 'AAAA-MM', valeur)} : dernière observation de chaque série."""
+    root = ET.fromstring(xml_text)
+    out = {}
+    for el in root.iter():
+        if not el.tag.endswith("Series"):
+            continue
+        idb = el.attrib.get("IDBANK")
+        obs = []
+        for o in el:
+            if o.tag.endswith("Obs"):
+                v = o.attrib.get("OBS_VALUE")
+                try:
+                    obs.append((o.attrib.get("TIME_PERIOD", ""), float(v)))
+                except (TypeError, ValueError):
+                    pass
+        if idb and obs:
+            out[idb] = max(obs)
+    return out
+
+
+def insee_products(today, xml_text=None):
+    cat = json.loads((HERE / "insee.json").read_text())
+    cat.pop("_info", None)
+    data = insee_parse(xml_text if xml_text is not None else insee_fetch(list(cat)))
+    oldest = (today.replace(day=1) - timedelta(days=31 * (INSEE_FRAIS_MOIS - 1))).strftime("%Y-%m")
+    products = []
+    for idb, meta in cat.items():
+        if idb not in data:
+            print(f"  insee ? {meta['name']} (pas de donnée)", file=sys.stderr)
+            continue
+        period, value = data[idb]
+        if period < oldest:
+            print(f"  insee - {meta['name']} (dernier prix {period}, hors saison ou série arrêtée)", file=sys.stderr)
+            continue
+        kilo = meta["unit"] == "kg" and meta.get("qty")
+        price = round(value * meta["qty"], 2) if kilo else round(value, 2)
+        if not (0.15 <= price <= MAX_PRIX):
+            print(f"  insee - {meta['name']} ({price} € hors bornes)", file=sys.stderr)
+            continue
+        products.append({"code": "insee-" + idb, "name": meta["name"], "detail": meta["detail"], "rayon": meta["rayon"],
+                         "qty": meta.get("qty"), "unit": meta["unit"], "median": price, "p25": None, "p75": None, "n": None,
+                         "per_unit": round(value, 2) if kilo else None, "src": "insee", "period": period})
+        print(f"  insee ok {meta['name']}: {price} € ({period})", file=sys.stderr)
+    return products
+
+
 def popular_codes(limit):
     """Produits avec le plus de relevés de prix."""
     items = []
-    for page in (1, 2, 3, 4):
+    for page in range(1, MAX_AUTO // 100 + 1):
         try:
             items += get("products", order_by="-price_count", size=100, page=page).get("items", [])
         except Exception as e:  # une page en échec : on garde ce qu'on a déjà
@@ -103,7 +203,7 @@ SOCIETE = re.compile(r"\b(SAS|S\.?A\.?U?\.?|SpA|GmbH|Srl|nv|Company|Belux|Nahrun
 ETRANGER = re.compile(r"(milch|mandel|nudeln|geröstet|ohne zucker|\bnatur mit\b|kokosnuss|drank|biologische|schuimbare|\brice drink\b|\bpeanut\b|\bsojasaus\b|\bvegetale\b)", re.I)
 EMOJI = re.compile("[\U0001F000-\U0001FAFF\u2600-\u27BF]")
 RAYONS = [
-    ("Surgelés",   r"glace|häagen|haagen|ben & jerry|magnum|crème glacée|sorbet|pizza|surgel"),
+    ("Surgelés",   r"glace|häagen|haagen|ben ?& ?jerry|magnum|crème glacée|sorbet|pizza|surgel"),
     ("Boissons",   r"^eau |\beau |coca|pepsi|red bull|soda|limonade|\bjus\b|boisson|drink|\bavoine\b|barista|candy'?up|gazpacho"),
     ("Apéro",      r"chips|pringles|\btuc\b|cacahu[eè]tes grill|apéri|crackers|bretzel|houmous|olives"),
     ("Conserves",  r"cassegrain|bonduelle|conserve|\bthon\b|ratatouille|maïs|haricots|petits pois|flageolets|lentilles préparées|macédoine|courgettes"),
@@ -128,7 +228,11 @@ def nettoie_marque(brand):
     b = SOCIETE.sub("", brand or "").replace("  ", " ").strip(" -,.")
     if b.isupper() and len(b) > 3:
         b = b.title()
-    return " ".join(b.split()[:2])
+    mots = b.split()
+    if len(mots) > 2:
+        # « Ben & Jerry's » reste entier ; « Jacobs Douwe Egberts » devient « Jacobs »
+        return " ".join(mots[:3]) if mots[1] in ("&", "et", "and") else mots[0]
+    return " ".join(mots)
 
 def nettoie_nom(name, brand):
     n = EMOJI.sub("", name)
@@ -178,8 +282,8 @@ def devine_rayon(name, unit):
 
 
 def french_prices(code, since):
-    """Relevés en France, en euros, depuis `since`."""
-    prices, page = [], 1
+    """Relevés en France, en euros, depuis `since` : (prix, nombre de magasins différents, date du relevé le plus récent)."""
+    prices, page, shops, newest = [], 1, set(), ""
     while page <= 5:
         data = get("prices", product_code=code, order_by="-date", size=100, page=page)
         items = data.get("items", [])
@@ -190,11 +294,147 @@ def french_prices(code, since):
             if it.get("currency") == "EUR" and country == "FR" and d >= since.isoformat():
                 if not it.get("price_per") or it.get("price_per") == "UNIT":
                     prices.append(float(it["price"]))
+                    shops.add(it.get("location_id") or loc.get("id") or loc.get("osm_id"))
+                    newest = max(newest, d)
         if not items or (items and (items[-1].get("date") or "") < since.isoformat()):
             break
         page += 1
         time.sleep(0.5)  # on reste poli avec l'API
-    return prices
+    ids = shops - {None}
+    # si l'API ne donne pas l'identifiant du magasin, on ne peut pas compter : la règle des 2 magasins ne s'applique pas
+    return prices, (len(ids) if ids else 99), newest
+
+
+# ---------- Fichier complet Open Prices (publié chaque nuit) + fiches Open Food Facts ----------
+def telecharge(url, dest):
+    """Télécharge un fichier (avec 3 essais) vers `dest`."""
+    req = urllib.request.Request(url, headers={"User-Agent": USER_AGENT})
+    last = None
+    for wait in (0, 10, 60):
+        if wait:
+            time.sleep(wait)
+        try:
+            with urllib.request.urlopen(req, timeout=120) as r, open(dest, "wb") as f:
+                while True:
+                    chunk = r.read(1 << 20)
+                    if not chunk:
+                        break
+                    f.write(chunk)
+            return dest
+        except Exception as e:
+            last = e
+    raise last
+
+
+def lignes_jsonl_gz(path):
+    with gzip.open(path, "rt", encoding="utf-8") as f:
+        for line in f:
+            line = line.strip()
+            if line:
+                try:
+                    yield json.loads(line)
+                except json.JSONDecodeError:
+                    continue
+
+
+def releves_du_fichier(since, dump_dir=None):
+    """{code: (prix, nb de magasins, date du relevé le plus récent)} pour TOUS les produits relevés en France.
+    Mêmes règles que l'ancienne méthode : euros, magasin en France, prix à l'unité, pas de doublon signalé."""
+    d = Path(dump_dir) if dump_dir else Path(tempfile.mkdtemp())
+    loc_path, prix_path = d / "locations.jsonl.gz", d / "prices.jsonl.gz"
+    if not dump_dir:
+        telecharge(f"{DUMP}/locations.jsonl.gz", loc_path)
+        telecharge(f"{DUMP}/prices.jsonl.gz", prix_path)
+    fr = {l.get("id") for l in lignes_jsonl_gz(loc_path)
+          if (l.get("osm_address_country_code") or "").upper() == "FR"}
+    since_s, stats, total = since.isoformat(), {}, 0
+    for it in lignes_jsonl_gz(prix_path):
+        total += 1
+        code = it.get("product_code")
+        loc = it.get("location_id", it.get("location"))
+        if not code or it.get("type") not in (None, "PRODUCT") or it.get("currency") != "EUR" or loc not in fr:
+            continue
+        if it.get("duplicate_of") or (it.get("price_per") not in (None, "", "UNIT")):
+            continue
+        dt = it.get("date") or ""
+        if dt < since_s:
+            continue
+        try:
+            price = float(it["price"])
+        except (KeyError, TypeError, ValueError):
+            continue
+        if price <= 0:
+            continue
+        s = stats.setdefault(code, [[], set(), ""])
+        s[0].append(price); s[1].add(loc); s[2] = max(s[2], dt)
+    print(f"Fichier Open Prices : {total} prix au total, {len(fr)} magasins en France, "
+          f"{len(stats)} produits relevés en France sur 12 mois", file=sys.stderr)
+    return {c: (s[0], len(s[1]), s[2]) for c, s in stats.items()}
+
+
+def http_json(url):
+    req = urllib.request.Request(url, headers={"User-Agent": USER_AGENT})
+    last = None
+    for wait in (0, 5, 20):
+        if wait:
+            time.sleep(wait)
+        try:
+            with urllib.request.urlopen(req, timeout=30) as r:
+                return json.load(r)
+        except urllib.error.HTTPError as e:
+            if e.code == 404:
+                return {"status": 0}
+            last = e
+        except (urllib.error.URLError, TimeoutError, ConnectionError, json.JSONDecodeError) as e:
+            last = e
+    raise last
+
+
+def fiche_off(code):
+    """Fiche Open Food Facts réduite à ce qui nous sert (nom français, marque, poids, catégories utiles)."""
+    data = http_json(OFF_PRODUIT.format(code=code))
+    t = date.today().isoformat()
+    if data.get("status") != 1 or not data.get("product"):
+        return {"absent": True, "t": t}       # pas un produit alimentaire connu d'Open Food Facts
+    p = data["product"]
+    cats = [c for c in (p.get("categories_tags") or []) if c in CATS_UTILES]
+    return {"fr": (p.get("product_name_fr") or "").strip(), "nom": (p.get("product_name") or "").strip(),
+            "lang": p.get("lang") or "", "marque": p.get("brands") or "", "qte": p.get("product_quantity"),
+            "unite": p.get("product_quantity_unit") or "", "quantite": p.get("quantity") or "", "cats": cats, "t": t}
+
+
+def nom_francais(f):
+    """Le nom affiché doit être en français : nom français d'Open Food Facts, sinon nom principal d'une fiche française."""
+    if f.get("fr"):
+        return f["fr"]
+    if f.get("lang") == "fr" and f.get("nom"):
+        return f["nom"]
+    return ""
+
+
+def unite_de(f):
+    """Poids/volume : champs d'Open Food Facts, sinon on lit « 1,5 L », « 400 g »… dans la quantité affichée."""
+    qte, u = f.get("qte"), (f.get("unite") or "").strip()
+    if qte and u:
+        return qte, u
+    m = re.search(r"(\d+(?:[.,]\d+)?)\s?(kg|g|gr|ml|cl|l)\b", f.get("quantite") or "", re.I)
+    if m:
+        return float(m.group(1).replace(",", ".")), m.group(2)
+    return qte, (u or None)
+
+
+def rayon_par_categorie(cats):
+    for rayon, tags in CAT_RAYONS:
+        if any(t in cats for t in tags):
+            return rayon
+    return None
+
+
+def charge_fiches(path):
+    try:
+        return json.loads(path.read_text())
+    except Exception:
+        return {}
 
 
 def summarize(prices):
@@ -205,6 +445,69 @@ def summarize(prices):
     if med <= 0 or (q[2] - q[0]) / med > ECART_MAX:
         return None
     return {"median": round(med, 2), "p25": round(q[0], 2), "p75": round(q[2], 2), "n": len(prices)}
+
+
+def ILLISIBLE_OK(name):
+    """Nom lisible : surtout des lettres, pas de code, d'adresse web ni de caractères bizarres."""
+    if re.search(r"[_@#{}\[\]<>|\\/?=*]|https?:|www\.|\.com\b", name):
+        return False
+    lettres = sum(ch.isalpha() for ch in name)
+    if lettres < 3 or lettres < 0.6 * len(name.replace(" ", "")):
+        return False
+    if re.search(r"\d{5,}", name):          # un code-barres ou une référence dans le nom
+        return False
+    return True
+
+
+def candidats_du_fichier(releves, deja, exclus):
+    """Produits du fichier complet qui passent nos règles de fiabilité, avec une fiche propre en français."""
+    recent = (date.today() - timedelta(days=30 * RECENT_MOIS)).isoformat()
+    eligibles = [c for c, (pr, ns, nw) in releves.items()
+                 if c not in deja and c not in exclus and ns >= MIN_MAGASINS and nw >= recent and summarize(pr)]
+    eligibles.sort(key=lambda c: -len(releves[c][0]))       # les plus relevés d'abord
+    print(f"{len(eligibles)} produits passent les règles de fiabilité "
+          f"(≥{MIN_RELEVES} relevés, ≥{MIN_MAGASINS} magasins, relevé de moins de {RECENT_MOIS} mois, prix peu dispersés)",
+          file=sys.stderr)
+    path = HERE / FICHES
+    fiches = charge_fiches(path)
+    perime = (date.today() - timedelta(days=FICHES_VALIDITE_JOURS)).isoformat()
+    lus, start, out = 0, time.time(), {}
+    n = {"pas lue (on la lira la nuit prochaine)": 0, "inconnu d'Open Food Facts (souvent non alimentaire)": 0,
+         "alcool, complément, bébé ou animaux": 0, "pas de nom en français": 0, "nom, poids ou unité inutilisable": 0}
+    for c in eligibles:
+        f = fiches.get(c)
+        if (not f or f.get("t", "") < perime) and lus < FICHES_MAX_PAR_NUIT and time.time() - start < FICHES_MINUTES * 60:
+            try:
+                f = fiche_off(c)
+                fiches[c] = f
+                lus += 1
+                time.sleep(0.7)   # Open Food Facts : 100 fiches par minute au maximum
+            except Exception as e:
+                print(f"  fiche illisible {c} ({e})", file=sys.stderr)
+        if not f:
+            n["pas lue (on la lira la nuit prochaine)"] += 1; continue
+        if f.get("absent"):
+            n["inconnu d'Open Food Facts (souvent non alimentaire)"] += 1; continue
+        if set(f.get("cats") or []) & EXCLUS_CATS:
+            n["alcool, complément, bébé ou animaux"] += 1; continue
+        nom = nom_francais(f)
+        if not nom or len(nom) > 70 or ETRANGER.search(nom):
+            n["pas de nom en français"] += 1; continue
+        qte, u = unite_de(f)
+        meta = auto_meta({"code": c, "name": nom, "brands": f.get("marque", ""), "qty": qte, "qty_unit": u,
+                          "cats": f.get("cats") or []})
+        if not meta:
+            n["nom, poids ou unité inutilisable"] += 1; continue
+        out[c] = meta
+    try:
+        path.write_text(json.dumps(dict(sorted(fiches.items())), ensure_ascii=False, separators=(",", ":")))
+    except Exception as e:
+        print(f"  mémoire des fiches non enregistrée ({e})", file=sys.stderr)
+    print(f"{lus} fiches lues cette nuit ; {len(out)} produits avec une fiche propre en français", file=sys.stderr)
+    for k, v in n.items():
+        if v:
+            print(f"  écartés : {v} — {k}", file=sys.stderr)
+    return out
 
 
 def auto_meta(p):
@@ -224,12 +527,12 @@ def auto_meta(p):
         return None
     liquid = u in ("ml", "cl", "l", "L")
     name = nettoie_nom(p["name"], p["brands"])
-    if len(name) < 3 or len(name) > 55:
+    if len(name) < 3 or len(name) > 55 or not ILLISIBLE_OK(name):
         return None
     return {
         "name": name,
         "detail": joli_format(qty, u),
-        "rayon": devine_rayon(name, "L" if liquid else "kg"),
+        "rayon": rayon_par_categorie(p.get("cats") or []) or devine_rayon(name, "L" if liquid else "kg"),
         "qty": round(grams / 1000, 4),
         "unit": "L" if liquid else "kg",
         "auto": True,
@@ -237,27 +540,47 @@ def auto_meta(p):
     }
 
 
-def build(raw=None):
+def build(raw=None, insee_xml=None, dump_dir=None):
     catalog = json.loads((HERE / "catalog.json").read_text())
     catalog.pop("_info", None)
     since = date.today() - timedelta(days=FENETRE_JOURS)
 
-    candidates = dict(catalog)
+    exclus_path = HERE / "exclus.json"
+    exclus = set(json.loads(exclus_path.read_text()).get("codes", [])) if exclus_path.exists() else set()
+    candidates = {c: m for c, m in catalog.items() if c not in exclus}
+
+    # 1) Méthode principale : le fichier complet d'Open Prices (tous les produits relevés en France)
+    releves = None
     if raw is None:
+        try:
+            releves = releves_du_fichier(since, dump_dir)
+            candidates.update(candidats_du_fichier(releves, candidates, exclus))
+        except Exception as e:
+            releves = None
+            print(f"Fichier complet Open Prices indisponible ({e}) : ancienne méthode (800 produits populaires)",
+                  file=sys.stderr)
+    # 2) Secours : l'ancienne méthode, produit par produit
+    if raw is None and releves is None:
         for p in popular_codes(MAX_AUTO):
             meta = auto_meta(p)
-            if meta and p["code"] not in candidates:
+            if meta and p["code"] not in candidates and p["code"] not in exclus:
                 candidates[p["code"]] = meta
 
     products = []
     failures = 0
     started = time.time()
+    lent = raw is None and releves is None
     for code, meta in candidates.items():
-        if raw is None and time.time() - started > 25 * 60:
-            print("  temps maximum atteint (25 min) : on s'arrête là", file=sys.stderr)
+        if lent and time.time() - started > 50 * 60:
+            print("  temps maximum atteint (50 min) : on s'arrête là", file=sys.stderr)
             break
         try:
-            prices = raw.get(code, []) if raw is not None else french_prices(code, since)
+            if raw is not None:
+                prices, nshops, newest = raw.get(code, []), 99, date.today().isoformat()
+            elif releves is not None:
+                prices, nshops, newest = releves.get(code, ([], 0, ""))
+            else:
+                prices, nshops, newest = french_prices(code, since)
             failures = 0
         except Exception as e:  # un produit en erreur ne bloque plus toute la mise à jour
             failures += 1
@@ -266,32 +589,60 @@ def build(raw=None):
                 print("  l'API ne répond plus : on s'arrête là", file=sys.stderr)
                 break
             continue
+        if meta.get("auto") and (nshops < MIN_MAGASINS or newest < (date.today() - timedelta(days=30 * RECENT_MOIS)).isoformat()):
+            print(f"  ignoré  {meta['name']} ({nshops} magasin(s), dernier relevé {newest or '?'})", file=sys.stderr)
+            continue
         s = summarize(prices)
         if not s:
             print(f"  ignoré  {meta['name']} ({len(prices)} relevés)", file=sys.stderr)
             continue
         per = round(s["median"] / meta["qty"], 2) if meta.get("qty") else None
         products.append({"code": code, **meta, **s, "per_unit": per})
-        print(f"  ok      {meta['name']}: {s['median']} € (n={s['n']})", file=sys.stderr)
-        if raw is None:
+        if not meta.get("auto") or lent:
+            print(f"  ok      {meta['name']}: {s['median']} € (n={s['n']})", file=sys.stderr)
+        if lent:
             time.sleep(0.5)
 
     # Garde-fous sur les produits automatiques : prix aberrants, doublons de nom, trop de produits d'une même marque.
-    kept, per_brand, seen = [], {}, set()
+    kept, per_brand, seen, n_auto = [], {}, set(), 0
+    garde = {"prix trop haut ou poids faux": 0, "doublon de nom": 0, f"déjà {MAX_PAR_MARQUE} produits de la marque": 0,
+             "plafond atteint": 0}
     for pr in sorted(products, key=lambda x: (not x.get("auto"), -x["n"]), reverse=False):
         if pr.get("auto"):
-            if pr["median"] > MAX_PRIX or (pr.get("per_unit") or 0) > MAX_PAR_KILO:
+            per = pr.get("per_unit") or 0
+            plancher = 0.10 if pr["unit"] == "L" else MIN_PAR_KILO
+            if pr["median"] > MAX_PRIX or per > MAX_PAR_KILO or per < plancher:
+                garde["prix trop haut ou poids faux"] += 1
                 print(f"  écarté  {pr['name']} (prix {pr['median']} €, {pr.get('per_unit')} €/{pr['unit']})", file=sys.stderr)
                 continue
             key = (pr["name"].lower(), pr["detail"])
             b = pr.get("brand") or pr["name"].split()[0].lower()
-            if key in seen or per_brand.get(b, 0) >= MAX_PAR_MARQUE:
-                continue
+            if key in seen:
+                garde["doublon de nom"] += 1; continue
+            if per_brand.get(b, 0) >= MAX_PAR_MARQUE:
+                garde[f"déjà {MAX_PAR_MARQUE} produits de la marque"] += 1; continue
+            if n_auto >= MAX_AUTO_TOTAL:
+                garde["plafond atteint"] += 1; continue
             per_brand[b] = per_brand.get(b, 0) + 1
             seen.add(key)
+            n_auto += 1
         pr.pop("auto", None); pr.pop("brand", None)
         kept.append(pr)
     products = kept
+    print(f"{n_auto} produits automatiques Open Prices gardés après les garde-fous", file=sys.stderr)
+    for k, v in garde.items():
+        if v:
+            print(f"  écartés : {v} — {k}", file=sys.stderr)
+
+    # Produits frais de l'Insee (s'ils ne répondent pas, on continue avec Open Prices seul)
+    if raw is None or insee_xml is not None:
+        try:
+            frais = insee_products(paris_today(), insee_xml)
+            frais = [f for f in frais if f["code"] not in exclus and f["code"].replace("insee-", "") not in exclus]
+            products += frais
+            print(f"{len(frais)} produits frais Insee ajoutés", file=sys.stderr)
+        except Exception as e:
+            print(f"Insee indisponible ({e}) : on continue sans les produits frais", file=sys.stderr)
 
     if len(products) < MIN_PRODUITS:
         # API en panne ou réponse vide : on garde les prix de la veille plutôt qu'un jeu vide
@@ -343,8 +694,10 @@ def paris_today():
 if __name__ == "__main__":
     ap = argparse.ArgumentParser()
     ap.add_argument("--from-raw", help="fichier JSON {code: [prix…]} pour un calcul hors ligne")
+    ap.add_argument("--insee-xml", help="fichier XML Insee pour un calcul hors ligne")
+    ap.add_argument("--dump-dir", help="dossier contenant prices.jsonl.gz et locations.jsonl.gz (test hors ligne)")
     args = ap.parse_args()
     raw = json.loads(Path(args.from_raw).read_text()) if args.from_raw else None
     if raw:
         raw.pop("_source", None)
-    build(raw)
+    build(raw, Path(args.insee_xml).read_text() if args.insee_xml else None, args.dump_dir)

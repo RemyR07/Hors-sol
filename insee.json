@@ -1,0 +1,311 @@
+{
+ "_info": "Produits frais : prix moyens mensuels de vente au détail en métropole publiés par l'Insee (séries BDM). Le prix affiché = prix au kilo × qty (ou prix à la pièce). Source : Insee.",
+ "000442436": {
+  "name": "Bifteck de bœuf dans la bavette",
+  "detail": "Barquette de 500 g",
+  "rayon": "Boucherie",
+  "qty": 0.5,
+  "unit": "kg"
+ },
+ "000442437": {
+  "name": "Côte de bœuf avec os",
+  "detail": "Pièce de 500 g",
+  "rayon": "Boucherie",
+  "qty": 0.5,
+  "unit": "kg"
+ },
+ "000442435": {
+  "name": "Entrecôte de bœuf",
+  "detail": "Barquette de 500 g",
+  "rayon": "Boucherie",
+  "qty": 0.5,
+  "unit": "kg"
+ },
+ "000442433": {
+  "name": "Faux-filet de bœuf",
+  "detail": "Barquette de 500 g",
+  "rayon": "Boucherie",
+  "qty": 0.5,
+  "unit": "kg"
+ },
+ "000442432": {
+  "name": "Filet de bœuf",
+  "detail": "Barquette de 500 g",
+  "rayon": "Boucherie",
+  "qty": 0.5,
+  "unit": "kg"
+ },
+ "000442434": {
+  "name": "Rumsteck de bœuf",
+  "detail": "Barquette de 500 g",
+  "rayon": "Boucherie",
+  "qty": 0.5,
+  "unit": "kg"
+ },
+ "000442454": {
+  "name": "Foie de veau frais",
+  "detail": "Barquette de 500 g",
+  "rayon": "Boucherie",
+  "qty": 0.5,
+  "unit": "kg"
+ },
+ "000442441": {
+  "name": "Escalope de veau",
+  "detail": "Barquette de 500 g",
+  "rayon": "Boucherie",
+  "qty": 0.5,
+  "unit": "kg"
+ },
+ "000442450": {
+  "name": "Échine de porc avec os",
+  "detail": "Pièce de 1 kg",
+  "rayon": "Boucherie",
+  "qty": 1,
+  "unit": "kg"
+ },
+ "000442448": {
+  "name": "Rôti de porc dans le filet",
+  "detail": "Rôti de 1 kg",
+  "rayon": "Boucherie",
+  "qty": 1,
+  "unit": "kg"
+ },
+ "000442453": {
+  "name": "Lapin entier",
+  "detail": "Lapin de 1,5 kg",
+  "rayon": "Boucherie",
+  "qty": 1.5,
+  "unit": "kg"
+ },
+ "000849397": {
+  "name": "Jambon blanc supérieur à la coupe",
+  "detail": "4 tranches, 200 g",
+  "rayon": "Charcuterie",
+  "qty": 0.2,
+  "unit": "kg"
+ },
+ "000641405": {
+  "name": "Lotte en tranches",
+  "detail": "500 g",
+  "rayon": "Poissonnerie",
+  "qty": 0.5,
+  "unit": "kg"
+ },
+ "000641416": {
+  "name": "Coquilles Saint-Jacques entières",
+  "detail": "Le kilo",
+  "rayon": "Poissonnerie",
+  "qty": 1,
+  "unit": "kg"
+ },
+ "000641417": {
+  "name": "Crevettes grises",
+  "detail": "Barquette de 250 g",
+  "rayon": "Poissonnerie",
+  "qty": 0.25,
+  "unit": "kg"
+ },
+ "000641354": {
+  "name": "Crevettes roses tropicales",
+  "detail": "Barquette de 500 g",
+  "rayon": "Poissonnerie",
+  "qty": 0.5,
+  "unit": "kg"
+ },
+ "000641408": {
+  "name": "Filet de merlan",
+  "detail": "500 g",
+  "rayon": "Poissonnerie",
+  "qty": 0.5,
+  "unit": "kg"
+ },
+ "000641355": {
+  "name": "Huîtres creuses (calibre moyen)",
+  "detail": "La douzaine",
+  "rayon": "Poissonnerie",
+  "qty": null,
+  "unit": "douzaine"
+ },
+ "000641418": {
+  "name": "Moules de bouchot",
+  "detail": "Le kilo",
+  "rayon": "Poissonnerie",
+  "qty": 1,
+  "unit": "kg"
+ },
+ "000641413": {
+  "name": "Soles",
+  "detail": "500 g",
+  "rayon": "Poissonnerie",
+  "qty": 0.5,
+  "unit": "kg"
+ },
+ "000641419": {
+  "name": "Tourteaux",
+  "detail": "Le kilo",
+  "rayon": "Poissonnerie",
+  "qty": 1,
+  "unit": "kg"
+ },
+ "000442423": {
+  "name": "Baguette de pain",
+  "detail": "Baguette de 250 g",
+  "rayon": "Boulangerie",
+  "qty": 0.25,
+  "unit": "kg"
+ },
+ "001791255": {
+  "name": "Avocat",
+  "detail": "À la pièce",
+  "rayon": "Fruits et légumes",
+  "qty": null,
+  "unit": "pièce"
+ },
+ "000641432": {
+  "name": "Bananes",
+  "detail": "Le kilo",
+  "rayon": "Fruits et légumes",
+  "qty": 1,
+  "unit": "kg"
+ },
+ "000641434": {
+  "name": "Citrons",
+  "detail": "Le kilo",
+  "rayon": "Fruits et légumes",
+  "qty": 1,
+  "unit": "kg"
+ },
+ "000641435": {
+  "name": "Clémentines",
+  "detail": "Le kilo",
+  "rayon": "Fruits et légumes",
+  "qty": 1,
+  "unit": "kg"
+ },
+ "001791257": {
+  "name": "Kiwi",
+  "detail": "À la pièce",
+  "rayon": "Fruits et légumes",
+  "qty": null,
+  "unit": "pièce"
+ },
+ "000641365": {
+  "name": "Oranges",
+  "detail": "Le kilo",
+  "rayon": "Fruits et légumes",
+  "qty": 1,
+  "unit": "kg"
+ },
+ "010536481": {
+  "name": "Pamplemousse rose",
+  "detail": "À la pièce",
+  "rayon": "Fruits et légumes",
+  "qty": null,
+  "unit": "pièce"
+ },
+ "000641367": {
+  "name": "Pommes",
+  "detail": "Le kilo",
+  "rayon": "Fruits et légumes",
+  "qty": 1,
+  "unit": "kg"
+ },
+ "000641369": {
+  "name": "Poires",
+  "detail": "Le kilo",
+  "rayon": "Fruits et légumes",
+  "qty": 1,
+  "unit": "kg"
+ },
+ "001791256": {
+  "name": "Artichaut",
+  "detail": "À la pièce",
+  "rayon": "Fruits et légumes",
+  "qty": null,
+  "unit": "pièce"
+ },
+ "000641422": {
+  "name": "Carottes",
+  "detail": "Le kilo",
+  "rayon": "Fruits et légumes",
+  "qty": 1,
+  "unit": "kg"
+ },
+ "000641423": {
+  "name": "Champignons de Paris",
+  "detail": "Barquette de 500 g",
+  "rayon": "Fruits et légumes",
+  "qty": 0.5,
+  "unit": "kg"
+ },
+ "001791254": {
+  "name": "Chou-fleur",
+  "detail": "À la pièce",
+  "rayon": "Fruits et légumes",
+  "qty": null,
+  "unit": "pièce"
+ },
+ "000641425": {
+  "name": "Courgettes",
+  "detail": "Le kilo",
+  "rayon": "Fruits et légumes",
+  "qty": 1,
+  "unit": "kg"
+ },
+ "000641426": {
+  "name": "Endives",
+  "detail": "Le kilo",
+  "rayon": "Fruits et légumes",
+  "qty": 1,
+  "unit": "kg"
+ },
+ "000641359": {
+  "name": "Haricots verts",
+  "detail": "Le kilo",
+  "rayon": "Fruits et légumes",
+  "qty": 1,
+  "unit": "kg"
+ },
+ "000641427": {
+  "name": "Oignons",
+  "detail": "Le kilo",
+  "rayon": "Fruits et légumes",
+  "qty": 1,
+  "unit": "kg"
+ },
+ "000641428": {
+  "name": "Poireaux",
+  "detail": "Le kilo",
+  "rayon": "Fruits et légumes",
+  "qty": 1,
+  "unit": "kg"
+ },
+ "010596274": {
+  "name": "Poivrons",
+  "detail": "Le kilo",
+  "rayon": "Fruits et légumes",
+  "qty": 1,
+  "unit": "kg"
+ },
+ "000641360": {
+  "name": "Pommes de terre de conservation",
+  "detail": "Sac de 2,5 kg",
+  "rayon": "Fruits et légumes",
+  "qty": 2.5,
+  "unit": "kg"
+ },
+ "000641430": {
+  "name": "Pommes de terre nouvelles",
+  "detail": "Le kilo",
+  "rayon": "Fruits et légumes",
+  "qty": 1,
+  "unit": "kg"
+ },
+ "000641429": {
+  "name": "Tomates",
+  "detail": "Le kilo",
+  "rayon": "Fruits et légumes",
+  "qty": 1,
+  "unit": "kg"
+ }
+}

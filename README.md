@@ -11,7 +11,7 @@ Open Prices (API publique, gratuite)
 update_prices.py  ──►  products.json  ──►  build.py  ──►  index.html (le jeu)
 ```
 
-1. **Quels produits ?** Ceux que les Français scannent le plus sur Open Prices.
+1. **Quels produits ?** Tous les produits relevés en France dans le fichier complet d'Open Prices (publié chaque nuit), s'ils passent les règles de fiabilité ci-dessous.
    Un produit relevé des dizaines de fois est un produit que tout le monde achète :
    c'est le filtre « produits du quotidien », sans tri manuel.
    `catalog.json` permet d'ajouter un produit ou de soigner son libellé.
@@ -148,3 +148,18 @@ Score du jour sur 500 (points de fourchette). Bonus de précision affichés à p
 - Intrus : place du faux au hasard, faux prix aux centimes « naturels » (imitent les vrais : beaucoup de ,99 / ,49).
 - Fourchette : prix de départ du curseur différent pour chaque produit (0,60 € à 9 €).
 - Rangement et Mise en rayon : ordres de départ au hasard (vérifié).
+
+## Produits frais : l'Insee
+
+- `insee.json` : 44 séries « Prix moyens mensuels de vente au détail en métropole » (fruits, légumes, viandes, poissons, baguette), avec la portion affichée (ex. entrecôte : barquette de 500 g = prix au kilo × 0,5).
+- Récupérées chaque nuit par `update_prices.py` (accès SDMX libre, sans clé : `bdm.insee.fr/series/sdmx/data/SERIES_BDM/...`). Une série n'est gardée que si son dernier prix a moins de 4 mois (fruits de saison). Si l'Insee ne répond pas, le jeu continue avec Open Prices seul.
+- Dans le jeu : « Prix moyen relevé par l'Insee en métropole (mois année) ». Crédit dans le pied de page et la page À propos.
+
+## Variété (depuis le 26/10)
+
+- Anti-répétition : un produit vu dans les 14 derniers jours passe en fin de liste (3 jours avant le 26/10).
+- Open Prices (maj18) : le script télécharge le **fichier complet** (`prices.openfoodfacts.org/data/prices.jsonl.gz`) au lieu d'interroger 800 produits un par un. Secours automatique sur l'ancienne méthode si le fichier est indisponible.
+- Règles pour un produit ajouté automatiquement : au moins 3 relevés en France sur 12 mois, dans au moins 2 magasins, dont un de moins de 6 mois, prix peu dispersés ; **nom en français** sur Open Food Facts ; nom lisible (pas de code, pas d'adresse web) ; pas d'alcool, complément alimentaire, produit bébé ou animal ; prix ≤ 20 € ; entre 0,30 et 60 €/kg (0,10 €/L pour les boissons) ; 3 produits par marque au maximum ; 1 000 produits automatiques au maximum.
+- Rayon affiché : d'après les catégories Open Food Facts, sinon d'après le nom.
+- `fiches.json` : mémoire des fiches Open Food Facts déjà lues (relues tous les 3 mois). Le premier lancement lit jusqu'à 1 500 fiches (≈ 30 min), les suivants seulement les nouveaux produits.
+- `exclus.json` : liste de codes (code-barres ou code Insee) à ne jamais utiliser. À modifier directement sur GitHub.

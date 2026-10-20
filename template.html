@@ -394,7 +394,7 @@ footer a{color:inherit}
   </details>
   <div class="steps" id="steps" aria-hidden="true"></div>
   <main id="app"></main>
-  <footer>Prix de référence : médiane des relevés en France sur 12 mois, base <a href="https://prices.openfoodfacts.org" target="_blank" rel="noopener">Open Prices</a> (Open Food Facts, licence ODbL). Les prix varient selon les magasins. <span id="upd"></span> <a href="apropos.html">À propos</a><span id="ctwrap" hidden> · <button type="button" class="flink" id="contactlink">Contact</button></span></footer>
+  <footer>Prix de référence : médiane des relevés en France sur 12 mois, base <a href="https://prices.openfoodfacts.org" target="_blank" rel="noopener">Open Prices</a> (Open Food Facts, licence ODbL) ; produits frais : prix moyens mensuels de l'<a href="https://www.insee.fr" target="_blank" rel="noopener">Insee</a>. Les prix varient selon les magasins. <span id="upd"></span> <a href="apropos.html">À propos</a><span id="ctwrap" hidden> · <button type="button" class="flink" id="contactlink">Contact</button></span></footer>
 </div>
 
 <script id="data" type="application/json">__DATA__</script>
@@ -841,7 +841,10 @@ function paintSteps(){
 // ============================================================
 // Anti-répétition : les produits vus les 3 jours précédents passent en fin de liste
 // (ils ne reviennent que s'il n'y a vraiment pas assez d'autres produits).
-const RECENT_DAYS = 3;
+// Anti-répétition : 3 jours jusqu'au 25/10, puis 14 jours (la base de produits a grossi).
+// La règle dépend du jour joué, pour ne jamais changer les parties déjà passées.
+const REPEAT_V2 = Math.round((Date.parse("2026-10-26") - Date.parse(LAUNCH)) / 864e5);
+const recentDays = d => d >= REPEAT_V2 ? 14 : 3;
 // Derniers chiffres des vrais prix (ex. beaucoup de ,99 et de ,49) : les faux prix les imitent, pour ne pas se trahir par leurs centimes.
 const ENDS = ALL.map(p=>Math.round(p.median*100) % 10);
 const natEnd = (v, r) => { let c = Math.round(v*100); c = c - (c % 10) + ENDS[Math.floor(r()*ENDS.length)]; return Math.max(0.15, c/100); };
@@ -981,10 +984,10 @@ function todaysPlan(){
   // On rejoue tous les jours depuis le lancement pour savoir exactement ce qui est sorti récemment.
   const history = [];
   for (let d = 0; d < dayIndex; d++){
-    const recent = new Set(history.slice(-RECENT_DAYS).flat());
+    const recent = new Set(history.slice(-recentDays(d)).flat());
     history.push(planCodes(buildPlan(d, gameForDay(d), recent)));
   }
-  return buildPlan(dayIndex, GAME, new Set(history.slice(-RECENT_DAYS).flat()));
+  return buildPlan(dayIndex, GAME, new Set(history.slice(-recentDays(dayIndex)).flat()));
 }
 const PLAN = todaysPlan();
 window.__horsSolPlan = () => ({game: GAME, codes: planCodes(PLAN), plan: PLAN});
@@ -1069,6 +1072,17 @@ function historyHTML(upto){
   }).join("");
   return `<details class="hist"><summary>Mes réponses précédentes (${done.length})</summary><ul>${rows}</ul></details>`;
 }
+// D'où vient le prix : relevés Open Prices (médiane) ou prix moyen officiel de l'Insee (produits frais).
+const MOIS_FR = ["janvier","février","mars","avril","mai","juin","juillet","août","septembre","octobre","novembre","décembre"];
+function srcLine(p, short){
+  if (p.src === "insee"){
+    const [y, m] = (p.period || "").split("-");
+    const quand = m ? ` (${MOIS_FR[+m - 1]} ${y})` : "";
+    return `Prix moyen relevé par l'Insee en métropole${quand}${p.per_unit ? ", soit " + perUnit(p.median, p) : ""}.`;
+  }
+  return short ? `Prix médian sur ${p.n} relevés${p.per_unit ? ", soit " + perUnit(p.median, p) : ""}.`
+               : `Prix médian sur ${p.n} relevés ; la moitié des magasins entre ${euro(p.p25)} et ${euro(p.p75)}.`;
+}
 function bigPrice(v){ const [e,c] = v.toFixed(2).split("."); return `${e}<sup>,${c} €</sup>`; }
 function controlsHTML(){
   return `
@@ -1112,7 +1126,7 @@ function verdictHTML(p,a){
       <div class="v ${a.cls}">${words[a.cls]} · +${a.pts}</div>
       <p class="calc">${calc}</p>
       <p>Votre fourchette : <b>${euro(a.lo)} – ${euro(a.hi)}</b>, centrée ${dir}.</p>
-      <p>Prix médian sur ${p.n} relevés ; la moitié des magasins entre ${euro(p.p25)} et ${euro(p.p75)}.</p>
+      <p>${srcLine(p)}</p>
     </div>
     ${nextBtn()}`;
 }
@@ -1281,7 +1295,7 @@ function renderDrop(){
     </ul>
     ${a ? `<div class="verdict late" style="--dl:${dl}s"><div class="v ${a.cls}">${a.kept===100 ? "💰 Tout sur la bonne" : a.kept ? a.kept+" jetons sauvés" : "Tout est tombé"} · +${a.base+a.bonus}</div>
         <p class="calc">${a.kept} jetons = ${a.base} pts${a.bonus ? " · tout sur la bonne +"+a.bonus : ""}</p>
-        <p>Prix médian sur ${p.n} relevés${p.per_unit ? ", soit "+perUnit(p.median,p) : ""}.</p></div>
+        <p>${srcLine(p, true)}</p></div>
         <div class="late" style="--dl:${dl}s">${nextBtn()}</div>`
       : `${covered===4 ? `<p class="warn">Laissez au moins une trappe vide !</p>` : `<p class="howto">+ pose 10 jetons sur un prix, − en retire. Placez les 100 jetons en laissant au moins une trappe vide.</p>`}
         <button class="cta" id="go" ${left===0 && covered<4 ? "" : "disabled"}>Valider : on ouvre les trappes !</button>`}
