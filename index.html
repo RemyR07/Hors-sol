@@ -381,7 +381,7 @@ footer a{color:inherit}
       <ul class="newsl">
         <li>❓ <b>Un produit que vous ne connaissez pas ?</b> Touchez « ❓ Connais pas » sous son nom, pendant la partie. Ça ne change rien à votre score.</li>
         <li>🧹 <b>Ce sont les joueurs qui font le ménage</b> : si plus de la moitié d'entre vous ne connaissent pas un produit, il quitte les rayons la semaine suivante.</li>
-        <li>✅ <b>Plus de produits du quotidien</b> : dès le lundi 2 novembre, 4 produits sur 5 viennent des plus achetés.</li>
+        <li>✅ <b>Plus de produits du quotidien</b> : désormais, 4 produits sur 5 viennent des plus achetés.</li>
       </ul>
       <button class="cta" type="button" id="newsok">OK, c'est parti !</button>
       <button class="lnk lgonly" type="button" id="newslg">Découvrir les ligues</button>
@@ -889,8 +889,8 @@ const recentDays = d => d >= REPEAT_V2 ? 14 : 3;
 const ENDS = ALL.map(p=>Math.round(p.median*100) % 10);
 const natEnd = (v, r) => { let c = Math.round(v*100); c = c - (c % 10) + ENDS[Math.floor(r()*ENDS.length)]; return Math.max(0.15, c/100); };
 const TRIO_V2 = Math.round((Date.parse("2026-10-26") - Date.parse(LAUNCH)) / 864e5);   // nouvelle règle du Trio à partir du lundi 26/10
-// « Cœur du caddie » (à partir du lundi 2/11) : 4 produits sur 5 parmi les plus connus (core), 1 sur 5 « découverte ».
-const CORE_V3 = Math.round((Date.parse("2026-11-02") - Date.parse(LAUNCH)) / 864e5);
+// « Cœur du caddie » (à partir du lundi 26/10) : 4 produits sur 5 parmi les plus connus (core), 1 sur 5 « découverte ».
+const CORE_V3 = Math.round((Date.parse("2026-10-26") - Date.parse(LAUNCH)) / 864e5);
 const HAS_CORE = ALL.some(p=>p.core) && ALL.some(p=>!p.core);
 function mixCore(list, R){
   const core = shuffled(list.filter(p=>p.core), R), disc = shuffled(list.filter(p=>!p.core), R), out = [];
