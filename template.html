@@ -114,8 +114,8 @@ header{display:flex;align-items:flex-end;justify-content:space-between;gap:12px}
 .slot{min-width:92px;min-height:48px;border-radius:8px;border:2px dashed var(--line);background:var(--surface);font-family:var(--f-mono);font-weight:700;font-size:16px;cursor:pointer;color:var(--muted)}
 .slot.full{border-style:solid;border-color:var(--tag-ink);background:var(--tag);color:var(--tag-ink)}
 .slot.ok{background:var(--hit);border-color:var(--hit);color:#fff}
-.slot.bad{background:var(--miss);border-color:var(--miss);color:#fff;text-decoration:line-through}
-.slot small{display:block;font-size:11px;font-weight:600;text-decoration:none}
+.slot.bad{background:var(--miss);border-color:var(--miss);color:#fff}
+.slot small{display:block;font-size:12px;font-weight:700}
 .tray{display:flex;flex-wrap:wrap;gap:8px;justify-content:center;padding:12px;border-radius:12px;background:var(--bg);border:1px dashed var(--line);min-height:68px}
 .tray .lab{min-width:84px;min-height:48px;border-radius:8px;border:2px solid var(--tag-ink);background:var(--tag);color:var(--tag-ink);font-family:var(--f-mono);font-weight:700;font-size:16px;cursor:pointer}
 .tray .lab[aria-pressed="true"]{outline:3px solid var(--focus);outline-offset:2px;transform:translateY(-2px)}
@@ -325,6 +325,15 @@ input[type=range]{flex:1;min-width:0;accent-color:var(--ink);height:44px}
 .chip{border:1px solid var(--line);background:var(--surface);border-radius:999px;padding:8px 12px;font-size:14px;cursor:pointer;text-align:left}
 .chip[aria-pressed="true"]{background:var(--tag);color:var(--tag-ink);border-color:var(--tag);font-weight:600}
 .chip:disabled{cursor:default}
+.unkb{display:inline-flex;align-items:center;gap:4px;margin-top:6px;font-size:12px;font-weight:600;line-height:1;color:var(--muted);border:1px dashed var(--line);border-radius:999px;padding:7px 11px;cursor:pointer;width:max-content;user-select:none;-webkit-user-select:none}
+.unkb[aria-pressed="true"]{background:var(--tag);color:var(--tag-ink);border:1px solid var(--tag)}
+.opt .unkb{grid-column:1/-1;justify-self:start;margin-top:4px}
+.rn .unkb{display:flex;margin-top:4px}
+.lundi .verdict-l{font-size:15px;margin:0}
+.lundi ul{margin:0;padding-left:18px;color:var(--muted);font-size:14px}
+.unk h3{margin:0;font-size:16px}
+.unk p{margin:0;color:var(--muted);font-size:14px}
+.unk .chip{min-height:44px}
 .thanks{margin:0;color:var(--hit);font-weight:600;font-size:14px}
 .toast{min-height:20px;font-size:13px;color:var(--hit);text-align:center;margin:0}
 footer{font-size:12px;color:var(--muted);line-height:1.5}
@@ -341,14 +350,16 @@ footer a{color:inherit}
     <div class="box">
       <h2 id="newst">🆕 Hors-Sol a changé !</h2>
       <ul class="newsl">
-        <li class="lgonly">🏆 <b>Nouveau : les ligues entre proches.</b> Créez une ligue, envoyez le lien à votre famille ou vos amis, et comparez vos scores chaque jour et chaque semaine.</li>
-        <li>🎮 <b>Un jeu différent chaque jour</b> : ⚖️ Trio au kilo (lun), 🎯 Fourchette (mar), 🛒 Rangement (mer), 💰 Caddie Drop (jeu), 🔎 Intrus (ven), 🏷️ Mise en rayon (sam).</li>
-        <li>🏛️ <b>Le dimanche, jeu décidé au 49.3</b> : l'un des 6, imposé sans débat. Surprise !</li>
-        <li>🎯 <b>La Fourchette est plus généreuse</b>, et le prix au kilo s'affiche partout.</li>
+        <li>❓ <b>Un produit que vous ne connaissez pas ?</b> Touchez « ❓ Connais pas » sous son nom, pendant la partie. Ça ne change rien à votre score.</li>
+        <li>🧹 <b>Ce sont les joueurs qui font le ménage</b> : si plus de la moitié d'entre vous ne connaissent pas un produit, il quitte les rayons la semaine suivante.</li>
+        <li>✅ <b>Plus de produits du quotidien</b> : dès le lundi 2 novembre, 4 produits sur 5 viennent des plus achetés.</li>
       </ul>
       <button class="cta" type="button" id="newsok">OK, c'est parti !</button>
       <button class="lnk lgonly" type="button" id="newslg">Découvrir les ligues</button>
     </div>
+  </div>
+  <div class="modal lundi" id="lundi" role="dialog" aria-modal="true" aria-labelledby="lundit" hidden>
+    <div class="box" id="lundibox"></div>
   </div>
   <div class="modal" id="ask" role="dialog" aria-modal="true" aria-labelledby="askt" hidden>
     <div class="box" id="askbox"></div>
@@ -768,7 +779,7 @@ const DECREES = [
   "Votre avis a été pris en compte, puis ignoré. Jeu du jour : {g}.",
 ];
 // Fenêtre « Hors-Sol a changé » : une seule fois par mise à jour, et seulement pour les joueurs qui connaissaient l'ancienne version.
-const UPDATE_ID = "2026-10-18";
+const UPDATE_ID = "2026-10-26";
 if (!LG_ON) document.body.classList.add("no-lg");
 (function(){
   const seen = lsGet("horssol:news");
@@ -777,7 +788,7 @@ if (!LG_ON) document.body.classList.add("no-lg");
   if (!returning){ lsSet("horssol:news", UPDATE_ID); return; }   // nouveau joueur : pas d'annonce de mise à jour
   const n = $("#news"); n.hidden = false;
   setTimeout(()=>{ try{ $("#newsok").focus(); }catch(e){} }, 50);
-  const close = () => { lsSet("horssol:news", UPDATE_ID); n.hidden = true; track("maj-lue"); pocketRender(); };
+  const close = () => { lsSet("horssol:news", UPDATE_ID); n.hidden = true; track("maj-lue"); lundiMaybe(); pocketRender(); };
   $("#newsok").addEventListener("click", close);
   $("#newslg").addEventListener("click", ()=>{ close(); lgOpen("help"); });
 })();
@@ -849,12 +860,26 @@ const recentDays = d => d >= REPEAT_V2 ? 14 : 3;
 const ENDS = ALL.map(p=>Math.round(p.median*100) % 10);
 const natEnd = (v, r) => { let c = Math.round(v*100); c = c - (c % 10) + ENDS[Math.floor(r()*ENDS.length)]; return Math.max(0.15, c/100); };
 const TRIO_V2 = Math.round((Date.parse("2026-10-26") - Date.parse(LAUNCH)) / 864e5);   // nouvelle règle du Trio à partir du lundi 26/10
+// « Cœur du caddie » (à partir du lundi 2/11) : 4 produits sur 5 parmi les plus connus (core), 1 sur 5 « découverte ».
+const CORE_V3 = Math.round((Date.parse("2026-11-02") - Date.parse(LAUNCH)) / 864e5);
+const HAS_CORE = ALL.some(p=>p.core) && ALL.some(p=>!p.core);
+function mixCore(list, R){
+  const core = shuffled(list.filter(p=>p.core), R), disc = shuffled(list.filter(p=>!p.core), R), out = [];
+  let i = 0, j = 0;
+  while (i < core.length || j < disc.length){
+    for (let k = 0; k < 4 && i < core.length; k++) out.push(core[i++]);
+    if (j < disc.length) out.push(disc[j++]);
+  }
+  return out;
+}
 function buildPlan(dIdx, game, recent){
   const R = rng(20261016 + dIdx * 7919 + game.length * 104729);
   const GAME = game;
   const used = new Set();
   const take = p => used.add(p.code);
+  const v3 = dIdx >= CORE_V3 && HAS_CORE;
   const pool = () => { const free = ALL.filter(p=>!used.has(p.code));
+    if (v3) return mixCore(free.filter(p=>!recent.has(p.code)), R).concat(mixCore(free.filter(p=>recent.has(p.code)), R));
     return shuffled(free.filter(p=>!recent.has(p.code)), R).concat(shuffled(free.filter(p=>recent.has(p.code)), R)); };
   if (GAME === "fourchette") return {items: pool().slice(0,5).map(p=>p.code)};
   if (GAME === "trio"){
@@ -1050,6 +1075,7 @@ function renderFourchette(){
       <div class="rayon">Produit ${i+1}/5 · ${p.rayon}</div>
       <h2 class="pname">${p.name}</h2>
       <p class="pdetail">${p.detail}</p>
+      ${unkBtn(p.code)}
     </div>
     <div class="tag ${a?"pop":""}">
       <div class="lbl">${a ? "Prix constaté" : "Votre estimation · touchez le prix pour le taper"}</div>
@@ -1188,6 +1214,7 @@ function renderTrio(){
           <span class="od">${esc(p.detail)}</span>
           ${a ? `<span class="op"><b>${perUnit(p.median,p)}</b>${euro(p.median)} le paquet</span>` : ""}
           ${flag ? `<span class="flag">${flag}</span>` : ""}
+          ${unkBtn(p.code)}
         </button>`;}).join("")}
     </div>
     ${a ? `<div class="verdict"><div class="v ${a.cls}">${a.base ? "Bien vu · +100" : "Raté · 0"}</div></div>${nextBtn()}` : `<p class="howto">Les prix s'affichent après votre réponse.</p>`}
@@ -1222,9 +1249,9 @@ function renderRangement(){
     <ol class="rank">
       ${(a ? truth : shown).map((c,k)=>{ const p = byCode(c);
         if (a){ const mk = a.marksByCode[c]; const myPos = a.mine.indexOf(c)+1;
-          return `<li class="${mk}"><span class="pos">${k+1}</span><span class="rn">${esc(p.name)}<small>${esc(p.detail)}${mk!=="ok"?` · vous l'aviez mis ${myPos}e`:""}</small></span>
+          return `<li class="${mk}"><span class="pos">${k+1}</span><span class="rn">${esc(p.name)}<small>${esc(p.detail)}${mk!=="ok"?` · vous l'aviez mis ${myPos}e`:""}</small>${unkBtn(p.code)}</span>
             <span class="res"><b>${euro(p.median)}</b>${perUnit(p.median,p)}</span></li>`; }
-        return `<li><span class="pos">${k+1}</span><span class="rn">${esc(p.name)}<small>${esc(p.detail)}</small></span>
+        return `<li><span class="pos">${k+1}</span><span class="rn">${esc(p.name)}<small>${esc(p.detail)}</small>${unkBtn(p.code)}</span>
           <span class="arr"><button data-k="${k}" data-d="-1" aria-label="Monter ${esc(p.name)}" ${k===0?"disabled":""}>▲</button><button data-k="${k}" data-d="1" aria-label="Descendre ${esc(p.name)}" ${k===n-1?"disabled":""}>▼</button></span></li>`;
       }).join("")}
     </ol>
@@ -1275,6 +1302,7 @@ function renderDrop(){
       <div class="rayon">Produit ${i+1}/5 · ${esc(p.rayon)}</div>
       <h2 class="pname">${esc(p.name)}</h2>
       <p class="pdetail">${esc(p.detail)}</p>
+      ${unkBtn(p.code)}
     </div>
     ${a ? "" : `<div class="pot"><span>Jetons à placer</span><b>${left}</b></div>`}
     <ul class="traps">
@@ -1341,7 +1369,7 @@ function renderIntrus(){
         return `<button class="opt ${cls}" data-code="${p.code}" ${done||st.wrong.includes(p.code)?"disabled":""}>
           <span class="on">${esc(p.name)}</span><span class="od">${esc(p.detail)}</span>
           <span class="op"><b>${euro(shownPrice)}</b>${perUnit(shownPrice,p)}</span>
-          ${flag?`<span class="flag">${flag}</span>`:""}</button>`;}).join("")}
+          ${flag?`<span class="flag">${flag}</span>`:""}${unkBtn(p.code)}</button>`;}).join("")}
     </div>
     ${askFlair ? `<p class="conf-title">🔎 Bonus flair (+20) : d'après vous, ce prix affiché était…</p><div class="duo"><button class="ghost" data-up="1">Trop cher</button><button class="ghost" data-up="0">Trop bas</button></div>` : ""}
     ${a ? `<div class="verdict"><div class="v ${a.cls}">${a.tries===1?"Du 1er coup":a.tries===2?"Au 2e essai":"Raté"} · +${a.base+a.bonus}</div>
@@ -1388,7 +1416,7 @@ function renderRayon(){
       ${sh.codes.map(c=>{ const p = byCode(c); const lab = placed[c];
         let cls = lab ? "full" : "", txt = lab ? euro(byCode(lab).median) : "＋ étiquette", extra="";
         if (a){ const ok = lab===c; cls = ok ? "ok" : "bad"; if (!ok) extra = `<small>vrai : ${euro(p.median)}</small>`; }
-        return `<li><span class="rn">${esc(p.name)}<small>${esc(p.detail)}${a?" · "+perUnit(p.median,p):""}</small></span>
+        return `<li><span class="rn">${esc(p.name)}<small>${esc(p.detail)}${a?" · "+perUnit(p.median,p):""}</small>${unkBtn(p.code)}</span>
           <button class="slot ${cls}" data-code="${c}" ${a?"disabled":""} aria-label="${lab?"Étiquette "+txt+" sur ":"Poser une étiquette sur "}${esc(p.name)}">${txt}${extra}</button></li>`; }).join("")}
     </ul>
     ${a ? `<div class="verdict"><div class="v ${a.cls}">${a.good}/5 étiquettes justes · +${a.base+a.bonus}</div>
@@ -1457,6 +1485,13 @@ function renderEnd(){
       <div class="tot"><span>SCORE</span><span>${sum.base} / ${BASEMAX} pts</span></div>
       ${sum.bonus ? `<div class="tot sub2"><span>${G.bonusName.toUpperCase()}</span><span>+ ${sum.bonus} pts</span></div>` : ""}
     </div>
+    <section class="premium unk" id="unk" aria-labelledby="unkt">
+      <h3 id="unkt">❓ Un produit inconnu au bataillon ?</h3>
+      <p>Ceux que vous avez signalés avec ❓ sont déjà cochés. Vous pouvez compléter ici. Si plus de la moitié des joueurs ne connaissent pas un produit, il quitte les rayons la semaine suivante.</p>
+      <div class="chips" role="group" aria-label="Produits du jour">
+        ${unkCodes().map(c=>`<button class="chip" data-unk="${esc(c)}" aria-pressed="${(day.unknown||[]).includes(c)}">${esc(byCode(c).name)}</button>`).join("")}
+      </div>
+    </section>
     <div class="share">
       <button class="cta" id="share">Partager mon ticket</button>
       <p class="hint">Votre score et vos résultats, sans dévoiler les prix.</p>
@@ -1481,6 +1516,15 @@ function renderEnd(){
     catch(e){ const ta=$("#sharetxt"); ta.value=text; ta.hidden=false; ta.focus(); ta.select(); $("#toast").textContent = "Sélectionnez le texte ci-dessous pour le copier."; }
   }
   $("#share").addEventListener("click", ()=>doShare(share));
+  $$("[data-unk]").forEach(b=>b.addEventListener("click", ()=>{
+    const c = b.dataset.unk, set = new Set(day.unknown || []);
+    set.has(c) ? set.delete(c) : set.add(c);
+    day.unknown = [...set]; save(day);
+    b.setAttribute("aria-pressed", set.has(c));
+    if (set.has(c)) track("produit-inconnu");
+    sendAvis();
+  }));
+  if (!day.avisSent) sendAvis();
   if (!fb){
     const picked = new Set();
     $$(".chip").forEach(c=>c.addEventListener("click", ()=>{
@@ -1498,6 +1542,42 @@ function renderEnd(){
   paintSteps();
   lgEnd();
   pocketRender();
+}
+// Petit bouton « ❓ Connais pas » sur chaque produit, pendant la partie (ne change rien au score).
+function unkBtn(code){
+  const on = (day.unknown || []).includes(code);
+  return `<span class="unkb" role="button" tabindex="0" data-unkc="${esc(code)}" aria-pressed="${on}" aria-label="Je ne connais pas ce produit">❓ Connais pas</span>`;
+}
+function unkToggle(el){
+  const c = el.dataset.unkc, set = new Set(day.unknown || []);
+  set.has(c) ? set.delete(c) : set.add(c);
+  day.unknown = [...set]; save(day);
+  $$(`[data-unkc="${CSS.escape(c)}"]`).forEach(x=>x.setAttribute("aria-pressed", set.has(c)));
+  if (set.has(c)) track("produit-inconnu");
+}
+// Écoute en « capture » : le bouton est posé sur des cartes cliquables (Trio, Intrus) sans déclencher leur réponse.
+document.addEventListener("click", e=>{ const el = e.target.closest && e.target.closest("[data-unkc]"); if (!el) return;
+  e.preventDefault(); e.stopPropagation(); unkToggle(el); }, true);
+document.addEventListener("keydown", e=>{ const el = e.target.closest && e.target.closest("[data-unkc]"); if (!el || (e.key !== "Enter" && e.key !== " ")) return;
+  e.preventDefault(); e.stopPropagation(); unkToggle(el); }, true);
+// « Je ne connais pas ce produit » : les produits vus aujourd'hui, et ceux que le joueur ne connaissait pas.
+function unkCodes(){ return [...new Set(planCodes(PLAN))].filter(c=>byCode(c)); }
+function avisPid(){
+  let a = lsGet("horssol:anon");
+  if (!a){ const al = "abcdefghjkmnpqrstuvwxyz23456789", r = new Uint8Array(16);
+    try{ crypto.getRandomValues(r); }catch(e){ for (let i=0;i<16;i++) r[i] = Math.floor(Math.random()*256); }
+    a = Array.from(r, x=>al[x % al.length]).join(""); lsSet("horssol:anon", a); }
+  return a;
+}
+let avisTimer = null;
+function sendAvis(){
+  if (TESTBAR || !API || API.startsWith("__")) return;
+  clearTimeout(avisTimer);
+  avisTimer = setTimeout(()=>{
+    fetch(API + "/avis", {method:"POST", headers:{"Content-Type":"application/json"},
+      body: JSON.stringify({pid: avisPid(), day: today, seen: unkCodes(), unknown: day.unknown || []})})
+      .then(r=>{ if (r.ok && !day.avisSent){ day.avisSent = true; save(day); } }).catch(()=>{});
+  }, 800);
 }
 function tick(){
   const el = $("#cd"); if(!el) return;
@@ -1622,8 +1702,8 @@ function askRemind(){
 }
 // Appelée à l'affichage de l'écran de fin : la fenêtre arrive 1 seconde après le ticket (jamais par-dessus la fenêtre de mise à jour).
 function pocketRender(){
-  if (!day.finished || !askPending() || !$("#ask").hidden) return;
-  setTimeout(()=>{ if ($("#news").hidden && $("#ask").hidden && askPending()) askNext(); }, 1000);
+  if (!day.finished || !askPending() || !$("#ask").hidden || !$("#lundi").hidden) return;
+  setTimeout(()=>{ if ($("#news").hidden && $("#ask").hidden && $("#lundi").hidden && askPending()) askNext(); }, 1000);
 }
 // Le service worker (rappel) est réinstallé à chaque visite s'il a été activé, pour rester à jour.
 if (API_OK && PUSH_OK && remindIsOn()){ try{ navigator.serviceWorker.register("sw.js").catch(()=>{}); }catch(e){} }
@@ -1633,6 +1713,95 @@ if (API_OK && PUSH_OK && remindIsOn()){ try{ navigator.serviceWorker.register("s
 // ============================================================
 /*__LIGUES_CORE__*/
 const ORD = n => n === 1 ? "1er" : n + "e";
+
+// ============================================================
+//  POP-UP DU LUNDI : verdict de la semaine passée + remaniement (une fois par semaine)
+// ============================================================
+const LUNDI_RESET = [
+  "Remaniement ! Tout le monde repart à zéro dans la ligue. Même les ministres n'ont pas cette chance.",
+  "Nouvelle semaine, nouveau gouvernement : les compteurs sont remis à zéro. Les promesses aussi.",
+  "Motion de censure adoptée : tous les scores sont tombés. Nouvelle campagne, 7 jours.",
+  "Passation de pouvoir. Le classement est vierge, comme un programme le lendemain de l'élection.",
+  "La ligue repart à zéro. Contrairement à la dette publique.",
+  "Semaine neuve, caddie vide. Le premier qui joue prend la tête du gouvernement.",
+  "Dissolution ! Les scores sont renvoyés aux urnes, le scrutin ferme dimanche minuit.",
+];
+const LUNDI_VERDICT = {
+  1: ["Premier ministre du caddie ! Mandat : une semaine. Comme d'habitude, finalement.",
+      "Victoire écrasante, sans 49.3. Le peuple vous a élu, le ticket de caisse aussi.",
+      "Champion de la semaine. Bercy vous appelle pour connaître le prix du beurre.",
+      "1er ! Vous connaissez le prix du lait mieux que tout le Conseil des ministres réuni."],
+  2: ["Ministre d'État. Un remaniement et c'est vous à Matignon.",
+      "Médaille d'argent, à un paquet de pâtes de la victoire. Second tour lundi.",
+      "2e. Vice-champion : vous avez le bureau, pas encore le perchoir."],
+  3: ["Sur le podium ! Secrétaire d'État aux Courses, ça sonne bien.",
+      "Le bronze. Vous êtes au gouvernement, en bout de table.",
+      "3e. Un portefeuille ministériel, mais pas encore celui du Budget."],
+  autre: ["{rang}. Député de base : on vous écoute, parfois.",
+      "{rang} place. Comme un ministre au marché : présent, mais pas toujours au bon prix.",
+      "Pas de podium. Un conseiller vous suggère d'aller faire les courses vous-même.",
+      "{rang}. Vous gardez la voiture de fonction, mais pas le chauffeur."],
+  dernier: ["Lanterne rouge. Rassurez-vous, certains ministres ont fait pire en direct à la télé.",
+      "Dernier. Vous pensiez qu'une baguette coûtait 8 € ? On vous a vu.",
+      "Dernier, mais avec ce niveau, une carrière ministérielle reste possible."],
+  absent: ["{n} sur 7. Un taux de présence digne de l'Hémicycle un vendredi après-midi.",
+      "Absent cette semaine. Même pas une visite au Salon de l'agriculture pour la photo ?"],
+};
+const MEDAL = {1:"🥇", 2:"🥈", 3:"🥉"};
+function lundiMaybe(){
+  if (!LG_ON || today < "2026-10-26") return;   // première fois le lundi 26/10 (mise en ligne possible la veille au soir)
+  const ws = lgWeekStart(today);
+  if (lsGet("horssol:lundi") === ws) return;
+  if (!(meta.last || lsGet("horssol:stats"))){ lsSet("horssol:lundi", ws); return; }   // nouveau joueur : rien à annoncer
+  if (!$("#news").hidden || !$("#ask").hidden || !$("#lundi").hidden) return;           // on attend la fenêtre en cours
+  const leagues = lgLeagues();
+  if (ME && leagues.length && !(LGD && LGD.today && lgWeekStart(LGD.today) === ws)) return; // classement pas encore à jour
+  const seed = Math.round(Date.parse(ws) / 864e5);
+  const r = rng(seed * 31 + ((ME && ME.pid) || "x").charCodeAt(0));
+  const pickL = arr => arr[Math.floor(r() * arr.length)];
+  const reset = LUNDI_RESET[seed % LUNDI_RESET.length];
+  let html;
+  if (leagues.length){
+    const lw = leagues.filter(l=>l.lastWeek && l.lastWeek.count > 0);
+    let verdict = "", lines = "";
+    if (lw.length){
+      const played = Math.max(...lw.map(l=>l.lastWeek.played));
+      const ranked = lw.filter(l=>l.lastWeek.rank).sort((a,b)=>a.lastWeek.rank - b.lastWeek.rank);
+      const best = ranked[0];
+      let cat;
+      if (!best || played <= 2) cat = "absent";
+      else if (best.lastWeek.rank <= 3) cat = best.lastWeek.rank;
+      else if (best.lastWeek.rank === best.lastWeek.count && best.lastWeek.count >= 4) cat = "dernier";
+      else cat = "autre";
+      const rang = best ? ORD(best.lastWeek.rank) : "";
+      verdict = (MEDAL[cat] ? MEDAL[cat] + " " : "") + pickL(LUNDI_VERDICT[cat]).replace("{rang}", rang.charAt(0).toUpperCase() + rang.slice(1))
+        .replace("{n}", played ? played + (played > 1 ? " jours" : " jour") : "0 jour");
+      // Synthèse : la meilleure ligue d'abord (c'est elle qui donne la phrase), puis les autres de la mieux à la moins bien classée.
+      const others = lw.filter(l=>l !== best).sort((a,b)=>(a.lastWeek.rank || 99) - (b.lastWeek.rank || 99));
+      const line = l => `${l.lastWeek.rank ? `${MEDAL[l.lastWeek.rank] || "▪️"} ${ORD(l.lastWeek.rank)} sur ${l.lastWeek.count} · ${l.lastWeek.total} pts · ${l.lastWeek.played}/7 j` : "pas joué"}`;
+      if (best) verdict = `Dans « ${best.name} » : ${verdict}`;
+      lines = others.length ? `<p class="askq">${best ? "Vos autres ligues :" : "Vos ligues :"}</p><ul>${others.map(l=>`<li><b>${esc(l.name)}</b> : ${line(l)}</li>`).join("")}</ul>`
+                            : (best ? `<ul><li>${line(best)}</li></ul>` : "");
+    }
+    html = `<h2 id="lundit">🗳️ Nouvelle semaine, nouveau gouvernement</h2>
+      ${verdict ? `<p class="askq">La semaine dernière :</p><p class="verdict-l"><b>${esc(verdict)}</b></p>${lines}` : ""}
+      <p>${esc(reset)}</p>
+      <button class="cta yes" type="button" id="lundiok">C'est parti !</button>
+      <button class="lnk" type="button" id="lundilg">Voir mes ligues</button>`;
+  } else {
+    html = `<h2 id="lundit">🗳️ Nouvelle semaine, nouveau gouvernement</h2>
+      <p>Les ligues entre proches repartent à zéro chaque lundi. Créez la vôtre et envoyez le lien à votre famille ou vos amis : qui connaît le mieux le prix des courses cette semaine ?</p>
+      <button class="cta yes" type="button" id="lundilg">Créer une ligue</button>
+      <button class="ghost" type="button" id="lundiok">Plus tard</button>`;
+  }
+  const m = $("#lundi");
+  $("#lundibox").innerHTML = html; m.hidden = false;
+  track(leagues.length ? "lundi-verdict" : "lundi-invitation");
+  const close = () => { lsSet("horssol:lundi", ws); m.hidden = true; pocketRender(); };
+  $("#lundiok").addEventListener("click", close);
+  $("#lundilg").addEventListener("click", ()=>{ close(); track("lundi-ligues"); lgOpen("list"); });
+  setTimeout(()=>{ try{ $("#lundibox .yes").focus(); }catch(e){} }, 50);
+}
 const MONTHS = ["janvier","février","mars","avril","mai","juin","juillet","août","septembre","octobre","novembre","décembre"];
 let ME = lsGet("horssol:me");                 // {pid, key, name} : l'identité anonyme de ce téléphone
 let LGD = lsGet("horssol:lgcache");           // dernier état reçu du serveur
@@ -1974,7 +2143,7 @@ function mockApi(b){
     const champions = lgChampions(members, range(lw, lgAddDays(lw, 6)), lw);
     const titles = [];
     for (let k = 1; k <= 3; k++){ const w = lgAddDays(ws, -7*k); lgChampions(members, range(w, lgAddDays(w, 6)), w).forEach(c=>titles.push(c)); }
-    return lgView({league:{id, name:lg.name}, members, scores: range(ws, today), titles, champions, me: b.pid, today});
+    return lgView({league:{id, name:lg.name}, members, scores: range(ws, today), prevScores: range(lw, lgAddDays(ws, -1)), titles, champions, me: b.pid, today});
   });
   return {ok:true, today, me:{name: st.players[b.pid]}, leagues, focus, remind: !!(lsGet("horssol:remind") || {}).on};
 }
@@ -1995,8 +2164,8 @@ if (LG_ON){
     if (lgLeagues().some(l=>l.id === id)) lgOpen("league", {id});
     else { lgOpen("join", {id}); lgInfo(id).then(info=>{ if (lgv.view === "join" && lgv.id === id){ lgv.info = info; lgRender(); } }); }
   } else if (ME && lgLeagues().length){
-    lgCall("sync").then(()=>{ lgEnd(); }).catch(()=>{});
-  }
+    lgCall("sync").then(()=>{ lgEnd(); lundiMaybe(); }).catch(()=>{});
+  } else lundiMaybe();
   const ti = document.getElementById("tinvite");
   if (ti) ti.addEventListener("click", ()=>{ lgOpen("join", {id:"voisins1"}); lgv.info = mockInfo("voisins1"); lgRender(); });
 }

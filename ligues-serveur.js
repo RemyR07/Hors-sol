@@ -15,7 +15,11 @@ const SCHEMA = [
   "CREATE TABLE IF NOT EXISTS weeks_done (league TEXT NOT NULL, week TEXT NOT NULL, PRIMARY KEY (league, week))",
   "CREATE TABLE IF NOT EXISTS push_subs (pid TEXT PRIMARY KEY, endpoint TEXT NOT NULL, p256dh TEXT, auth TEXT, streak INTEGER DEFAULT 0, created TEXT, last_sent TEXT)",
   "CREATE TABLE IF NOT EXISTS settings (k TEXT PRIMARY KEY, v TEXT NOT NULL)",
+  // « Je ne connais pas ce produit » : une ligne par joueur, par jour et par produit vu (unknown = 1 s'il l'a signalé)
+  "CREATE TABLE IF NOT EXISTS avis (day TEXT NOT NULL, pid TEXT NOT NULL, code TEXT NOT NULL, unknown INTEGER DEFAULT 0, PRIMARY KEY (day, pid, code))",
+  "CREATE INDEX IF NOT EXISTS avis_code ON avis (code)",
 ];
+const AVIS_KEEP_DAYS = 180;   // les avis servent au bilan de chaque produit sur 6 mois
 
 // ============================================================
 //  RAPPEL DE 18 H (notifications Web Push, sans contenu chiffré :
@@ -137,7 +141,8 @@ async function leagueView(db, league, pid, today){
   }
   const champions = (await db.prepare("SELECT pid, name, total, played FROM titles WHERE league = ? AND week = ?").bind(league.id, lw).all()).results;
   const titles = (await db.prepare("SELECT pid, name FROM titles WHERE league = ?").bind(league.id).all()).results;
-  return lgView({league, members, scores: scores.filter(s=>s.day >= ws), titles, champions, me: pid, today});
+  const prevScores = (league.created || "") <= lgAddDays(lw, 6) ? scores.filter(s=>s.day < ws) : null;   // ligue déjà ouverte la semaine dernière
+  return lgView({league, members, scores: scores.filter(s=>s.day >= ws), prevScores, titles, champions, me: pid, today});
 }
 
 async function handle(body, env, today){
@@ -254,6 +259,25 @@ export default {
       }
       if (env.TEST === "1" && url.pathname === "/__rappels"){
         return json(await runReminders(env, today, true));
+      }
+      // « Je ne connais pas ce produit » : le téléphone envoie les produits vus et ceux qu'il ne connaissait pas.
+      if (req.method === "POST" && url.pathname === "/avis"){
+        const b = await req.json();
+        const pid = String(b.pid || ""), day = String(b.day || "");
+        if (!ID_RE.test(pid) || (day !== today && day !== lgAddDays(today, -1))) return json({error:"avis"}, 400);
+        const CODE = /^[A-Za-z0-9-]{3,40}$/;
+        const unk = new Set((Array.isArray(b.unknown) ? b.unknown : []).map(String));
+        const seen = (Array.isArray(b.seen) ? b.seen.slice(0, 30) : []).map(String).filter(c=>CODE.test(c));
+        if (seen.length) await env.DB.batch(seen.map(c=>env.DB.prepare(
+          "INSERT INTO avis (day, pid, code, unknown) VALUES (?, ?, ?, ?) ON CONFLICT(day, pid, code) DO UPDATE SET unknown = excluded.unknown")
+          .bind(day, pid, c, unk.has(c) ? 1 : 0)));
+        if (Math.random() < 0.02) await env.DB.prepare("DELETE FROM avis WHERE day < ?").bind(lgAddDays(today, -AVIS_KEEP_DAYS)).run();
+        return json({ok:true});
+      }
+      // Bilan par produit (lu chaque nuit par le script des prix) : nombre de joueurs qui l'ont vu, et qui ne le connaissaient pas.
+      if (req.method === "GET" && url.pathname === "/inconnus"){
+        const rows = (await env.DB.prepare("SELECT code, COUNT(*) AS seen, SUM(unknown) AS unknown FROM avis GROUP BY code HAVING SUM(unknown) > 0").all()).results;
+        return json({ok:true, today, items: rows});
       }
       if (req.method === "POST" && url.pathname === "/api"){
         const body = await req.json();

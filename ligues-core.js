@@ -76,7 +76,18 @@ function lgView(o){
   const pal = {};
   (o.titles||[]).forEach(t=>{ const k = t.pid; pal[k] = pal[k] || {name: t.name, n:0, pid:t.pid}; pal[k].n++; });
   o.members.forEach((m,i)=>{ if (pal[m.pid]) pal[m.pid].name = names[i]; });
+  // Bilan de la semaine dernière pour ce joueur (pop-up du lundi) : place, nombre de joueurs classés, points, jours joués.
+  let lastWeek = null;
+  if (o.prevScores){
+    const lw = lgAddDays(ws, -7), tot = {};
+    o.prevScores.forEach(s=>{ if (s.day >= lw && s.day < ws){ const t = tot[s.pid] || (tot[s.pid] = {total:0, played:0}); t.total += s.base + s.bonus; t.played++; } });
+    const list = o.members.filter(m=>tot[m.pid]).map(m=>({pid:m.pid, total:tot[m.pid].total, played:tot[m.pid].played})).sort(lgCmp);
+    lgSetRanks(list, "rank", (a,b)=>a.total === b.total && a.played === b.played);
+    const mine = list.find(x=>x.pid === o.me);
+    lastWeek = {week: lw, count: list.length, rank: mine ? mine.rank : null, total: mine ? mine.total : 0, played: mine ? mine.played : 0};
+  }
   return {
+    lastWeek,
     id:o.league.id, name:o.league.name, count:o.members.length, ws, days, today:o.today, hideToday,
     rows: week.map(r=>({name:r.name, me:r.me, total:r.total, played:r.played, crowns:r.crowns, days:r.days, today:r.today, playedToday:r.playedToday, rank:r.rank, trank:r.trank ?? null})),
     champion: (o.champions && o.champions.length) ? {names:o.champions.map(c=>{ const i = o.members.findIndex(m=>m.pid===c.pid); return i >= 0 ? names[i] : c.name; }), total:o.champions[0].total, played:o.champions[0].played} : null,

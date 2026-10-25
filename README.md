@@ -165,3 +165,19 @@ Score du jour sur 500 (points de fourchette). Bonus de précision affichés à p
 - Rayon affiché : d'après les catégories Open Food Facts, sinon d'après le nom.
 - Mémoire des fiches Open Food Facts déjà lues, rangée dans `products.json` (clé `_fiches`, retirée du jeu par `build.py`) (relues tous les 3 mois). Le premier lancement lit jusqu'à 1 500 fiches (≈ 30 min), les suivants seulement les nouveaux produits.
 - `exclus.json` : liste de codes (code-barres ou code Insee) à ne jamais utiliser. À modifier directement sur GitHub.
+
+## Cœur du caddie et bouton « inconnu au bataillon » (maj19)
+- Chaque nuit, `update_prices.py` note chaque produit Open Prices : popularité sur Open Food Facts (les 1 500 produits les plus scannés, via l'API Open Prices `order_by=-unique_scans_n`), nombre de relevés, malus pour les produits de niche (liste `NICHE`). Les 300 mieux notés + le catalogue + l'Insee reçoivent `"core": true`.
+- Dans le jeu, à partir du lundi 2/11 (`CORE_V3`) : 4 produits sur 5 viennent du cœur, 1 sur 5 est une « découverte ». Les jours précédents ne changent pas (vérifié jour par jour du 16/10 au 1/11).
+- Fin de partie : bloc « ❓ Un produit inconnu au bataillon ? ». Le téléphone envoie au serveur des ligues (`POST /avis`) les produits vus et ceux signalés, avec un identifiant anonyme aléatoire (`horssol:anon`).
+- Bilan : `GET /inconnus`. Chaque dimanche (liste du lundi), un produit vu par au moins 8 joueurs et inconnu de plus de 50 % d'entre eux sort du jeu. La liste des produits sortis est gardée dans `products.json` (clé `_inconnus`, retirée du jeu par `build.py`). Pour en faire revenir un : supprimer sa ligne dans `_inconnus`.
+- Avis gardés 6 mois sur le serveur.
+- Pendant la partie : petit bouton « ❓ Connais pas » sous chaque produit (tous les jeux). Il ne change pas le score ; le bloc de fin de partie arrive déjà coché. Les avis partent au serveur à la fin de la partie.
+
+## Pop-up du lundi (maj19)
+- Une fois par semaine, à la première ouverture : verdict de la semaine passée dans les ligues (place, points, jours joués) avec une punchline selon le rang (1er, 2e, 3e, autre, dernier si au moins 4 joueurs, « absent » si 2 jours joués ou moins), puis une phrase de remise à zéro (une par semaine, en rotation).
+- Sans ligue : invitation à créer une ligue.
+- Calcul : `lgView` renvoie `lastWeek` (serveur : `prevScores`, seulement si la ligue existait la semaine dernière). Textes : `LUNDI_RESET` et `LUNDI_VERDICT` dans `template.html`.
+
+## Mise en rayon
+- À la correction, le prix d'une étiquette mal posée n'est plus barré : fond rouge et « vrai : x,xx € » bien lisible.

@@ -54,6 +54,14 @@ MIN_QTE_G = 30           # en dessous de 30 g / 3 cl : poids sans doute faux
 MAX_PAR_MARQUE = 3       # variété : 3 produits automatiques maximum par marque
 MIN_PAR_KILO = 0.30      # en dessous (0,10 €/L pour les boissons, ex. pack d'eau) : poids mal saisi (ex. 5 kg noté au lieu de 500 g)
 MAX_AUTO_TOTAL = 1000    # plafond de produits automatiques (taille de la page du jeu)
+CORE_N = 300             # « cœur du caddie » : les 300 produits Open Prices les plus connus (+ catalogue + Insee)
+POP_PAGES = 15           # popularité : les 1 500 produits les plus scannés sur Open Food Facts (via Open Prices)
+AVIS_MIN_JOUEURS = 8     # « Je ne connais pas » : bilan seulement si au moins 8 joueurs ont vu le produit
+AVIS_SEUIL = 0.5         # … et sorti du jeu si plus de 50 % ne le connaissaient pas
+# Produits de niche (moins « quotidiens ») : ils restent dans le jeu, mais en « découverte »
+NICHE = re.compile(r"kombucha|sriracha|tofu|tempeh|seitan|v[ée]g[ée]tal|vegan|kéfir|kefir|matcha|sans gluten|protéin|"
+                   r"yakitori|wasabi|tahin|miso|cancoillotte|crozets|saindoux|graisse|kombu|spiruline|chia|"
+                   r"pastille|ricola|panna cotta|lait de coco|curry vert|tikka|harissa|gochujang|houmous", re.I)
 
 # Fichier complet Open Prices (régénéré chaque nuit) et fiches produits Open Food Facts
 DUMP = "https://prices.openfoodfacts.org/data"
@@ -550,6 +558,14 @@ def build(raw=None, insee_xml=None, dump_dir=None):
 
     exclus_path = HERE / "exclus.json"
     exclus = set(json.loads(exclus_path.read_text()).get("codes", [])) if exclus_path.exists() else set()
+    try:
+        old0 = json.loads((HERE / "products.json").read_text())
+    except Exception:
+        old0 = None
+    inconnus = inconnus_de_la_semaine(old0) if raw is None else dict((old0 or {}).get("_inconnus") or {})
+    if inconnus:
+        print(f"{len(inconnus)} produits sortis du jeu par les joueurs (« Je ne connais pas »)", file=sys.stderr)
+    exclus |= set(inconnus)
     candidates = {c: m for c, m in catalog.items() if c not in exclus}
 
     # 1) Méthode principale : le fichier complet d'Open Prices (tous les produits relevés en France)
@@ -649,11 +665,14 @@ def build(raw=None, insee_xml=None, dump_dir=None):
         if v:
             print(f"  écartés : {v} — {k}", file=sys.stderr)
 
+    # Cœur du caddie : les produits les plus connus (le jeu en prend 4 sur 5)
+    marque_coeur(products, catalog, popularite() if raw is None else {})
+
     # Produits frais de l'Insee (s'ils ne répondent pas, on continue avec Open Prices seul)
     if raw is None or insee_xml is not None:
         try:
             frais = insee_products(paris_today(), insee_xml)
-            frais = [f for f in frais if f["code"] not in exclus and f["code"].replace("insee-", "") not in exclus]
+            frais = [dict(f, core=True) for f in frais if f["code"] not in exclus and f["code"].replace("insee-", "") not in exclus]
             products += frais
             print(f"{len(frais)} produits frais Insee ajoutés", file=sys.stderr)
         except Exception as e:
@@ -693,12 +712,80 @@ def build(raw=None, insee_xml=None, dump_dir=None):
     if not _FICHES and old and old.get("_fiches"):
         _FICHES.update(old["_fiches"])          # nuit de secours : on garde la mémoire existante
     text = json.dumps(out, ensure_ascii=False, indent=1)
-    if _FICHES:                                 # mémoire des fiches, sur une seule ligne en fin de fichier
-        text = text[:-2] + ',\n "_fiches": ' + json.dumps(_FICHES, ensure_ascii=False, separators=(",", ":")) + "\n}"
+    extras = {"_inconnus": inconnus, "_fiches": _FICHES}   # mémoires du script, retirées du jeu par build.py
+    for k, v in extras.items():
+        if v:
+            text = text[:-2] + f',\n "{k}": ' + json.dumps(v, ensure_ascii=False, separators=(",", ":")) + "\n}"
     path.write_text(text)
     print(f"{len(products)} produits prêts pour demain ({out['next']['from']}) ; "
           f"{len(current['products'])} produits en jeu aujourd'hui.", file=sys.stderr)
     return out
+
+
+def popularite():
+    """{code: rang} des produits les plus scannés sur Open Food Facts (parmi ceux qui ont des prix). Vide si indisponible."""
+    rangs = {}
+    for page in range(1, POP_PAGES + 1):
+        try:
+            items = get("products", order_by="-unique_scans_n", price_count__gte=3, size=100, page=page).get("items", [])
+        except Exception as e:
+            print(f"  popularité : page {page} indisponible ({e})", file=sys.stderr)
+            break
+        for it in items:
+            if it.get("code") and it["code"] not in rangs:
+                rangs[it["code"]] = len(rangs)
+        if not items:
+            break
+        time.sleep(0.5)
+    return rangs
+
+
+def marque_coeur(products, catalog, rangs):
+    """Ajoute "core": true aux produits les plus connus (4 produits sur 5 d'une partie viennent de là)."""
+    import math
+    notes = []
+    for p in products:
+        if p["code"] in catalog:
+            p["core"] = True            # choisis à la main : des classiques
+            continue
+        r = rangs.get(p["code"])
+        pop = 1 - r / (POP_PAGES * 100) if r is not None else 0.0
+        rel = min(1.0, math.log(max(p.get("n") or 1, 1)) / math.log(50))
+        note = 0.65 * pop + 0.35 * rel - (0.4 if NICHE.search(p["name"]) else 0)
+        notes.append((note, p))
+    notes.sort(key=lambda x: -x[0])
+    for i, (note, p) in enumerate(notes):
+        if i < CORE_N:
+            p["core"] = True
+        else:
+            p.pop("core", None)
+    nb = sum(1 for p in products if p.get("core"))
+    print(f"Cœur du caddie : {nb} produits très connus ({len(rangs)} produits classés par popularité)", file=sys.stderr)
+
+
+def inconnus_de_la_semaine(old):
+    """Produits que plus de 50 % des joueurs ne connaissaient pas (bouton « Je ne connais pas ce produit »).
+    La liste est complétée une fois par semaine (liste du lundi) et garde les produits déjà sortis."""
+    sortis = dict((old or {}).get("_inconnus") or {})
+    demain = paris_today() + timedelta(days=1)
+    if demain.weekday() != 0:
+        return sortis
+    try:
+        api = json.loads((HERE / "config.json").read_text()).get("api_ligues", "").rstrip("/")
+        if not api:
+            return sortis
+        req = urllib.request.Request(api + "/inconnus", headers={"User-Agent": USER_AGENT})
+        with urllib.request.urlopen(req, timeout=30) as r:
+            items = json.load(r).get("items", [])
+    except Exception as e:
+        print(f"Bilan « Je ne connais pas » indisponible ({e})", file=sys.stderr)
+        return sortis
+    for it in items:
+        vus, inc = int(it.get("seen") or 0), int(it.get("unknown") or 0)
+        if vus >= AVIS_MIN_JOUEURS and inc / vus > AVIS_SEUIL and it.get("code") not in sortis:
+            sortis[it["code"]] = {"depuis": demain.isoformat(), "vus": vus, "inconnu": inc}
+            print(f"  sorti (inconnu de {round(100 * inc / vus)} % des {vus} joueurs) : {it['code']}", file=sys.stderr)
+    return sortis
 
 
 def precedents():

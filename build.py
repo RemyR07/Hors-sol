@@ -47,7 +47,8 @@ cfg = json.loads(cfg_path.read_text()) if cfg_path.exists() else {}
 api = (cfg.get("api_ligues") or "").rstrip("/")
 
 _prod = json.loads((here / "products.json").read_text())
-_prod.pop("_fiches", None)   # mémoire du script de mise à jour : inutile dans le jeu
+for _k in ("_fiches", "_inconnus"):
+    _prod.pop(_k, None)      # mémoires du script de mise à jour : inutiles dans le jeu
 data = json.dumps(_prod, ensure_ascii=False, separators=(",", ":"))
 tpl = (here / "template.html").read_text().replace("__DATA__", data.replace("</", "<\\/"))
 tpl = tpl.replace("/*__LIGUES_CORE__*/", core).replace("__API_LIGUES__", api)
