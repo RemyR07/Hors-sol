@@ -1,5 +1,5 @@
 {
- "updated": "2026-11-20",
+ "updated": "2026-11-21",
  "source": "Open Prices (Open Food Facts) — ODbL",
  "window_days": 365,
  "products": [
@@ -2394,19 +2394,6 @@
    "per_unit": 4.82
   },
   {
-   "code": "3165959308021",
-   "name": "Le thon sauce mayonnaise Saupiquet",
-   "detail": "270 g",
-   "rayon": "Conserves",
-   "qty": 0.27,
-   "unit": "kg",
-   "median": 2.95,
-   "p25": 2.58,
-   "p75": 3.6,
-   "n": 5,
-   "per_unit": 10.93
-  },
-  {
    "code": "3166290200197",
    "name": "Cannelle moulue Ducros",
    "detail": "39 g",
@@ -2728,17 +2715,17 @@
    "core": true
   },
   {
-   "code": "3168930170600",
-   "name": "Citron-citron vert Ice tea Lipton",
+   "code": "3168930170938",
+   "name": "Lipton Ice Tea saveur framboise",
    "detail": "1,25 L",
    "rayon": "Boissons",
    "qty": 1.25,
    "unit": "L",
-   "median": 1.85,
-   "p25": 1.71,
+   "median": 2.03,
+   "p25": 1.79,
    "p75": 2.15,
    "n": 7,
-   "per_unit": 1.48
+   "per_unit": 1.62
   },
   {
    "code": "3168930171881",
@@ -3033,6 +3020,19 @@
    "per_unit": 1.87
   },
   {
+   "code": "3176582016320",
+   "name": "Duo raclette (3 poivres et classique) Cf&R",
+   "detail": "420 g",
+   "rayon": "Crèmerie",
+   "qty": 0.42,
+   "unit": "kg",
+   "median": 6.83,
+   "p25": 5.8,
+   "p75": 7.51,
+   "n": 6,
+   "per_unit": 16.26
+  },
+  {
    "code": "3176582033327",
    "name": "Camembert Le Rustique",
    "detail": "Boîte de 250 g",
@@ -3122,11 +3122,11 @@
    "rayon": "Biscuits",
    "qty": 0.5,
    "unit": "kg",
-   "median": 2.59,
+   "median": 2.47,
    "p25": 2.02,
-   "p75": 3.03,
-   "n": 22,
-   "per_unit": 5.18,
+   "p75": 3.07,
+   "n": 21,
+   "per_unit": 4.94,
    "core": true
   },
   {
@@ -3136,11 +3136,11 @@
    "rayon": "Biscuits",
    "qty": 0.4,
    "unit": "kg",
-   "median": 2.64,
-   "p25": 1.98,
-   "p75": 3.24,
-   "n": 33,
-   "per_unit": 6.6,
+   "median": 2.59,
+   "p25": 1.96,
+   "p75": 3.29,
+   "n": 32,
+   "per_unit": 6.47,
    "core": true
   },
   {
@@ -3155,20 +3155,6 @@
    "p75": 4.36,
    "n": 28,
    "per_unit": 13.4,
-   "core": true
-  },
-  {
-   "code": "3178530421132",
-   "name": "Galette moelleuse chocolat au lait St Michel",
-   "detail": "180 g",
-   "rayon": "Biscuits",
-   "qty": 0.18,
-   "unit": "kg",
-   "median": 2.09,
-   "p25": 1.98,
-   "p75": 2.5,
-   "n": 22,
-   "per_unit": 11.61,
    "core": true
   },
   {
@@ -3211,6 +3197,20 @@
    "p75": 4.73,
    "n": 28,
    "per_unit": 14.7,
+   "core": true
+  },
+  {
+   "code": "3178530422733",
+   "name": "Galette Moelleuse marbrée chocolat St Michel",
+   "detail": "180 g",
+   "rayon": "Biscuits",
+   "qty": 0.18,
+   "unit": "kg",
+   "median": 2.15,
+   "p25": 2.09,
+   "p75": 2.29,
+   "n": 21,
+   "per_unit": 11.94,
    "core": true
   },
   {
@@ -3444,11 +3444,11 @@
    "rayon": "Crèmerie",
    "qty": 0.24,
    "unit": "kg",
-   "median": 2.8,
-   "p25": 2.57,
-   "p75": 2.93,
-   "n": 16,
-   "per_unit": 11.67
+   "median": 2.82,
+   "p25": 2.58,
+   "p75": 2.95,
+   "n": 18,
+   "per_unit": 11.75
   },
   {
    "code": "3185200001341",
@@ -3460,7 +3460,7 @@
    "median": 3.55,
    "p25": 3.55,
    "p75": 3.55,
-   "n": 31,
+   "n": 30,
    "per_unit": 16.14,
    "core": true
   },
@@ -3472,9 +3472,9 @@
    "qty": 0.25,
    "unit": "kg",
    "median": 5.95,
-   "p25": 5.54,
+   "p25": 5.53,
    "p75": 5.99,
-   "n": 5,
+   "n": 6,
    "per_unit": 23.8,
    "core": true
   },
@@ -3669,11 +3669,11 @@
    "rayon": "Crèmerie",
    "qty": 0.125,
    "unit": "kg",
-   "median": 2.01,
-   "p25": 1.79,
+   "median": 2.04,
+   "p25": 1.8,
    "p75": 2.09,
-   "n": 11,
-   "per_unit": 16.08
+   "n": 12,
+   "per_unit": 16.32
   },
   {
    "code": "3228470052122",
@@ -3967,11 +3967,11 @@
    "rayon": "Épicerie",
    "qty": 0.2,
    "unit": "kg",
-   "median": 4.57,
-   "p25": 4.24,
-   "p75": 5.19,
-   "n": 9,
-   "per_unit": 22.85
+   "median": 4.83,
+   "p25": 4.29,
+   "p75": 5.17,
+   "n": 10,
+   "per_unit": 24.15
   },
   {
    "code": "3229820765341",
@@ -4463,20 +4463,6 @@
    "p75": 3.78,
    "n": 11,
    "per_unit": 7.62
-  },
-  {
-   "code": "3254380008430",
-   "name": "Cristaline Eau De Source Pétillante Cristalline",
-   "detail": "1,5 L",
-   "rayon": "Boissons",
-   "qty": 1.5,
-   "unit": "L",
-   "median": 0.33,
-   "p25": 0.33,
-   "p75": 0.46,
-   "n": 5,
-   "per_unit": 0.22,
-   "core": true
   },
   {
    "code": "3254381047995",
@@ -5016,11 +5002,11 @@
    "rayon": "Conserves",
    "qty": 0.14,
    "unit": "kg",
-   "median": 2.04,
-   "p25": 1.77,
-   "p75": 2.13,
-   "n": 8,
-   "per_unit": 14.57,
+   "median": 2.02,
+   "p25": 1.73,
+   "p75": 2.09,
+   "n": 7,
+   "per_unit": 14.43,
    "core": true
   },
   {
@@ -5043,11 +5029,11 @@
    "rayon": "Épicerie",
    "qty": 0.121,
    "unit": "kg",
-   "median": 2.74,
-   "p25": 2.48,
-   "p75": 3.25,
-   "n": 7,
-   "per_unit": 22.64
+   "median": 2.61,
+   "p25": 2.46,
+   "p75": 2.91,
+   "n": 6,
+   "per_unit": 21.57
   },
   {
    "code": "3263670991314",
@@ -5301,6 +5287,34 @@
    "p75": 3.23,
    "n": 11,
    "per_unit": 18.89
+  },
+  {
+   "code": "3272770097642",
+   "name": "Le Goût Primeur format familial Savencia",
+   "detail": "300 g",
+   "rayon": "Apéro",
+   "qty": 0.3,
+   "unit": "kg",
+   "median": 3.42,
+   "p25": 3.36,
+   "p75": 4.02,
+   "n": 5,
+   "per_unit": 11.4,
+   "core": true
+  },
+  {
+   "code": "3272770098090",
+   "name": "St Môret",
+   "detail": "150 g",
+   "rayon": "Apéro",
+   "qty": 0.15,
+   "unit": "kg",
+   "median": 2.09,
+   "p25": 2.0,
+   "p75": 2.52,
+   "n": 5,
+   "per_unit": 13.93,
+   "core": true
   },
   {
    "code": "3273220082089",
@@ -5774,11 +5788,11 @@
    "rayon": "Épicerie",
    "qty": 0.4,
    "unit": "kg",
-   "median": 1.45,
+   "median": 1.44,
    "p25": 1.44,
-   "p75": 1.56,
-   "n": 21,
-   "per_unit": 3.62,
+   "p75": 1.55,
+   "n": 22,
+   "per_unit": 3.6,
    "core": true
   },
   {
@@ -6374,11 +6388,11 @@
    "rayon": "Frais",
    "qty": 0.19,
    "unit": "kg",
-   "median": 3.37,
-   "p25": 2.83,
-   "p75": 3.69,
-   "n": 17,
-   "per_unit": 17.74
+   "median": 3.38,
+   "p25": 2.84,
+   "p75": 3.68,
+   "n": 18,
+   "per_unit": 17.79
   },
   {
    "code": "3368390000985",
@@ -7325,8 +7339,8 @@
    "unit": "kg",
    "median": 2.5,
    "p25": 2.26,
-   "p75": 2.68,
-   "n": 12,
+   "p75": 2.6,
+   "n": 11,
    "per_unit": 17.86
   },
   {
@@ -7669,9 +7683,9 @@
    "qty": 0.25,
    "unit": "kg",
    "median": 2.55,
-   "p25": 2.54,
+   "p25": 2.52,
    "p75": 2.55,
-   "n": 22,
+   "n": 21,
    "per_unit": 10.2,
    "core": true
   },
@@ -7857,11 +7871,11 @@
    "rayon": "Crèmerie",
    "qty": 0.25,
    "unit": "kg",
-   "median": 2.64,
+   "median": 2.63,
    "p25": 2.59,
    "p75": 2.79,
-   "n": 19,
-   "per_unit": 10.56,
+   "n": 20,
+   "per_unit": 10.52,
    "core": true
   },
   {
@@ -8898,8 +8912,8 @@
    "unit": "kg",
    "median": 2.39,
    "p25": 1.96,
-   "p75": 2.69,
-   "n": 14,
+   "p75": 3.13,
+   "n": 15,
    "per_unit": 4.69,
    "core": true
   },
@@ -8924,11 +8938,11 @@
    "rayon": "Petit-déj",
    "qty": 0.325,
    "unit": "kg",
-   "median": 3.53,
-   "p25": 3.23,
-   "p75": 3.81,
-   "n": 16,
-   "per_unit": 10.86,
+   "median": 3.49,
+   "p25": 3.22,
+   "p75": 3.85,
+   "n": 15,
+   "per_unit": 10.74,
    "core": true
   },
   {
@@ -9096,6 +9110,19 @@
    "per_unit": 0.44
   },
   {
+   "code": "3664346300513",
+   "name": "Michoko Noir La Pie Qui Chante",
+   "detail": "280 g",
+   "rayon": "Confiserie",
+   "qty": 0.28,
+   "unit": "kg",
+   "median": 2.95,
+   "p25": 2.9,
+   "p75": 2.98,
+   "n": 6,
+   "per_unit": 10.54
+  },
+  {
    "code": "3664346300780",
    "name": "Caramel L’original Carambar",
    "detail": "320 g",
@@ -9115,11 +9142,11 @@
    "rayon": "Confiserie",
    "qty": 0.23,
    "unit": "kg",
-   "median": 1.28,
+   "median": 1.25,
    "p25": 1.2,
-   "p75": 1.67,
-   "n": 6,
-   "per_unit": 5.57
+   "p75": 1.65,
+   "n": 7,
+   "per_unit": 5.43
   },
   {
    "code": "3664346307079",
@@ -9234,11 +9261,11 @@
    "rayon": "Frais",
    "qty": 0.18,
    "unit": "kg",
-   "median": 3.47,
+   "median": 3.53,
    "p25": 3.47,
-   "p75": 3.72,
-   "n": 5,
-   "per_unit": 19.28
+   "p75": 3.96,
+   "n": 6,
+   "per_unit": 19.61
   },
   {
    "code": "3700009282311",
@@ -9410,7 +9437,7 @@
    "median": 1.29,
    "p25": 1.29,
    "p75": 1.29,
-   "n": 16,
+   "n": 15,
    "per_unit": 6.45
   },
   {
@@ -9502,8 +9529,7 @@
    "p25": 2.13,
    "p75": 2.53,
    "n": 10,
-   "per_unit": 28.0,
-   "core": true
+   "per_unit": 28.0
   },
   {
    "code": "3760020507350",
@@ -9662,11 +9688,11 @@
    "rayon": "Apéro",
    "qty": 0.19,
    "unit": "kg",
-   "median": 2.53,
-   "p25": 2.49,
-   "p75": 3.1,
-   "n": 9,
-   "per_unit": 13.32
+   "median": 2.54,
+   "p25": 2.5,
+   "p75": 3.03,
+   "n": 10,
+   "per_unit": 13.37
   },
   {
    "code": "3760077533173",
@@ -9703,8 +9729,8 @@
    "unit": "kg",
    "median": 2.21,
    "p25": 2.1,
-   "p75": 2.37,
-   "n": 9,
+   "p75": 2.46,
+   "n": 10,
    "per_unit": 11.63
   },
   {
@@ -10567,19 +10593,6 @@
    "per_unit": 17.2
   },
   {
-   "code": "4017100284410",
-   "name": "Pick up! caramel sale Bahlsen",
-   "detail": "140 g",
-   "rayon": "Biscuits",
-   "qty": 0.14,
-   "unit": "kg",
-   "median": 2.89,
-   "p25": 2.5,
-   "p75": 3.1,
-   "n": 5,
-   "per_unit": 20.64
-  },
-  {
    "code": "4017100376108",
    "name": "Croissant de Lune Bahlsen",
    "detail": "125 g",
@@ -11138,10 +11151,11 @@
    "qty": 0.5,
    "unit": "L",
    "median": 1.66,
-   "p25": 1.57,
-   "p75": 1.82,
-   "n": 8,
-   "per_unit": 3.32
+   "p25": 1.58,
+   "p75": 1.84,
+   "n": 9,
+   "per_unit": 3.32,
+   "core": true
   },
   {
    "code": "5060517885526",
@@ -11577,11 +11591,11 @@
    "rayon": "Boissons",
    "qty": 1.25,
    "unit": "L",
-   "median": 2.03,
+   "median": 2.07,
    "p25": 1.84,
-   "p75": 2.46,
-   "n": 18,
-   "per_unit": 1.62
+   "p75": 2.45,
+   "n": 19,
+   "per_unit": 1.66
   },
   {
    "code": "5449000283795",
@@ -11635,19 +11649,6 @@
    "n": 21,
    "per_unit": 2.2,
    "core": true
-  },
-  {
-   "code": "5449000308085",
-   "name": "Fanta citron",
-   "detail": "1,25 L",
-   "rayon": "Boissons",
-   "qty": 1.25,
-   "unit": "L",
-   "median": 1.95,
-   "p25": 1.8,
-   "p75": 2.3,
-   "n": 5,
-   "per_unit": 1.56
   },
   {
    "code": "5449000337122",
@@ -12107,11 +12108,11 @@
    "rayon": "Petit-déj",
    "qty": 0.36,
    "unit": "kg",
-   "median": 3.65,
-   "p25": 3.24,
-   "p75": 3.95,
-   "n": 13,
-   "per_unit": 10.14,
+   "median": 3.62,
+   "p25": 3.23,
+   "p75": 4.0,
+   "n": 12,
+   "per_unit": 10.06,
    "core": true
   },
   {
@@ -12643,6 +12644,20 @@
    "per_unit": 8.8
   },
   {
+   "code": "7622300685782",
+   "name": "Philadelphia nature",
+   "detail": "300 g",
+   "rayon": "Apéro",
+   "qty": 0.3,
+   "unit": "kg",
+   "median": 3.44,
+   "p25": 3.02,
+   "p75": 3.88,
+   "n": 6,
+   "per_unit": 11.47,
+   "core": true
+  },
+  {
    "code": "7622300689124",
    "name": "Granola L'original Gros éclats de chocolat",
    "detail": "276 g",
@@ -13097,11 +13112,11 @@
    "rayon": "Épicerie",
    "qty": 0.5,
    "unit": "kg",
-   "median": 2.27,
-   "p25": 2.01,
-   "p75": 2.51,
-   "n": 6,
-   "per_unit": 4.54
+   "median": 2.3,
+   "p25": 2.07,
+   "p75": 2.45,
+   "n": 7,
+   "per_unit": 4.6
   },
   {
    "code": "8008343200660",
@@ -13111,9 +13126,9 @@
    "qty": 0.5,
    "unit": "kg",
    "median": 2.35,
-   "p25": 2.25,
-   "p75": 2.63,
-   "n": 7,
+   "p25": 2.27,
+   "p75": 2.6,
+   "n": 8,
    "per_unit": 4.7,
    "core": true
   },
@@ -13252,8 +13267,7 @@
    "p25": 2.6,
    "p75": 2.85,
    "n": 20,
-   "per_unit": 10.6,
-   "core": true
+   "per_unit": 10.6
   },
   {
    "code": "8076809513722",
@@ -13473,20 +13487,6 @@
    "p75": 3.95,
    "n": 7,
    "per_unit": 22.06,
-   "core": true
-  },
-  {
-   "code": "8410076610744",
-   "name": "Protein Caramel salé Cacahuètes Nature Valley",
-   "detail": "160 g",
-   "rayon": "Épicerie",
-   "qty": 0.16,
-   "unit": "kg",
-   "median": 3.75,
-   "p25": 2.99,
-   "p75": 3.91,
-   "n": 6,
-   "per_unit": 23.44,
    "core": true
   },
   {
@@ -14887,8 +14887,8 @@
   }
  ],
  "next": {
-  "from": "2026-11-22",
-  "updated": "2026-11-21",
+  "from": "2026-11-23",
+  "updated": "2026-11-22",
   "products": [
    {
     "code": "0022314010025",
@@ -18802,8 +18802,8 @@
     "unit": "L",
     "median": 1.79,
     "p25": 1.79,
-    "p75": 1.95,
-    "n": 23,
+    "p75": 1.96,
+    "n": 22,
     "per_unit": 1.79,
     "core": true
    },
@@ -19054,11 +19054,11 @@
     "rayon": "Boissons",
     "qty": 1.0,
     "unit": "L",
-    "median": 1.65,
+    "median": 1.67,
     "p25": 1.65,
-    "p75": 1.75,
-    "n": 7,
-    "per_unit": 1.65
+    "p75": 1.76,
+    "n": 6,
+    "per_unit": 1.67
    },
    {
     "code": "3248340054063",
@@ -19190,8 +19190,7 @@
     "p25": 2.59,
     "p75": 3.55,
     "n": 20,
-    "per_unit": 10.39,
-    "core": true
+    "per_unit": 10.39
    },
    {
     "code": "3249760011063",
@@ -19372,9 +19371,9 @@
     "qty": 8.0,
     "unit": "L",
     "median": 2.55,
-    "p25": 2.48,
+    "p25": 2.45,
     "p75": 2.55,
-    "n": 9,
+    "n": 8,
     "per_unit": 0.32
    },
    {
@@ -20459,11 +20458,11 @@
     "rayon": "Crèmerie",
     "qty": 0.32,
     "unit": "kg",
-    "median": 3.04,
-    "p25": 2.44,
+    "median": 2.99,
+    "p25": 2.47,
     "p75": 3.7,
-    "n": 6,
-    "per_unit": 9.5
+    "n": 7,
+    "per_unit": 9.34
    },
    {
     "code": "3280220109142",
@@ -21159,7 +21158,7 @@
     "median": 3.99,
     "p25": 3.99,
     "p75": 3.99,
-    "n": 10,
+    "n": 11,
     "per_unit": 31.92
    },
    {
@@ -22480,7 +22479,8 @@
     "p25": 1.93,
     "p75": 2.44,
     "n": 17,
-    "per_unit": 4.66
+    "per_unit": 4.66,
+    "core": true
    },
    {
     "code": "3487400006776",
@@ -22930,9 +22930,9 @@
     "qty": 0.17,
     "unit": "kg",
     "median": 1.49,
-    "p25": 1.46,
+    "p25": 1.45,
     "p75": 1.49,
-    "n": 8,
+    "n": 7,
     "per_unit": 8.76
    },
    {
@@ -23853,11 +23853,11 @@
     "rayon": "Biscuits",
     "qty": 0.21,
     "unit": "kg",
-    "median": 2.85,
-    "p25": 2.49,
-    "p75": 2.98,
-    "n": 23,
-    "per_unit": 13.57,
+    "median": 2.79,
+    "p25": 2.48,
+    "p75": 2.97,
+    "n": 22,
+    "per_unit": 13.29,
     "core": true
    },
    {
@@ -24416,7 +24416,8 @@
     "p25": 2.13,
     "p75": 2.53,
     "n": 10,
-    "per_unit": 28.0
+    "per_unit": 28.0,
+    "core": true
    },
    {
     "code": "3760020507350",
@@ -26012,9 +26013,9 @@
     "qty": 0.436,
     "unit": "kg",
     "median": 7.89,
-    "p25": 7.66,
+    "p25": 7.89,
     "p75": 7.89,
-    "n": 6,
+    "n": 7,
     "per_unit": 18.1
    },
    {
@@ -27431,9 +27432,9 @@
     "qty": 0.138,
     "unit": "kg",
     "median": 1.69,
-    "p25": 1.42,
+    "p25": 1.35,
     "p75": 1.79,
-    "n": 8,
+    "n": 7,
     "per_unit": 12.25
    },
    {
@@ -27514,8 +27515,7 @@
     "p25": 1.29,
     "p75": 1.95,
     "n": 15,
-    "per_unit": 9.74,
-    "core": true
+    "per_unit": 9.74
    },
    {
     "code": "7622300571351",
@@ -28666,8 +28666,7 @@
     "p25": 3.26,
     "p75": 4.36,
     "n": 20,
-    "per_unit": 12.48,
-    "core": true
+    "per_unit": 12.48
    },
    {
     "code": "8711327606234",
@@ -28965,7 +28964,8 @@
     "p25": 3.54,
     "p75": 4.95,
     "n": 15,
-    "per_unit": 16.84
+    "per_unit": 16.84,
+    "core": true
    },
    {
     "code": "8723400944324",
